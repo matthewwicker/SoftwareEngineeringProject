@@ -118,7 +118,7 @@ As an \textbf{administrator},\\
 \begin{framed}
 \noindent
 Title: Get User Summaries \\
-ID: US1006 \\
+ID: US1007 \\
 As an \textbf{administrator},\\
  \textbullet  \quad \quad I would like to \textbf{get user summaries}\\ 
  \textbullet  \quad \quad so that we can \textbf{help users in case of an error.}\\
@@ -130,7 +130,7 @@ As an \textbf{administrator},\\
 \begin{framed}
 \noindent
 Title: Send Confirmation Email \\
-ID: US1006 \\
+ID: US1008 \\
 As an \textbf{administrator},\\
  \textbullet  \quad \quad I would like to \textbf{send an email to a user when we've processed their purchase.}\\ 
  \textbullet  \quad \quad so that we can \textbf{confirm a member's purchase.}\\
@@ -138,6 +138,31 @@ As an \textbf{administrator},\\
   \textbullet  \quad \quad Create a confirmation number.\\
   \textbullet  \quad \quad Create an order number which will be later used by the shipment agency and user to update and track the product.\\
   \textbullet  \quad \quad Once these numbers are created, email them to the user along with their receipt of purchase.
+\end{framed}
+
+\begin{framed}
+\noindent
+Title: Add and Remove Shipment Agencies\\
+ID: US1009 \\
+As an \textbf{administrator},\\
+ \textbullet  \quad \quad I would like to \textbf{add and remove shipment agency information}\\ 
+ \textbullet  \quad \quad so that we can \textbf{ensure we are using the best shipment processes.}\\
+ Acceptance criteria: \\
+  \textbullet  \quad \quad Select a shipment agency, and add them to the list of shipment agencies\\
+  \textbullet  \quad \quad Users can now select that shipment agency (or cannot, if we have removed them).
+\end{framed}
+
+
+\begin{framed}
+\noindent
+Title: Add and Remove Employees\\
+ID: US1010 \\
+As an \textbf{administrator},\\
+ \textbullet  \quad \quad I would like to \textbf{add and remove employees}\\ 
+ \textbullet  \quad \quad so that we can \textbf{make sure only the right people have the correct credentials.}\\
+ Acceptance criteria: \\
+  \textbullet  \quad \quad Admin can enter a new employees ID and password\\
+  \textbullet  \quad \quad Employee now has some admin privileges.
 \end{framed}
 
 \subsection{Business Manager Stories}
@@ -154,7 +179,7 @@ As a \textbf{business manager},\\
   \textbullet  \quad \quad Statistics page should display daily sales, books by popularity (in sales), average user activity, etc.\\
 \end{framed}
 
-\newpage
+
 
 
 \begin{framed}
@@ -192,7 +217,7 @@ As a \textbf{business manager},\\
 \end{framed}
 
 
-\subsection{Shopper}
+\subsection{Shopper Stories}
 
 
 \begin{framed}
@@ -207,7 +232,7 @@ As a \textbf{shopper},\\
   \textbullet  \quad \quad Create page which displays the search results \\
 \end{framed}
 
-\newpage
+
 
 \begin{framed}
 \noindent
@@ -225,7 +250,7 @@ As a \textbf{shopper},\\
 \begin{framed}
 \noindent
 Title: View Cart \\
-ID: US3004 \\
+ID: US3003 \\
 As a \textbf{shopper},\\
  \textbullet  \quad \quad I would like to \textbf{add items to my cart}\\ 
  \textbullet  \quad \quad so that I can \textbf{keep track of the total price of all items I want.}\\
@@ -247,9 +272,7 @@ As a \textbf{shopper},\\
   \textbullet  \quad \quad Send an email confirming registration \\
 \end{framed}
 
-\newpage
-
-\subsection{Supplier}
+\subsection{Supplier Stories}
 
 \begin{framed}
 \noindent
@@ -315,7 +338,7 @@ As a \textbf{member},\\
 \begin{framed}
 \noindent
 Title:  Track Shipping Information \\
-ID: US5002 \\
+ID: US5003 \\
 As a \textbf{member},\\
  \textbullet  \quad \quad I would like to \textbf{be able to view my pending and shipping orders }\\ 
  \textbullet  \quad \quad so that I can \textbf{be aware of when my product will arrive}\\
@@ -326,7 +349,7 @@ As a \textbf{member},\\
 \begin{framed}
 \noindent
 Title:  Opt Out \\
-ID: US5003 \\
+ID: US5004 \\
 As a \textbf{member},\\
 \textbullet  \quad \quad I would like to \textbf{be able to opt out of promotional emails}\\ 
 \textbullet  \quad \quad so that I can \textbf{reduce spam in my inbox}\\
@@ -338,7 +361,7 @@ Acceptance criteria: \\
 \begin{framed}
 \noindent
 Title:  View Deals \\
-ID: US5004 \\
+ID: US5005 \\
 As a \textbf{member},\\
 \textbullet  \quad \quad I would like to \textbf{access exclusive deals and clearance items}\\ 
 \textbullet  \quad \quad so that I can \textbf{have an incentive to buy more items and continue my membership}\\
@@ -350,7 +373,7 @@ Acceptance criteria: \\
 \begin{framed}
 \noindent
 Title:  Cancel Membership \\
-ID: US5004 \\
+ID: US5006 \\
 As a \textbf{member},\\
 \textbullet  \quad \quad I would like to \textbf{cancel my membership at any time}\\ 
 \textbullet  \quad \quad so that I can \textbf{clear my information from the user database}\\
@@ -362,7 +385,7 @@ Acceptance criteria: \\
 \begin{framed}
 \noindent
 Title:  Update Account Information \\
-ID: US5004 \\
+ID: US5007 \\
 As a \textbf{member},\\
 \textbullet  \quad \quad I would like to \textbf{update my account information}\\ 
 \textbullet  \quad \quad so that I can \textbf{change my address, payment information, or password}\\
@@ -374,12 +397,36 @@ Acceptance criteria: \\
 \begin{framed}
 \noindent
 Title:  Use Different Address \\
-ID: US5004 \\
+ID: US5008 \\
 As a \textbf{member},\\
 \textbullet  \quad \quad I would like to \textbf{send an item to a different address or person} without updating my account information.\\
 \textbullet  \quad \quad so that I can \textbf{send a gift}\\
 Acceptance criteria: \\
 \textbullet  \quad \quad Allow a member to enter an address or name that is inconsistent with their account information when checking out.
+\end{framed}
+
+\begin{framed}
+\noindent
+Title:  Reset Password \\
+ID: US5009 \\
+As a \textbf{member},\\
+\textbullet  \quad \quad I would like to \textbf{reset my password.}\\
+\textbullet  \quad \quad so that I can \textbf{not worry about forgetting my password}\\
+Acceptance criteria: \\
+\textbullet  \quad \quad Allow users to reset their password by sending them an email.
+\textbullet  \quad \quad After user updates password, their old password is deleted.
+\end{framed}
+
+\begin{framed}
+\noindent
+Title:  Reset Password \\
+ID: US5010 \\
+As a \textbf{member},\\
+\textbullet  \quad \quad I would like to \textbf{use promotion codes.}\\
+\textbullet  \quad \quad so that I can \textbf{take advantage of being a user}\\
+Acceptance criteria: \\
+\textbullet  \quad \quad User enters promo-code
+\textbullet  \quad \quad Items in cart are discounted accordingly
 \end{framed}
 
 
@@ -400,7 +447,7 @@ Acceptance criteria: \\
 \begin{framed}
 \noindent
 Title:  Email Users \\
-ID: US6001 \\
+ID: US6002 \\
 As a \textbf{member},\\
 \textbullet  \quad \quad I would like to \textbf{email users immediately if there is a problem with the delivery}\\ 
 \textbullet  \quad \quad so that \textbf{we can quickly resolve any issues}\\
