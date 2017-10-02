@@ -51,11 +51,28 @@ li a {
 #header h1 {
     font-family: Lobster;
     color: #fff;
+    padding-left: 20px;
     font-size: 35px;
+}
+
+#pageTitle {
+    color: #3d6594;
+    padding-left: 20px;
+    font-size: 35px;
+    margin-top: 30px;
+}
+
+.button2{
+    float: left;
+    height: 25px;
+    width: auto;
+    color: white;
+    background: #3d6594;
 }
 
 #search{
     float: right;
+    padding-right: 150px;
     position: absolute;
     top: 2em;
     right: 300px;
@@ -82,6 +99,49 @@ li a {
   background-color: #b8c7d6;
 }
 
+.cover {
+    width: 180px;
+    height: 200px;
+}
+
+.cover img {
+    width: 100%;
+    height: auto;
+    border-radius: 30px;
+    /*border: 2px solid #3d6594;*/
+    border: 5px solid white;
+}
+
+.topImg {
+    width: 10px;
+    height: 20px;
+}
+
+.topImg img {
+    width: auto;
+    height: 300px;
+    margin-left:  700px;
+    margin-top:  30px;
+    position: absolute;
+    border-radius: 25px;
+    border: 2px solid #DB7093;
+}
+
+
+.boxed {
+    border: 3px solid #DB7093 ;
+    border-radius: 35px;
+    margin: 25px;
+    width: 180px;
+    height: 350px;
+    padding-right: 10px;
+    padding-top: 2px;
+    background: #eff2f7;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+}
 
 /* Dropdown button */
 .dropbtn {
