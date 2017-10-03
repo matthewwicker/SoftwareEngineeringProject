@@ -38,12 +38,14 @@ li a {
 #wrapper {
     margin: 0 auto;
     width: 1000px;
+    width: 80vw;
 }
 
 #header {
     float: left;
     height: 75px;
     width: 1000px;
+    width: 80vw;
     background: #3d6594;
 }
 
@@ -77,7 +79,6 @@ li a {
 
 #search{
     float: right;
-    padding-right: 150px;
     position: absolute;
     top: 2em;
     right: 300px;
@@ -87,6 +88,7 @@ li a {
     float: left;
     height: 40px;
     width: 1000px;
+    width: 80vw;
     background: #b8c7d6;
 }
 
@@ -94,6 +96,7 @@ li a {
     float: left;
     background: #FFFFFF;
     width: 1000px;
+    width: 70vw;
     height: 70vh;
     overflow-y: auto;
 }
@@ -102,6 +105,7 @@ li a {
   position: absolute;
   bottom: 20px;
   width: 1000px;
+  width: 80vw;
   height: 60px;
   background-color: #b8c7d6;
 }
@@ -201,5 +205,52 @@ li a {
 .dropdown:hover .dropbtn {
     background-color: #DB7093;
     color: white;
+}
+
+.bropdown {
+    float: right;
+    position: relative;
+    display: inline-block;
+    border: #b8c7d6;
+}
+
+.bropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: 1px solid #b8c7d6;
+}
+
+.bropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+}
+
+.bropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.bropdown:hover .bropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.bropdown:hover .bropbtn {
+    background-color: white;
+    color: black;
+}
+.bropbtn {
+    height: 40px;
+    background: white;
+    border: 1px solid #b8c7d6;
+    cursor: pointer;
+    padding: 10px;
+    color: black;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
 }
 
