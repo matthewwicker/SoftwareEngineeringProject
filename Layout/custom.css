@@ -96,7 +96,7 @@ li a {
     float: left;
     background: #FFFFFF;
     width: 1000px;
-    width: 70vw;
+    width: 80vw;
     height: 70vh;
     overflow-y: auto;
 }
@@ -254,3 +254,7 @@ li a {
     font-size: 13px;
 }
 
+th {
+    height: 50px;
+    float: left;
+}
