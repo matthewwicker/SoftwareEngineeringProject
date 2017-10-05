@@ -38,14 +38,14 @@ li a {
 #wrapper {
     margin: 0 auto;
     width: 1000px;
-    width: 80vw;
+    width: 100vw;
 }
 
 #header {
     float: left;
     height: 75px;
     width: 1000px;
-    width: 80vw;
+    width: 100vw;
     background: #3d6594;
 }
 
@@ -53,7 +53,7 @@ li a {
 #header h1 {
     font-family: Lobster;
     color: #fff;
-    padding-left: 20px;
+    padding-left: 40px;
     font-size: 35px;
 }
 
@@ -69,26 +69,36 @@ li a {
     height: 25px;
     width: auto;
     color: white;
-    background: #b8c7d6;
-    text-decoration: none!important;
     text-align: center;
     padding-top: 6px;
     padding-left: 4px;
     padding-right: 4px;
 }
-
+.button2 button{
+    color: white;
+    background: #3d6594;
+    border: 2px solid #DB7093;
+    text-decoration: none;
+    padding: 6px;
+    padding-right: 4px;
+}
+.button2 a{
+    color: white;
+    text-decoration: none;
+}
 #search{
     float: right;
     position: absolute;
     top: 2em;
-    right: 300px;
+    right: 10px;
 }
 
 #navigation {
     float: left;
     height: 40px;
     width: 1000px;
-    width: 80vw;
+    width: 97vw;
+    padding-left:3%;
     background: #b8c7d6;
 }
 
@@ -96,8 +106,9 @@ li a {
     float: left;
     background: #FFFFFF;
     width: 1000px;
-    width: 80vw;
+    width: 98vw;
     height: 70vh;
+    margin-left: 2%;
     overflow-y: auto;
 }
 
@@ -105,8 +116,10 @@ li a {
   position: absolute;
   bottom: 20px;
   width: 1000px;
-  width: 80vw;
+  width: 97vw;
   height: 60px;
+  padding-left:0;
+  margin-left:0;
   background-color: #b8c7d6;
 }
 
@@ -210,6 +223,7 @@ li a {
 .bropdown {
     float: right;
     position: relative;
+    padding-right: 100px;
     display: inline-block;
     border: #b8c7d6;
 }
@@ -218,7 +232,7 @@ li a {
     display: none;
     position: absolute;
     background-color: white;
-    min-width: 160px;
+    min-width: 60px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border: 1px solid #b8c7d6;
@@ -255,6 +269,13 @@ li a {
 }
 
 th {
-    height: 50px;
-    float: left;
+    height: 20px;
+    text-align: left;
+    vertical-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+   vertical-align: center;
 }
