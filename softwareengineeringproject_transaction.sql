@@ -16,28 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cart`
+-- Table structure for table `transaction`
 --
 
-DROP TABLE IF EXISTS `cart`;
+DROP TABLE IF EXISTS `transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cart` (
+CREATE TABLE `transaction` (
+  `transactioncol` int(11) NOT NULL,
   `cartid` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  PRIMARY KEY (`cartid`),
-  KEY `uid1_idx` (`uid`),
-  CONSTRAINT `userid5` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `ccid` int(11) NOT NULL,
+  `amount` double NOT NULL,
+  `date` varchar(45) NOT NULL,
+  PRIMARY KEY (`transactioncol`),
+  KEY `cartid_idx` (`cartid`),
+  KEY `ccid_idx` (`ccid`),
+  CONSTRAINT `creditcardid` FOREIGN KEY (`ccid`) REFERENCES `payment` (`ccid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idcart` FOREIGN KEY (`cartid`) REFERENCES `cart` (`cartid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cart`
+-- Dumping data for table `transaction`
 --
 
-LOCK TABLES `cart` WRITE;
-/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+LOCK TABLES `transaction` WRITE;
+/*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

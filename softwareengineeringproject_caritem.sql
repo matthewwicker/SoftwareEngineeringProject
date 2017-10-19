@@ -16,28 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cart`
+-- Table structure for table `caritem`
 --
 
-DROP TABLE IF EXISTS `cart`;
+DROP TABLE IF EXISTS `caritem`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cart` (
+CREATE TABLE `caritem` (
+  `isbn` int(11) NOT NULL,
+  `numbooks` int(11) NOT NULL,
   `cartid` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  PRIMARY KEY (`cartid`),
-  KEY `uid1_idx` (`uid`),
-  CONSTRAINT `userid5` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `isbn_idx` (`isbn`),
+  KEY `cartid_idx` (`cartid`),
+  CONSTRAINT `bookid` FOREIGN KEY (`isbn`) REFERENCES `book` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cartid` FOREIGN KEY (`cartid`) REFERENCES `cart` (`cartid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cart`
+-- Dumping data for table `caritem`
 --
 
-LOCK TABLES `cart` WRITE;
-/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+LOCK TABLES `caritem` WRITE;
+/*!40000 ALTER TABLE `caritem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `caritem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

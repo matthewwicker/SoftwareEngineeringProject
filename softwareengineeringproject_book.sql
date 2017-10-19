@@ -31,8 +31,12 @@ CREATE TABLE `book` (
   `image` longblob NOT NULL,
   `genre` varchar(45) NOT NULL,
   `rating` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `supplier` int(11) NOT NULL,
   PRIMARY KEY (`isbn`),
-  UNIQUE KEY `isbn_UNIQUE` (`isbn`)
+  UNIQUE KEY `isbn_UNIQUE` (`isbn`),
+  KEY `supplierid_idx` (`supplier`),
+  CONSTRAINT `supplierid` FOREIGN KEY (`supplier`) REFERENCES `supplier` (`supplierid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-18 16:20:15
+-- Dump completed on 2017-10-19 18:02:54
