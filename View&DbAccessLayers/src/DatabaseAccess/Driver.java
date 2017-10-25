@@ -3,28 +3,25 @@ package DatabaseAccess;
 import java.sql.*;
 
 public class Driver {
+	static Connection con;
+	private static DbAccessImpl dbAccess = new DbAccessImpl();
 
 	public static void main(String[] args) {
 		
-		try{
-			
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/imdb2","root","password");
-			
-			Statement myStmt=myConn.createStatement();
-			
-			ResultSet myRs= myStmt.executeQuery("Select * from actors");
-			
-			while(myRs.next()){
+		con = dbAccess.connect();
+		String query = ("select * from users");
+		ResultSet rs = dbAccess.retrieve(con, query);
+		try {
+			while(rs.next()){
 				
-				System.out.println(myRs.getString("id") + myRs.getString("first_name"));
+				System.out.println(rs.getString("uid") + rs.getString("name"));
 				
 			}
-			myConn.close();
-			
-		}catch(Exception E){
-			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		dbAccess.disconnect(con);
 
 	}
 
