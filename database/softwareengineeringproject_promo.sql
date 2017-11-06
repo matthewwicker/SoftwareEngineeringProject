@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: softwareengineeringproject
+-- Host: 127.0.0.1    Database: softwareengineeringproject
 -- ------------------------------------------------------
 -- Server version	5.7.19-log
 
@@ -26,6 +26,8 @@ CREATE TABLE `promo` (
   `code` int(11) NOT NULL,
   `isbn` int(11) NOT NULL,
   `percentoff` double NOT NULL,
+  `startdate` datetime NOT NULL,
+  `enddate` datetime NOT NULL,
   PRIMARY KEY (`code`),
   UNIQUE KEY `code_UNIQUE` (`code`),
   KEY `isbn_idx` (`isbn`),
@@ -51,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-19 18:02:54
+-- Dump completed on 2017-11-06 17:44:58
