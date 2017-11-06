@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: softwareengineeringproject
+-- Host: 127.0.0.1    Database: softwareengineeringproject
 -- ------------------------------------------------------
 -- Server version	5.7.19-log
 
@@ -33,6 +33,7 @@ CREATE TABLE `book` (
   `rating` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
   `supplier` int(11) NOT NULL,
+  `threshold` int(11) NOT NULL,
   PRIMARY KEY (`isbn`),
   UNIQUE KEY `isbn_UNIQUE` (`isbn`),
   KEY `supplierid_idx` (`supplier`),
@@ -58,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-19 18:02:54
+-- Dump completed on 2017-11-06 17:44:58
