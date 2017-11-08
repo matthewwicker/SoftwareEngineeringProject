@@ -1,6 +1,7 @@
 package View;
 import DatabaseAccess.Driver;
 
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,9 +67,10 @@ public class myservlet extends HttpServlet {
 				while(rs.next()){
 					email = rs.getString("email");
 					name = rs.getString("name");
+					}
 					
 				}
-			} catch (SQLException e) {
+			 catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -77,12 +79,16 @@ public class myservlet extends HttpServlet {
 		String template = "account.ftlh";
 		if(email.equals("")){
 			template = "signin.html";
+		    out.println("<script type=\"text/javascript\">");
+		    out.println("alert('User or password incorrect');");
+		    out.println("</script>");
 		}
 		else{
 			String[] nameArray = name.split("\\.");
 			String fname = nameArray[0];
 			String lname = nameArray[1];
 			root.put("username", username);
+			
 			root.put("fname", fname);
 			root.put("lname", lname);
 			root.put("email", email);

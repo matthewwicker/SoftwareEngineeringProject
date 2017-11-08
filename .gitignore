@@ -13,3 +13,5 @@
 *-converted-to.*
 /.metadata/
 /.recommenders/
+ThomasEclipse/Books/.*
+ThomasEclipse/Books/build/*
