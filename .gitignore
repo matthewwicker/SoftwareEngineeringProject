@@ -12,3 +12,4 @@
 *.dvi
 *-converted-to.*
 ThomasEclipse/Books/build/*
+EclipseProject/Books/build/*
