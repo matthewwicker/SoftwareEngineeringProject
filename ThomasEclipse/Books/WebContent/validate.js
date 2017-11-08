@@ -8,9 +8,5 @@ function validateUserName(username,password){
     	alert("Please provide password");
     	returnValue = false;
 	}
-	else if (username != "sarah" || password != "elliott" ){
-    	alert("Invalid username and password combination");
-    	returnValue = false;
-	}
     return returnValue;
 }
