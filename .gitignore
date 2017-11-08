@@ -14,8 +14,11 @@
 ThomasEclipse/Books/build/*
 EclipseProject/Bookz/build/*
 ThomasEclipse/Books/src/DatabaseAccess/DbAccessConfiguration.java
+<<<<<<< HEAD
 ThomasEclipse/Books/.settings/
 ThomasEclipse/Books/.project
 ThomasEclipse/Books/.tern-project
 ThomasEclipse/Books/.classpath
+=======
+>>>>>>> 0e818181192af168b4955cb0077995d76f69dd42
 
