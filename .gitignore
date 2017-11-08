@@ -11,3 +11,5 @@
 *.cb2
 *.dvi
 *-converted-to.*
+/.metadata/
+/.recommenders/

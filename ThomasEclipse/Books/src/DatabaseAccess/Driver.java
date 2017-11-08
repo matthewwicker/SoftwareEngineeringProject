@@ -24,8 +24,10 @@ public class Driver {
 		dbAccess.disconnect(con);
 	}
 	public ResultSet login(String username, String password){
+		System.out.println("FUCK THIS SHIT");
 		con = dbAccess.connect();
 		String query = String.format("select * from users where email='%s' and password='%s'", username,password);
+		
 		ResultSet rs = dbAccess.retrieve(con, query);
 		return rs;
 	}
