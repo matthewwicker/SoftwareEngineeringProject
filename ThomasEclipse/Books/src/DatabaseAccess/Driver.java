@@ -23,13 +23,50 @@ public class Driver {
 		}
 		dbAccess.disconnect(con);
 	}
-	public ResultSet login(String username, String password){
-		System.out.println("FUCK THIS SHIT");
+	
+	/**
+	 * Gets information from the database
+	 * @return null if failure and ResultSet if success
+	 */
+	public ResultSet retreive(String query){
 		con = dbAccess.connect();
-		String query = String.format("select * from users where email='%s' and password='%s'", username,password);
-		
 		ResultSet rs = dbAccess.retrieve(con, query);
+		dbAccess.disconnect(con);
 		return rs;
 	}
-
+	
+	/**
+	 * Adds a new item to the database
+	 * @return 0 if failure and 1 if success
+	 */
+	public int create(String query){
+		con = dbAccess.connect();
+		int result = dbAccess.create(con, query);
+		dbAccess.disconnect(con);
+		return result;
+	}
+	
+	/**
+	 * Updates a row in the database
+	 * @return 0 if failure and 1 if success
+	 */
+	public int update(String query)
+	{
+		con = dbAccess.connect();
+		int result = dbAccess.update(con, query);
+		dbAccess.disconnect(con);
+		return result;
+	}
+	
+	/**
+	 * Deletes a row in the database
+	 * @return 0 if failure and 1 if success
+	 */
+	public int delete(String query)
+	{
+		con = dbAccess.connect();
+		int result = dbAccess.delete(con, query);
+		dbAccess.disconnect(con);
+		return result;
+	}
 }
