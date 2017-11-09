@@ -11,11 +11,12 @@ public class BookDBManager {
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int addBook(Book book) {
-		String query = "INSERT INTO book (isbn, title, author, price, description, image, genre, rating, quantity, supplier, threshold,)";
-		query += "values ( " + book.getISBN() + ", " + book.getTitle() + ", ";
-		query += book.getAuthor() + ", " + book.getPrice() + ", " + book.getDescription() + ", ";
-		query += "0, " + "0, "+ book.getRating() + ", " + book.getQuantity() + ", ";
-		query += "0, " + book.getThreshold() + ")";
+		String query = "INSERT INTO book (isbn, title, author, price, description, image, genre, rating, quantity, supplier, threshold) ";
+		query += "VALUES ('" + book.getISBN() + "', '" + book.getTitle() + "', '";
+		query += book.getAuthor() + "', '" + book.getPrice() + "', '" + book.getDescription() + "', ";
+		query += "'0', " + "'0', '"+ book.getRating() + "', '" + book.getQuantity() + "', ";
+		query += "'0', '" + book.getThreshold() + "')";
+		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
 		return success;

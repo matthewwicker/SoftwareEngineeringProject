@@ -1,6 +1,6 @@
 package View;
 import DatabaseAccess.Driver;
-//import DatabaseAccess.BookDBManager;
+import DatabaseAccess.BookDBManager;
 
 
 import java.io.IOException;
@@ -36,6 +36,7 @@ public class myservlet extends HttpServlet {
     Configuration cfg = null;
     private String templateDir = "/WEB-INF/templates";
     private Driver driver = new Driver();
+    private BookDBManager BookManager = new BookDBManager();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -97,7 +98,7 @@ public class myservlet extends HttpServlet {
 		//    out.println("</script>");
 		}
 		else{
-			String[] nameArray = name.split("\\.");
+			String[] nameArray = name.split(" ");
 			String fname = nameArray[0];
 			String lname = nameArray[1];
 			root.put("username", username);
@@ -165,6 +166,8 @@ public class myservlet extends HttpServlet {
 		newBook.setDescription(book_desc);
 		newBook.setQuantity(book_quant);
 		newBook.setThreshold(book_thresh);
+		BookManager.addBook(newBook);
+		
 		
 	}
 
