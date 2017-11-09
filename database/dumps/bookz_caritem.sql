@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: softwareengineeringproject
+-- Host: 127.0.0.1    Database: bookz
 -- ------------------------------------------------------
 -- Server version	5.7.19-log
 
@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `address`
+-- Table structure for table `caritem`
 --
 
-DROP TABLE IF EXISTS `address`;
+DROP TABLE IF EXISTS `caritem`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `address` (
-  `aid` int(11) NOT NULL,
-  `address` varchar(45) NOT NULL,
-  `billing` tinyint(1) NOT NULL,
-  `uid` int(11) NOT NULL,
-  PRIMARY KEY (`aid`),
-  UNIQUE KEY `idaddress_UNIQUE` (`aid`),
-  UNIQUE KEY `uid_UNIQUE` (`uid`),
-  CONSTRAINT `userid` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `caritem` (
+  `isbn` int(11) NOT NULL,
+  `numbooks` int(11) NOT NULL,
+  `cartid` int(11) NOT NULL,
+  KEY `isbn_idx` (`isbn`),
+  KEY `cartid_idx` (`cartid`),
+  CONSTRAINT `bookid` FOREIGN KEY (`isbn`) REFERENCES `book` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `cartid` FOREIGN KEY (`cartid`) REFERENCES `cart` (`cartid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `address`
+-- Dumping data for table `caritem`
 --
 
-LOCK TABLES `address` WRITE;
-/*!40000 ALTER TABLE `address` DISABLE KEYS */;
-/*!40000 ALTER TABLE `address` ENABLE KEYS */;
+LOCK TABLES `caritem` WRITE;
+/*!40000 ALTER TABLE `caritem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `caritem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-08 19:26:58
+-- Dump completed on 2017-11-08 21:16:11

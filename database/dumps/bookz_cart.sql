@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: softwareengineeringproject
+-- Host: 127.0.0.1    Database: bookz
 -- ------------------------------------------------------
 -- Server version	5.7.19-log
 
@@ -16,33 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `transaction`
+-- Table structure for table `cart`
 --
 
-DROP TABLE IF EXISTS `transaction`;
+DROP TABLE IF EXISTS `cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `transaction` (
-  `transactioncol` int(11) NOT NULL,
+CREATE TABLE `cart` (
   `cartid` int(11) NOT NULL,
-  `ccid` int(11) NOT NULL,
-  `amount` double NOT NULL,
-  `date` varchar(45) NOT NULL,
-  PRIMARY KEY (`transactioncol`),
-  KEY `cartid_idx` (`cartid`),
-  KEY `ccid_idx` (`ccid`),
-  CONSTRAINT `creditcardid` FOREIGN KEY (`ccid`) REFERENCES `payment` (`ccid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `idcart` FOREIGN KEY (`cartid`) REFERENCES `cart` (`cartid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `uid` int(11) NOT NULL,
+  PRIMARY KEY (`cartid`),
+  KEY `uid1_idx` (`uid`),
+  CONSTRAINT `userid5` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `transaction`
+-- Dumping data for table `cart`
 --
 
-LOCK TABLES `transaction` WRITE;
-/*!40000 ALTER TABLE `transaction` DISABLE KEYS */;
-/*!40000 ALTER TABLE `transaction` ENABLE KEYS */;
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-08 19:26:57
+-- Dump completed on 2017-11-08 21:16:11
