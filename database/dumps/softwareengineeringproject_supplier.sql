@@ -38,6 +38,7 @@ CREATE TABLE `supplier` (
 
 LOCK TABLES `supplier` WRITE;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
+INSERT INTO `supplier` VALUES (0,'defaultS',3);
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< Updated upstream:database/dumps/softwareengineeringproject_supplier.sql
 -- Dump completed on 2017-11-08 19:26:58
+=======
+-- Dump completed on 2017-11-08 22:10:09
+>>>>>>> Stashed changes:database/dumps/bookz_supplier.sql

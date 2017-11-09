@@ -58,8 +58,21 @@ public class myservlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		ResultSet rs = driver.login(username, password);
+<<<<<<< Updated upstream
 		
 		String email="";
+=======
+		try {
+			System.out.println(request.getParameter("SubmitBook"));
+          if (request.getParameter("SubmitBook").equals("Submit Query")){
+              setBook(request);
+          }
+		}
+		catch(Exception e) {
+		    System.out.println("Don't worry boss its tootally working");
+		}
+        String email="";
+>>>>>>> Stashed changes
 		String name="";
 		
 		if(rs != null){
