@@ -69,4 +69,12 @@ public class Driver {
 		dbAccess.disconnect(con);
 		return result;
 	}
+	
+	public ResultSet login(String username, String password){
+        con = dbAccess.connect();
+        String query = String.format("select * from users where email='%s' and password='%s'", username,password);
+        
+        ResultSet rs = dbAccess.retrieve(con, query);
+        return rs;
+    }
 }
