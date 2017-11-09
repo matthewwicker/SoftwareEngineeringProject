@@ -1,5 +1,6 @@
 package View;
 import DatabaseAccess.Driver;
+//import DatabaseAccess.BookDBManager;
 
 
 import java.io.IOException;
@@ -64,6 +65,8 @@ public class myservlet extends HttpServlet {
 		try {
           if (request.getParameter("SubmitBook").equals("Submit")){
               setBook(request);
+  //            int i = BookDBManager.addBook(newBook);
+              
           }
 		}
 		catch(Exception e) {
