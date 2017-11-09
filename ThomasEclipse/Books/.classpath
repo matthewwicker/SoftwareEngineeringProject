@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 10.0 Runtime">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+=======
+>>>>>>> 0e7d1a5fdb0bfb4b53e7808deb178110039e95b9
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.8.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/Users/matthewwicker/tomcat/apache-tomcat-8.5.23/lib/servlet-api.jar"/>
+=======
+	<classpathentry kind="lib" path="/opt/tomcat/lib/servlet-api.jar"/>
+>>>>>>> 0e7d1a5fdb0bfb4b53e7808deb178110039e95b9
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

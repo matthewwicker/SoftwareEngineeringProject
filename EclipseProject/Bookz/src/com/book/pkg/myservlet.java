@@ -31,27 +31,31 @@ public class myservlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out =  resp.getWriter();
-		String username = "John Smith";//req.getParameter("username");
-		String password = "smith.john";//req.getParameter("password");
 		resp.getWriter().println("Hello World form webApp");
-		BabyDriver driver = new BabyDriver();
-		String canAccess = driver.signIn(username, password);
-		//if(canAccess)
-		resp.getWriter().println(canAccess);
+
 	//	RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/javascript/validate.js");
 	//	requestDispatcher.include(request, resp);
 	//	out.println("</body>");
 	//	out.println("</html>");
-		
+		doPost(request,resp);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String name = "John Smith";
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		BabyDriver driver = new BabyDriver();
+		String canAccess = driver.signIn(username, password);
+		if(canAccess.equals("true")) {
+			resp.sendRedirect("account.html");
+		}
+		else {
+			resp.sendRedirect("signin.html");
+		}
+		//doGet(request, resp);
 	}
-
 }

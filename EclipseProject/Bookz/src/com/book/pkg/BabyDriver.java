@@ -59,14 +59,18 @@ public class BabyDriver {
 		String query = ("select * from users");
 		ResultSet rs = dbAccess.retrieve(con, query);
 		try {
-			String users = "";
+			String match = "false";
 			while(rs.next()){
-				
-				users = user + rs.getString("uid") + rs.getString("name");
-				
+				String name = rs.getString("name");
+				if (name.equals(user)) {	
+					String password = rs.getString("password");
+					if (password.equals(pass)) {
+						match = "true";
+					}
+				}
 			}
 			dbAccess.disconnect(con);
-			return users;
+			return match;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
