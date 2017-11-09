@@ -3,7 +3,9 @@
 <head>
 <title>Books</title>
     <meta charset="utf-8" />
+    <script type='text/javascript' src="validate.js"></script>
     <link href="custom.css" type="text/css" rel="stylesheet" />
+
     <style>
     @import url('https://fonts.googleapis.com/css?family=Lobster');
     </style>
@@ -55,68 +57,24 @@
         </div>
         <div id="content-background">
         <div id="content">
-            <div id="pageTitle">
-               Add Book
-            </div>
+            <p>  Please enter your username and password </p>
             <form action = "myservlet" method = "post">
-            <div><table style="width:70%; position: absolute; padding-top:50px;">
-                <tr>
-                <th>
-                ISBN 
-                </th><th>
-                <input type="text" name="isbn" value=""><br/>
-                </th></tr>
-                <tr>
-                <th>
-	        Title  
-                </th><th>
-                <input type="text" name="title" value=""><br/>
-                </th></tr>
-                <tr>
-                <th>
-		Author 
-                </th><th>
-                <input type="text" name="author" value=""><br/>
-                </th></tr>
-                <tr>
-                <th>
-		Price
-                </th><th>
-                <input type="text" name="price" value=""><br/>
-                </th></tr>
-                <tr>
-                <th>
-		Genre 
-                </th><th>
-                 <input type="text" name="genre" value=""><br/>
-                </th></tr>
-                <tr>
-                <th>
-		Description 
-                </th><th>
-		<input type="text" name="description" value=""><br/>
-                </th></tr>
-                <tr>
-                <th>
-		Quantity
-                </th><th>
-		<input type="text" name="quantity" value=""></th></tr>
-		         <tr>
-                <th>
-		Threshold
-                </th><th>
-		<input type="text" name="threshold" value="">
-                </th></tr><tr><th></th><th>
-            	<input type="submit" name="SubmitBook"> 
-            	</th></tr></table></div> 
-         </form>
-         </div></div>
-         <div id="footer">
+            	<div id="username">
+               		<input type="text" name="username" value="Username">
+            	</div>
+            	<div id="password">
+                	<input type="password" name="password" value="Password">
+           		</div>
+            	<input type="submit" name="SubmitUser" onclick="return validateUserName(username.value,password.value)">
+            	</form>
+            <a href="support.html">Having trouble?</a> or do you need to <a href="create.html">create an account</a>
+       </div></div>
+        <div id="footer">
             <ul class="footer">
                 <li><a href="support.html">Support</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-         </div>
+        </div>
     </div>
 </body>
 </html>

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mysql.jdbc.Connection;
+import Entities.Book;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -28,6 +29,8 @@ import freemarker.template.TemplateExceptionHandler;
  */
 @WebServlet("/myservlet")
 public class myservlet extends HttpServlet {
+
+	Book newBook = new Book();
 	private static final long serialVersionUID = 1L;
     Configuration cfg = null;
     private String templateDir = "/WEB-INF/templates";
@@ -58,8 +61,15 @@ public class myservlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		ResultSet rs = driver.login(username, password);
-		
-		String email="";
+		try {
+          if (request.getParameter("SubmitBook").equals("Submit")){
+              setBook(request);
+          }
+		}
+		catch(Exception e) {
+		    System.out.println("Don't worry boss its tootally working");
+		}
+        String email="";
 		String name="";
 		
 		if(rs != null){
@@ -79,21 +89,20 @@ public class myservlet extends HttpServlet {
 		String template = "account.ftlh";
 		if(email.equals("")){
 			template = "signin.html";
-		    out.println("<script type=\"text/javascript\">");
-		    out.println("alert('User or password incorrect');");
-		    out.println("</script>");
+		//    out.println("<script type=\"text/javascript\">");
+		//    out.println("alert('User or password incorrect');");
+		//    out.println("</script>");
 		}
 		else{
 			String[] nameArray = name.split("\\.");
 			String fname = nameArray[0];
 			String lname = nameArray[1];
 			root.put("username", username);
-			
 			root.put("fname", fname);
 			root.put("lname", lname);
 			root.put("email", email);
 		}
-		
+	    template = "editbook.html";
 		runTemplate(request, response, template, root);
 		
 		
@@ -122,5 +131,39 @@ public class myservlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	protected void setBook(HttpServletRequest request) {
+		int book_isbn = 0;
+		double book_price  = 0.0;
+		int book_thresh  = 0;
+		int book_quant  = 0;
+		System.out.println(request.getParameter("isbn"));
+		try {
+			book_isbn  = Integer.parseInt(request.getParameter("isbn"));
+		    book_price  = Double.parseDouble(request.getParameter("price"));
+	        book_thresh  = Integer.parseInt(request.getParameter("threshold"));
+		    book_quant  = Integer.parseInt(request.getParameter("quantity"));
+		}
+		catch(Exception e) {
+			    System.out.println("<script type=\"text/javascript\">");
+			    System.out.println("alert('Please fill numerical values into isbn, price, quant, and threshold');");
+			    System.out.println("</script>");		
+		}
+		String book_title = request.getParameter("title");
+		String book_author= request.getParameter("author");
+		String book_genre = request.getParameter("genre");
+		String book_desc  = request.getParameter("description");
+		
+		newBook.setISBN(book_isbn);
+		newBook.setAuthor(book_author);
+		newBook.setTitle(book_title);
+	//	newBook.setGenre(book_genre);
+		newBook.setPrice(book_price);
+		newBook.setDescription(book_desc);
+		newBook.setQuantity(book_quant);
+		newBook.setThreshold(book_thresh);
+		
+	}
+
 
 }
