@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: softwareengineeringproject
+-- Host: 127.0.0.1    Database: bookz
 -- ------------------------------------------------------
 -- Server version	5.7.19-log
 
@@ -16,29 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `supplier`
+-- Table structure for table `address`
 --
 
-DROP TABLE IF EXISTS `supplier`;
+DROP TABLE IF EXISTS `address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `supplier` (
-  `supplierid` int(11) NOT NULL,
-  `name` varchar(45) NOT NULL,
+CREATE TABLE `address` (
+  `aid` int(11) NOT NULL,
+  `address` varchar(45) NOT NULL,
+  `billing` tinyint(1) NOT NULL,
   `uid` int(11) NOT NULL,
-  PRIMARY KEY (`supplierid`),
-  KEY `userid2_idx` (`uid`),
-  CONSTRAINT `userid2` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `idaddress_UNIQUE` (`aid`),
+  UNIQUE KEY `uid_UNIQUE` (`uid`),
+  CONSTRAINT `userid` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `supplier`
+-- Dumping data for table `address`
 --
 
-LOCK TABLES `supplier` WRITE;
-/*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-/*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
+LOCK TABLES `address` WRITE;
+/*!40000 ALTER TABLE `address` DISABLE KEYS */;
+/*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-08 19:26:58
+-- Dump completed on 2017-11-08 21:16:11

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: softwareengineeringproject
+-- Host: 127.0.0.1    Database: bookz
 -- ------------------------------------------------------
 -- Server version	5.7.19-log
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-08 19:26:58
+-- Dump completed on 2017-11-08 21:16:11

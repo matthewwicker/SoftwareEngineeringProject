@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: softwareengineeringproject
+-- Host: 127.0.0.1    Database: bookz
 -- ------------------------------------------------------
 -- Server version	5.7.19-log
 
@@ -16,30 +16,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `book`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `book`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `uid` int(11) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `type` varchar(45) NOT NULL,
-  PRIMARY KEY (`uid`)
+CREATE TABLE `book` (
+  `isbn` int(11) NOT NULL,
+  `title` varchar(45) NOT NULL,
+  `author` varchar(45) NOT NULL,
+  `price` double NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `image` longblob NOT NULL,
+  `genre` varchar(45) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `supplier` int(11) NOT NULL,
+  `threshold` int(11) NOT NULL,
+  PRIMARY KEY (`isbn`),
+  UNIQUE KEY `isbn_UNIQUE` (`isbn`),
+  KEY `supplierid_idx` (`supplier`),
+  CONSTRAINT `supplierid` FOREIGN KEY (`supplier`) REFERENCES `supplier` (`supplierid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `book`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'defaultU','user','password','u'),(2,'defaultA','admin','password','a'),(3,'defaultS','supplier','password','s');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `book` WRITE;
+/*!40000 ALTER TABLE `book` DISABLE KEYS */;
+/*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-08 19:26:57
+-- Dump completed on 2017-11-08 21:16:11
