@@ -28,7 +28,7 @@ public class Driver {
 	 * Gets information from the database
 	 * @return null if failure and ResultSet if success
 	 */
-	public ResultSet retreive(String query){
+	public ResultSet retrieve(String query){
 		con = dbAccess.connect();
 		ResultSet rs = dbAccess.retrieve(con, query);
 		dbAccess.disconnect(con);
