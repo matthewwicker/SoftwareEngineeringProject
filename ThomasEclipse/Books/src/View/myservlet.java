@@ -64,8 +64,13 @@ public class myservlet extends HttpServlet {
 		String password = request.getParameter("password");
 		ResultSet rs = driver.login(username, password);
 		try {
+			
           if (request.getParameter("SubmitBook").equals("Submit")){
               setBook(request);
+          }
+          if (request.getParameter("SubmitBook").equals("Delete")){
+        	  System.out.println("deleting");
+             deleteBook(request);
           }
 		}
 		catch(Exception e) {
@@ -169,5 +174,39 @@ public class myservlet extends HttpServlet {
 		
 	}
 
+	protected void deleteBook(HttpServletRequest request) {
+		int book_isbn = 0;
+		double book_price  = 0.0;
+		int book_thresh  = 0;
+		int book_quant  = 0;
+		System.out.println(request.getParameter("isbn"));
+		try {
+			book_isbn  = Integer.parseInt(request.getParameter("isbn"));
+		    book_price  = Double.parseDouble(request.getParameter("price"));
+	        book_thresh  = Integer.parseInt(request.getParameter("threshold"));
+		    book_quant  = Integer.parseInt(request.getParameter("quantity"));
+		}
+		catch(Exception e) {
+			    System.out.println("<script type=\"text/javascript\">");
+			    System.out.println("alert('Please fill numerical values into isbn, price, quant, and threshold');");
+			    System.out.println("</script>");		
+		}
+		String book_title = request.getParameter("title");
+		String book_author= request.getParameter("author");
+		String book_genre = request.getParameter("genre");
+		String book_desc  = request.getParameter("description");
+		
+		newBook.setISBN(book_isbn);
+		newBook.setAuthor(book_author);
+		newBook.setTitle(book_title);
+	//	newBook.setGenre(book_genre);
+		newBook.setPrice(book_price);
+		newBook.setDescription(book_desc);
+		newBook.setQuantity(book_quant);
+		newBook.setThreshold(book_thresh);
+		BookManager.removeBook(newBook);
+		
+		
+	}
 
 }
