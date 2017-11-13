@@ -16,3 +16,6 @@
 ThomasEclipse/Books/.*
 ThomasEclipse/Books/build/*
 ThomasEclipse/Books/build/classes/*
+ThomasEclipse/Books/.classpath
+ThomasEclipse/Books/build/classes/DatabaseAccess/Driver.class
+*.class
