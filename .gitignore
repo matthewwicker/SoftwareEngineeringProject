@@ -15,7 +15,17 @@
 /.recommenders/
 ThomasEclipse/Books/.*
 ThomasEclipse/Books/build/*
+<<<<<<< HEAD
 ThomasEclipse/Books/build/classes/*
 ThomasEclipse/Books/.classpath
 ThomasEclipse/Books/build/classes/DatabaseAccess/Driver.class
+=======
+ThomasEclipse/Books/build/*
+EclipseProject/Bookz/build/*
+ThomasEclipse/Books/src/DatabaseAccess/DbAccessConfiguration.java
+ThomasEclipse/Books/.settings/
+ThomasEclipse/Books/.project
+ThomasEclipse/Books/.tern-project
+ThomasEclipse/Books/.classpath
+>>>>>>> c36af58c2464df7304dbe623432e627703346dd8
 *.class
