@@ -15,4 +15,11 @@
 /.recommenders/
 ThomasEclipse/Books/.*
 ThomasEclipse/Books/build/*
-ThomasEclipse/Books/build/classes/*
+ThomasEclipse/Books/build/*
+EclipseProject/Bookz/build/*
+ThomasEclipse/Books/src/DatabaseAccess/DbAccessConfiguration.java
+ThomasEclipse/Books/.settings/
+ThomasEclipse/Books/.project
+ThomasEclipse/Books/.tern-project
+ThomasEclipse/Books/.classpath
+*.class
