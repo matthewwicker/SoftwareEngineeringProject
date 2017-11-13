@@ -64,7 +64,7 @@ public class myservlet extends HttpServlet {
 		String password = request.getParameter("password");
 		ResultSet rs = driver.login(username, password);
 		try {
-          if (request.getParameter("SubmitBook").equals("Submit")){
+          if (request.getParameter("Book").equals("AddBook")){
               setBook(request);
           }
 		}
