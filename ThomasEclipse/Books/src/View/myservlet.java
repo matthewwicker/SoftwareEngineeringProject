@@ -37,12 +37,11 @@ public class myservlet extends HttpServlet {
 
 	Book newBook = new Book();
 	User newUser = new User();
-<<<<<<< HEAD
 	Promo newPromo = new Promo();
-=======
+
 	Address newAddress = new Address();
 	Payment newPayment = new Payment();
->>>>>>> 52c7a1ec8edaa2a90e1927d7976be162b9f92415
+
 	private static final long serialVersionUID = 1L;
     Configuration cfg = null;
     private String templateDir = "/WEB-INF/templates";
