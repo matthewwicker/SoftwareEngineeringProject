@@ -54,4 +54,12 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD:database/dumps/softwareengineeringproject_transaction.sql
+<<<<<<< Updated upstream:database/dumps/softwareengineeringproject_transaction.sql
+-- Dump completed on 2017-11-08 19:26:57
+=======
+-- Dump completed on 2017-11-08 22:10:08
+>>>>>>> Stashed changes:database/dumps/bookz_transaction.sql
+=======
 -- Dump completed on 2017-11-08 21:16:11
+>>>>>>> MatthewsBranch:database/dumps/bookz_transaction.sql

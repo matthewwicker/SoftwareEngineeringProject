@@ -76,10 +76,16 @@ public class myservlet extends HttpServlet {
 		String task = request.getParameter("Task"); 
 	    System.out.println(task);
 		try {
+<<<<<<< HEAD
           if (task.equals("CreateBook")){
+=======
+			
+          if (request.getParameter("SubmitBook").equals("Submit")){
+>>>>>>> JordansBranch
               setBook(request);
               int i = BookDBManager.addBook(newBook);
           }
+<<<<<<< HEAD
           else if (task.equals("CreateUser")){
   		      System.out.println("passed!");
 	          setUser(request);
@@ -119,6 +125,13 @@ public class myservlet extends HttpServlet {
            		}      	
            }
   		}
+=======
+          if (request.getParameter("SubmitBook").equals("Delete")){
+        	  System.out.println("deleting");
+             deleteBook(request);
+          }
+		}
+>>>>>>> JordansBranch
 		catch(Exception e) {
 		    System.out.println("No task");
 		}
@@ -217,4 +230,43 @@ public class myservlet extends HttpServlet {
 		
 	}
 
+<<<<<<< HEAD
 }
+=======
+	protected void deleteBook(HttpServletRequest request) {
+		int book_isbn = 0;
+		double book_price  = 0.0;
+		int book_thresh  = 0;
+		int book_quant  = 0;
+		System.out.println(request.getParameter("isbn"));
+		try {
+			book_isbn  = Integer.parseInt(request.getParameter("isbn"));
+		    book_price  = Double.parseDouble(request.getParameter("price"));
+	        book_thresh  = Integer.parseInt(request.getParameter("threshold"));
+		    book_quant  = Integer.parseInt(request.getParameter("quantity"));
+		}
+		catch(Exception e) {
+			    System.out.println("<script type=\"text/javascript\">");
+			    System.out.println("alert('Please fill numerical values into isbn, price, quant, and threshold');");
+			    System.out.println("</script>");		
+		}
+		String book_title = request.getParameter("title");
+		String book_author= request.getParameter("author");
+		String book_genre = request.getParameter("genre");
+		String book_desc  = request.getParameter("description");
+		
+		newBook.setISBN(book_isbn);
+		newBook.setAuthor(book_author);
+		newBook.setTitle(book_title);
+	//	newBook.setGenre(book_genre);
+		newBook.setPrice(book_price);
+		newBook.setDescription(book_desc);
+		newBook.setQuantity(book_quant);
+		newBook.setThreshold(book_thresh);
+		BookManager.removeBook(newBook);
+		
+		
+	}
+
+}
+>>>>>>> JordansBranch
