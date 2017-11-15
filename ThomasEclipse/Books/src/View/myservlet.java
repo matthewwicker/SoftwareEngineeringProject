@@ -2,11 +2,14 @@ package View;
 import DatabaseAccess.Driver;
 import DatabaseAccess.BookDBManager;
 import DatabaseAccess.UserDBManager;
+import DatabaseAccess.PromoDBManager;
 
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.*;
@@ -34,11 +37,13 @@ public class myservlet extends HttpServlet {
 
 	Book newBook = new Book();
 	User newUser = new User();
+	Promo newPromo = new Promo();
 	private static final long serialVersionUID = 1L;
     Configuration cfg = null;
     private String templateDir = "/WEB-INF/templates";
     private Driver driver = new Driver();
     private BookDBManager BookManager = new BookDBManager();
+    private PromoDBManager PromoManager = new PromoDBManager();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -82,6 +87,12 @@ public class myservlet extends HttpServlet {
               setBook(request);
               int i = BookDBManager.addBook(newBook);
           }
+	     else if(task.equals("CreatePromo")) {
+	    	 setPromo(request);
+	     }
+	     else if(task.equals("DeletePromo")) {
+	    	 deletePromo(request);
+	     }
           else if (task.equals("CreateUser")){
   		      System.out.println("passed!");
 	          setUser(request);
@@ -254,6 +265,64 @@ public class myservlet extends HttpServlet {
 		newBook.setThreshold(book_thresh);
 		BookManager.removeBook(newBook);
 		
+		
+	}
+	
+protected void setPromo (HttpServletRequest request) {
+		
+		int promoCode = 0;
+		int promoISBN = 0;
+		double promoPercent = 0;
+		
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-M-d");
+		
+		LocalDate promoStartDate = null;
+		LocalDate promoEndDate = null;
+		
+		try {
+			promoCode  = Integer.parseInt(request.getParameter("code"));
+			promoISBN  = Integer.parseInt(request.getParameter("isbn"));
+			promoPercent  = Double.parseDouble(request.getParameter("percent"));
+		    promoStartDate  = LocalDate.parse(request.getParameter("sdate"), format);
+		    promoEndDate  = LocalDate.parse(request.getParameter("edate"), format);
+		}
+		catch(Exception e) {
+			    System.out.println("<script type=\"text/javascript\">");
+			    System.out.println("alert('Please fill numerical values into isbn, price, quant, and threshold');");
+			    System.out.println("</script>");		
+		}
+
+		
+		newPromo.setCode(promoCode);
+		newPromo.setISBN(promoISBN);
+		newPromo.setPercentOff(promoPercent);
+		newPromo.setStartDate(promoStartDate);
+		newPromo.setEndDate(promoEndDate);
+		
+		PromoManager.addPromo(newPromo);
+	
+}
+
+protected void deletePromo (HttpServletRequest request) {
+		
+		int promoCode = 0;
+
+		
+		try {
+			promoCode  = Integer.parseInt(request.getParameter("code"));
+			
+		}
+		catch(Exception e) {
+			    System.out.println("<script type=\"text/javascript\">");
+			    System.out.println("alert('Please fill numerical values into isbn, price, quant, and threshold');");
+			    System.out.println("</script>");		
+		}
+
+		
+		newPromo.setCode(promoCode);
+		
+		
+		PromoManager.removePromo(newPromo);
 		
 	}
 
