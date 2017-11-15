@@ -2,6 +2,7 @@ package View;
 import DatabaseAccess.Driver;
 import DatabaseAccess.BookDBManager;
 import DatabaseAccess.UserDBManager;
+import Logic.*;
 
 
 import java.io.IOException;
@@ -36,6 +37,7 @@ public class myservlet extends HttpServlet {
 	User newUser = new User();
 	Address newAddress = new Address();
 	Payment newPayment = new Payment();
+	logic logic = new logic();
 	private static final long serialVersionUID = 1L;
     Configuration cfg = null;
     private String templateDir = "/WEB-INF/templates";
@@ -234,7 +236,7 @@ public class myservlet extends HttpServlet {
 		newPayment.setCcid(ccid);
 		newPayment.setCc_number(cc_number);
 		
-		
+		logic.addUser(newUser, newAddress, newPayment);
 	}
 
 }

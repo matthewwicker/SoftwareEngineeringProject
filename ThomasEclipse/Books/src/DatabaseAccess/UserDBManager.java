@@ -11,8 +11,8 @@ public class UserDBManager {
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int addUser(User user) {
-		String query = "INSERT INTO users (email, name, password,type) ";
-		query += "VALUES ('" + user.getEmail() + "', '" + user.getName() + "', '";
+		String query = "INSERT INTO users (email, fname, password,type) ";
+		query += "VALUES ('" + user.getEmail() + "', '" + user.getfName() + "', '";
 		query += user.getPassword() +  "','0')";
 		System.out.println(query);
 		int success = 0;
@@ -43,7 +43,7 @@ public class UserDBManager {
 			try {
 				while(rs.next()){
 					user.setUid(rs.getInt("uid"));
-					user.setName(rs.getString("name"));
+					user.setfName(rs.getString("fname"));
 					user.setPassword(rs.getString("password"));
 					user.setEmail(rs.getString("email"));
 					user.setType(rs.getString("type"));
