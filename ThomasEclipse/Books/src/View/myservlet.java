@@ -37,7 +37,12 @@ public class myservlet extends HttpServlet {
 
 	Book newBook = new Book();
 	User newUser = new User();
+<<<<<<< HEAD
 	Promo newPromo = new Promo();
+=======
+	Address newAddress = new Address();
+	Payment newPayment = new Payment();
+>>>>>>> 52c7a1ec8edaa2a90e1927d7976be162b9f92415
 	private static final long serialVersionUID = 1L;
     Configuration cfg = null;
     private String templateDir = "/WEB-INF/templates";
@@ -81,9 +86,7 @@ public class myservlet extends HttpServlet {
 		String task = request.getParameter("Task"); 
 	    System.out.println(task);
 		try {
-
-	     if (task.equals("CreateBook")){
-
+          if (task.equals("CreateBook")){
               setBook(request);
               int i = BookDBManager.addBook(newBook);
           }
@@ -132,7 +135,6 @@ public class myservlet extends HttpServlet {
            		}      	
            }
   		}
-
 		catch(Exception e) {
 		    System.out.println("No task");
 		}
@@ -221,49 +223,30 @@ public class myservlet extends HttpServlet {
 			    System.out.println("alert('Please remove characters from phone');");
 			    System.out.println("</script>");		
 		}
-		String user_name  = request.getParameter("fName") + "."; 
-		user_name = user_name + request.getParameter("lName");
+		String fname = request.getParameter("fName"); 
+		String lname = request.getParameter("lName");
 		String user_email= request.getParameter("Email");
 		String user_password = request.getParameter("Password");
+		String phoneNumber = "" + user_phone;
 		
-		newUser.setName(user_name);
+		newUser.setfName(fname);
+		newUser.setlName(lname);
 		newUser.setEmail(user_email);
 		newUser.setPassword(user_password);	
+		newUser.setPhoneNumber(phoneNumber);
 		
-	}
-
-
-	protected void deleteBook(HttpServletRequest request) {
-		int book_isbn = 0;
-		double book_price  = 0.0;
-		int book_thresh  = 0;
-		int book_quant  = 0;
-		System.out.println(request.getParameter("isbn"));
-		try {
-			book_isbn  = Integer.parseInt(request.getParameter("isbn"));
-		    book_price  = Double.parseDouble(request.getParameter("price"));
-	        book_thresh  = Integer.parseInt(request.getParameter("threshold"));
-		    book_quant  = Integer.parseInt(request.getParameter("quantity"));
-		}
-		catch(Exception e) {
-			    System.out.println("<script type=\"text/javascript\">");
-			    System.out.println("alert('Please fill numerical values into isbn, price, quant, and threshold');");
-			    System.out.println("</script>");		
-		}
-		String book_title = request.getParameter("title");
-		String book_author= request.getParameter("author");
-		String book_genre = request.getParameter("genre");
-		String book_desc  = request.getParameter("description");
+		String address1 = request.getParameter("address1");
+		String address2 = request.getParameter("address2");
+		String address = address1 + address2;
 		
-		newBook.setISBN(book_isbn);
-		newBook.setAuthor(book_author);
-		newBook.setTitle(book_title);
-	//	newBook.setGenre(book_genre);
-		newBook.setPrice(book_price);
-		newBook.setDescription(book_desc);
-		newBook.setQuantity(book_quant);
-		newBook.setThreshold(book_thresh);
-		BookManager.removeBook(newBook);
+		newAddress.setAddress(address);
+		
+		
+		int ccid = Integer.parseInt(request.getParameter("ccid"));
+		int cc_number = Integer.parseInt(request.getParameter("cc_number"));
+		
+		newPayment.setCcid(ccid);
+		newPayment.setCc_number(cc_number);
 		
 		
 	}
@@ -327,3 +310,5 @@ protected void deletePromo (HttpServletRequest request) {
 	}
 
 }
+
+
