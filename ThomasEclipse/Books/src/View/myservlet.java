@@ -125,6 +125,7 @@ public class myservlet extends HttpServlet {
 		
 		
 		/////////NAVIGATE/////////
+		System.out.println(request.getParameter("navigator"));
 		String navigate = request.getParameter("navigator");
 		if (navigate != null){
 			template = navigate;
