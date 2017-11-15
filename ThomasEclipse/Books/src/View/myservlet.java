@@ -84,7 +84,7 @@ public class myservlet extends HttpServlet {
 		    out.println("</script>");
 		}
 		else{
-			String[] nameArray = name.split("\\.");
+			String[] nameArray = name.split(" ");
 			String fname = nameArray[0];
 			String lname = nameArray[1];
 			root.put("username", username);

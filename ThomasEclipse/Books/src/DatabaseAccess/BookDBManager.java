@@ -23,7 +23,7 @@ public class BookDBManager {
 		return -1;
 	}
 	/**
-	 * 
+	 * Search book by searchParam
 	 * @param searchParam
 	 * @param searchItem
 	 * @return
