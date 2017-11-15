@@ -65,7 +65,7 @@ public class myservlet extends HttpServlet {
 		PrintWriter out =  response.getWriter();
 		response.setContentType("application/json");
 		
-	    String template = "home.html";
+	    String template = "adminaccount.ftlh";
 	    String username = request.getParameter("username");
 		String password = request.getParameter("password");
         String email="";
@@ -94,6 +94,7 @@ public class myservlet extends HttpServlet {
         				while(rs.next()){
         					email = rs.getString("email");
         					name = rs.getString("name");
+        					type = rs.getString("type");
         					}
         					
         				}
@@ -117,6 +118,7 @@ public class myservlet extends HttpServlet {
         				root.put("fname", fname);
         				root.put("lname", lname);
         				root.put("email", email);
+        				root.put("type", type);
         			}
            		}      	
            }
@@ -131,6 +133,11 @@ public class myservlet extends HttpServlet {
 		String navigate = request.getParameter("navigator");
 		if (navigate != null){
 			template = navigate;
+		}
+		if (template.equals("account.ftlh")) {
+			if (type.equals('a')){
+				template = "adminaccount.ftlh";
+			}
 		}
 		try {
 	     	runTemplate(request, response, template, root);
