@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `address` (
-  `aid` int(11) NOT NULL,
+  `aid` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(45) NOT NULL,
   `billing` tinyint(1) NOT NULL,
   `uid` int(11) NOT NULL,
@@ -52,12 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD:database/dumps/softwareengineeringproject_address.sql
-<<<<<<< Updated upstream:database/dumps/softwareengineeringproject_address.sql
--- Dump completed on 2017-11-08 19:26:58
-=======
--- Dump completed on 2017-11-08 22:10:09
->>>>>>> Stashed changes:database/dumps/bookz_address.sql
-=======
--- Dump completed on 2017-11-08 21:16:11
->>>>>>> MatthewsBranch:database/dumps/bookz_address.sql
+-- Dump completed on 2017-11-15 18:28:54

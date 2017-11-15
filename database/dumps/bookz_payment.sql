@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payment` (
-  `ccid` int(11) NOT NULL,
+  `ccid` int(11) NOT NULL AUTO_INCREMENT,
   `cc_number` int(11) NOT NULL,
   `user` int(11) NOT NULL,
   `aid` int(11) NOT NULL,
@@ -55,12 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD:database/dumps/softwareengineeringproject_payment.sql
-<<<<<<< Updated upstream:database/dumps/softwareengineeringproject_payment.sql
--- Dump completed on 2017-11-08 19:26:58
-=======
--- Dump completed on 2017-11-08 22:10:09
->>>>>>> Stashed changes:database/dumps/bookz_payment.sql
-=======
--- Dump completed on 2017-11-08 21:16:11
->>>>>>> MatthewsBranch:database/dumps/bookz_payment.sql
+-- Dump completed on 2017-11-15 18:28:54

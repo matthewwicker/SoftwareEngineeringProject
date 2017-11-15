@@ -23,13 +23,16 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `uid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(45) NOT NULL,
-  `name` varchar(45) NOT NULL,
+  `fname` varchar(45) NOT NULL,
+  `lname` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
+  `phonenumber` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
+  `suspended` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +41,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'defaultU','user','password','u'),(2,'defaultA','admin','password','a'),(3,'defaultS','supplier','password','s');
+INSERT INTO `users` VALUES (1,'defaultU','user','','password','','u',0),(2,'defaultA','admin','','password','','a',0),(3,'defaultS','supplier','','password','','s',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,12 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<< HEAD:database/dumps/softwareengineeringproject_users.sql
-<<<<<<< Updated upstream:database/dumps/softwareengineeringproject_users.sql
--- Dump completed on 2017-11-08 19:26:57
-=======
--- Dump completed on 2017-11-08 22:10:09
->>>>>>> Stashed changes:database/dumps/bookz_users.sql
-=======
--- Dump completed on 2017-11-08 21:16:11
->>>>>>> MatthewsBranch:database/dumps/bookz_users.sql
+-- Dump completed on 2017-11-15 18:28:54
