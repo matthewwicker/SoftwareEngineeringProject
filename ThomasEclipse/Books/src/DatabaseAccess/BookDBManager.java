@@ -11,6 +11,7 @@ public class BookDBManager {
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int addBook(Book book) {
+
 		String query ="INSERT INTO `bookz`.`book` (isbn, title, author, price, description, image, genre, rating, quantity, supplier, threshold) ";
 		query += "VALUES ('" + book.getISBN() + "', '" + book.getTitle() + "', '";
 		query += book.getAuthor() + "', '" + book.getPrice() + "', '" + book.getDescription() + "', ";
@@ -26,6 +27,7 @@ public class BookDBManager {
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int removeBook(Book book) {
+
 		String query = "DELETE from bookz.book where isbn = " + book.getISBN();
 		int success = driver.delete(query);
 		return success;

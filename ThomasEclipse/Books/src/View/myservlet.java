@@ -34,6 +34,9 @@ public class myservlet extends HttpServlet {
 
 	Book newBook = new Book();
 	User newUser = new User();
+	Address newAddress = new Address();
+	Payment newPayment = new Payment();
+
 	private static final long serialVersionUID = 1L;
     Configuration cfg = null;
     private String templateDir = "/WEB-INF/templates";
@@ -77,8 +80,11 @@ public class myservlet extends HttpServlet {
 	    System.out.println(task);
 		try {
 
+
 	     if (task.equals("CreateBook")){
 
+
+          if (task.equals("CreateBook")){
               setBook(request);
               int i = BookDBManager.addBook(newBook);
           }
@@ -121,7 +127,6 @@ public class myservlet extends HttpServlet {
            		}      	
            }
   		}
-
 		catch(Exception e) {
 		    System.out.println("No task");
 		}
@@ -210,6 +215,7 @@ public class myservlet extends HttpServlet {
 			    System.out.println("alert('Please remove characters from phone');");
 			    System.out.println("</script>");		
 		}
+
 		String user_name  = request.getParameter("fName") + "."; 
 		user_name = user_name + request.getParameter("lName");
 		String user_email= request.getParameter("Email");
@@ -253,6 +259,32 @@ public class myservlet extends HttpServlet {
 		newBook.setQuantity(book_quant);
 		newBook.setThreshold(book_thresh);
 		BookManager.removeBook(newBook);
+
+		String fname = request.getParameter("fName"); 
+		String lname = request.getParameter("lName");
+		String user_email= request.getParameter("Email");
+		String user_password = request.getParameter("Password");
+		String phoneNumber = "" + user_phone;
+		
+		newUser.setfName(fname);
+		newUser.setlName(lname);
+		newUser.setEmail(user_email);
+		newUser.setPassword(user_password);	
+		newUser.setPhoneNumber(phoneNumber);
+		
+		String address1 = request.getParameter("address1");
+		String address2 = request.getParameter("address2");
+		String address = address1 + address2;
+		
+		newAddress.setAddress(address);
+		
+		
+		int ccid = Integer.parseInt(request.getParameter("ccid"));
+		int cc_number = Integer.parseInt(request.getParameter("cc_number"));
+		
+		newPayment.setCcid(ccid);
+		newPayment.setCc_number(cc_number);
+
 		
 		
 	}
