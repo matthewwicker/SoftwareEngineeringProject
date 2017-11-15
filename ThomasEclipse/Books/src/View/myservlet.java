@@ -258,5 +258,3 @@ public class myservlet extends HttpServlet {
 	}
 
 }
-
-}
