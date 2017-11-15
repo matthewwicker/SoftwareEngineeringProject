@@ -13,17 +13,29 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getName() {
-		return name;
+	public String getfName() {
+		return fname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setfName(String fname) {
+		this.fname = fname;
+	}
+	public String getlName() {
+		return lname;
+	}
+	public void setlName(String lname) {
+		this.lname = lname;
 	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getPhoneNumber(){
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber){
+		this.phoneNumber = phoneNumber;
 	}
 	public String getType() {
 		return type;
@@ -33,8 +45,10 @@ public class User {
 	}
 	private int uid;
 	private String email;
-	private String name;
+	private String fname;
+	private String lname;
 	private String password;
+	private String phoneNumber;
 	private String type;
 	
 }

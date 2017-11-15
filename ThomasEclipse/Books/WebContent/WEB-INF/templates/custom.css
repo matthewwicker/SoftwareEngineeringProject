@@ -1,0 +1,320 @@
+    body{
+        font-family: Roboto;
+        margin-bottom: 200px;
+    }
+
+    html {
+      position: relative;
+      min-height: 100%;
+    }
+    #content-background{
+        background-color: #ffffff;
+        box-shadow: inset 0px 3px 0px rgba(0,0,0,0.3);
+        width: 100vw;
+        height: 100vh;
+        background-image: url("https://www.transparenttextures.com/patterns/ecailles.png");
+    }
+
+    /* HEADER & JUMBOTRON */ 
+    .jumbotron {
+        margin-bottom: 0;
+        height: 125px;
+        padding-top: 40px;
+        padding-bottom: 80px;
+        background-color: #3d6594;
+        position: relative;
+    }
+
+    .jumbotron h1 small{
+        font-family: Lobster;
+        display: block;
+        font-size: 50px;
+        color: #ffffff;
+    }
+
+    .jumbotron .img-responsive{
+        max-height: 80px;
+        float:left;
+    }
+
+   /* NAVIGATION BAR */ 
+    .navbar {
+        margin-bottom: 25px;
+        border-radius: 0;
+        background-color: #b8c7d6;
+    }
+
+    .navbar li a{
+        color: #ffffff;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .navbar li a:hover{
+        background-color:#DB7093;
+    }
+
+    .navbar .dropdown .dropdown-menu li a{
+        background-color: #ffffff;
+        color:#000000;
+    }
+
+    .navbar .dropdown .dropdown-menu li a:hover{
+        background-color:#DB7093;
+    }
+
+    .dropdown .dropdown-toggle:hover{
+        background-color: #DB7093;
+    }
+
+    .dropdown-toggle:active, .open .dropdown-toggle{
+        background:#DB7093 !important;
+    }
+
+
+    ul.dropdown-lr {
+        width: 300px;
+    }
+    .navbar button{
+        background-color: #b8c7d6;
+        letter-spacing: 1px;
+        border: none;
+        text-align: center;
+        text-decoration: white;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+    }
+    .navbar button:hover{
+        background-color:#DB7093;
+    }
+
+
+    /* BODY HOME*/
+    #homebody{
+        color: #5f6268; 
+        font-size: 16px; 
+        float: middle; 
+        margin:10px; 
+        line-height: 25px;
+        text-align: center;
+    }
+
+    #homebody .btn
+    {
+        background-color: #3d6594;
+        color: #ffffff;
+        width: 180px;
+        box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+    }
+
+     #homebody .otherbtn
+    {
+        background-color: #DB7093;
+        color: #ffffff;
+        width: 120px;
+        margin-right:15px;
+        height: 35px;
+        border-radius: 0;
+        box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+    }
+
+    .container img{
+        width:200px;
+        border-radius: 3px;
+    }
+
+    .container .panel{
+        width:200px;
+        border-color: #DB7093;
+        border-width: 2px;
+        position: relative;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(5%);
+    }
+
+    .container .panel-info{
+        width:600px;
+        border-color: #DB7093;
+        border-width: 2px;
+        position: relative;
+        text-align: center;
+    }
+
+     .container .panel-info img{
+        width:300px;
+    }
+
+    /*BODY SIGNIN*/
+
+    #signup{
+        text-align: middle;
+    }
+
+    .input{
+        width: 75%;
+        height: 50px;
+        display: block;
+        margin: 0 auto 15px;
+        padding: 0 15px;
+        border: none;
+        border-bottom: 2px solid #ebebeb;
+    }
+    .input:focus{
+        outline: none;
+        border-bottom-color: #DB7093 !important;
+    }
+    .input:hover{
+        border-bottom-color: #DB7093;
+    }
+    .input:invalid{
+        box-shadow: none;
+    }
+
+    .inputButton{
+        position: relative;
+        width: 85%;
+        height: 50px;
+        display: block;
+        margin: 30px auto 30px;
+        color: white;
+        background-color: #DB7093;
+        border: none;
+        box-shadow: 0 5px 0 #c45478;
+    }
+    .inputButton:hover {
+        top: 2px;
+        box-shadow: 0 3px 0 #c45478;
+    }
+    .inputButton:active {
+        top: 5px;
+        box-shadow: none;
+    }
+    .inputButton:focus { 
+        outline: none;
+    }
+
+    /*BODY ORDER HISTORY*/
+
+    .container #ohbody{
+        color: #5f6268; 
+        font-size: 16px; 
+        float: left; 
+        margin:10px; 
+        line-height: 25px;
+        text-align: center;
+    }
+
+    .page-header h2{
+        color: #3d6594;
+        font-size: 35px;
+    }
+
+    .container #ohbody .btn{
+        background-color: #3d6594;
+        color: #ffffff;
+        width: 180px;
+        box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
+    }
+
+    /*BODY GENRE*/
+
+
+    .btn-group{
+        float: right;
+    }
+
+    .show-on-hover:hover > ul.dropdown-menu{
+        display: block;    
+    }
+
+    /*BODY CHECKOUT, DASHBOARD*/
+
+    #cart,#promo,#checkout,#update,#account,#catalouge,#signout,#history{
+        background-color: #3d6594;
+        color: #ffffff;
+        border: 2px solid #DB7093;
+    }
+
+    /*BODY BOOK INFO*/
+    .topImg {
+    width: 10px;
+    height: 20px;
+}
+
+    .topImg img {
+        width: auto;
+        height: 300px;
+        margin-left:  700px;
+        position: absolute;
+        border-radius: 25px;
+        border: 2px solid #DB7093;
+    }
+
+    /*BODY EDIT BOOK, PROMOTION*/
+    .container #add{
+        background-color: #3d6594;
+        color: #ffffff;
+    }
+
+    .container #delete{
+        background-color: #3d6594;
+        color: #ffffff;
+        margin-left: 5px;
+    }
+   
+   
+    /* FOOTER */
+
+    footer{
+         background-color: #b8c7d6;
+         padding:10px 0px; 
+         position: absolute;
+         bottom: 0;
+         width: 100%;
+         height: 200px;
+    }          
+
+   .menu{
+        list-style: none;    
+    }
+
+    .menu span{
+       color:#ffffff; 
+       font-weight: 800; 
+       border-bottom: 1px solid #ffffff; 
+       padding-bottom: 10px; 
+       margin-bottom: 20px;
+       display: block;
+       text-transform: uppercase;
+       font-size: 16px;
+       letter-spacing: 3px;
+    }
+     
+    .menu li a {
+        color:#ffffff;
+        letter-spacing: 3px;
+        text-decoration: none;
+        font-size:14px;
+    }
+
+    .menu li {
+        color:#ffffff;
+        letter-spacing: 3px;
+        text-decoration:none;
+        font-size:14px;
+    }
+
+    .menu li a:hover{
+        color:#ffffff;
+        font-weight:600;
+        -webkit-transition: all 1s ease-in-out;
+        -moz-transition: all 1s ease-in-out;
+        -o-transition: all 1s ease-in-out;
+        transition: all 1s ease-in-out;
+    }
+
+
+
+    

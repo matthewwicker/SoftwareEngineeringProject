@@ -49,14 +49,22 @@ public class Book {
 	public void setThreshold(int threshold) {
 		this.threshold = threshold;
 	}
+	public int getSupplier() {
+		return supplier;
+	}
+	public void setSupplier(int supplierid) {
+		this.supplier = supplierid;
+	}
 	private int ISBN;
 	private String author;
 	private String title;
 	private double price;
+	private String Genre = "test";
 	private String description;
 	private int rating;
 	private int quantity;
 	private int threshold;
+	private int supplier;
 	
 	//other stuff
 	//supplierID as an int
