@@ -1,5 +1,7 @@
 package Entities;
 
+import java.time.LocalDate;
+
 public class Transaction {
 
 	public int getTransactioncol() {
@@ -26,16 +28,16 @@ public class Transaction {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	private int transactioncol;
 	private int cartid;
 	private int ccid;
 	private double amount;
-	private String date;
+	private LocalDate date;
 	
 }

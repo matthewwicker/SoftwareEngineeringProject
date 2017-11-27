@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Entities.Address;
+import Entities.Book;
 import Entities.User;
 public class AddressDBManager {
 	private static Driver driver = new Driver();
@@ -19,9 +20,18 @@ public class AddressDBManager {
 		
 		return value;
 	}
-	
 	/**
-	 * Search the items in books by searchParam
+	 * remove address from database
+	 * @return -1 if failure and 1 if success
+	 */
+	public static int removeAddress(Address address) {
+
+		String query = "DELETE from bookz.address where aid = " + address.getAid();
+		int success = driver.delete(query);
+		return success;
+	}
+	/**
+	 * Search the items in address by searchParam
 	 * @param searchParam
 	 * @param searchItem
 	 * @return an ArrayList<Address>
@@ -34,12 +44,13 @@ public class AddressDBManager {
 		if(rs != null){
 			try {
 				while(rs.next()){
+					address.setAid(rs.getInt("aid"));
 					address.setAddress(rs.getString("address"));
 					address.setBilling(rs.getBoolean("billing"));
 					address.setUid(rs.getInt("uid"));
 					search_results.add(address);
 				}
-				
+				driver.disconnect();
 			}
 			 catch (SQLException e) {
 				// TODO Auto-generated catch block

@@ -55,7 +55,7 @@ public class BookDBManager {
 					book.setThreshold(rs.getInt("threshold"));
 					search_results.add(book);
 				}
-				
+				driver.disconnect();
 			}
 			 catch (SQLException e) {
 				// TODO Auto-generated catch block

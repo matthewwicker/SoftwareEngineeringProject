@@ -40,7 +40,7 @@ public class PaymentDBManager {
 					payment.setAid(rs.getInt("aid"));
 					search_results.add(payment);
 				}
-				
+				driver.disconnect();
 			}
 			 catch (SQLException e) {
 				// TODO Auto-generated catch block

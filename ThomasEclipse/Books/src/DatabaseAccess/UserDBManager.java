@@ -7,7 +7,7 @@ import Entities.User;
 public class UserDBManager {
 	private static Driver driver = new Driver();
 	/**
-	 * add book to database
+	 * add user to database
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int addUser(User user) {
@@ -20,7 +20,7 @@ public class UserDBManager {
 		return success;
 	}
 	/**
-	 * get book from database
+	 * remove user from database
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int removeUser(User user) {
@@ -29,7 +29,7 @@ public class UserDBManager {
 		return success;
 	}
 	/**
-	 * Search the items in books by searchParam
+	 * Search the items in users by searchParam
 	 * @param searchParam
 	 * @param searchItem
 	 * @return
@@ -50,7 +50,7 @@ public class UserDBManager {
 					user.setType(rs.getString("type"));
 					search_results.add(user);
 				}
-				
+				driver.disconnect();
 			}
 			 catch (SQLException e) {
 				// TODO Auto-generated catch block

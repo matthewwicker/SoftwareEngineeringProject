@@ -31,7 +31,7 @@ public class Driver {
 	public ResultSet retrieve(String query){
 		con = dbAccess.connect();
 		ResultSet rs = dbAccess.retrieve(con, query);
-		dbAccess.disconnect(con);
+		//dbAccess.disconnect(con);
 		return rs;
 	}
 	
@@ -68,6 +68,11 @@ public class Driver {
 		int result = dbAccess.delete(con, query);
 		dbAccess.disconnect(con);
 		return result;
+	}
+	
+	public void disconnect()
+	{
+		dbAccess.disconnect(con);
 	}
 	
 	public ResultSet login(String username, String password){
