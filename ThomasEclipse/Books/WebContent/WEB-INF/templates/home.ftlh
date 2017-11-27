@@ -28,24 +28,19 @@
       
       <div class="col-sm-4">
         <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                      <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#title">Title</a></li>
-                      <div class="bropdown-content">
-                      <li><a href="#title">Title</a></li>
-                      <li><a href="#author">Author</a></li>
-                      <li><a href="#isbn">ISBN</a></li>
-                      <li><a href="#year">Year</a></li>
-                    </ul>
-                </div>+
-+                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
+                        <div class="input-group-btn search-panel">
+                    <select name="searchby"> <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
+                        <option value="title">Title</option>
+                        <option value="isbn">ISBN</option>
+                        <option value="genre">Genre</option>
+                        <option value="author">Author</option>                      
+                    </select>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="searchval" placeholder="Search..." value="">
+                 <span class="input-group-btn"> 
+                    <button type="submit" class="btn btn-default" type="button" name="Task" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+                  </span> 
           </div>
       </div>
      </div> 
@@ -59,24 +54,23 @@
     
     <div class="collapse navbar-collapse" id="myNavbar">
       
+       <div class="collapse navbar-collapse" id="myNavbar">
+      
       <ul class="nav navbar-nav">
                 <li><button type="submit" name="navigator" value="home.html">Home</button></li>
         <li class="dropdown">
           <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           Genres<span class="caret"></span></a>
           <ul class="dropdown-menu">
-           <li><button type="submit" name="navigator" value="genres.html">Science Fiction</button></li>
-           <li><button type="submit" name="navigator" value="genres.html">Young Adult</button></li>
-           <li><button type="submit" name="navigator" value="genres.html">Kids</button></li>
-            <li><a href="genres.html">Science Fiction</a></li>
-            <li><a href="genres.html">Young Adult</a></li>
-            <li><a href="genres.html">Kids</a></li>
-          </ul>
+           <li><button type="submit" name="Task" value= "Search_genre_YA"  class="btn otherbtn">Young Adult</button></li>
+           <li><button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Kids</button></li>
+           <li><button type="submit" name="Task" value= "Search_genre_scifi"      class="btn otherbtn">Science Fiction</button></li>
+           </ul>
         </li>
-                <li><button type="submit" name="navigator" value="best.html">Best Selling</button></li>
-                <li><button type="submit" name="navigator" value="deals.html">Deals</button></li>
-                <li><button type="submit" name="navigator" value="favorites.html">Our Favorites</button></li>
-      </ul>
+                <li><button type="submit" name="Task" value= "Search_genre_best"  class="btn otherbtn">Best Selling</button></li>
+                <li><button type="submit" name="Task" value= "Search_genre_deals"  class="btn otherbtn">Deals</button></li>
+                <li><button type="submit" name="Task" value= "Search_genre_favorites"  class="btn otherbtn">Our Favorites</button></li>
+        </ul>
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
@@ -136,19 +130,18 @@
         Free Shipping on orders over $50 with code <b>50SHIP</b><br/>
         10% off your first purchase with code <b>NEWMEM</b><br/>
         <br/>
-        <button type="submit" name="navigator" value="create.ftlh"  class="btn">Create an Account</button>&nbsp
+        <button type="submit" name="navigator" value="create.html"  class="btn">Create an Account</button>&nbsp
         <button type="submit" name="navigator" value="signin.html"  class="btn">Log In</button>
         <br/>
         <br/>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Kids</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Science Fiction</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Young Adult</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Fantasy</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Biographies</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">New Arrivals</button>
-        <button type="submit" name="navigator" value= "best.html"    class="btn otherbtn">Best Sellers</button>
-        <button type="submit" name="navigator" value= "favorites.html"class="btn otherbtn">Staff Picks</button>
-    </div>
+        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Kids</button>
+        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Science Fiction</button>
+        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Fantasy</button>
+        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Biographies</button>
+        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">New Arrivals</button>
+        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Best Sellers</button>
+        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Staff Picks</button>
+       </div>
 </div><br>
 
 <div class="container">    

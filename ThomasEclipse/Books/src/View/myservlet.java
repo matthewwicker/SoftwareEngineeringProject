@@ -7,6 +7,7 @@ import DatabaseAccess.UserDBManager;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -200,6 +201,20 @@ public class myservlet extends HttpServlet {
 				template = "checkoutConfirm.ftlh";
 			} //Confirm Purchase
 			
+			
+			if (task.equals("Search")) {
+	            ArrayList<Book> books = BookDBManager.searchBooks(request.getParameter("searchby"), request.getParameter("searchval"));
+	            root.put("books", books);        
+	            root.put("searchheader", "Search by " + request.getParameter("searchby") + ": " + request.getParameter("searchval") );
+	            template = "genres.ftlh";    
+	        }
+	        else if (task.contains("Search")) {
+	            ArrayList<Book> books = BookDBManager.searchBooks(task.split("_",3)[1], task.split("_",3)[2]);
+	            root.put("books", books);        
+	            root.put("searchheader", "Search by " + task.split("_",3)[1] + ": " + task.split("_",3)[2] );
+	            template = "genres.ftlh";
+	        }
+	        
 			
   		}
 		catch(Exception e) {

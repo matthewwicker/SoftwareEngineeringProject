@@ -125,11 +125,10 @@
   </div>
 </nav>
 <!---BODY-->
-<div id="content-background">
 <div class="container">
   
   <div class="page-header">
-    <h2>Kids</h2>
+    <h2>${searchheader}</h2>
   </div>
 
   <div class="row">
@@ -145,14 +144,15 @@
             <li><a href="#">Price <span class="glyphicon glyphicon-arrow-up"></a></li>
           </ul>
         </div>
-    
-    <div class="col-sm-3">
+        
+ <#list books as book>
+      <div class="col-sm-3">
       <div class="panel panel-default">
         <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
         <div class="panel-footer">
-            Cat in the Hat <br/>
-            Dr. Seuss <br/>
-            $5.00<br/>
+            ${book.title} <br/>
+            ${book.author} <br/>
+            $ ${book.price}<br/>
             <span class="glyphicon glyphicon-star-empty"></span>
             <span class="glyphicon glyphicon-star-empty"></span>
             <span class="glyphicon glyphicon-star-empty"></span>
@@ -161,24 +161,8 @@
         </div>
       </div>
     </div>
+</#list>
 
-    <div class="col-sm-3">
-      <div class="panel panel-default">
-        <div class="panel-body"><img src="cover2.jpg" class="img-responsive"></div>
-        <div class="panel-footer">
-            Fox in socks <br/>
-            Dr. Seuss <br/>
-            $11.00 <br/>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div><br><br>
 </div>
 <!---FOOTER-->
