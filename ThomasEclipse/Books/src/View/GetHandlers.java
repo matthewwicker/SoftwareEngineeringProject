@@ -113,6 +113,8 @@ public class GetHandlers {
 		
 	}
 	
+	
+	
 	protected static User signIn(HttpServletRequest request) {
 		User retval = new User();
 		
@@ -186,16 +188,27 @@ public class GetHandlers {
 	    		}
 	     }
 	    
-	    if(promocode != "!*!") retval.setCode(promocode);
-	    if(isbn != "!*!") retval.setISBN(Integer.parseInt(isbn));
-	    if(sdate != "!*!") retval.setStartDate(sdate);
-	    if(edate != "!*!") retval.setEndDate(edate);
-	    if(percentoff != "!*!") retval.setPercentOff(Double.parseDouble(percentoff));
+	    System.out.println("Check 1");
+	    System.out.println(retval);
+	    try {
+	    		if(promocode != "!*!") retval.setCode(promocode);
+	    		if(isbn != "!*!") retval.setISBN(Integer.parseInt(isbn));
+	    		if(sdate != "!*!") retval.setStartDate(sdate);
+	    		if(edate != "!*!") retval.setEndDate(edate);
+	    		if(percentoff != "!*!") retval.setPercentOff(Double.parseDouble(percentoff));
+	    }
+	    catch(Exception e){
+	    		e.printStackTrace();
+	    		return null;
+	    }
 	    
+	    System.out.println("Check 2");
 	    
 	    if(promocode == "!*!" || isbn == "!*!" || sdate == "!*!" || edate == "!*!" || percentoff == "!*!") {
 			return null;
 		}
+	    
+	    System.out.println("Check 3");
 	    
 		return retval;
 	}
@@ -343,8 +356,9 @@ public class GetHandlers {
 	    		if(threshold != "!*!") retval.setThreshold(Integer.parseInt(threshold));
 	    		if(genre != "!*!") retval.setGenre(genre);
 	    }
-	    catch(Exception e) {
-	    		return null;
+	    catch(Exception e){
+    			e.printStackTrace();
+    			return null;
 	    }
 
 		//=======================-------------------===============

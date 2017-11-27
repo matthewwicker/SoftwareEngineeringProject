@@ -200,6 +200,7 @@ public class myservlet extends HttpServlet {
 				template = "checkoutConfirm.ftlh";
 			} //Confirm Purchase
 			
+			
   		}
 		catch(Exception e) {
 		    //System.out.println("No task");
