@@ -34,6 +34,7 @@ public class UserDBManager {
 	 * @param searchItem
 	 * @return
 	 */
+	// THIS NEEDS TO BE FIXED -- IM SORRY
 	public static ArrayList<User> searchUsers(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
 		String query = "select * from user where " + searchParam+ "= " + searchItem;
@@ -43,8 +44,10 @@ public class UserDBManager {
 			try {
 				while(rs.next()){
 					user.setUid(rs.getInt("uid"));
+
 					user.setfName(rs.getString("fname"));
 					user.setlName(rs.getString("lname"));
+
 					user.setPassword(rs.getString("password"));
 					user.setEmail(rs.getString("email"));
 					user.setType(rs.getString("type"));

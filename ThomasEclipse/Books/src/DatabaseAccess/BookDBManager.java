@@ -40,7 +40,7 @@ public class BookDBManager {
 	 */
 	public static ArrayList<Book> searchBooks(String searchParam, String searchItem){
 		ArrayList<Book> search_results = new ArrayList<Book>();
-		String query = "select * from book where " + searchParam+ "= " + searchItem;
+		String query = "select * from book where " + searchParam+ " = '" + searchItem + "'";
 		ResultSet rs = driver.retrieve(query);
 		Book book = new Book();
 		if(rs != null){

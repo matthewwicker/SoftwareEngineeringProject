@@ -49,8 +49,8 @@ public class PromoDBManager {
 					promo.setCode(rs.getString("code"));
 					promo.setISBN(rs.getInt("ISBN"));
 					promo.setPercentOff(rs.getDouble("percentoff"));
-					promo.setEndDate(rs.getObject("enddate", LocalDate.class));
-					promo.setStartDate(rs.getObject("startdate", LocalDate.class));
+					promo.setEndDate(rs.getString("enddate"));
+					promo.setStartDate(rs.getString("startdate"));
 					search_results.add(promo);
 				}
 				driver.disconnect();

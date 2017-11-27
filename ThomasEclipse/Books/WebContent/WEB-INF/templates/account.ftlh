@@ -130,15 +130,18 @@
             <div id="pageTitle">
                Member Dashboard
             </div>
-            <p>First Name  <input type="text" name='fname' value=${fname}><br/>
-                Last Name  <input type="text" name="lname" value=${lname}><br/>
-                Phone No.  <input type="text" name="pnumb" value="3193193199"><br/>
-                Email&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <input type="text" name="email" value=${email}><br/>
-                Address &nbsp&nbsp&nbsp <input type="text" name="address1" value="1004 Cedar Street"><br/>
-                <input type="text" name="address2" value="Athens, GA 30602" style="margin-left:67px">
-                <div class = "button2"> <button><a href="account.ftlh">Update Info</a> </button></div> 
-                <div class = "button2"> <button><a href="orderHistory.html">Order History</a> </button></div> 
-                <div class = "button2"> <button><a href="signin.html">Sign Out</a> </button></div></p> 
+            <p> First Name  <input type="text" name='fname' value=${"fname"}><br/>
+                Last Name  <input type="text" name="lname" value=${"lname"}><br/>
+                Phone No.  <input type="text" name="pnumb" value=${"phone"}><br/>
+                Email&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  <input type="text" name="email" value=${"email"}><br/>
+                Address &nbsp&nbsp&nbsp <input type="text" name="address1" value=${"addressline1"}><br/>
+                <input type="text" name="address2" value="${"addressline2"}" style="margin-left:67px">
+                <div class = "button2"><button type="submit" name="Task" value="UpdateInfo">Update Info</button></div>
+                <div class = "button2"><button type="submit" name="Task" value="GoToCreateUser">Create New User</button></div>
+                <div class = "button2"><button type="submit" name="Task" value="SignOut">Sign Out</button></div>
+                <div class = "button2"><button type="submit" name="Task" value="GoToCreateBook">Create Book</button></div>
+                <div class = "button2"><button type="submit" name="Task" value="GoToCart">View Cart</button></div>
+                <div class = "button2"><button type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button></div>
         </div></div>
     
 <!---FOOTER-->

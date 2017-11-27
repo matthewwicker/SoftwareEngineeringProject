@@ -6,9 +6,11 @@ public abstract class DbAccessConfiguration {
 
 
 
+
 	protected String DB_CONNECTION_URL = "jdbc:mysql://localhost:3306/bookz";
 
 	protected String DB_CONNECTION_USERNAME = "root";
 	
 	protected String DB_CONNECTION_PASSWORD = "1234";
+
 }

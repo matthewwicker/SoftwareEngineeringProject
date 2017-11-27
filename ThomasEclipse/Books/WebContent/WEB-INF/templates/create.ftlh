@@ -3,6 +3,7 @@
 <head>
 <title>Books</title>
     <meta charset="utf-8" />
+        <script type='text/javascript' src="optional.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="custom.css" rel="stylesheet" />
@@ -14,8 +15,8 @@
   </style>
 </head>
 <body>
-<form action = "myservlet" method = "post">
 
+  <form action = "myservlet" method = "post">
 <!---HEADER-->
 <div class="jumbotron">
   <div class="container-fluid">
@@ -81,7 +82,6 @@
                         <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
                             <div class="col-lg-12">
                                 <div class="text-center"><h3><b>Log In</b></h3></div>
-                                <form id="ajax-login-form" action="http://phpoll.com/login/process" method="post" role="form" autocomplete="off">
                                     <div class="form-group">
                                         <label for="username">Email</label>
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
@@ -124,61 +124,30 @@
     </div>
   </div>
 </nav>
-<!---BODY-->
-<div class="container">
+    <div class="container">
   
-  <div class="page-header">
-    <h2>Cart</h2>
-  </div>
-
-<div class="row">
-        <div class="col-sm-12 col-md-10">
-            <table class="table table-striped table-hover table-bordered">
-                <tbody>
-                      <tr>
-                        <th>Item</th>
-                        <th>QTY</th>
-                        <th>Unit Price</th>
-                        <th>Total Price</th>
-                      </tr>
-                      <tr>
-                         <td>Cat in the Hat</td>
-                         <td id="qty"><input type="number" id="editqty" style="width: 45px; padding: 1px" value="2" min="0"></td>
-                         <td id="price">$25.00</td>
-                         <td id="price_sub">$50.00</td>
-                      </tr>
-                      <tr>
-                         <th colspan="3"><span class="pull-right">Sub Total</span></th>
-                         <th id="subtotal">$50.00</th>
-                      </tr>
-                      <tr>
-                         <th colspan="3"><span class="pull-right">Shipping</span></th>
-                         <th id="shipping">$4.99</th>
-                      </tr>
-                      <tr>
-                         <th colspan="3"><span class="pull-right">Promotion Code</span></th>
-                         <th>
-                              <input type="text" name='promocode' value="NEWMEM"><a href="cart.html" id="promo" class="pull-right btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Promo</a>
-                         </th>
-                      </tr>
-                      <tr>
-                          <th colspan="3"><span class="pull-right">Total</span></th>
-                          <th id="total">$54.99</th>
-                      </tr>
-                      <tr>
-                          <td>
-                             <a href="cart.html" id="update" class="pull-left btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Update Cart</a>
-                          </td>
-                          <td colspan="3"><a href="checkout.html" id="checkout" class="pull-right btn btn-default">Checkout</a></td>
-                      </tr>
-                    </tbody>
-              </table>
-          </div>
-      </div>
-
-</div><br><br>
-
-<!---FOOTER-->
+              
+  <div class="col-md-6">
+  
+   <div class="text-center">
+          <h3>create account</h3>
+        </div>
+        <input name="fname" type="text" placeholder="First Name" autofocus="autofocus" class="input pass" value=""/>
+        <input name="lname" type="text" placeholder="Last Name" class="input pass" value=""/>
+        <input name="email" type="email" placeholder="Email address" class="input pass" value=""/>
+        <input name="uname" type="text" placeholder="Username" pattern="^[\w]{3,16}$" required="required" class="input pass" value=""/>
+        <input name="password" type="password" placeholder="Choose a password (must be more than 6 characters)" required="required" class="input pass" value=""/>
+        <input name="cpassword" type="password" placeholder="Confirm password" required="required" class="input pass" value=""/>
+        <input name="phone" type="text" placeholder="Phone Number" value="3193193199" class="input pass" value=""/>
+        <input name="address1" type="text" placeholder="Street Address" value="1004 Cedar St" class="input pass" value=""/>
+        <input name="address2" type="text" placeholder="City, State, Zip" value="Athens, GA 30602" class="input pass" value=""/>
+        <button type="submit" name="Task" onclick="return requiredParam(fname.value,lname.value,email.value,phone.value)" class="inputButton" value="CreateUser">Sign me up!</button>
+        <div class="text-center">
+            already have an account? <a href="signin.html">login</a> &nbsp having trouble? <a href="support.html">support</a>
+        </div>
+        
+       </div>></div>
+       <!---FOOTER-->
     <footer>
      <div class="container-fluid">
        <div class="row">  
@@ -230,6 +199,6 @@
         </div>
     </footer> 
     <!-- Footer 2 End -->
-</form>
+     </form>
 </body>
 </html>
