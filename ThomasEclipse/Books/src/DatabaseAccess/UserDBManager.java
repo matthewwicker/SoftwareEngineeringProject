@@ -12,7 +12,7 @@ public class UserDBManager {
 	 */
 	public static int addUser(User user) {
 		String query = "INSERT INTO users (email, name, password,type) ";
-		query += "VALUES ('" + user.getEmail() + "', '" + user.getName() + "', '";
+		query += "VALUES ('" + user.getEmail() + "', '" + user.getFname() + "', '"  +user.getLname() + "', '";
 		query += user.getPassword() +  "','0')";
 		System.out.println(query);
 		int success = 0;
@@ -34,6 +34,7 @@ public class UserDBManager {
 	 * @param searchItem
 	 * @return
 	 */
+	// THIS NEEDS TO BE FIXED -- IM SORRY
 	public static ArrayList<User> searchUsers(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
 		String query = "select * from book where " + searchParam+ "= " + searchItem;
@@ -43,7 +44,7 @@ public class UserDBManager {
 			try {
 				while(rs.next()){
 					user.setUid(rs.getInt("uid"));
-					user.setName(rs.getString("name"));
+					user.setFname(rs.getString("name"));
 					user.setPassword(rs.getString("password"));
 					user.setEmail(rs.getString("email"));
 					user.setType(rs.getString("type"));

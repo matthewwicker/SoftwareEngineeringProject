@@ -59,7 +59,13 @@ public class Book {
 	private String author;
 	private String title;
 	private double price;
-	private String Genre = "test";
+	private String genre;
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
 	private String description;
 	private int rating;
 	private int quantity;

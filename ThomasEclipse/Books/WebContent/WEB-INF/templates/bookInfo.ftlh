@@ -214,7 +214,8 @@
             <p>  Year:   1993  </p>
             <p>  Desription:   A cat has a hat.  It's striped red and white. He's kinda creepy. He babysits some kids or something.<br/> I think there's some goldfish in it too. </p>
             <p>  Reviews:</p>
-            <a href="cart.html" id="cart" class="center btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a>
+            <div class = "button2"><button type="submit" name="Task" value="AddToCart">Add to Cart</button></div>
+            
         </div>
         </div>
   </div>

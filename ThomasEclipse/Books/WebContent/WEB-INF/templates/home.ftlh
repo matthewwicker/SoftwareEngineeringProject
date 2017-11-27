@@ -136,7 +136,7 @@
         Free Shipping on orders over $50 with code <b>50SHIP</b><br/>
         10% off your first purchase with code <b>NEWMEM</b><br/>
         <br/>
-        <button type="submit" name="navigator" value="create.html"  class="btn">Create an Account</button>&nbsp
+        <button type="submit" name="navigator" value="create.ftlh"  class="btn">Create an Account</button>&nbsp
         <button type="submit" name="navigator" value="signin.html"  class="btn">Log In</button>
         <br/>
         <br/>
@@ -158,7 +158,7 @@
       <div class="panel panel-default">
         <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
         <div class="panel-footer">
-          Cat in the Hat <br/>
+          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div>   <br/>
           Dr. Seuss <br/>
           $5.00<br/>
           <span class="glyphicon glyphicon-star-empty"></span>
@@ -174,7 +174,7 @@
       <div class="panel panel-default">
         <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
         <div class="panel-footer">
-          Cat in the Hat <br/>
+          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div>  <br/>
           Dr. Seuss <br/>
           $5.00<br/>
           <span class="glyphicon glyphicon-star-empty"></span>
@@ -190,7 +190,7 @@
       <div class="panel panel-default">
         <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
         <div class="panel-footer">
-          Cat in the Hat <br/>
+          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div>  <br/>
           Dr. Seuss <br/>
           $5.00<br/>
           <span class="glyphicon glyphicon-star-empty"></span>
@@ -206,7 +206,7 @@
       <div class="panel panel-default">
         <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
         <div class="panel-footer">
-          Cat in the Hat <br/>
+          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div>  <br/>
           Dr. Seuss <br/>
           $5.00<br/>
           <span class="glyphicon glyphicon-star-empty"></span>
@@ -221,58 +221,7 @@
   </div>
 </div></div><br><br>
 
-<!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-            
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                    <ul class="menu">
-                         <span>Menu</span>    
-                         <li>
-                            <a href="home.html">Home</a>
-                          </li>
-                               
-                          <li>
-                             <a href="genres.html">Genres</a>
-                          </li>
-                               
-                          <li>
-                            <a href="deals.html">Deals</a>
-                          </li>
-                               
-                          <li>
-                             <a href="best.html">Best Selling</a>
-                          </li>
-                          <li>
-                             <a href="favorites.html">Our Favorites</a>
-                          </li>
-                          <li>
-                             <a href="support.html">Support</a>
-                          </li>
-                     </ul>
-            </div>
-           
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            bookyourshelf@mail.com
-                        </li> 
-                   </ul>
-            </div>
 
-          </div> 
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
    </form>
 
 </body>

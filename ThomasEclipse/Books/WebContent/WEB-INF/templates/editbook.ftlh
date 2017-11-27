@@ -64,50 +64,52 @@
                 <th>
                 ISBN 
                 </th><th>
-                <input type="text" name="isbn" value=""><br/>
+                <input type="text" name='isbn' value=${"isbn"}><br/>
                 </th></tr>
                 <tr>
                 <th>
 	        Title  
                 </th><th>
-                <input type="text" name="title" value=""><br/>
+                <input type="text" name="title" value=${"title"}><br/>
                 </th></tr>
                 <tr>
                 <th>
 		Author 
                 </th><th>
-                <input type="text" name="author" value=""><br/>
+                <input type="text" name="author" value=${"author"}><br/>
                 </th></tr>
                 <tr>
                 <th>
 		Price
                 </th><th>
-                <input type="text" name="price" value=""><br/>
+                <input type="text" name="price" value=${"price"}><br/>
                 </th></tr>
                 <tr>
                 <th>
 		Genre 
                 </th><th>
-                 <input type="text" name="genre" value=""><br/>
+                 <input type="text" name="genre" value=${"genre"}><br/>
                 </th></tr>
                 <tr>
                 <th>
 		Description 
                 </th><th>
-		<input type="text" name="description" value=""><br/>
+		<input type="text" name="description" value=${"descr"}><br/>
                 </th></tr>
                 <tr>
                 <th>
 		Quantity
                 </th><th>
-		<input type="text" name="quantity" value=""></th></tr>
+		<input type="text" name="quantity" value=${"quantity"}></th></tr>
 		         <tr>
                 <th>
 		Threshold
                 </th><th>
-		<input type="text" name="threshold" value="">
+		<input type="text" name="threshold" value=${"thresh"}>
                 </th></tr><tr><th></th><th>
-            	<input type="submit" name="Task" value="CreateBook"> 
+      	<button type="submit" name="Task" onclick="return requiredParam(isbn.value, title.value, author.value, price.value, genre.value, description.value, quantity.value, threshold.value)" class="inputButton" value="CreateBook">Create Book</button>
+        
+    
             	</th></tr></table></div> 
          </form>
          </div></div>
