@@ -4,7 +4,7 @@ public class Address {
 
 	private int aid;
 	private String address;
-	private boolean billing;
+	private int billing;
 	private int uid;
 	public int getAid() {
 		return aid;
@@ -18,10 +18,10 @@ public class Address {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public boolean isBilling() {
+	public int isBilling() {
 		return billing;
 	}
-	public void setBilling(boolean billing) {
+	public void setBilling(int billing) {
 		this.billing = billing;
 	}
 	public int getUid() {

@@ -31,7 +31,6 @@ public class Driver {
 	public ResultSet retrieve(String query){
 		con = dbAccess.connect();
 		ResultSet rs = dbAccess.retrieve(con, query);
-		dbAccess.disconnect(con);
 		return rs;
 	}
 	
@@ -42,7 +41,6 @@ public class Driver {
 	public int create(String query){
 		con = dbAccess.connect();
 		int result = dbAccess.create(con, query);
-		dbAccess.disconnect(con);
 		return result;
 	}
 	
@@ -54,7 +52,6 @@ public class Driver {
 	{
 		con = dbAccess.connect();
 		int result = dbAccess.update(con, query);
-		dbAccess.disconnect(con);
 		return result;
 	}
 	
@@ -77,4 +74,7 @@ public class Driver {
         ResultSet rs = dbAccess.retrieve(con, query);
         return rs;
     }
+	public void disconnect(){
+		dbAccess.disconnect(con);
+	}
 }

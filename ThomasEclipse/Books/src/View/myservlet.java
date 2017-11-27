@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mysql.jdbc.Connection;
 import Entities.*;
+import Logic.*;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -42,6 +43,7 @@ public class myservlet extends HttpServlet {
     Configuration cfg = null;
     private String templateDir = "/WEB-INF/templates";
     private Driver driver = new Driver();
+    private logic l = new logic();
     private BookDBManager BookManager = new BookDBManager();
     /**
      * @see HttpServlet#HttpServlet()
@@ -86,17 +88,18 @@ public class myservlet extends HttpServlet {
 			
 			else if (task.equals("CreateUser")){
 				User potentialUser = GetHandlers.makeUser(request);
-				if(potentialUser != null) {
+				/*if(potentialUser != null) {
 	        	  		int i = UserDBManager.addUser(potentialUser);
 				}
 				else {
 	        	  		System.out.println("REQUREMENTS NOT SATISFIED");
-				}
+				}*/
 			}//Create user
 			
 			else if (task.equals("SignIn")){
         	  		User userRequestingAuth = GetHandlers.signIn(request);
         	  		//CHECK THAT USER IS IN THE DATABASE
+        	  		System.out.println(l.authorizeUser(userRequestingAuth));
         	  		boolean userExists = true;
         	  		if(userExists) {
         	  			template = "account.ftlh";
@@ -199,6 +202,7 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("ConfirmPurchase")) {
 				template = "checkoutConfirm.ftlh";
 			} //Confirm Purchase
+			
 			
   		}
 		catch(Exception e) {

@@ -1,17 +1,24 @@
 package View;
 
 import java.util.Enumeration;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import Entities.Address;
 import Entities.Book;
+import Entities.Payment;
 import Entities.Promo;
 import Entities.User;
+import Logic.logic;
 
 public class GetHandlers {
+	static logic logic = new logic();
 	protected static User makeUser(HttpServletRequest request) {
 		//What object do you want to get out of this interaction?
 		User retval = new User();
+		Address address = new Address();
+		Payment payment = new Payment();
 		
 		//=========================================================
 		//			VALUES YOU NEED FROM THE REQUEST
@@ -87,6 +94,10 @@ public class GetHandlers {
 	    		retval.setPassword(password);
 	    		//System.out.println("set!");
 	    	}
+	    if(phonenumber != "!*!") {
+    		retval.setPhoneNumber(phonenumber);
+    		//System.out.println("set!");
+    	}
 	    if(accounttype != "!*!") {
 	    		retval.setType(accounttype);
 	    		//System.out.println("set!");
@@ -96,7 +107,8 @@ public class GetHandlers {
 	    		//System.out.println("set!");
 	    	}
 		if(addressline1 != "!*!" ) {
-			retval.setAddress(addressline1, addressline2);
+			address.setAddress(addressline1 + addressline2);
+			address.setBilling(1);
 			//System.out.println("set!");
 		}
 		
@@ -109,9 +121,15 @@ public class GetHandlers {
 		//			SEND IT TO THE DATA ACCESS LAYER
 		//=========================================================
 		System.out.println("User email entered: " + retval.getEmail());
+		Random rand = new Random();
+		int val = rand.nextInt(1000000);
+		payment.setCc_number(val);
+		logic.addUser(retval, address, payment);
 		return retval;
 		
 	}
+	
+	
 	
 	protected static User signIn(HttpServletRequest request) {
 		User retval = new User();
@@ -125,11 +143,8 @@ public class GetHandlers {
 	    		String paramName = params.nextElement();
 	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
 	    		switch(paramName) {
-	    			case "email":
+	    			case "username":
 	    				email = request.getParameter(paramName);
-	    				break;
-	    			case "uname":
-	    				username = request.getParameter(paramName);
 	    				break;
 	    			case "password":
 	    				password = request.getParameter(paramName);
@@ -138,16 +153,18 @@ public class GetHandlers {
 	    				break;
 	    		}
 	     }
-	    
+	    System.out.println("Check2");
 	    if(username != "!*!") retval.setUsername(username);
+	    System.out.println("Check4");
 	    if(email != "!*!") retval.setEmail(email);
+	    System.out.println("Check3");
 	    if(password != "!*!") retval.setPassword(password);
 	    
-	    
-	    if(username == "!*!" || email == "!*!" || password == "!*!") {
+	    System.out.println("Check1");
+	    if(email == "!*!" || password == "!*!") {
 			return null;
 		}
-	    
+	    System.out.println("Finished with the  method");
 		return retval;
 	}
 	
@@ -186,16 +203,27 @@ public class GetHandlers {
 	    		}
 	     }
 	    
-	    if(promocode != "!*!") retval.setCode(promocode);
-	    if(isbn != "!*!") retval.setISBN(Integer.parseInt(isbn));
-	    if(sdate != "!*!") retval.setStartDate(sdate);
-	    if(edate != "!*!") retval.setEndDate(edate);
-	    if(percentoff != "!*!") retval.setPercentOff(Double.parseDouble(percentoff));
+	    System.out.println("Check 1");
+	    System.out.println(retval);
+	    try {
+	    		if(promocode != "!*!") retval.setCode(promocode);
+	    		if(isbn != "!*!") retval.setISBN(Integer.parseInt(isbn));
+	    		//if(sdate != "!*!") retval.setStartDate(sdate);
+	    		//if(edate != "!*!") retval.setEndDate(edate);
+	    		if(percentoff != "!*!") retval.setPercentOff(Double.parseDouble(percentoff));
+	    }
+	    catch(Exception e){
+	    		e.printStackTrace();
+	    		return null;
+	    }
 	    
+	    System.out.println("Check 2");
 	    
 	    if(promocode == "!*!" || isbn == "!*!" || sdate == "!*!" || edate == "!*!" || percentoff == "!*!") {
 			return null;
 		}
+	    
+	    System.out.println("Check 3");
 	    
 		return retval;
 	}
@@ -343,8 +371,9 @@ public class GetHandlers {
 	    		if(threshold != "!*!") retval.setThreshold(Integer.parseInt(threshold));
 	    		if(genre != "!*!") retval.setGenre(genre);
 	    }
-	    catch(Exception e) {
-	    		return null;
+	    catch(Exception e){
+    			e.printStackTrace();
+    			return null;
 	    }
 
 		//=======================-------------------===============
