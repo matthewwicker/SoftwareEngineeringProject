@@ -65,7 +65,7 @@
           <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           Genres</button><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="genres.html">Sciene Fiction</a></li>
+            <li><a href="genres.html">Science Fiction</a></li>
             <li><a href="genres.html">Young Adult</a></li>
             <li><a href="genres.html">Kids</a></li>
           </ul>
@@ -118,7 +118,7 @@
                         </ul>
         </li>
         <li><button type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
-        <li><button type="submit" name="navigator" value="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
+        <li><button type="submit" name="navigator" value="cart.ftlh"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
       </ul>
 
     </div>
@@ -135,25 +135,25 @@
       <table style="width:50%;">
                 <tr>
                   <th>Code</th>
-                  <th><input type="text" name="code" value=""><br/><br/></th>
+                  <th><input type="text" name="code" value=${"promocode"}><br/><br/></th>
                 </tr>
                 <tr>
                   <th>ISBN</th>
-                  <th> <input type="text" name="isbn" value=""><br/><br/></th>
+                  <th> <input type="text" name="isbn" value="${"isbn"}"><br/><br/></th>
                 </tr>
                 <tr>
                   <th>Percent Off</th>
-                <th> <input type="text" name="percent" value=""><br/><br/>
+                <th> <input type="text" name="percent" value=${"percent"}><br/><br/>
                 </th>
                 </tr>
                 <tr>
                   <th>Start Date</th>
-                <th> <input type="text" name="sdate" value=""><br/><br/>
+                <th> <input type="text" name="sdate" value=${"sdate"}><br/><br/>
                 </th>
                 </tr>
                 <tr>
                   <th>End Date</th>
-                <th> <input type="text" name="edate" value=""><br/><br/>
+                <th> <input type="text" name="edate" value=${"enddate"}><br/><br/>
                 </th>
                 </tr>
                 <tr>

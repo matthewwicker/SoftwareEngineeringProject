@@ -60,7 +60,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav">
-                <li><button type="submit" name="navigator" value="home.html">Home</button></li>
+                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
         <li class="dropdown">
           <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           Genres</button><span class="caret"></span></a>
@@ -118,7 +118,7 @@
                         </ul>
         </li>
         <li><button type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
-        <li><button type="submit" name="navigator" value="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
+        <li><button type="submit" name="navigator" value="cart.ftlh"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
       </ul>
 
     </div>
@@ -158,7 +158,8 @@
                       <tr>
                          <th colspan="3"><span class="pull-right">Promotion Code</span></th>
                          <th>
-                              <input type="text" name='promocode' value="NEWMEM"><a href="cart.html" id="promo" class="pull-right btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Promo</a>
+                              <input type="text" name='promocode' value="NEWMEM"> <div class = "button2"><button type="submit" name="Task" value="AddPromoToCart">Add Promo</button></div>
+                                    <!-----<a href="cart.html" id="promo" class="pull-right btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Promo</a>----->
                          </th>
                       </tr>
                       <tr>
@@ -167,9 +168,9 @@
                       </tr>
                       <tr>
                           <td>
-                             <a href="cart.html" id="update" class="pull-left btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Update Cart</a>
+                             <div class = "button2"><button type="submit" name="Task" value="UpdateCart">Update Cart</button></div>
                           </td>
-                          <td colspan="3"><a href="checkout.html" id="checkout" class="pull-right btn btn-default">Checkout</a></td>
+                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="Checkout">Checkout</button></div></td>
                       </tr>
                     </tbody>
               </table>
@@ -187,7 +188,7 @@
                     <ul class="menu">
                          <span>Menu</span>    
                          <li>
-                            <a href="home.html">Home</a>
+                            <a href="home.ftlh">Home</a>
                           </li>
                                
                           <li>

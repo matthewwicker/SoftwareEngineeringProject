@@ -155,7 +155,6 @@ public class myservlet extends HttpServlet {
 				}
 			} //Create Book
 			
-			
 			else if(task.equals("GoToItem")) {
 				//Somehow, we need to put the info from the clicked-on book to the bookInfo page
 				template = "bookInfo.ftlh";
@@ -165,6 +164,42 @@ public class myservlet extends HttpServlet {
 				// Somehow, we need to pull the information from the specific page
 				template = "cart.ftlh";
 			} //Add item to cart
+			
+			else if(task.equals("GoToPromotion")) {
+				template = "editpromo.ftlh";
+			} //Go to promo
+			
+			else if(task.equals("AddPromo")) {
+				template = "editpromo.ftlh";
+				Promo promotodelege = GetHandlers.makePromo(request);
+				//Why aren't we getting to this line?
+			} //Add promo to database
+			
+			else if(task.equals("DeletePromo")) {
+				template = "editpromo.ftlh";
+				Promo promotodelege = GetHandlers.makePromo(request);
+				//Why aren't we getting here
+			} //Delete promo to database
+			
+			else if(task.equals("AddPromoToCart")) {
+				template = "cart.ftlh";
+				Promo promotodelege = GetHandlers.makePromo(request);
+				//Why aren't we getting to this line?
+			} //Add promo to this users cart
+			
+			else if(task.equals("Checkout")) {
+				template = "checkout.ftlh";
+				//Compute the exact costs and move to the 
+			} //Checkout with this user
+			
+			else if(task.equals("UpdateCart")) {
+				template = "checkout.ftlh";
+			} //Update this cart information
+			
+			else if(task.equals("ConfirmPurchase")) {
+				template = "checkoutConfirm.ftlh";
+			} //Confirm Purchase
+			
   		}
 		catch(Exception e) {
 		    //System.out.println("No task");

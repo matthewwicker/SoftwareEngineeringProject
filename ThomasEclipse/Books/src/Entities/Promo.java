@@ -16,11 +16,11 @@ datetime
 enddate
 datetime
  */
-	private int code;
-	public int getCode() {
+	private String code;
+	public String getCode() {
 		return code;
 	}
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	public int getISBN() {
@@ -35,20 +35,20 @@ datetime
 	public void setPercentOff(double percentOff) {
 		this.percentOff = percentOff;
 	}
-	public LocalDate getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(LocalDate startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-	public LocalDate getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(LocalDate endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	private int ISBN;
 	private double percentOff;
-	private LocalDate startDate;
-	private LocalDate endDate;
+	private String startDate;
+	private String endDate;
 }

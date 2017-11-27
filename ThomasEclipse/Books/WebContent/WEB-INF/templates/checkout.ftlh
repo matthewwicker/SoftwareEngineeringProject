@@ -197,6 +197,12 @@
         </div>
     </div>
 
+<div class="container">
+  
+  <div class="page-header">
+    <h2>Cart</h2>
+  </div>
+
 <div class="row">
         <div class="col-sm-12 col-md-10">
             <table class="table table-striped table-hover table-bordered">
@@ -224,7 +230,8 @@
                       <tr>
                          <th colspan="3"><span class="pull-right">Promotion Code</span></th>
                          <th>
-                              <input type="text" name='promocode' value="NEWMEM"><a href="checkout.html" id="promo" class="pull-right btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Promo</a>
+                              <input type="text" name='promocode' value="NEWMEM"> <div class = "button2"><button type="submit" name="Task" value="AddPromoToCart">Add Promo</button></div>
+                                    <!-----<a href="cart.html" id="promo" class="pull-right btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Promo</a>----->
                          </th>
                       </tr>
                       <tr>
@@ -233,9 +240,9 @@
                       </tr>
                       <tr>
                           <td>
-                             <a href="cart.html" id="cart" class="pull-left btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping</a>
+                             <div class = "button2"><button type="submit" name="Task" value="UpdateCart">Update Cart</button></div>
                           </td>
-                          <td colspan="3"><a href="checkoutConfirm.html" id="checkout" class="pull-right btn btn-default">Checkout</a></td>
+                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="ConfirmPurchase">Confirm Purchase</button></div></td>
                       </tr>
                     </tbody>
               </table>

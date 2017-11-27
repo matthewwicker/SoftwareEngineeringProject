@@ -121,7 +121,7 @@
                         </ul>
         </li>
         <li><button type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
-        <li><button type="submit" name="navigator" value="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
+        <li><button type="submit" name="navigator" value="cart.ftlh"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
       </ul>
 
     </div>

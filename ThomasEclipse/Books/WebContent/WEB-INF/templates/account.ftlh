@@ -141,6 +141,7 @@
                 <div class = "button2"><button type="submit" name="Task" value="SignOut">Sign Out</button></div>
                 <div class = "button2"><button type="submit" name="Task" value="GoToCreateBook">Create Book</button></div>
                 <div class = "button2"><button type="submit" name="Task" value="GoToCart">View Cart</button></div>
+                <div class = "button2"><button type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button></div>
         </div></div>
     
 <!---FOOTER-->

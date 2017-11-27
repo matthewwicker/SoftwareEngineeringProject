@@ -5,6 +5,7 @@ import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
 
 import Entities.Book;
+import Entities.Promo;
 import Entities.User;
 
 public class GetHandlers {
@@ -150,7 +151,54 @@ public class GetHandlers {
 		return retval;
 	}
 	
-	
+	protected static Promo makePromo(HttpServletRequest request) {
+		Promo retval = new Promo();
+		
+		String promocode = "!*!";
+		String isbn = "!*!";
+		String percentoff = "!*!";
+		String sdate = "!*!";
+		String edate = "!*!";
+		
+		
+		Enumeration<String> params = request.getParameterNames(); 
+	    while(params.hasMoreElements()){
+	    		String paramName = params.nextElement();
+	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+	    		switch(paramName) {
+	    			case "promocode":
+	    				promocode = request.getParameter(paramName);
+	    				break;
+	    			case "isbn":
+	    				isbn = request.getParameter(paramName);
+	    				break;
+	    			case "sdate":
+	    				sdate = request.getParameter(paramName);
+	    				break;
+	    			case "edate":
+	    				edate = request.getParameter(paramName);
+	    				break;
+	    			case "percentoff":
+	    				percentoff = request.getParameter(paramName);
+	    				break;
+	    			default:
+	    				break;
+	    		}
+	     }
+	    
+	    if(promocode != "!*!") retval.setCode(promocode);
+	    if(isbn != "!*!") retval.setISBN(Integer.parseInt(isbn));
+	    if(sdate != "!*!") retval.setStartDate(sdate);
+	    if(edate != "!*!") retval.setEndDate(edate);
+	    if(percentoff != "!*!") retval.setPercentOff(Double.parseDouble(percentoff));
+	    
+	    
+	    if(promocode == "!*!" || isbn == "!*!" || sdate == "!*!" || edate == "!*!" || percentoff == "!*!") {
+			return null;
+		}
+	    
+		return retval;
+	}
 	
 	protected static User UpdateUser(HttpServletRequest request, User utoupdate) {
 		//What object do you want to get out of this interaction?
