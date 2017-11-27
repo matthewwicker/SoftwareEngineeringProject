@@ -40,7 +40,7 @@ public class PromoDBManager {
 	 */
 	public static ArrayList<Promo> searchPromo(String searchParam, String searchItem){
 		ArrayList<Promo> search_results = new ArrayList<Promo>();
-		String query = "select * from promo where " + searchParam+ "= " + searchItem;
+		String query = "select * from promo where " + searchParam+ "= '" + searchItem+"'";
 		ResultSet rs = driver.retrieve(query);
 		Promo promo = new Promo();
 		if(rs != null){

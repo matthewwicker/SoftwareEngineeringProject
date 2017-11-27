@@ -37,7 +37,7 @@ public class UserDBManager {
 	// THIS NEEDS TO BE FIXED -- IM SORRY
 	public static ArrayList<User> searchUsers(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
-		String query = "select * from user where " + searchParam+ "= " + searchItem;
+		String query = "select * from user where " + searchParam+ "= '" + searchItem + "'";
 		ResultSet rs = driver.retrieve(query);
 		User user = new User();
 		if(rs != null){

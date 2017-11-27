@@ -40,7 +40,7 @@ public class CartDBManager {
 	 */
 	public static ArrayList<Cart> searchCart(String searchParam, String searchItem){
 		ArrayList<Cart> search_results = new ArrayList<Cart>();
-		String query = "select * from cartitem where " + searchParam+ "= " + searchItem;
+		String query = "select * from cart where " + searchParam+ "= '" + searchItem+"'";
 		ResultSet rs = driver.retrieve(query);
 		Cart cart = new Cart();
 		if(rs != null){

@@ -25,15 +25,15 @@ DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
   `ccid` int(11) NOT NULL AUTO_INCREMENT,
   `cc_number` int(11) NOT NULL,
-  `user` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
   `aid` int(11) NOT NULL,
   PRIMARY KEY (`ccid`),
   UNIQUE KEY `ccid_UNIQUE` (`ccid`),
   UNIQUE KEY `cc_number_UNIQUE` (`cc_number`),
   KEY `aid_idx` (`aid`),
-  KEY `uid_idx` (`user`),
+  KEY `uid_idx` (`uid`),
   CONSTRAINT `addressid1` FOREIGN KEY (`aid`) REFERENCES `address` (`aid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `userid1` FOREIGN KEY (`user`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `userid1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-15 18:28:54
+-- Dump completed on 2017-11-27 18:02:54

@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaction` (
-  `transactioncol` int(11) NOT NULL,
+  `transactionid` int(11) NOT NULL,
   `cartid` int(11) NOT NULL,
   `ccid` int(11) NOT NULL,
   `amount` double NOT NULL,
-  `date` varchar(45) NOT NULL,
-  PRIMARY KEY (`transactioncol`),
+  `date` date NOT NULL,
+  PRIMARY KEY (`transactionid`),
   KEY `cartid_idx` (`cartid`),
   KEY `ccid_idx` (`ccid`),
   CONSTRAINT `creditcardid` FOREIGN KEY (`ccid`) REFERENCES `payment` (`ccid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-15 18:28:54
+-- Dump completed on 2017-11-27 18:02:54

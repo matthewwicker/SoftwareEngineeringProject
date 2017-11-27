@@ -29,7 +29,7 @@ public class PaymentDBManager {
 	 */
 	public static ArrayList<Payment> searchPayment(String searchParam, String searchItem){
 		ArrayList<Payment> search_results = new ArrayList<Payment>();
-		String query = "select * from payment where " + searchParam+ "= " + searchItem;
+		String query = "select * from payment where " + searchParam+ "= '" + searchItem+"'";
 		ResultSet rs = driver.retrieve(query);
 		Payment payment = new Payment();
 		if(rs != null){

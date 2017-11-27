@@ -38,7 +38,7 @@ public class AddressDBManager {
 	 */
 	public static ArrayList<Address> searcAddress(String searchParam, String searchItem){
 		ArrayList<Address> search_results = new ArrayList<Address>();
-		String query = "select * from address where " + searchParam+ "= " + searchItem;
+		String query = "select * from address where " + searchParam+ "= '" + searchItem+"'";
 		ResultSet rs = driver.retrieve(query);
 		Address address = new Address();
 		if(rs != null){

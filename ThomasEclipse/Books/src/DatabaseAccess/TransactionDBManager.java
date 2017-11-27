@@ -40,7 +40,7 @@ public class TransactionDBManager {
 	 */
 	public static ArrayList<Transaction> searchTransaction(String searchParam, String searchItem){
 		ArrayList<Transaction> search_results = new ArrayList<Transaction>();
-		String query = "select * from transaction where " + searchParam+ "= " + searchItem;
+		String query = "select * from transaction where " + searchParam+ "= '" + searchItem+"'";
 		ResultSet rs = driver.retrieve(query);
 		Transaction transaction = new Transaction();
 		if(rs != null){
