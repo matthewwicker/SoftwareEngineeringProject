@@ -73,6 +73,22 @@ public class User {
 		this.username = username;
 	}
 	
+	public void setSuspended(boolean suspended) {
+		this.suspended = suspended;
+	}
+	
+	public boolean getSuspended() {
+		return suspended;
+	}
+	
+	public void setValidated(boolean validated) {
+		this.validated = validated;
+	}
+	
+	public boolean getValidated() {
+		return validated;
+	}
+	
 	private int uid;
 	private String email;
 	private String fname;
@@ -82,5 +98,7 @@ public class User {
 	private String type;
 	private String address;
 	private String username;
+	private boolean suspended;
+	private boolean validated;
 	
 }

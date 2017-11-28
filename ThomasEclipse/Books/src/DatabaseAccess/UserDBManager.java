@@ -51,6 +51,8 @@ public class UserDBManager {
 					user.setPassword(rs.getString("password"));
 					user.setEmail(rs.getString("email"));
 					user.setType(rs.getString("type"));
+					user.setSuspended(rs.getBoolean("suspended"));
+					user.setValidated(rs.getBoolean("verify"));
 					search_results.add(user);
 				}
 				driver.disconnect();
@@ -61,5 +63,20 @@ public class UserDBManager {
 			}
 		}
 		return search_results;
+	}
+	
+	public static int validate(User user) {
+		int verify;
+		if(user.getValidated())
+		{
+			verify = 1;
+		}
+		else {
+			verify = 0;
+		}
+		String query = "UPDATE users SET verify = '" + verify +"' WHERE uid = "+user.getUid();
+		int value = driver.update(query);
+		
+		return value;
 	}
 }
