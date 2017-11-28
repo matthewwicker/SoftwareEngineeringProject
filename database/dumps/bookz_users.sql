@@ -31,6 +31,7 @@ CREATE TABLE `users` (
   `phonenumber` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
   `suspended` tinyint(4) NOT NULL DEFAULT '0',
+  `verify` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -42,7 +43,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'defaultU','user','','password','','u',0),(2,'defaultA','admin','','password','','a',0),(3,'defaultS','supplier','','password','','s',0);
+INSERT INTO `users` VALUES (1,'defaultU','user','','password','','u',0,0),(2,'defaultA','admin','','password','','a',0,0),(3,'defaultS','supplier','','password','','s',0,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-27 18:07:53
+-- Dump completed on 2017-11-28 10:42:04
