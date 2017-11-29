@@ -60,7 +60,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav">
-                <li><button type="submit" name="navigator" value="home.html">Home</button></li>
+                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
         <li class="dropdown">
           <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           Genres</button><span class="caret"></span></a>
@@ -147,10 +147,11 @@
         
  <#list books as book>
       <div class="col-sm-3">
+      <button  type="submit" name="Task" value= "GoToItem">
       <div class="panel panel-default">
         <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
         <div class="panel-footer">
-            ${book.title} <br/>
+            <input type="text" name="itemtitle" value=${book.title} ><br/>
             ${book.author} <br/>
             $ ${book.price}<br/>
             <span class="glyphicon glyphicon-star-empty"></span>
@@ -160,6 +161,7 @@
             <span class="glyphicon glyphicon-star-empty"></span>
         </div>
       </div>
+      </button>
     </div>
 </#list>
 
@@ -174,7 +176,7 @@
                     <ul class="menu">
                          <span>Menu</span>    
                          <li>
-                            <a href="home.html">Home</a>
+                            <a href="home.ftlh">Home</a>
                           </li>
                                
                           <li>

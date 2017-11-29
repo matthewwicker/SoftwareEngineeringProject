@@ -13,7 +13,7 @@
     <div id="wrapper">
         <div id="header">
             <img src="book.png" style="position: absolute; height: 80px"/>
-            <a href="home.html" style="text-decoration:none"><h1><small>your</small>Shelf</h1></a>
+            <a href="home.ftlh" style="text-decoration:none"><h1><small>your</small>Shelf</h1></a>
             <div id="search" >
                 <input type="text" name="searchbar" value="Search" style="height:25px; border: 1px solid gray; float:relative;padding-right:0px">
                 <div class="bropdown" style="float: absolute; height: 29px;padding-left:3px;padding-right:80px">
@@ -123,7 +123,7 @@
                     <ul class="menu">
                          <span>Menu</span>    
                          <li>
-                            <a href="home.html">Home</a>
+                            <a href="home.ftlh">Home</a>
                           </li>
                                
                           <li>

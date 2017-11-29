@@ -136,20 +136,22 @@
             <table class="table table-striped table-hover table-bordered">
                 <tbody>
                       <tr>
-                        <th>Item</th>
+                        <th>ISBN</th>
                         <th>QTY</th>
                         <th>Unit Price</th>
                         <th>Total Price</th>
                       </tr>
+                      <#list cartitems as citem>
                       <tr>
-                         <td>Cat in the Hat</td>
-                         <td id="qty"><input type="number" id="editqty" style="width: 45px; padding: 1px" value="2" min="0"></td>
-                         <td id="price">$25.00</td>
-                         <td id="price_sub">$50.00</td>
+                         <td>${citem.title}</td>
+                         <td id="qty"><input type="String" id="editqty" style="width: 45px; padding: 1px" value=${citem.numBooks} min="0"></td>
+                         <td id="price">$${citem.price}.00</td>
+                         <td id="price_sub">${citem.total}.00</td>
                       </tr>
+                       </#list>
                       <tr>
                          <th colspan="3"><span class="pull-right">Sub Total</span></th>
-                         <th id="subtotal">$50.00</th>
+                         <th id="subtotal">$${cart.price}</th>
                       </tr>
                       <tr>
                          <th colspan="3"><span class="pull-right">Shipping</span></th>

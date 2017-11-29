@@ -1,6 +1,6 @@
 package Entities;
 
-public class Order {
+public class Cart {
 
 	private int uid;
 	public int getUid() {
@@ -27,10 +27,10 @@ public class Order {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public int getOrderId() {
+	public int getCartId() {
 		return orderId;
 	}
-	public void setOrderId(int orderId) {
+	public void setCartId(int orderId) {
 		this.orderId = orderId;
 	}
 	private int ISBN;

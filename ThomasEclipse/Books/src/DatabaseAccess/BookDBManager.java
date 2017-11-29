@@ -40,10 +40,11 @@ public class BookDBManager {
 		ArrayList<Book> search_results = new ArrayList<Book>();
 		String query = "select * from book where " + searchParam+ " = '" + searchItem + "'";
 		ResultSet rs = driver.retrieve(query);
-		Book book = new Book();
 		if(rs != null){
 			try {
 				while(rs.next()){
+					Book book = new Book();
+
 					book.setISBN(rs.getInt("ISBN"));
 					book.setTitle(rs.getString("title"));
 					book.setAuthor(rs.getString("author"));
@@ -60,6 +61,36 @@ public class BookDBManager {
 				e.printStackTrace();
 			}
 		}
+		driver.disconnect();
 		return search_results;
 	}
+
+public static ArrayList<Book> searchBooks(String searchParam, int searchItem){
+	ArrayList<Book> search_results = new ArrayList<Book>();
+	String query = "select * from book where " + searchParam+ " = '" + searchItem + "'";
+	ResultSet rs = driver.retrieve(query);
+	if(rs != null){
+		try {
+			while(rs.next()){
+				Book book = new Book();
+
+				book.setISBN(rs.getInt("ISBN"));
+				book.setTitle(rs.getString("title"));
+				book.setAuthor(rs.getString("author"));
+				book.setDescription(rs.getString("description"));
+				book.setPrice(rs.getDouble("price"));
+				book.setQuantity(rs.getInt("quantity"));
+				book.setThreshold(rs.getInt("threshold"));
+				search_results.add(book);
+			}
+			
+		}
+		 catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	driver.disconnect();
+	return search_results;
+}
 }

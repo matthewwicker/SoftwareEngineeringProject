@@ -28,7 +28,7 @@
       
       <div class="col-sm-4">
         <div class="input-group">
-                <div class="input-group-btn search-panel">
+                <div class="input-group-btn search-panel" style="text-align:center">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                       <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
                     </button>
@@ -60,7 +60,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav">
-                <li><button type="submit" name="navigator" value="home.html">Home</button></li>
+                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
         <li class="dropdown">
           <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           Genres</button><span class="caret"></span></a>
@@ -123,82 +123,7 @@
 
     </div>
   </div>
-</nav><!---NAVIGATION BAR-->
-<nav class="navbar">
-  <div class="container-fluid">
-    
-    <div class="collapse navbar-collapse" id="myNavbar">
-      
-      <ul class="nav navbar-nav">
-        <li><a href="home.html">Home</a></li>
-        <li class="dropdown">
-          <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            Genres <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="genres.html">Sciene Fiction</a></li>
-            <li><a href="genres.html">Young Adult</a></li>
-            <li><a href="genres.html">Kids</a></li>
-          </ul>
-        </li>
-        <li><a href="deals.html">Deals</a></li>
-        <li><a href="best.html">Best Selling</a></li>
-        <li><a href="favorites.html">Our Favorites</a></li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
-
-        <li class="dropdown">
-                        <a href="signin.html" class="dropdown-toggle" data-toggle="dropdown">Log In <span class="caret"></span></a>
-                        <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
-                            <div class="col-lg-12">
-                                <div class="text-center"><h3><b>Log In</b></h3></div>
-                                <form id="ajax-login-form" action="http://phpoll.com/login/process" method="post" role="form" autocomplete="off">
-                                    <div class="form-group">
-                                        <label for="username">Email</label>
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-xs-7">
-                                                <input type="checkbox" tabindex="3" name="remember" id="remember">
-                                                <label for="remember"> Remember Me</label>
-                                            </div>
-                                            <div class="col-xs-5 pull-right">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="text-center">
-                                                    <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
-                                </form>
-                            </div>
-                        </ul>
-        </li>
-
-        <li><a href="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-      </ul>
-
-    </div>
-  </div>
 </nav>
-
 
 <!---BODY-->
 <div class="container">
@@ -209,13 +134,12 @@
             <div class = "topImg">
                <img src="cover1.jpg" class="img-responsive">
             </div> 
-            <p>Title: Cat in the Hat  </p>
-            <p>  Author: Dr. Seuss  </p>
-            <p>  Year:   1993  </p>
-            <p>  Desription:   A cat has a hat.  It's striped red and white. He's kinda creepy. He babysits some kids or something.<br/> I think there's some goldfish in it too. </p>
+            <p>Title: ${item.title}  </p>
+            <p>  Author: ${item.author}  </p>
+            <p>  Price:   ${item.price} </p>
+            <p>  Description:   ${item.description} </p>
             <p>  Reviews:</p>
-            <div class = "button2"><button type="submit" name="Task" value="AddToCart">Add to Cart</button></div>
-            
+           <button type="submit" name="Task" value="AddToCart">Add to Cart</button>         
         </div>
         </div>
   </div>
@@ -231,7 +155,7 @@
                     <ul class="menu">
                          <span>Menu</span>    
                          <li>
-                            <a href="home.html">Home</a>
+                            <a href="home.ftlh">Home</a>
                           </li>
                                
                           <li>

@@ -57,7 +57,7 @@
        <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav">
-                <li><button type="submit" name="navigator" value="home.html">Home</button></li>
+                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
         <li class="dropdown">
           <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           Genres<span class="caret"></span></a>
@@ -134,13 +134,13 @@
         <button type="submit" name="navigator" value="signin.html"  class="btn">Log In</button>
         <br/>
         <br/>
-        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Kids</button>
-        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Science Fiction</button>
-        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Fantasy</button>
-        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Biographies</button>
-        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">New Arrivals</button>
-        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Best Sellers</button>
-        <button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Staff Picks</button>
+        <button type="submit" name="Task" value= "Search_genre_Kids"  class="btn otherbtn">Kids</button>
+        <button type="submit" name="Task" value= "Search_genre_scifi"  class="btn otherbtn">Science Fiction</button>
+        <button type="submit" name="Task" value= "Search_genre_fantasy"  class="btn otherbtn">Fantasy</button>
+        <button type="submit" name="Task" value= "Search_genre_biographies"  class="btn otherbtn">Biographies</button>
+        <button type="submit" name="Task" value= "Search_genre_newarrivals"  class="btn otherbtn">New Arrivals</button>
+        <button type="submit" name="Task" value= "Search_genre_best"  class="btn otherbtn">Best Sellers</button>
+        <button type="submit" name="Task" value= "Search_genre_favorites"  class="btn otherbtn">Staff Picks</button>
        </div>
 </div><br>
 

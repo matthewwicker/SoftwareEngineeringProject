@@ -31,7 +31,6 @@ public class Driver {
 	public ResultSet retrieve(String query){
 		con = dbAccess.connect();
 		ResultSet rs = dbAccess.retrieve(con, query);
-		dbAccess.disconnect(con);
 		return rs;
 	}
 	
@@ -62,6 +61,9 @@ public class Driver {
 	 * Deletes a row in the database
 	 * @return 0 if failure and 1 if success
 	 */
+	public void disconnect(){
+	    dbAccess.disconnect(con);
+	}
 	public int delete(String query)
 	{
 		con = dbAccess.connect();

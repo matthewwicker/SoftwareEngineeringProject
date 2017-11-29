@@ -1,6 +1,8 @@
 package View;
 import DatabaseAccess.Driver;
 import DatabaseAccess.BookDBManager;
+import DatabaseAccess.CartDBManager;
+import DatabaseAccess.CartItemDBManager;
 import DatabaseAccess.UserDBManager;
 
 
@@ -36,7 +38,8 @@ public class myservlet extends HttpServlet {
 
 	private User thisUser = null;
 	private int authcode = 0;
-	
+    Map<String, Object> root = new HashMap<>();
+
 	Book newBook = new Book();
 	User newUser = new User();
 	private static final long serialVersionUID = 1L;
@@ -57,7 +60,7 @@ public class myservlet extends HttpServlet {
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
     	
-    	
+ 	
     }
 
 	/**
@@ -75,7 +78,6 @@ public class myservlet extends HttpServlet {
 		String name="";
 		String type="";
 		
-		Map<String, Object> root = new HashMap<>();
 		
 		///////////PERFORM TASK////////////
 		String task = request.getParameter("Task");
@@ -157,14 +159,28 @@ public class myservlet extends HttpServlet {
 			} //Create Book
 			
 			else if(task.equals("GoToItem")) {
-				//Somehow, we need to put the info from the clicked-on book to the bookInfo page
+				Book item = GetHandlers.getItem(request);
+	            root.put("item", item);        
 				template = "bookInfo.ftlh";
 			} //Go to item
-			
 			else if(task.equals("AddToCart")) {
-				// Somehow, we need to pull the information from the specific page
+		            Book item = (Book) root.get("item");
+		            Cart cart = GetHandlers.putInCart(request, item, 4);// thisUser.getUid());
+		            ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+			        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+		            root.put("cartitems", cartitems);
+		            root.put("cart", cart);
+					template = "cart.ftlh";
+		    } //Add item to cart
+			else if(task.equals("GoToCart")) {
+				ArrayList<Cart> carts = CartDBManager.searchCart("uid", thisUser.getUid());
+		        Cart cart = carts.get(0);
+		        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+		        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+	            root.put("cartitems", cartitems);
+	            root.put("cart", cart);
 				template = "cart.ftlh";
-			} //Add item to cart
+			}
 			
 			else if(task.equals("GoToPromotion")) {
 				template = "editpromo.ftlh";
@@ -202,7 +218,7 @@ public class myservlet extends HttpServlet {
 			} //Confirm Purchase
 			
 			
-			if (task.equals("Search")) {
+			else if (task.equals("Search")) {
 	            ArrayList<Book> books = BookDBManager.searchBooks(request.getParameter("searchby"), request.getParameter("searchval"));
 	            root.put("books", books);        
 	            root.put("searchheader", "Search by " + request.getParameter("searchby") + ": " + request.getParameter("searchval") );
@@ -220,7 +236,10 @@ public class myservlet extends HttpServlet {
 		catch(Exception e) {
 		    //System.out.println("No task");
 		}
-		
+
+   	   
+        System.out.println("WORKING");
+        System.out.println(template);
 		
 		/////////NAVIGATE/////////
 		//System.out.println(request.getParameter("navigator"));
