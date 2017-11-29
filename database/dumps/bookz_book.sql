@@ -34,6 +34,11 @@ CREATE TABLE `book` (
   `quantity` int(11) NOT NULL,
   `supplier` int(11) NOT NULL,
   `threshold` int(11) NOT NULL,
+  `edition` int(11) NOT NULL,
+  `publisher` varchar(45) NOT NULL,
+  `publicationyear` int(11) NOT NULL,
+  `buyingprice` double NOT NULL,
+  `sellingprice` double NOT NULL,
   PRIMARY KEY (`isbn`),
   UNIQUE KEY `isbn_UNIQUE` (`isbn`),
   KEY `supplierid_idx` (`supplier`),
@@ -59,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-28 10:42:04
+-- Dump completed on 2017-11-29 18:22:11
