@@ -12,6 +12,7 @@ public class logic {
 	private static AddressDBManager AManager = new AddressDBManager();
 	private static PaymentDBManager PManager = new PaymentDBManager();
 	private static PromoDBManager PrManager = new PromoDBManager();
+	private static BookDBManager BManager = new BookDBManager();
 	
 	public int validateUser(User u, String validation){
 		System.out.println("In validate method, with code: xxxxxx" + validation + "xxxxx");
@@ -31,21 +32,24 @@ public class logic {
 		System.out.println("VALIDATED FAILED");
 		return 0;
 	}
-	
-	public int authorizeUser(User u){
+	public int addBook(Book book) {
+		int success = BManager.addBook(book);
+		return success;
+	}
+	public User authorizeUser(User u){
 		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
 		if(u.getPassword().equals(newUser.get(0).getPassword())){
 			System.out.println("SUCCESS TO SIGN IN");
-			return 1;
+			return newUser.get(0);
 		}
 		else {
 			ArrayList<User> otherUsers = UManager.searchUsers("uid", Integer.toString(u.getUid()));
 			if(u.getPassword().equals(otherUsers.get(0).getPassword())){
 				System.out.println("SUCCESS TO SIGN IN");
-				return 1;
+				return otherUsers.get(0);
 			}
 		}
-		return 0;
+		return null;
 	}
 	
 	public int addPromo(Promo promo) {
@@ -58,6 +62,15 @@ public class logic {
 	
 	public int changePromoSetting(String value, User user) {
 		return UManager.setPromoPref(value, user);
+	}
+	public int changeSuspension(String value, User user) {
+		return UManager.setSuspension(value, user);
+	}
+	public int changeStatus(String value, User user) {
+		return UManager.setStatus(value, user);
+	}
+	public int changePassword(String value, User user) {
+		return UManager.setPassword(value, user);
 	}
 	
 	public int addUser(User user, Address address, Payment payment){

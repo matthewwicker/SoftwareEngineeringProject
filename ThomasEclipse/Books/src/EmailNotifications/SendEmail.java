@@ -19,6 +19,7 @@ public class SendEmail {
 	public static int SUBBED_PROMOTIONS = 6;
 	public static int UNSUBBED_PROMOTIONS = 7;
 	public static int ACCOUNT_VERIFICATION = 8;
+	public static int ACCOUNT_STATUS_CHANGED = 9;
 	public SendEmail() {}
 	public void actuallySendEmail(User u, int email_type) {
 			String from = "ITSBOOKZB"; 
@@ -70,6 +71,10 @@ public class SendEmail {
 	        	else if(email_type == ACCOUNT_VERIFICATION) {
 	        		subject = "Thanks for verifying your account with Bookz!";
 	        		body = this.generateVerificationMessage(u);
+	        	}
+	        	else if(email_type == ACCOUNT_STATUS_CHANGED) {
+	        		subject = "Thanks for verifying your account with Bookz!";
+	        		body = this.generateStatusMessage(u);
 	        	}
 
 	        try {
@@ -152,8 +157,20 @@ public class SendEmail {
 	}
 	private String generatePurchaseConfirmationMessage(User u) {return "EMAIL CONTENT";}
 	private String generateShipmentConfirmationMessage(User u) {return "EMAIL CONTENT";}
-	private String generateAccountStatusSuspendedMessage(User u) {return "EMAIL CONTENT";}
-	private String generateAccountStatusUNSuspendedMessage(User u) {return "EMAIL CONTENT";}
+	private String generateAccountStatusSuspendedMessage(User u) {
+		String message = "Hi " + u.getFname() + ", \n \n "
+				+ "We regret to inform you that your account has been suspended. Please contact our administrators for further details. \n"
+				+ "\n \n Sorry.. But, have a great day! \n"
+				+ "Bookz team";
+		return message;
+	}
+	private String generateAccountStatusUNSuspendedMessage(User u) {
+		String message = "Hi " + u.getFname() + ", \n \n "
+				+ " Yay! Your account has been unsuspended. Sorry for the all the trouble. Hope you enjoyr all of our wonderful offers.\n"
+				+ "\n \n Have a great day! \n"
+				+ "Bookz team";
+		return message;
+	}
 	private String generateSubPromotionMessage(User u) {
 		String message = "Hi " + u.getFname() + ", \n \n "
 				+ "Thanks for subscribing to get Bookz promotional emails! We hope you enjoy all the awesome offers we have! \n"
@@ -177,6 +194,14 @@ public class SendEmail {
 				+ "\n \n Have a great day! \n"
 				+ "Bookz team \n\n OH Hey, just a little fun fact about you account, that verification code you send (" + u.getUid() +") "
 						+ "can be used as your login too! Just a cool little shortcut :)";
+		return message;
+	}
+	
+	private String generateStatusMessage(User u) {
+		String message = "Hi " + u.getFname() + ", \n \n "
+				+ " Bookz has just changed your user status! You can now login to see all of your privledges in your account screen. "
+				+ "\n \n Have a great day! \n"
+				+ "Bookz team";
 		return message;
 	}
 	

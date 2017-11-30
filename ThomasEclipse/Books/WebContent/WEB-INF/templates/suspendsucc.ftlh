@@ -3,6 +3,7 @@
 <head>
 <title>Books</title>
     <meta charset="utf-8" />
+        <script type='text/javascript' src="optional.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="custom.css" rel="stylesheet" />
@@ -14,8 +15,8 @@
   </style>
 </head>
 <body>
-<form action = "myservlet" method = "post">
 
+  <form action = "myservlet" method = "post">
 <!---HEADER-->
 <div class="jumbotron">
   <div class="container-fluid">
@@ -126,63 +127,43 @@
     </div>
   </div>
 </nav>
-<!---BODY-->
-<div id="content-background">
-            <div class="page-header">
-			    <h2>Dashboard</h2>
-			</div>
-			
-	   <table>
-                <tr>
-                  <th>First Name</th>
-                  <th><input type="text" name='fname' value=${"fname"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Last Name</th>
-                  <th><input type="text" name="lname" value=${"lname"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Phone No.</th>
-                  <th><input type="text" name="pnumb" value=${"phone"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <th><input type="text" name="email" value=${"email"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Shipping Address</th>
-                <th> <input type="text" name="ship" value=${"addressline1"}><br/>
-                     <input type="text" name="ship" value=${"addressline2"}></p></th>
-                </tr>
-                
-                
-                
-      </table>
-                
-                <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="GetAllReports">Download All Sale Reports</button>
-                <button id="cart" type="submit" name="Task" value="GetAllReports">Download Specific Book Sale Reports</button>
-     			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
-                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button> ---->
-                <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
-                <h4 style="color:green"> Thanks for subscribing to promotion emails! </h4>
-                </br>
-                <th>Validate</th>
-                <th> <input type="text" name="vcode" value=${"vcode"}><br/>
-                </tr>
-                </br>
-                </br>
-                <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
-                </br>
-                
-</div>
-    
 
-   </form>
+<div class="container">           
+  <div class="col-md-6">
+   <div class="text-center">
+          <h3>create account</h3>
+        </div>
+        <input name="email" type="text" placeholder="Email" autofocus="autofocus" class="input pass" value=${"email"} />
+        <button id="cart" type="submit" name="Task" value="SuspendUser">Suspend User</button>
+        <h4 style="color:green"> User suspended successfully. </h4>
+        
+       
+       </div></div>
+<!---FOOTER-->
+    <footer>
+     <div class="container-fluid">
+       <div class="row">  
+         
+                    
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                  <ul class="menu">
+                        <span>Contact</span>       
+                        <li>
+                            770-584-8574
+                        </li>
+                        <li>
+                            95 Kuhl Avenue
+                            <br/>Atlanta, Georgia 30329
+                        </li> 
+                        <li>
+                            bookyourshelf@mail.com
+                        </li> 
+                   </ul>
+            </div>
 
-</body>
-</html>
+        </div>
+    </footer> 
+    <!-- Footer 2 End -->
+     </form>
 </body>
 </html>

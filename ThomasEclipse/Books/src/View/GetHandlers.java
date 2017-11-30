@@ -103,6 +103,9 @@ public class GetHandlers {
 	    		retval.setType(accounttype);
 	    		//System.out.println("set!");
 	    	}
+	    else {
+	    		retval.setType("u");
+	    }
 	    if(username != "!*!") {
 	    		retval.setUsername(username);
 	    		//System.out.println("set!");
@@ -112,6 +115,7 @@ public class GetHandlers {
 			address.setBilling(1);
 			//System.out.println("set!");
 		}
+		
 		
 		
 		// HERE ARE THE REQUIRED VALUES
@@ -158,7 +162,6 @@ public class GetHandlers {
 	    if(email == "!*!" || password == "!*!") {
 			return null;
 		}
-	    System.out.println("Finished with the  method, returning " + retval);
 		return retval;
 	}
 	
@@ -313,7 +316,7 @@ public class GetHandlers {
 		String description = "!*!";
 		String quantity = "!*!";
 		String threshold = "!*!";
-		
+		String image = "!*!";
 		//=========================================================
 		//		ITERATING THROUGHT THE ITEMS IN THE REQUEST
 		//=========================================================
@@ -346,6 +349,9 @@ public class GetHandlers {
 	    			case "thresh":
 	    				threshold = request.getParameter(paramName);
 	    				break;
+	    			case "image":
+	    				image = request.getParameter(paramName);
+	    				break;
 	    			default:
 	    				break;
 	    		}
@@ -363,6 +369,8 @@ public class GetHandlers {
 	    		if(isbn != "!*!") retval.setQuantity(Integer.parseInt(quantity));
 	    		if(threshold != "!*!") retval.setThreshold(Integer.parseInt(threshold));
 	    		if(genre != "!*!") retval.setGenre(genre);
+	    		if(description != "!*!") retval.setDescription(description);
+	    		if(image != "!*!") retval.setImage(image);
 	    }
 	    catch(Exception e){
     			e.printStackTrace();

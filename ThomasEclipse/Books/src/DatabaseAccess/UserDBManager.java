@@ -13,7 +13,7 @@ public class UserDBManager {
 	public static int addUser(User user) {
 		String query = "INSERT INTO users (email, fname, lname, password, phonenumber, type, verify) ";
 		query += "VALUES ('" + user.getEmail() + "', '" + user.getFname() + "', '" + user.getLname()+"', '";
-		query += user.getPassword() + "', '" +  user.getPhoneNumber() + "', '0', '0')";
+		query += user.getPassword() + "', '" +  user.getPhoneNumber() + "', '" + user.getType() + "', '0')";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
@@ -22,6 +22,30 @@ public class UserDBManager {
 	
 	public static int setPromoPref(String value, User user) {
 		String query = "UPDATE users SET getsPromo = '"+ value +"' WHERE email = '"+user.getEmail() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setSuspension(String value, User user) {
+		String query = "UPDATE users SET suspended = '"+ value +"' WHERE email = '"+user.getEmail() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setPassword(String value, User user) {
+		String query = "UPDATE users SET password = '"+ value +"' WHERE email = '"+user.getEmail() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setStatus(String value, User user) {
+		String query = "UPDATE users SET type = '"+ value +"' WHERE email = '"+user.getEmail() +"'; ";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
@@ -82,6 +106,46 @@ public class UserDBManager {
 			try {
 				while(rs.next()){
 					return rs.getString("getsPromo");
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "-1";
+			}
+		}
+		return "-1";
+	}
+	
+	public static String getUserSuspension(String searchParam, String searchItem){
+		ArrayList<User> search_results = new ArrayList<User>();
+		String query = "select * from users where " + searchParam+ "= '" + searchItem + "'";
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					return rs.getString("suspended");
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "-1";
+			}
+		}
+		return "-1";
+	}
+	
+	public static String getUserStatus(String searchParam, String searchItem){
+		ArrayList<User> search_results = new ArrayList<User>();
+		String query = "select * from users where " + searchParam+ "= '" + searchItem + "'";
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					return rs.getString("type");
 				}
 				driver.disconnect();
 			}

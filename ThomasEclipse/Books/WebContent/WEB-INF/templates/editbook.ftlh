@@ -101,6 +101,11 @@
 		Quantity
                 </th><th>
 		<input type="text" name="quantity" value=${"quantity"}></th></tr>
+		<tr>
+                <th>
+		Image
+                </th><th>
+		<input type="text" name="image" value=${"image"}></th></tr>
 		         <tr>
                 <th>
 		Threshold

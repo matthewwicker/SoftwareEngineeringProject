@@ -14,7 +14,7 @@ public class BookDBManager {
 		String query = "INSERT INTO book (isbn, title, author, price, description, image, genre, rating, quantity, supplier, threshold) ";
 		query += "VALUES ('" + book.getISBN() + "', '" + book.getTitle() + "', '";
 		query += book.getAuthor() + "', '" + book.getPrice() + "', '" + book.getDescription() + "', ";
-		query += "'0', " + "'0', '"+ book.getRating() + "', '" + book.getQuantity() + "', ";
+		query += "'"+book.getImage()+"', " + "'"+book.getGenre()+"', '"+ book.getRating() + "', '" + book.getQuantity() + "', ";
 		query += "'0', '" + book.getThreshold() + "')";
 		System.out.println(query);
 		int success = 0;

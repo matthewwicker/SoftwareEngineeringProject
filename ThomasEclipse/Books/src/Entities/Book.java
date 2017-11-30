@@ -71,6 +71,13 @@ public class Book {
 	private int quantity;
 	private int threshold;
 	private int supplier;
+	private String image;
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	
 	//other stuff
 	//supplierID as an int

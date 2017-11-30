@@ -36,7 +36,9 @@ import freemarker.template.TemplateExceptionHandler;
 public class myservlet extends HttpServlet {
 
 	private User thisUser = null;
-	private int authcode = 0;
+	private int authcode = -1;
+	private String accountdir = "useraccount";
+	
 	
 	Book newBook = new Book();
 	User newUser = new User();
@@ -102,12 +104,25 @@ public class myservlet extends HttpServlet {
         	  		
         	  		//CHECK THAT USER IS IN THE DATABASE
         	  		try {
-        	  			System.out.println(l.authorizeUser(userRequestingAuth));
-        	  			boolean userExists = true;
+        	  			User u = l.authorizeUser(userRequestingAuth);
+        	  			boolean userExists = false;
+        	  			if(u != null) userExists = true;
         	  			if(userExists) {
-        	  				template = "account.ftlh";
-        	  				thisUser = userRequestingAuth;
-        	  				//PRIVLEDGES - SET THIS USERS ID INFO AND TYPE IN THIS CLASS
+        	  				thisUser = u;
+        	  				if(thisUser.getType().equals("u")) {
+        	  					accountdir = "useraccount";
+        	  				}
+        	  				else if(thisUser.getType().equals("a")) {
+        	  					System.out.println("USING THE ADMIN ACCOUNT DIR");
+        	  					accountdir = "adminaccount";
+        	  				}
+        	  				else if(thisUser.getType().equals("s")) {
+        	  					accountdir = "shipmentaccount";
+        	  				}
+        	  				else if(thisUser.getType().equals("m")) {
+        	  					accountdir = "manageraccount";
+        	  				}
+        	  				template =  accountdir + "/account.ftlh";
         	  			}
         	  		}
         	  		catch(Exception e) {
@@ -154,7 +169,7 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("CreateBook")) {
 				Book createdBook = GetHandlers.CreateBook(request);
 				if(createdBook != null) {
-					//Send the created book to data access
+					l.addBook(createdBook);
 					System.out.println("SUCCESS CREATING BOOK!");
 				}
 				else {
@@ -231,40 +246,122 @@ public class myservlet extends HttpServlet {
 			} //Confirm Purchase
 			
 			else if(task.equals("Validation")) {
-				template = "account.ftlh";
+				template = accountdir + "/account.ftlh";
 				
 				int val = l.validateUser(thisUser, request.getParameter("vcode"));
 				if(val == 1) {
 					System.out.println("SUCCESS VALIDATING");
-					template = "accountvalsucc.ftlh";
+					template = accountdir + "/accountvalsucc.ftlh";
 				}
 				else {
 					System.out.println("Failure VALIDATING");
-					template = "accountvalfail.ftlh";
+					template = accountdir + "/accountvalfail.ftlh";
 				}
 			} //Confirm Purchase
 			
 			else if(task.equals("UpdatePromoPref")) {
+				System.out.println("Hi?");
 				//Invert User Pref
+				System.out.println(thisUser.getEmail());
 				String newpref = UserDBManager.getUserPreference("email", thisUser.getEmail());
+				System.out.println("Hi?" + newpref);
 				if(newpref.equals("1")) {
+					System.out.println("Hi?2");
 					//send them to a page saying they have unsubscribed for messages
 					thisUser.setSubscribed("0");
 					l.changePromoSetting("0", thisUser);
 					SendEmail sender = new SendEmail();
+					System.out.println("Hi?3");
 					sender.actuallySendEmail(thisUser, SendEmail.UNSUBBED_PROMOTIONS);
-					template = "accountpromofalse.ftlh";
+					template = accountdir + "/accountpromofalse.ftlh";
+					System.out.println("Hi?4");
 				}
 				else {
 					//send them to a page saying they have subscribed for messages
 					thisUser.setSubscribed("1");
+					System.out.println("Hi?5");
 					l.changePromoSetting("1", thisUser);
 					SendEmail sender = new SendEmail();
+					System.out.println("Hi?5");
 					sender.actuallySendEmail(thisUser, SendEmail.SUBBED_PROMOTIONS);
-					template = "accountpromotrue.ftlh";
+					template = accountdir + "/accountpromotrue.ftlh";
 				}
 				
 			} //Update Promo Pref
+			
+			else if(task.equals("GoToSuspend")) {
+				template =  "suspend.ftlh";
+			}
+			
+			else if(task.equals("GotToUpdateStatus")) {
+				template =  "updateuserstatus.ftlh";
+			}
+			
+			else if(task.equals("UpdateUserStatus")) {
+				template =  "updateuserstatus.ftlh";
+				String newpref = UserDBManager.getUserStatus("email", request.getParameter("email"));
+				String status_to_update = request.getParameter("status");
+				if(!"apesm".contains(status_to_update) ) {
+					template =  "updateuserstatusfail.ftlh";
+				}
+				else {
+					thisUser.setSuspended(request.getParameter("email"));
+					l.changeStatus(request.getParameter("status"), thisUser);
+					SendEmail sender = new SendEmail();
+					sender.actuallySendEmail(thisUser, SendEmail.ACCOUNT_STATUS_CHANGED);
+					template =  "updateuserstatussucc.ftlh";
+				}
+			}
+			
+			else if(task.equals("SuspendUser")) {
+				String newpref = UserDBManager.getUserSuspension("email", request.getParameter("email"));
+				if(newpref.equals("-1")) {
+					//Unable to find user -- unhandled rn. Matt knows how to handle this... tell him hes a fool for not doing it 
+					// when he was supposed to -Matt
+				}
+				if(newpref.equals("1")) {
+					//send them to a page saying they have unsubscribed for message
+					l.changeSuspension("0", thisUser);
+					SendEmail sender = new SendEmail();
+					sender.actuallySendEmail(thisUser, SendEmail.ACCOUNT_STATUS_CHANGED_UNSUSPENDED);
+					template =  "unsuspend.ftlh";
+				}
+				else {
+					//send them to a page saying they have subscribed for messages
+					l.changeSuspension("1", thisUser);
+					SendEmail sender = new SendEmail();
+					sender.actuallySendEmail(thisUser, SendEmail.ACCOUNT_STATUS_CHANGED_SUSPENDED);
+					template =  "suspendsucc.ftlh";
+				}
+			} //Confirm Purchase
+			
+			
+			else if(task.equals("GoToUpdatePassword")) {
+				template =  "changepassword.ftlh";
+			}//Go To Update Password
+			
+			else if(task.equals("UpdatePassword")) {
+				
+				
+				Enumeration<String> params = request.getParameterNames(); 
+			    while(params.hasMoreElements()){
+			    		String paramName = params.nextElement();
+			    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+			     }
+				
+				
+				System.out.println("INSIDE THE USECASE");
+				template =  "changepassword.ftlh";
+				if(request.getParameter("bpassword").equals(request.getParameter("cpassword"))) {
+					System.out.println("PASSWORDS MATHCED");
+					l.changePassword(request.getParameter("bpassword"), thisUser);
+				}
+			}//Update Password
+			
+			else if(task.equals("ForgotPassword")) {
+				//template =  "forgotpassword.ftlh";
+			}//Forgot Password
+			
 			
 			
   		}
@@ -278,11 +375,6 @@ public class myservlet extends HttpServlet {
 		String navigate = request.getParameter("navigator");
 		if (navigate != null){
 			template = navigate;
-		}
-		if (template.equals("account.ftlh")) {
-			if (type.equals('a')){
-				template = "adminaccount.ftlh";
-			}
 		}
 		try {
 	     	runTemplate(request, response, template, root);

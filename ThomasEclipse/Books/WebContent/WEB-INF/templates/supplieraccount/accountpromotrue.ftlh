@@ -159,12 +159,14 @@
                 
       </table>
                 
-                <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="GoToCreateUser">Create New User</button>
+                 <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
+                <button id="cart" type="submit" name="Task" value="AddNewBookShipment">Change Order Status</button>
      			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-                <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button>
+               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
                 <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
-                <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button>
+                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button> ---->
+                <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
+                <h4 style="color:green"> Thanks for subscribing to promotion emails! </h4>
                 </br>
                 <th>Validate</th>
                 <th> <input type="text" name="vcode" value=${"vcode"}><br/>
@@ -173,7 +175,6 @@
                 </br>
                 <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
                 </br>
-                <h2 style="color:green">Validation successful</h2>
                 
 </div>
     

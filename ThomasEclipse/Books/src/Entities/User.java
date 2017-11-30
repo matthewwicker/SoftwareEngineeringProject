@@ -66,6 +66,12 @@ public class User {
 		System.out.println("SOMEONE CALLED THIS METHOD");
 		this.subscribed = subscribed;
 	} 
+	public String getSuspended() {
+		return suspended;
+	}
+	public void setSuspended(String suspended) {
+		this.suspended = suspended;
+	}
 	
 	private int uid;
 	private String email;
@@ -77,5 +83,7 @@ public class User {
 	private String address;
 	private String username;
 	private String subscribed;
+	private String suspended;
+	
 	
 }

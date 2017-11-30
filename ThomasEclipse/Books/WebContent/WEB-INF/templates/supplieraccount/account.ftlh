@@ -160,27 +160,26 @@
       </table>
                 
                 <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="GetAllReports">Download All Sale Reports</button>
-                <button id="cart" type="submit" name="Task" value="GetAllReports">Download Specific Book Sale Reports</button>
+                <button id="cart" type="submit" name="Task" value="AddNewBookShipment">Supply New Book</button>
+                <button id="cart" type="submit" name="Task" value="AddNewBookShipment">Update Quantity</button>
      			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
                <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
                 <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
                 <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button> ---->
                 <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
-                <h4 style="color:green"> Thanks for subscribing to promotion emails! </h4>
+                
+                </br>
                 </br>
                 <th>Validate</th>
                 <th> <input type="text" name="vcode" value=${"vcode"}><br/>
                 </tr>
                 </br>
-                </br>
                 <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
-                </br>
+                
                 
 </div>
     
-
-   </form>
+ </form>
 
 </body>
 </html>

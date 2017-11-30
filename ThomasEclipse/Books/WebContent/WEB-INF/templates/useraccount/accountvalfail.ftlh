@@ -159,12 +159,13 @@
                 
       </table>
                 
-                <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="GoToCreateUser">Create New User</button>
+               <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
+                <!----- <button id="cart" type="submit" name="Task" value="GoToCreateUser">Create New User</button> ---->
      			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-                <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button>
+               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
                 <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
-                <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button>
+                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button> ---->
+                <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
                 </br>
                 </br>
                 <th>Validate</th>
