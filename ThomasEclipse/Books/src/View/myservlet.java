@@ -2,11 +2,12 @@ package View;
 import DatabaseAccess.Driver;
 import DatabaseAccess.BookDBManager;
 import DatabaseAccess.UserDBManager;
-
+import EmailNotifications.SendEmail;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,12 +54,10 @@ public class myservlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     public void init(){
-    	cfg = new Configuration(Configuration.VERSION_2_3_25);
-    	cfg.setServletContextForTemplateLoading(getServletContext(), templateDir);
+    	    cfg = new Configuration(Configuration.VERSION_2_3_25);
+    	    cfg.setServletContextForTemplateLoading(getServletContext(), templateDir);
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
-    	
-    	
     }
 
 	/**
@@ -88,6 +87,8 @@ public class myservlet extends HttpServlet {
 			
 			else if (task.equals("CreateUser")){
 				User potentialUser = GetHandlers.makeUser(request);
+				SendEmail sender = new SendEmail();
+				sender.actuallySendEmail(potentialUser, SendEmail.REGISTRATION_CONFIRMATION);
 				/*if(potentialUser != null) {
 	        	  		int i = UserDBManager.addUser(potentialUser);
 				}
@@ -98,15 +99,20 @@ public class myservlet extends HttpServlet {
 			
 			else if (task.equals("SignIn")){
         	  		User userRequestingAuth = GetHandlers.signIn(request);
+        	  		
         	  		//CHECK THAT USER IS IN THE DATABASE
-        	  		System.out.println(l.authorizeUser(userRequestingAuth));
-        	  		boolean userExists = true;
-        	  		if(userExists) {
-        	  			template = "account.ftlh";
-        	  			//PRIVLEDGES - SET THIS USERS ID INFO AND TYPE IN THIS CLASS
+        	  		try {
+        	  			System.out.println(l.authorizeUser(userRequestingAuth));
+        	  			boolean userExists = true;
+        	  			if(userExists) {
+        	  				template = "account.ftlh";
+        	  				thisUser = userRequestingAuth;
+        	  				//PRIVLEDGES - SET THIS USERS ID INFO AND TYPE IN THIS CLASS
+        	  			}
         	  		}
-        	  		else {
-        	  			//SHOW ERROR AND STAY ON THIS PAGE
+        	  		catch(Exception e) {
+        	  			e.printStackTrace();
+        	  			template = "signinfail.ftlh";
         	  		}
 			}//Sign In
 			
@@ -116,7 +122,7 @@ public class myservlet extends HttpServlet {
     	  				template = "cart.ftlh";
     	  			}
     	  			else {
-    	  				template = "signin.html";
+    	  				template = "signin.ftlh";
     	  			}
 			}//Go to cart
 			
@@ -175,12 +181,33 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("AddPromo")) {
 				template = "editpromo.ftlh";
 				Promo promotodelege = GetHandlers.makePromo(request);
+				//Add it to the database
+				int added = l.addPromo(promotodelege);
+				if(added == 1) {
+					template = "makepromosucc.ftlh";
+					SendEmail sender = new SendEmail();
+					//Get emails of those who subscribe to promotion emails
+					ArrayList<User> sendTo = UserDBManager.searchUsers("getsPromo", "1");
+					for(User u : sendTo) {
+						sender.sendPromotionalEmail(u, promotodelege);
+					}
+				}
+				else {
+					template = "makepromofail.ftlh";
+				}
 				//Why aren't we getting to this line?
 			} //Add promo to database
 			
 			else if(task.equals("DeletePromo")) {
 				template = "editpromo.ftlh";
 				Promo promotodelege = GetHandlers.makePromo(request);
+				int removed = l.removePromo(promotodelege);
+				if(removed == 1) {
+					template = "removepromosucc.ftlh";
+				}
+				else {
+					template = "removepromofail.ftlh";
+				}
 				//Why aren't we getting here
 			} //Delete promo to database
 			
@@ -202,6 +229,42 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("ConfirmPurchase")) {
 				template = "checkoutConfirm.ftlh";
 			} //Confirm Purchase
+			
+			else if(task.equals("Validation")) {
+				template = "account.ftlh";
+				
+				int val = l.validateUser(thisUser, request.getParameter("vcode"));
+				if(val == 1) {
+					System.out.println("SUCCESS VALIDATING");
+					template = "accountvalsucc.ftlh";
+				}
+				else {
+					System.out.println("Failure VALIDATING");
+					template = "accountvalfail.ftlh";
+				}
+			} //Confirm Purchase
+			
+			else if(task.equals("UpdatePromoPref")) {
+				//Invert User Pref
+				String newpref = UserDBManager.getUserPreference("email", thisUser.getEmail());
+				if(newpref.equals("1")) {
+					//send them to a page saying they have unsubscribed for messages
+					thisUser.setSubscribed("0");
+					l.changePromoSetting("0", thisUser);
+					SendEmail sender = new SendEmail();
+					sender.actuallySendEmail(thisUser, SendEmail.UNSUBBED_PROMOTIONS);
+					template = "accountpromofalse.ftlh";
+				}
+				else {
+					//send them to a page saying they have subscribed for messages
+					thisUser.setSubscribed("1");
+					l.changePromoSetting("1", thisUser);
+					SendEmail sender = new SendEmail();
+					sender.actuallySendEmail(thisUser, SendEmail.SUBBED_PROMOTIONS);
+					template = "accountpromotrue.ftlh";
+				}
+				
+			} //Update Promo Pref
 			
 			
   		}

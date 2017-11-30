@@ -3,6 +3,7 @@
 <head>
 <title>Books</title>
     <meta charset="utf-8" />
+        <script type='text/javascript' src="optional.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="custom.css" rel="stylesheet" />
@@ -14,8 +15,8 @@
   </style>
 </head>
 <body>
-<form action = "myservlet" method = "post">
 
+  <form action = "myservlet" method = "post">
 <!---HEADER-->
 <div class="jumbotron">
   <div class="container-fluid">
@@ -85,13 +86,13 @@
                                 <div class="text-center"><h3><b>Log In</b></h3></div>
                                 <form id="ajax-login-form" action="m" method="post" role="form" autocomplete="off">
                                     <div class="form-group">
-                                        <label for="username">Email</label>
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="username1" id="username" tabindex="1" class="form-control" placeholder="Username" value=${"qlogin"} autocomplete="off">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" value=${"qpassword"} autocomplete="off">
                                     </div>
 
                                     <div class="form-group">
@@ -101,7 +102,7 @@
                                                 <label for="remember"> Remember Me</label>
                                             </div>
                                             <div class="col-xs-5 pull-right">
-                                                <button type="submit" name="Task" value="SignIn" tabindex="4" class="btn btn-success">Log In</button>
+                                                <button type="submit" name="Task" value="QSignIn" tabindex="4" class="btn btn-success">Log In</button>
                                             </div>
                                         </div>
                                     </div>
@@ -126,52 +127,23 @@
     </div>
   </div>
 </nav>
-<!---BODY-->
-<div class="container">
+    <div class="container">
   
-  <div class="page-header">
-    <h2>Order Confirmation</h2>
-  </div>
-
-<div id="content">
-  <p> Your order orderNumber is being processed. </p>
-  <p> Shipping Address:</p><p>1004 Cedar Street<br/>Athens, GA 30602</p>
-  <h4> Order Contents </h4>
-</div>
-
-<div class="row">
-        <div class="col-sm-12 col-md-10">
-            <table class="table table-striped table-hover table-bordered">
-                <tbody>
-                      <tr>
-                        <th>Item</th>
-                        <th>QTY</th>
-                        <th>Unit Price</th>
-                        <th>Total Price</th>
-                      </tr>
-                      <tr>
-                         <td>Cat in the Hat</td>
-                         <td id="qty">2</td>
-                         <td id="price">$25.00</td>
-                         <td id="price_sub">$50.00</td>
-                      </tr>
-                      <tr>
-                          <th colspan="3"><span class="pull-right">Total (including shipping)</span></th>
-                          <th id="total">$54.99</th>
-                      </tr>
-                      <tr>
-                          <td colspan="3">
-                          <div class = "button2"><button id="update" class="btn btn-default pull-right" type="submit" name="Task" value=" "><span class="glyphicon glyphicon-envelope"></span> Send Invoice</button></div>
-                          <div class = "button2"><button id="update" class="btn btn-default pull-left" type="submit" name="navigator" value="checkout.ftlh"><span class="glyphicon glyphicon-edit"></span> Edit order</button></div>
-                          </td>
-                      </tr>
-                    </tbody>
-              </table>
-          </div>
-      </div>
-
-</div><br><br>
-
+              
+  <div class="col-md-6">
+  
+   <div class="text-center">
+          <h3>account login</h3>
+        </div>
+        <input name="email" type="email" placeholder="enter your email" value=${"email"} class="input pass"/>
+          <input name="password" type="password" placeholder="enter your password" value=${"password"} class="input pass"/>
+          <button class="inputButton" type="submit" name="Task" value="SignIn" onclick="return validateUserName(username.value,password.value)">Sign In</button>
+          
+        <div class="text-center"">
+        <button class="btn btn-link" type="submit" name="navigator" value="create.ftlh">create an account</button>
+        <button class="btn btn-link" type="submit" name="navigator" value="home.ftlh">forgot password</button>
+        </div>
+       </div></div>
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">
@@ -197,6 +169,6 @@
         </div>
     </footer> 
     <!-- Footer 2 End -->
-</form>
+     </form>
 </body>
 </html>

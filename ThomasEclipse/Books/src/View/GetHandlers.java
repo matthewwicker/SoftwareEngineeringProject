@@ -14,6 +14,7 @@ import Logic.logic;
 
 public class GetHandlers {
 	static logic logic = new logic();
+	
 	protected static User makeUser(HttpServletRequest request) {
 		//What object do you want to get out of this interaction?
 		User retval = new User();
@@ -135,7 +136,6 @@ public class GetHandlers {
 		User retval = new User();
 		
 		String email = "!*!";
-		String username = "!*!";
 		String password = "!*!";
 		
 		Enumeration<String> params = request.getParameterNames(); 
@@ -143,7 +143,7 @@ public class GetHandlers {
 	    		String paramName = params.nextElement();
 	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
 	    		switch(paramName) {
-	    			case "username":
+	    			case "email":
 	    				email = request.getParameter(paramName);
 	    				break;
 	    			case "password":
@@ -153,18 +153,12 @@ public class GetHandlers {
 	    				break;
 	    		}
 	     }
-	    System.out.println("Check2");
-	    if(username != "!*!") retval.setUsername(username);
-	    System.out.println("Check4");
 	    if(email != "!*!") retval.setEmail(email);
-	    System.out.println("Check3");
 	    if(password != "!*!") retval.setPassword(password);
-	    
-	    System.out.println("Check1");
 	    if(email == "!*!" || password == "!*!") {
 			return null;
 		}
-	    System.out.println("Finished with the  method");
+	    System.out.println("Finished with the  method, returning " + retval);
 		return retval;
 	}
 	
@@ -183,7 +177,7 @@ public class GetHandlers {
 	    		String paramName = params.nextElement();
 	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
 	    		switch(paramName) {
-	    			case "promocode":
+	    			case "code":
 	    				promocode = request.getParameter(paramName);
 	    				break;
 	    			case "isbn":
@@ -195,7 +189,7 @@ public class GetHandlers {
 	    			case "edate":
 	    				edate = request.getParameter(paramName);
 	    				break;
-	    			case "percentoff":
+	    			case "percent":
 	    				percentoff = request.getParameter(paramName);
 	    				break;
 	    			default:
@@ -203,27 +197,26 @@ public class GetHandlers {
 	    		}
 	     }
 	    
-	    System.out.println("Check 1");
-	    System.out.println(retval);
 	    try {
 	    		if(promocode != "!*!") retval.setCode(promocode);
 	    		if(isbn != "!*!") retval.setISBN(Integer.parseInt(isbn));
-	    		//if(sdate != "!*!") retval.setStartDate(sdate);
-	    		//if(edate != "!*!") retval.setEndDate(edate);
+	    		if(sdate != "!*!") retval.setStartDate(sdate);
+	    		if(edate != "!*!") retval.setEndDate(edate);
 	    		if(percentoff != "!*!") retval.setPercentOff(Double.parseDouble(percentoff));
+	    		
+	    		
 	    }
 	    catch(Exception e){
 	    		e.printStackTrace();
 	    		return null;
 	    }
 	    
-	    System.out.println("Check 2");
 	    
-	    if(promocode == "!*!" || isbn == "!*!" || sdate == "!*!" || edate == "!*!" || percentoff == "!*!") {
-			return null;
-		}
+	    //if(promocode == "!*!" || isbn == "!*!" || sdate == "!*!" || edate == "!*!" || percentoff == "!*!") {
+	    	//	System.out.println("Null value caught");
+	    //		return null;
+		//}
 	    
-	    System.out.println("Check 3");
 	    
 		return retval;
 	}

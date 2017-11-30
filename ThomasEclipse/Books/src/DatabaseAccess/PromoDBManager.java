@@ -24,7 +24,7 @@ public class PromoDBManager {
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int removePromo(Promo promo) {
-		String query = "DELETE from `bookz`.`promo` WHERE code = " + promo.getCode();
+		String query = "DELETE from `bookz`.`promo` WHERE code = '" + promo.getCode() + "'";
 		int success = driver.delete(query);
 		return success;
 	}

@@ -5,18 +5,59 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import DatabaseAccess.*;
+import EmailNotifications.SendEmail;
 
 public class logic {
 	private static UserDBManager UManager = new UserDBManager();
 	private static AddressDBManager AManager = new AddressDBManager();
 	private static PaymentDBManager PManager = new PaymentDBManager();
+	private static PromoDBManager PrManager = new PromoDBManager();
+	
+	public int validateUser(User u, String validation){
+		System.out.println("In validate method, with code: xxxxxx" + validation + "xxxxx");
+		System.out.println("Trying to validate: " + u.getEmail());
+		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
+		System.out.println("Size of returned list: " + newUser.size());
+		System.out.println("Validation code should be: xxxxx" + newUser.get(0).getUid() + "xxxxx");
+		if(validation.equals(Integer.toString(newUser.get(0).getUid()))){
+			Driver driver = new Driver();
+			String query = "UPDATE users SET verify = '" + 1 +"' WHERE uid = "+ newUser.get(0).getUid();
+			int value = driver.update(query);
+			System.out.println("VALIDATED CORRECTLY");
+			SendEmail sender = new SendEmail();
+			sender.actuallySendEmail(u, sender.ACCOUNT_VERIFICATION);
+			return 1;
+		}
+		System.out.println("VALIDATED FAILED");
+		return 0;
+	}
 	
 	public int authorizeUser(User u){
 		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
 		if(u.getPassword().equals(newUser.get(0).getPassword())){
+			System.out.println("SUCCESS TO SIGN IN");
 			return 1;
 		}
+		else {
+			ArrayList<User> otherUsers = UManager.searchUsers("uid", Integer.toString(u.getUid()));
+			if(u.getPassword().equals(otherUsers.get(0).getPassword())){
+				System.out.println("SUCCESS TO SIGN IN");
+				return 1;
+			}
+		}
 		return 0;
+	}
+	
+	public int addPromo(Promo promo) {
+		return PrManager.addPromo(promo);
+	}
+	
+	public int removePromo(Promo promo) {
+		return PrManager.removePromo(promo);
+	}
+	
+	public int changePromoSetting(String value, User user) {
+		return UManager.setPromoPref(value, user);
 	}
 	
 	public int addUser(User user, Address address, Payment payment){

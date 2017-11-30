@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Books</title>
-  <meta charset="utf-8">
+<title>Books</title>
+    <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="custom.css" rel="stylesheet" />
@@ -14,6 +14,7 @@
   </style>
 </head>
 <body>
+<form action = "myservlet" method = "post">
 
 <!---HEADER-->
 <div class="jumbotron">
@@ -32,6 +33,8 @@
                       <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
+                      <li><a href="#title">Title</a></li>
+                      <div class="bropdown-content">
                       <li><a href="#title">Title</a></li>
                       <li><a href="#author">Author</a></li>
                       <li><a href="#isbn">ISBN</a></li>
@@ -57,30 +60,30 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav">
-        <li><a href="home.html">Home</a></li>
-        <li class="dropdown">
-          <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            Genres <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="genres.html">Sciene Fiction</a></li>
-            <li><a href="genres.html">Young Adult</a></li>
-            <li><a href="genres.html">Kids</a></li>
-          </ul>
-        </li>
-        <li><a href="deals.html">Deals</a></li>
-        <li><a href="best.html">Best Selling</a></li>
-        <li><a href="favorites.html">Our Favorites</a></li>
+                <li><button class="btn btn-link" type="submit" name="navigator" value="home.ftlh">Home</button></li>
+        
+		<li class="dropdown">
+			  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
+			  <span class="caret"></span></button>
+			  <ul class="dropdown-menu">
+			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Science Fiction</button></li>
+			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Young Adult</button></li>
+			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Kids</button></li>
+			  </ul>
+			</li>
+                <li><button class="btn btn-link" type="submit" name="navigator" value="best.ftlh">Best Selling</button></li>
+                <li><button class="btn btn-link" type="submit" name="navigator" value="deals.ftlh">Deals</button></li>
+                <li><button class="btn btn-link" type="submit" name="navigator" value="favorites.ftlh">Our Favorites</button></li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
-                        <a href="signin.html" class="dropdown-toggle" data-toggle="dropdown">Log In <span class="caret"></span></a>
+        				<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Log In
+			  					<span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
                             <div class="col-lg-12">
                                 <div class="text-center"><h3><b>Log In</b></h3></div>
-                                <form id="ajax-login-form" action="http://phpoll.com/login/process" method="post" role="form" autocomplete="off">
+                                <form id="ajax-login-form" action="m" method="post" role="form" autocomplete="off">
                                     <div class="form-group">
                                         <label for="username">Email</label>
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
@@ -98,7 +101,7 @@
                                                 <label for="remember"> Remember Me</label>
                                             </div>
                                             <div class="col-xs-5 pull-right">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-success" value="Log In">
+                                                <button type="submit" name="Task" value="SignIn" tabindex="4" class="btn btn-success">Log In</button>
                                             </div>
                                         </div>
                                     </div>
@@ -107,92 +110,77 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="text-center">
-                                                    <a href="#" tabindex="5" class="forgot-password">Forgot Password?</a>
+                                                    <li><button class="btn btn-link" type="submit" name="navigator" value="" style="background-color:white;text-transform:lowercase">Forgot Password?</button></li>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
-                                </form>
                             </div>
                         </ul>
         </li>
-
-        <li><a href="account.html"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+        <li><button class="btn btn-link" type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
+        <li><button class="btn btn-link" type="submit" name="navigator" value="cart.ftlh"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
       </ul>
 
     </div>
   </div>
 </nav>
-
-
 <!---BODY-->
-<div class="container">
-  
-  <div class="page-header">
-    <h2>Registration Confirmation</h2>
-  </div>
+<div id="content-background">
+            <div class="page-header">
+			    <h2>Dashboard</h2>
+			</div>
+			
+	   <table>
+                <tr>
+                  <th>First Name</th>
+                  <th><input type="text" name='fname' value=${"fname"}><br/><br/></th>
+                </tr>
+                <tr>
+                  <th>Last Name</th>
+                  <th><input type="text" name="lname" value=${"lname"}><br/><br/></th>
+                </tr>
+                <tr>
+                  <th>Phone No.</th>
+                  <th><input type="text" name="pnumb" value=${"phone"}><br/><br/></th>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <th><input type="text" name="email" value=${"email"}><br/><br/></th>
+                </tr>
+                <tr>
+                  <th>Shipping Address</th>
+                <th> <input type="text" name="ship" value=${"addressline1"}><br/>
+                     <input type="text" name="ship" value=${"addressline2"}></p></th>
+                </tr>
+                
+                
+                
+      </table>
+                
+                <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
+                <button id="cart" type="submit" name="Task" value="GoToCreateUser">Create New User</button>
+     			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button>
+                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
+                <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button>
+                </br>
+                <th>Validate</th>
+                <th> <input type="text" name="vcode" value=${"vcode"}><br/>
+                </tr>
+                </br>
+                </br>
+                <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
+                </br>
+                <h2 style="color:green">Validation successful</h2>
+                
+</div>
+    
 
-  <div id="content">
-      <p> Welcome userName! </p>
-      <p> This is a confirmation of your registration.  We will be sending an email to userEmail@uga.edu. </p>
-  </div>
+   </form>
 
-</div><br><br>
-
-<!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-            
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                    <ul class="menu">
-                         <span>Menu</span>    
-                         <li>
-                            <a href="home.html">Home</a>
-                          </li>
-                               
-                          <li>
-                             <a href="genres.html">Genres</a>
-                          </li>
-                               
-                          <li>
-                            <a href="deals.html">Deals</a>
-                          </li>
-                               
-                          <li>
-                             <a href="best.html">Best Selling</a>
-                          </li>
-                          <li>
-                             <a href="favorites.html">Our Favorites</a>
-                          </li>
-                          <li>
-                             <a href="support.html">Support</a>
-                          </li>
-                     </ul>
-            </div>
-           
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            bookyourshelf@mail.com
-                        </li> 
-                   </ul>
-            </div>
-
-          </div> 
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
-
+</body>
+</html>
 </body>
 </html>

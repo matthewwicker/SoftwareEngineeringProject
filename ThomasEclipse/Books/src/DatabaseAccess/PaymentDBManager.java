@@ -14,7 +14,7 @@ public class PaymentDBManager {
 	 */
 	public static int addPayment(Payment payment)
 	{
-		String query = "INSERT INTO payment (cc_number, user, aid) ";
+		String query = "INSERT INTO payment (cc_number, uid, aid) ";
 		query += "VALUES ('" + payment.getCc_number() + "', '" + payment.getUser() + "', '"+ payment.getAid()+"')";
 		int value = driver.create(query);
 		

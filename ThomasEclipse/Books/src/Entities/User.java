@@ -59,6 +59,13 @@ public class User {
 	public void setPhoneNumber(String phoneNumber){
 		this.phoneNumber = phoneNumber;
 	}
+	public String getSubscribed() {
+		return subscribed;
+	}
+	public void setSubscribed(String subscribed) {
+		System.out.println("SOMEONE CALLED THIS METHOD");
+		this.subscribed = subscribed;
+	} 
 	
 	private int uid;
 	private String email;
@@ -69,5 +76,6 @@ public class User {
 	private String type;
 	private String address;
 	private String username;
+	private String subscribed;
 	
 }

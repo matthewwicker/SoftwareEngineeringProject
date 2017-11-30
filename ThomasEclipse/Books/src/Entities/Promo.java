@@ -1,6 +1,7 @@
 package Entities;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Promo {
@@ -38,14 +39,18 @@ datetime
 	public LocalDate getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
+	public void setStartDate(String startDate) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate localDate = LocalDate.parse(startDate, formatter);
+		this.startDate = localDate;
 	}
 	public LocalDate getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
+	public void setEndDate(String endDate) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate localDate = LocalDate.parse(endDate, formatter);
+		this.endDate = localDate;
 	}
 	private int ISBN;
 	private double percentOff;

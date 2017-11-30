@@ -40,8 +40,8 @@
                       <li><a href="#isbn">ISBN</a></li>
                       <li><a href="#year">Year</a></li>
                     </ul>
-                </div>+
-+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                </div>
+             <input type="hidden" name="search_param" value="all" id="search_param">         
                 <input type="text" class="form-control" name="x" placeholder="Search...">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
@@ -60,31 +60,30 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav">
-                <li><button type="submit" name="navigator" value="home.html">Home</button></li>
-        <li class="dropdown">
-          <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          Genres<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-           <li><button type="submit" name="navigator" value="genres.html">Science Fiction</button></li>
-           <li><button type="submit" name="navigator" value="genres.html">Young Adult</button></li>
-           <li><button type="submit" name="navigator" value="genres.html">Kids</button></li>
-            <li><a href="genres.html">Science Fiction</a></li>
-            <li><a href="genres.html">Young Adult</a></li>
-            <li><a href="genres.html">Kids</a></li>
-          </ul>
-        </li>
-                <li><button type="submit" name="navigator" value="best.html">Best Selling</button></li>
-                <li><button type="submit" name="navigator" value="deals.html">Deals</button></li>
-                <li><button type="submit" name="navigator" value="favorites.html">Our Favorites</button></li>
+                <li><button class="btn btn-link" type="submit" name="navigator" value="home.ftlh">Home</button></li>
+        
+		<li class="dropdown">
+			  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
+			  <span class="caret"></span></button>
+			  <ul class="dropdown-menu">
+			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Science Fiction</button></li>
+			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Young Adult</button></li>
+			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Kids</button></li>
+			  </ul>
+			</li>
+                <li><button class="btn btn-link" type="submit" name="navigator" value="best.ftlh">Best Selling</button></li>
+                <li><button class="btn btn-link" type="submit" name="navigator" value="deals.ftlh">Deals</button></li>
+                <li><button class="btn btn-link" type="submit" name="navigator" value="favorites.ftlh">Our Favorites</button></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
-                        <a href="signin.html" class="dropdown-toggle" data-toggle="dropdown">Log In <span class="caret"></span></a>
+        				<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Log In
+			  					<span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
-                            <div class="col-lg-12">-*
+                            <div class="col-lg-12">
                                 <div class="text-center"><h3><b>Log In</b></h3></div>
-                                <form id="ajax-login-form" action="http://phpoll.com/login/process" method="post" role="form" autocomplete="off">
+                                <form id="ajax-login-form" action="m" method="post" role="form" autocomplete="off">
                                     <div class="form-group">
                                         <label for="username">Email</label>
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
@@ -102,7 +101,7 @@
                                                 <label for="remember"> Remember Me</label>
                                             </div>
                                             <div class="col-xs-5 pull-right">
-                                                <button type="submit" name="Task" value="SignIn">Log In</button>
+                                                <button type="submit" name="Task" value="SignIn" tabindex="4" class="btn btn-success">Log In</button>
                                             </div>
                                         </div>
                                     </div>
@@ -111,7 +110,7 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="text-center">
-                                                    <li><button type="submit" name="navigator" value="favorites.html" style="background-color:white;text-transform:lowercase">Forgot Password?</button></li>
+                                                    <li><button class="btn btn-link" type="submit" name="navigator" value="" style="background-color:white;text-transform:lowercase">Forgot Password?</button></li>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,8 +119,8 @@
                             </div>
                         </ul>
         </li>
-        <li><button type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
-        <li><button type="submit" name="navigator" value="cart.ftlh"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
+        <li><button class="btn btn-link" type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
+        <li><button class="btn btn-link" type="submit" name="navigator" value="cart.ftlh"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
       </ul>
 
     </div>
@@ -137,17 +136,17 @@
         10% off your first purchase with code <b>NEWMEM</b><br/>
         <br/>
         <button type="submit" name="navigator" value="create.ftlh"  class="btn">Create an Account</button>&nbsp
-        <button type="submit" name="navigator" value="signin.html"  class="btn">Log In</button>
+        <button type="submit" name="navigator" value="signin.ftlh"  class="btn">Log In</button>
         <br/>
         <br/>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Kids</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Science Fiction</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Young Adult</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Fantasy</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">Biographies</button>
-        <button type="submit" name="navigator" value= "genres.html"  class="btn otherbtn">New Arrivals</button>
-        <button type="submit" name="navigator" value= "best.html"    class="btn otherbtn">Best Sellers</button>
-        <button type="submit" name="navigator" value= "favorites.html"class="btn otherbtn">Staff Picks</button>
+        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Kids</button>
+        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Science Fiction</button>
+        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Young Adult</button>
+        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Fantasy</button>
+        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Biographies</button>
+        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">New Arrivals</button>
+        <button type="submit" name="navigator" value= "best.ftlh"    class="btn otherbtn">Best Sellers</button>
+        <button type="submit" name="navigator" value= "favorites.ftlh"class="btn otherbtn">Staff Picks</button>
     </div>
 </div><br>
 
@@ -219,30 +218,10 @@
     </div>
 
   </div>
-</div></div><br><br>
+</div></div><br><br><br>
 
 
    </form>
 
 </body>
 </html>
-  <!--      <div id="navigation">
-            <ul class="navi">
-                <li> <div class="dropdown">
-                     <button class="dropbtn">Genres</button>
-                       <div class="dropdown-content">
-                         <input type="submit" name="navigator" value="genres.html">
-                         <a href="genress.html">Young Adult</a>
-                         <a href="genress.html">Kids</a>-->
-  <!--          <div class="bropdown" style="float: right; padding-right: 10px; height: 20px; width:80px">
-                    <button class="bropbtn" style="height: 35px; background: #DB7093" type="submit" name="navigator" value="signin.html" style="color:white; text-decoration:none">LOG IN</button>
-                      <div class="bropdown-content" style="padding: 20px">
-                          <div id="username">
-                              <input type="text" name="username" value="Username" style="width: 120px">
-                          </div>
-                          <div id="password">
-                              <input type="password" name="password" value="Password" style="width: 120px">
-                         </div>
-                          <button style="height: 30px">
-                          <a href="account.ftlh">Enter</a> 
-                            </button></div></div>-->

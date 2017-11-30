@@ -127,76 +127,60 @@
   </div>
 </nav>
 <!---BODY-->
-<div class="container">
-  
-  <div class="page-header">
-    <h2>Order Confirmation</h2>
-  </div>
-
-<div id="content">
-  <p> Your order orderNumber is being processed. </p>
-  <p> Shipping Address:</p><p>1004 Cedar Street<br/>Athens, GA 30602</p>
-  <h4> Order Contents </h4>
+<div id="content-background">
+            <div class="page-header">
+			    <h2>Dashboard</h2>
+			</div>
+			
+	   <table>
+                <tr>
+                  <th>First Name</th>
+                  <th><input type="text" name='fname' value=${"fname"}><br/><br/></th>
+                </tr>
+                <tr>
+                  <th>Last Name</th>
+                  <th><input type="text" name="lname" value=${"lname"}><br/><br/></th>
+                </tr>
+                <tr>
+                  <th>Phone No.</th>
+                  <th><input type="text" name="pnumb" value=${"phone"}><br/><br/></th>
+                </tr>
+                <tr>
+                  <th>Email</th>
+                  <th><input type="text" name="email" value=${"email"}><br/><br/></th>
+                </tr>
+                <tr>
+                  <th>Shipping Address</th>
+                <th> <input type="text" name="ship" value=${"addressline1"}><br/>
+                     <input type="text" name="ship" value=${"addressline2"}></p></th>
+                </tr>
+                
+                
+                
+      </table>
+                
+                <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
+                <button id="cart" type="submit" name="Task" value="GoToCreateUser">Create New User</button>
+     			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button>
+                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
+                <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button>
+                </br>
+                <th>Validate</th>
+                <th> <input type="text" name="vcode" value=${"vcode"}><br/>
+                </tr>
+                </br>
+                </br>
+                <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
+                </br>
+                <h2 style="color:green">Validation successful</h2>
+                
 </div>
+    
 
-<div class="row">
-        <div class="col-sm-12 col-md-10">
-            <table class="table table-striped table-hover table-bordered">
-                <tbody>
-                      <tr>
-                        <th>Item</th>
-                        <th>QTY</th>
-                        <th>Unit Price</th>
-                        <th>Total Price</th>
-                      </tr>
-                      <tr>
-                         <td>Cat in the Hat</td>
-                         <td id="qty">2</td>
-                         <td id="price">$25.00</td>
-                         <td id="price_sub">$50.00</td>
-                      </tr>
-                      <tr>
-                          <th colspan="3"><span class="pull-right">Total (including shipping)</span></th>
-                          <th id="total">$54.99</th>
-                      </tr>
-                      <tr>
-                          <td colspan="3">
-                          <div class = "button2"><button id="update" class="btn btn-default pull-right" type="submit" name="Task" value=" "><span class="glyphicon glyphicon-envelope"></span> Send Invoice</button></div>
-                          <div class = "button2"><button id="update" class="btn btn-default pull-left" type="submit" name="navigator" value="checkout.ftlh"><span class="glyphicon glyphicon-edit"></span> Edit order</button></div>
-                          </td>
-                      </tr>
-                    </tbody>
-              </table>
-          </div>
-      </div>
+   </form>
 
-</div><br><br>
-
-<!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-         
-                    
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            bookyourshelf@mail.com
-                        </li> 
-                   </ul>
-            </div>
-
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
-</form>
+</body>
+</html>
 </body>
 </html>
