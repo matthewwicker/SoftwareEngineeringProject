@@ -28,11 +28,14 @@ CREATE TABLE `transaction` (
   `ccid` int(11) NOT NULL,
   `amount` double NOT NULL,
   `date` date NOT NULL,
+  `promoid` varchar(45) NOT NULL,
   PRIMARY KEY (`transactionid`),
   KEY `cartid_idx` (`cartid`),
   KEY `ccid_idx` (`ccid`),
+  KEY `promoid_idx` (`promoid`),
   CONSTRAINT `creditcardid` FOREIGN KEY (`ccid`) REFERENCES `payment` (`ccid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `idcart` FOREIGN KEY (`cartid`) REFERENCES `cart` (`cartid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idcart` FOREIGN KEY (`cartid`) REFERENCES `cart` (`cartid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `promoid` FOREIGN KEY (`promoid`) REFERENCES `promo` (`code`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-30 21:52:07
+-- Dump completed on 2017-12-01 17:01:56
