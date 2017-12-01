@@ -234,7 +234,7 @@
                       <tr>
                           <td>
                           </td>
-                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="Checkout">Checkout</button></div></td>
+                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="Make Purchase">Make Purchase</button></div></td>
 
                       </tr>
                     </tbody>

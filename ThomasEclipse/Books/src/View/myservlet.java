@@ -43,7 +43,7 @@ public class myservlet extends HttpServlet {
 	private String accountdir = "useraccount";
 	
     Map<String, Object> root = new HashMap<>();
-
+    private Promo userPromotion;
 	Book newBook = new Book();
 	User newUser = new User();
 	private static final long serialVersionUID = 1L;
@@ -81,7 +81,6 @@ public class myservlet extends HttpServlet {
         String email="";
 		String name="";
 		String type="";
-		
 		Cookie cookies[] = request.getCookies();
 		
 		
@@ -141,6 +140,7 @@ public class myservlet extends HttpServlet {
 				//THIS NEEDS TO BE INVERTED AFTER WE GET ALL THE DB ACCESS WORKING.
     	  			if(thisUser == null && authcode == 0) {
     	  				template = "cart.ftlh";
+    	  				root.put("message", "");
     	  			}
     	  			else {
     	  				template = "signin.ftlh";
@@ -207,6 +207,7 @@ public class myservlet extends HttpServlet {
 		            root.put("cart", cart);
 		            root.put("total", total);
 					template = "cart.ftlh";
+					root.put("message", "");
 				} catch(Exception e) {e.printStackTrace();}
 					
 		    } //Add item to cart
@@ -255,9 +256,7 @@ public class myservlet extends HttpServlet {
 	            root.put("cartitems", cartitems);
 	            root.put("total", total);
 				template = "cart.ftlh";
-			}
- //Update this cart information
-			
+			} //Update this cart information
 
 			else if(task.equals("GoToPromotion")) {
 				template = "editpromo.ftlh";
@@ -300,6 +299,10 @@ public class myservlet extends HttpServlet {
 				template = "cart.ftlh";
 				Promo promotodelege = GetHandlers.makePromo(request);
 				//Why aren't we getting to this line?
+				userPromotion = promotodelege;
+				//Search the db for the promo:
+				root.put("message", "SUCCESS!");
+				
 			} //Add promo to this users cart
 			
 			else if(task.equals("Checkout")) {

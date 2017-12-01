@@ -31,13 +31,13 @@ public class SupplierDBManager {
 		return success;
 	}
 	
-	public static int setName(String value, Supplier supplier) {
-		String query = "UPDATE promo SET enddate = '"+ value + "' WHERE code = '"+promo.getCode() +"'; ";
+	/*public static int setName(String value, Supplier supplier) {
+		String query = "UPDATE promo SET enddate = '"+ value + "' WHERE code = '"+ promo.getCode() +"'; ";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
 		return success;
-	}
+	}*/
 	
 	/**
 	 * Search the items in supplier by searchParam
