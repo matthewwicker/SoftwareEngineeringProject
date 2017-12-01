@@ -83,4 +83,28 @@ public class AddressDBManager {
 		}
 		return search_results;
 	}
+	
+	public static int setAddress(String value, Address address) {
+		String query = "UPDATE address SET address = '"+ value + "' WHERE aid = '"+address.getAid() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setBilling(String value, Address address) {
+		String query = "UPDATE address SET billing = '"+ value + "' WHERE aid = '"+address.getAid() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setUid(String value, Address address) {
+		String query = "UPDATE address SET uid = '"+ value + "' WHERE aid = '"+address.getAid() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
 }

@@ -32,10 +32,17 @@ public class Transaction {
 	public void setDate(String date) {
 		this.date = date;
 	}
+	public void setPromoCode(String code) {
+		this.promoCode = code;
+	}
+	public String getPromoCode() {
+		return promoCode;
+	}
 	private int transactioncol;
 	private int cartid;
 	private int ccid;
 	private double amount;
 	private String date;
+	private String promoCode;
 	
 }

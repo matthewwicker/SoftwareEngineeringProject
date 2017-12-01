@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Entities.Address;
 import Entities.Book;
 public class BookDBManager {
 	private static Driver driver = new Driver();
@@ -49,9 +50,46 @@ public class BookDBManager {
 					book.setTitle(rs.getString("title"));
 					book.setAuthor(rs.getString("author"));
 					book.setDescription(rs.getString("description"));
+					book.setImage(rs.getString("image"));
+					book.setGenre(rs.getString("genre"));
 					book.setPrice(rs.getDouble("price"));
+					book.setRating(rs.getInt("rating"));
 					book.setQuantity(rs.getInt("quantity"));
 					book.setThreshold(rs.getInt("threshold"));
+					book.setSupplier(rs.getInt("supplier"));
+					search_results.add(book);
+				}
+				
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		driver.disconnect();
+		return search_results;
+	}
+	
+	public static ArrayList<Book> searchBooks(String searchParam, int searchItem){
+		ArrayList<Book> search_results = new ArrayList<Book>();
+		String query = "select * from book where " + searchParam+ " = '" + searchItem + "'";
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					Book book = new Book();
+
+					book.setISBN(rs.getInt("ISBN"));
+					book.setTitle(rs.getString("title"));
+					book.setAuthor(rs.getString("author"));
+					book.setDescription(rs.getString("description"));
+					book.setImage(rs.getString("image"));
+					book.setGenre(rs.getString("genre"));
+					book.setPrice(rs.getDouble("price"));
+					book.setRating(rs.getInt("rating"));
+					book.setQuantity(rs.getInt("quantity"));
+					book.setThreshold(rs.getInt("threshold"));
+					book.setSupplier(rs.getInt("supplier"));
 					search_results.add(book);
 				}
 				
@@ -65,32 +103,75 @@ public class BookDBManager {
 		return search_results;
 	}
 
-public static ArrayList<Book> searchBooks(String searchParam, int searchItem){
-	ArrayList<Book> search_results = new ArrayList<Book>();
-	String query = "select * from book where " + searchParam+ " = '" + searchItem + "'";
-	ResultSet rs = driver.retrieve(query);
-	if(rs != null){
-		try {
-			while(rs.next()){
-				Book book = new Book();
-
-				book.setISBN(rs.getInt("ISBN"));
-				book.setTitle(rs.getString("title"));
-				book.setAuthor(rs.getString("author"));
-				book.setDescription(rs.getString("description"));
-				book.setPrice(rs.getDouble("price"));
-				book.setQuantity(rs.getInt("quantity"));
-				book.setThreshold(rs.getInt("threshold"));
-				search_results.add(book);
-			}
-			
-		}
-		 catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public static int setTitle(String value, Book book) {
+		String query = "UPDATE book SET title = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
 	}
-	driver.disconnect();
-	return search_results;
-}
+	
+	public static int setAuthor(String value, Book book) {
+		String query = "UPDATE book SET author = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setDescription(String value, Book book) {
+		String query = "UPDATE book SET description = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setPrice(String value, Book book) {
+		String query = "UPDATE book SET price = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setQuantity(String value, Book book) {
+		String query = "UPDATE book SET quantity = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setThreshold(String value, Book book) {
+		String query = "UPDATE book SET threshold = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setImage(String value, Book book) {
+		String query = "UPDATE book SET image = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setGenre(String value, Book book) {
+		String query = "UPDATE book SET genre = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setSupplier(String value, Book book) {
+		String query = "UPDATE book SET supplier = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
 }

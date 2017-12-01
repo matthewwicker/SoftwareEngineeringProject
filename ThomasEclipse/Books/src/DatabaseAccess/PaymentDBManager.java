@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Entities.Address;
+import Entities.Book;
 import Entities.User;
 import Entities.Payment;
+import Entities.Promo;
 public class PaymentDBManager {
 	private static Driver driver = new Driver();
 	/**
@@ -19,6 +21,28 @@ public class PaymentDBManager {
 		int value = driver.create(query);
 		
 		return value;
+	}
+	
+	public static int setCCNumber(String value, Payment payment) {
+		String query = "UPDATE payment SET cc_number = '"+ value + "' WHERE ccid = '"+payment.getCcid() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setAid(String value, Payment payment) {
+		String query = "UPDATE payment SET aid = '"+ value + "' WHERE ccid = '"+payment.getCcid() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int removePaymment(Payment payment) {
+		String query = "DELETE from `bookz`.`payment` WHERE ccid = '" + payment.getCcid() + "'";
+		int success = driver.delete(query);
+		return success;
 	}
 	
 	/**
@@ -35,6 +59,7 @@ public class PaymentDBManager {
 		if(rs != null){
 			try {
 				while(rs.next()){
+					payment.setCcid(rs.getInt("ccid"));
 					payment.setCc_number(rs.getInt("cc_number"));
 					payment.setUser(rs.getInt("user"));
 					payment.setAid(rs.getInt("aid"));

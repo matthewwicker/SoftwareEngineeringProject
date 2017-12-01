@@ -4,8 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
-
+import Entities.Book;
 import Entities.Cart;
 public class CartDBManager {
 	private static Driver driver = new Driver();
@@ -87,4 +86,5 @@ public class CartDBManager {
 		driver.disconnect();
 		return search_results;
 	}
+	
 }
