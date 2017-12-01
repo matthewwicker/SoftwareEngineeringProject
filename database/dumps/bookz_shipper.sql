@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `caritem`
+-- Table structure for table `shipper`
 --
 
-DROP TABLE IF EXISTS `caritem`;
+DROP TABLE IF EXISTS `shipper`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `caritem` (
-  `isbn` int(11) NOT NULL,
-  `numbooks` int(11) NOT NULL,
-  `cartid` int(11) NOT NULL,
-  KEY `isbn_idx` (`isbn`),
-  KEY `cartid_idx` (`cartid`),
-  CONSTRAINT `bookid` FOREIGN KEY (`isbn`) REFERENCES `book` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `cartid` FOREIGN KEY (`cartid`) REFERENCES `cart` (`cartid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE `shipper` (
+  `shipperid` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `phonenumber` varchar(45) NOT NULL,
+  `uid` int(11) NOT NULL,
+  PRIMARY KEY (`shipperid`),
+  UNIQUE KEY `shipperid_UNIQUE` (`shipperid`),
+  KEY `uid8_idx` (`uid`),
+  CONSTRAINT `uid8` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `caritem`
+-- Dumping data for table `shipper`
 --
 
-LOCK TABLES `caritem` WRITE;
-/*!40000 ALTER TABLE `caritem` DISABLE KEYS */;
-INSERT INTO `caritem` VALUES (1234,643,1);
-/*!40000 ALTER TABLE `caritem` ENABLE KEYS */;
+LOCK TABLES `shipper` WRITE;
+/*!40000 ALTER TABLE `shipper` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shipper` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

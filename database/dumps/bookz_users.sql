@@ -32,9 +32,10 @@ CREATE TABLE `users` (
   `type` varchar(45) NOT NULL,
   `suspended` tinyint(4) NOT NULL DEFAULT '0',
   `verify` tinyint(4) NOT NULL DEFAULT '0',
+  `getsPromo` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +44,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'defaultU','user','','password','','u',0,0),(2,'defaultA','admin','','password','','a',0,0),(3,'defaultS','supplier','','password','','s',0,0);
+INSERT INTO `users` VALUES (1,'defaultU','user','','password','','u',0,0,1),(2,'defaultA','admin','','password','','a',0,0,1),(3,'defaultS','supplier','','password','','s',0,0,1),(4,'mrw64879@uga.edu','Matthew','Wicker','password','3193193199','a',0,1,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-29 18:22:11
+-- Dump completed on 2017-11-30 21:50:14
