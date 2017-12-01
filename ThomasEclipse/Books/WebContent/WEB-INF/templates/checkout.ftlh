@@ -205,15 +205,17 @@
                         <th>Unit Price</th>
                         <th>Total Price</th>
                       </tr>
+       <#list cartitems as citem>
                       <tr>
-                         <td>Cat in the Hat</td>
-                         <td id="qty"><input type="number" id="editqty" style="width: 45px; padding: 1px" value="2" min="0"></td>
-                         <td id="price">$25.00</td>
-                         <td id="price_sub">$50.00</td>
+                         <td>${citem.title}</td>
+                         <td id="qty">${citem.numBooks}</td>
+                         <td id="price">$${citem.price}.00</td>
+                         <td id="price_sub">${citem.total}.00</td>
                       </tr>
+                       </#list>
                       <tr>
                          <th colspan="3"><span class="pull-right">Sub Total</span></th>
-                         <th id="subtotal">$50.00</th>
+                         <th id="subtotal">$${cart.price}</th>
                       </tr>
                       <tr>
                          <th colspan="3"><span class="pull-right">Shipping</span></th>
@@ -227,46 +229,21 @@
                       </tr>
                       <tr>
                           <th colspan="3"><span class="pull-right">Total</span></th>
-                          <th id="total">$54.99</th>
+                          <th id="total">$${total}</th>
                       </tr>
                       <tr>
                           <td>
-                             <div class = "button2"><button id="update" class="btn btn-default" type="submit" name="Task" value="UpdateCart"><span class="glyphicon glyphicon-shopping-cart"></span> Update Cart</button></div>
                           </td>
-                          <td colspan="3"><div class = "button2"><button id="checkout" class="pull-right btn btn-default" type="submit" name="Task" value="ConfirmPurchase">Confirm Purchase</button></div></td>
+                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="Checkout">Checkout</button></div></td>
+
                       </tr>
                     </tbody>
               </table>
           </div>
       </div>
-
 </div><br><br>
 
-<!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-         
-                    
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            bookyourshelf@mail.com
-                        </li> 
-                   </ul>
-            </div>
 
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
 </form>
 </body>
 </html>

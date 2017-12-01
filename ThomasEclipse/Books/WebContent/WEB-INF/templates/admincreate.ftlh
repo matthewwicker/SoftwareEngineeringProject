@@ -61,6 +61,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav">
+<<<<<<< HEAD
                 <li><button class="btn btn-link" type="submit" name="navigator" value="home.ftlh">Home</button></li>
         
 		<li class="dropdown">
@@ -75,6 +76,21 @@
                 <li><button class="btn btn-link" type="submit" name="navigator" value="best.ftlh">Best Selling</button></li>
                 <li><button class="btn btn-link" type="submit" name="navigator" value="deals.ftlh">Deals</button></li>
                 <li><button class="btn btn-link" type="submit" name="navigator" value="favorites.ftlh">Our Favorites</button></li>
+=======
+                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
+        <li class="dropdown">
+          <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Genres</button><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="genres.html">Sciene Fiction</a></li>
+            <li><a href="genres.html">Young Adult</a></li>
+            <li><a href="genres.html">Kids</a></li>
+          </ul>
+        </li>
+                <li><button type="submit" name="navigator" value="best.html">Best Selling</button></li>
+                <li><button type="submit" name="navigator" value="deals.html">Deals</button></li>
+                <li><button type="submit" name="navigator" value="favorites.html">Our Favorites</button></li>
+>>>>>>> origin/SarahWedBranch
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
@@ -147,31 +163,6 @@
         <button type="submit" name="Task" onclick="return requiredParam(fname.value,lname.value,email.value,phone.value)" class="inputButton" value="CreateUser">Make Change?</button>
         
        </div></div>
-<!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-         
-                    
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            bookyourshelf@mail.com
-                        </li> 
-                   </ul>
-            </div>
-
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
      </form>
 </body>
 </html>

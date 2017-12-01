@@ -1,16 +1,24 @@
 package View;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Random;
+
 
 import javax.servlet.http.HttpServletRequest;
 
 import Entities.Address;
+
+import DatabaseAccess.BookDBManager;
+import DatabaseAccess.CartDBManager;
+import DatabaseAccess.CartItemDBManager;
 import Entities.Book;
 import Entities.Payment;
 import Entities.Promo;
 import Entities.User;
 import Logic.logic;
+import Entities.Cart;
+import Entities.CartItem;
 
 public class GetHandlers {
 	static logic logic = new logic();
@@ -34,6 +42,7 @@ public class GetHandlers {
 		String password = "!*!";
 		String addressline1 = "!*!";
 		String addressline2 = "!*!";
+		String itemtitle = "!*!";
 		
 		//=========================================================
 		//		ITERATING THROUGHT THE ITEMS IN THE REQUEST
@@ -43,6 +52,9 @@ public class GetHandlers {
 	    		String paramName = params.nextElement();
 	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
 	    		switch(paramName) {
+	    	    	case "itemtitle":
+    	    			itemtitle = request.getParameter(paramName);
+         				break;
 	    			case "fname":
 	    				fname = request.getParameter(paramName);
 	    				break;
@@ -78,7 +90,7 @@ public class GetHandlers {
 	    //=========================================================
 	    //				PERFORM DATA VALIDATION
 	    //=========================================================
-		// IM A NAUGHTY BOY AND DIDNT ADD DATA VALIDATION - LOVE, MATT <3
+		// IM A NAUGHTY BOY (<--I'm disturbed <3 SNE) AND DIDNT ADD DATA VALIDATION - LOVE, MATT <3
 	    if(fname != "!*!") {
 	    		retval.setFname(fname);
 	    		//System.out.println("set!");
@@ -164,7 +176,67 @@ public class GetHandlers {
 		}
 		return retval;
 	}
-	
+	protected static Book getItem(HttpServletRequest request, String title) {
+		Book retval = new Book();
+		ArrayList<Book> books = BookDBManager.searchBooks("title", title);
+        retval = books.get(0); 
+    	return retval;
+	}
+
+	protected static Cart putInCart(HttpServletRequest request, Book book, int uid) {
+		
+		Cart cart = new Cart(); 
+		ArrayList<Cart> carts = CartDBManager.searchCart("uid", uid);
+
+        cart = carts.get(0);
+        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+        CartItem citem = new CartItem();
+        boolean exists = false;
+        
+        for (CartItem cartitem : cartitems) {
+        	if (cartitem.getISBN() == book.getISBN()) {
+        		citem = cartitem;
+        		citem.setNumBooks(citem.getNumBooks()+1);
+        		exists = true;
+        	}
+        }
+        if (exists) {
+        	CartItemDBManager.changeQuantity(citem.getCartId(), citem.getISBN(), citem.getNumBooks());
+        }
+        else{
+	        int success = CartItemDBManager.addCartItem(book, cart.getCartId());
+        }   
+    	return cart;
+	}
+	protected static Cart updateCartTotal(HttpServletRequest request, Cart cart, ArrayList<CartItem> cartitems) {
+		
+		Double total = 0.0;
+        for ( CartItem item : cartitems) {
+        	 item.setTotal();
+        	 try {
+        		 if (item.getTotal() > 0.0) {
+        			 total += item.getTotal();
+        		 }
+        	 }
+             catch (Exception e){
+            	 total += item.getPrice();
+             }
+        }
+        cart.setPrice(total);
+	  	return cart;
+	}
+	protected static double finalCartTotal(HttpServletRequest request, Cart cart, ArrayList<CartItem> cartitems) {
+		
+		cart = updateCartTotal(request, cart, cartitems);
+		double total = cart.getPrice() + 4.99;
+        return total;
+	}
+    //protected static Address getFirstAddress(HttpServletRequest request, int uid) {
+		
+		//ArrayList<Address> addresses = search(request, cart, cartitems);
+		//double total = cart.getPrice() + 4.99;
+        //return total;
+	//}
 	protected static Promo makePromo(HttpServletRequest request) {
 		Promo retval = new Promo();
 		
@@ -206,8 +278,6 @@ public class GetHandlers {
 	    		if(sdate != "!*!") retval.setStartDate(sdate);
 	    		if(edate != "!*!") retval.setEndDate(edate);
 	    		if(percentoff != "!*!") retval.setPercentOff(Double.parseDouble(percentoff));
-	    		
-	    		
 	    }
 	    catch(Exception e){
 	    		e.printStackTrace();
@@ -219,8 +289,7 @@ public class GetHandlers {
 	    	//	System.out.println("Null value caught");
 	    //		return null;
 		//}
-	    
-	    
+
 		return retval;
 	}
 	

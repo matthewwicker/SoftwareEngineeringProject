@@ -1,6 +1,8 @@
 package View;
 import DatabaseAccess.Driver;
 import DatabaseAccess.BookDBManager;
+import DatabaseAccess.CartDBManager;
+import DatabaseAccess.CartItemDBManager;
 import DatabaseAccess.UserDBManager;
 import EmailNotifications.SendEmail;
 
@@ -16,6 +18,7 @@ import java.io.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +42,8 @@ public class myservlet extends HttpServlet {
 	private int authcode = -1;
 	private String accountdir = "useraccount";
 	
-	
+    Map<String, Object> root = new HashMap<>();
+
 	Book newBook = new Book();
 	User newUser = new User();
 	private static final long serialVersionUID = 1L;
@@ -60,6 +64,7 @@ public class myservlet extends HttpServlet {
     	    cfg.setServletContextForTemplateLoading(getServletContext(), templateDir);
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
+
     }
 
 	/**
@@ -77,7 +82,8 @@ public class myservlet extends HttpServlet {
 		String name="";
 		String type="";
 		
-		Map<String, Object> root = new HashMap<>();
+		Cookie cookies[] = request.getCookies();
+		
 		
 		///////////PERFORM TASK////////////
 		String task = request.getParameter("Task");
@@ -179,16 +185,80 @@ public class myservlet extends HttpServlet {
 				}
 			} //Create Book
 			
-			else if(task.equals("GoToItem")) {
-				//Somehow, we need to put the info from the clicked-on book to the bookInfo page
+			else if(task.contains("GoToItem")) {
+				String title = task.split("_")[1];
+				Book item = GetHandlers.getItem(request, title);
+		        System.out.println("Checking");
+			    System.out.println(request.getParameter("test"));
+	            root.put("item", item);        
 				template = "bookInfo.ftlh";
 			} //Go to item
 			
 			else if(task.equals("AddToCart")) {
-				// Somehow, we need to pull the information from the specific page
-				template = "cart.ftlh";
-			} //Add item to cart
+				try {
+				    task = "GoToCart";
+		            Book item = (Book) root.get("item");
+		            //System.out.println(thisUser.getUid());
+		            Cart cart = GetHandlers.putInCart(request, item, 4); //thisUser.getUid());
+		            ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+			        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+			        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
+		            root.put("cartitems", cartitems);
+		            root.put("cart", cart);
+		            root.put("total", total);
+					template = "cart.ftlh";
+				} catch(Exception e) {e.printStackTrace();}
+					
+		    } //Add item to cart
 			
+			else if(task.equals("GoToCart")) {
+				ArrayList<Cart> carts = CartDBManager.searchCart("uid", 4);//thisUser.getUid());
+		        Cart cart = carts.get(0);
+		        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+		        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+		        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
+	            root.put("cartitems", cartitems);
+	            root.put("cart", cart);
+	            root.put("total", total);
+				template = "cart.ftlh";
+			}
+			
+			else if(task.contains("UpdateCart")) {
+				
+				template = "cart.ftlh";
+	            Cart cart = (Cart) root.get("cart");
+				System.out.println("check7");
+				int isbn = 0; 
+				int qty = 0;
+				try {
+				isbn = Integer.parseInt(task.split("_")[1].replace(",", ""));
+				System.out.println(isbn);
+				qty  = Integer.parseInt(task.split("_")[2].replace(",", ""));
+				System.out.println(qty);
+				} catch(Exception e) {e.printStackTrace();}
+				System.out.println("check0");
+				
+				if (qty > 0) {
+					System.out.println("check");
+	        	        CartItemDBManager.changeQuantity(cart.getCartId(), isbn, qty);
+
+				    System.out.println("check");
+				}
+				else {
+					CartItemDBManager.removeCartItem(cart.getCartId(), isbn);	
+				}
+		        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+			    System.out.println("check2");
+
+		        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+		        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
+	            root.put("cartitems", cartitems);
+	            root.put("total", total);
+				template = "cart.ftlh";
+			}
+ //Update this cart information
+			
+
 			else if(task.equals("GoToPromotion")) {
 				template = "editpromo.ftlh";
 			} //Go to promo
@@ -236,10 +306,6 @@ public class myservlet extends HttpServlet {
 				template = "checkout.ftlh";
 				//Compute the exact costs and move to the 
 			} //Checkout with this user
-			
-			else if(task.equals("UpdateCart")) {
-				template = "checkout.ftlh";
-			} //Update this cart information
 			
 			else if(task.equals("ConfirmPurchase")) {
 				template = "checkoutConfirm.ftlh";
@@ -363,12 +429,28 @@ public class myservlet extends HttpServlet {
 			}//Forgot Password
 			
 			
+
+			
+			else if (task.equals("Search")) {
+	            ArrayList<Book> books = BookDBManager.searchBooks(request.getParameter("searchby"), request.getParameter("searchval"));
+	            root.put("books", books);        
+	            root.put("searchheader", "Search by " + request.getParameter("searchby") + ": " + request.getParameter("searchval") );
+	            template = "genres.ftlh";    
+	        }
+	        else if (task.contains("Search")) {
+	            ArrayList<Book> books = BookDBManager.searchBooks(task.split("_",3)[1], task.split("_",3)[2]);
+	            root.put("books", books);        
+	            root.put("searchheader", "Search by " + task.split("_",3)[1] + ": " + task.split("_",3)[2] );
+	            template = "genres.ftlh";
+	        }
 			
   		}
 		catch(Exception e) {
 		    //System.out.println("No task");
 		}
-		
+
+   	   
+        System.out.println(template);
 		
 		/////////NAVIGATE/////////
 		//System.out.println(request.getParameter("navigator"));
@@ -381,7 +463,7 @@ public class myservlet extends HttpServlet {
 		}
 		catch (Exception e) {
 			System.out.println("Template not found");
-			runTemplate(request, response, "home.html", root);	
+			runTemplate(request, response, "home.ftlh", root);	
 		}
 		
 		

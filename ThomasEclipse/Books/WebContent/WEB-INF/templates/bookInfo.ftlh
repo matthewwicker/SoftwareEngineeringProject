@@ -28,7 +28,7 @@
       
       <div class="col-sm-4">
         <div class="input-group">
-                <div class="input-group-btn search-panel">
+                <div class="input-group-btn search-panel" style="text-align:center">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                       <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
                     </button>
@@ -60,20 +60,20 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav">
-                <li><button class="btn btn-link" type="submit" name="navigator" value="home.ftlh">Home</button></li>
-        
-		<li class="dropdown">
-			  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
-			  <span class="caret"></span></button>
-			  <ul class="dropdown-menu">
-			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Science Fiction</button></li>
-			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Young Adult</button></li>
-			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Kids</button></li>
-			  </ul>
-			</li>
-                <li><button class="btn btn-link" type="submit" name="navigator" value="best.ftlh">Best Selling</button></li>
-                <li><button class="btn btn-link" type="submit" name="navigator" value="deals.ftlh">Deals</button></li>
-                <li><button class="btn btn-link" type="submit" name="navigator" value="favorites.ftlh">Our Favorites</button></li>
+                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
+        <li class="dropdown">
+          <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Genres</button><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="genres.html">Sciene Fiction</a></li>
+            <li><a href="genres.html">Young Adult</a></li>
+            <li><a href="genres.html">Kids</a></li>
+          </ul>
+        </li>
+                <li><button type="submit" name="navigator" value="best.html">Best Selling</button></li>
+                <li><button type="submit" name="navigator" value="deals.html">Deals</button></li>
+                <li><button type="submit" name="navigator" value="favorites.html">Our Favorites</button></li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
@@ -119,14 +119,13 @@
                             </div>
                         </ul>
         </li>
-        <li><button class="btn btn-link" type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
-        <li><button class="btn btn-link" type="submit" name="navigator" value="cart.ftlh"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
+        <li><button type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
+        <li><button type="submit" name="navigator" value="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
       </ul>
 
     </div>
   </div>
 </nav>
-
 
 <!---BODY-->
 <div class="container">
@@ -137,44 +136,19 @@
             <div class = "topImg">
                <img src="cover1.jpg" class="img-responsive">
             </div> 
-            <p>Title: Cat in the Hat  </p>
-            <p>  Author: Dr. Seuss  </p>
-            <p>  Year:   1993  </p>
-            <p>  Desription:   A cat has a hat.  It's striped red and white. He's kinda creepy. He babysits some kids or something.<br/> I think there's some goldfish in it too. </p>
+            <p>Title: ${item.title}  </p>
+            <p>  Author: ${item.author}  </p>
+            <p>  Price:   ${item.price} </p>
+            <p>  Description:   ${item.description} </p>
             <p>  Reviews:</p>
-            <div class = "button2"><button type="submit" name="Task" value="AddToCart">Add to Cart</button></div>
-            
+           <button type="submit" name="Task" value="AddToCart">Add to Cart</button>         
         </div>
         </div>
   </div>
 
 </div><br><br>
 
-<!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-         
-                    
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            bookyourshelf@mail.com
-                        </li> 
-                   </ul>
-            </div>
-
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
+ 
 </form>
 </body>
 </html>

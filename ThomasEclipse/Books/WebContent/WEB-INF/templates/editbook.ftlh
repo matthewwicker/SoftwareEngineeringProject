@@ -3,63 +3,128 @@
 <head>
 <title>Books</title>
     <meta charset="utf-8" />
-    <link href="custom.css" type="text/css" rel="stylesheet" />
-    <style>
-    @import url('https://fonts.googleapis.com/css?family=Lobster');
-    </style>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="custom.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+      @import url('https://fonts.googleapis.com/css?family=Lobster');
+      @import url('https://fonts.googleapis.com/css?family=Roboto');
+  </style>
 </head>
 <body>
-    <div id="wrapper">
-        <div id="header">
-            <img src="book.png" style="position: absolute; height: 80px"/>
-            <a href="home.html" style="text-decoration:none"><h1><small>your</small>Shelf</h1></a>
-            <div id="search" >
-                <input type="text" name="searchbar" value="Search" style="height:25px; border: 1px solid gray; float:relative;padding-right:0px">
-                <div class="bropdown" style="float: absolute; height: 29px;padding-left:3px;padding-right:80px">
-                    <button class="bropbtn" style="float: absolute;height: 29px;">Search by &nabla;</button>
-                      <div class="bropdown-content">
-                         <a> Title  </a> 
-                         <a> Author </a> 
-                         <a> ISBN   </a> 
-                         <a> year   </a> </div></div>
-           </div>
-        </div>
-        <div id="navigation">
-            <ul class="navi">
-                <li> <div class="dropdown">
-                     <button class="dropbtn">Genres</button>
-                       <div class="dropdown-content">
-                         <a href="genres.html">Science Fiction</a>
-                         <a href="genres.html">Young Adult</a>
-                         <a href="genres.html">Kids</a>
-                       </div> </div> </li>
-                <li><a href="best.html">Best Selling</a></li>
-                <li><a href="deals.html">Deals</a></li>
-                <li><a href="favorites.html">Our Favorites</a></li>
-                <li style="float: right; padding-right: 95px"><a href="account.ftlh">Account</a></li>
-                <li style="float: right; padding-top: 0px"><a href="cart.html" style="padding-top: 0px"><img src="cart.png" style="height: 38px; align: top; border: 1.5px solid white; border-radius: 20px"  /></a></li>
-            </ul>
-            <div class="bropdown" style="float: right; padding-right: 10px; height: 20px; width:80px">
-                    <button class="bropbtn" style="height: 35px; background: #DB7093"><a href="signin.html" style="color:white; text-decoration:none">LOG IN</a></button>
-                      <div class="bropdown-content" style="padding: 20px">
-                          <div id="username">
-                              <input type="text" name="username" value="Username" style="width: 120px">
-                          </div>
-                          <div id="password">
-                              <input type="password" name="password" value="Password" style="width: 120px">
-                         </div>
-                          <button style="height: 30px">
-                          <a href="account.ftlh">Enter</a> 
-                            </button></div></div>
-        </div>
-        <div id="content-background">
-        <div id="content">
-            <div id="pageTitle">
-               Add Book
-            </div>
-            <form action = "myservlet" method = "post">
-            <div><table style="width:70%; position: absolute; padding-top:50px;">
+<form action = "myservlet" method = "post">
+
+<!---HEADER-->
+<div class="jumbotron">
+  <div class="container-fluid">
+    
+    <div class="row">  
+      <div class="col-md-8">
+          <img src="book.png" class="img-responsive">
+          <h1><small>yourShelf</small></h1>
+      </div>
+      
+      <div class="col-sm-4">
+        <div class="input-group">
+                        <div class="input-group-btn search-panel">
+                    <select name="searchby"> <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
+                        <option value="title">Title</option>
+                        <option value="isbn">ISBN</option>
+                        <option value="genre">Genre</option>
+                        <option value="author">Author</option>                      
+                    </select>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="searchval" placeholder="Search..." value="">
+                 <span class="input-group-btn"> 
+                    <button type="submit" class="btn btn-default" type="button" name="Task" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+                  </span> 
+          </div>
+      </div>
+     </div> 
+
+  </div>
+</div>
+
+<!---NAVIGATION BAR-->
+<nav class="navbar">
+  <div class="container-fluid">
+    
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+       <div class="collapse navbar-collapse" id="myNavbar">
+      
+      <ul class="nav navbar-nav">
+                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
+        <li class="dropdown">
+          <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Genres<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+           <li><button type="submit" name="Task" value= "Search_genre_YA"  class="btn otherbtn">Young Adult</button></li>
+           <li><button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Kids</button></li>
+           <li><button type="submit" name="Task" value= "Search_genre_scifi"      class="btn otherbtn">Science Fiction</button></li>
+           </ul>
+        </li>
+                <li><button type="submit" name="Task" value= "Search_genre_best"  class="btn otherbtn">Best Selling</button></li>
+                <li><button type="submit" name="Task" value= "Search_genre_deals"  class="btn otherbtn">Deals</button></li>
+                <li><button type="submit" name="Task" value= "Search_genre_favorites"  class="btn otherbtn">Our Favorites</button></li>
+        </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+                        <a href="signin.html" class="dropdown-toggle" data-toggle="dropdown">Log In <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+                            <div class="col-lg-12">-*
+                                <div class="text-center"><h3><b>Log In</b></h3></div>
+                                <form id="ajax-login-form" action="http://phpoll.com/login/process" method="post" role="form" autocomplete="off">
+                                    <div class="form-group">
+                                        <label for="username">Email</label>
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-7">
+                                                <input type="checkbox" tabindex="3" name="remember" id="remember">
+                                                <label for="remember"> Remember Me</label>
+                                            </div>
+                                            <div class="col-xs-5 pull-right">
+                                                <button type="submit" name="Task" value="SignIn">Log In</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="text-center">
+                                                    <li><button type="submit" name="navigator" value="favorites.html" style="background-color:white;text-transform:lowercase">Forgot Password?</button></li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
+                            </div>
+                        </ul>
+        </li>
+        <li><button type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
+        <li><button type="submit" name="navigator" value="cart.ftlh"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<!---BODY-->
+<div class="container">
+    
+           <div><table style="width:70%; position: absolute; padding-top:50px;">
                 <tr>
                 <th>
                 ISBN 
@@ -116,61 +181,11 @@
         
     
             	</th></tr></table></div> 
-         </form>
          </div></div>
     </div>
-    <!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-            
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                    <ul class="menu">
-                         <span>Menu</span>    
-                         <li>
-                            <a href="home.html">Home</a>
-                          </li>
-                               
-                          <li>
-                             <a href="genres.html">Genres</a>
-                          </li>
-                               
-                          <li>
-                            <a href="deals.html">Deals</a>
-                          </li>
-                               
-                          <li>
-                             <a href="best.html">Best Selling</a>
-                          </li>
-                          <li>
-                             <a href="favorites.html">Our Favorites</a>
-                          </li>
-                          <li>
-                             <a href="support.html">Support</a>
-                          </li>
-                     </ul>
-            </div>
-           
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            bookyourshelf@mail.com
-                        </li> 
-                   </ul>
-            </div>
 
-          </div> 
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
+
    </form>
+
 </body>
 </html>

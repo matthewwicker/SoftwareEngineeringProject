@@ -61,6 +61,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       
       <ul class="nav navbar-nav">
+<<<<<<< HEAD
                 <li><button class="btn btn-link" type="submit" name="navigator" value="home.ftlh">Home</button></li>
         
 		<li class="dropdown">
@@ -75,6 +76,21 @@
                 <li><button class="btn btn-link" type="submit" name="navigator" value="best.ftlh">Best Selling</button></li>
                 <li><button class="btn btn-link" type="submit" name="navigator" value="deals.ftlh">Deals</button></li>
                 <li><button class="btn btn-link" type="submit" name="navigator" value="favorites.ftlh">Our Favorites</button></li>
+=======
+                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
+        <li class="dropdown">
+          <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Genres</button><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="genres.html">Sciene Fiction</a></li>
+            <li><a href="genres.html">Young Adult</a></li>
+            <li><a href="genres.html">Kids</a></li>
+          </ul>
+        </li>
+                <li><button type="submit" name="navigator" value="best.html">Best Selling</button></li>
+                <li><button type="submit" name="navigator" value="deals.html">Deals</button></li>
+                <li><button type="submit" name="navigator" value="favorites.html">Our Favorites</button></li>
+>>>>>>> origin/SarahWedBranch
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
@@ -154,8 +170,39 @@
     <footer>
      <div class="container-fluid">
        <div class="row">  
+<<<<<<< HEAD
          
                     
+=======
+            
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                    <ul class="menu">
+                         <span>Menu</span>    
+                         <li>
+                            <a href="home.ftlh">Home</a>
+                          </li>
+                               
+                          <li>
+                             <a href="genres.html">Genres</a>
+                          </li>
+                               
+                          <li>
+                            <a href="deals.html">Deals</a>
+                          </li>
+                               
+                          <li>
+                             <a href="best.html">Best Selling</a>
+                          </li>
+                          <li>
+                             <a href="favorites.html">Our Favorites</a>
+                          </li>
+                          <li>
+                             <a href="support.html">Support</a>
+                          </li>
+                     </ul>
+            </div>
+           
+>>>>>>> origin/SarahWedBranch
             <div class="col-md-3 col-sm-6 col-xs-12">
                   <ul class="menu">
                         <span>Contact</span>       

@@ -91,7 +91,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="password">Password</label>
+                                        <label for="qpassword">Password</label>
                                         <input type="qpassword" name="qpassword" id="qpassword" tabindex="2" class="form-control" placeholder="qpassword" value=${"qpassword"} autocomplete="off">
                                     </div>
 

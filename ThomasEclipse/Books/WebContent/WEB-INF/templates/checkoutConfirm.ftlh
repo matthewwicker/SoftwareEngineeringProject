@@ -74,6 +74,7 @@
                 <li><button class="btn btn-link" type="submit" name="navigator" value="best.ftlh">Best Selling</button></li>
                 <li><button class="btn btn-link" type="submit" name="navigator" value="deals.ftlh">Deals</button></li>
                 <li><button class="btn btn-link" type="submit" name="navigator" value="favorites.ftlh">Our Favorites</button></li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
@@ -176,8 +177,39 @@
     <footer>
      <div class="container-fluid">
        <div class="row">  
+<<<<<<< HEAD
          
                     
+=======
+            
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                    <ul class="menu">
+                         <span>Menu</span>    
+                         <li>
+                            <a href="home.ftlh">Home</a>
+                          </li>
+                               
+                          <li>
+                             <a href="genres.html">Genres</a>
+                          </li>
+                               
+                          <li>
+                            <a href="deals.html">Deals</a>
+                          </li>
+                               
+                          <li>
+                             <a href="best.html">Best Selling</a>
+                          </li>
+                          <li>
+                             <a href="favorites.html">Our Favorites</a>
+                          </li>
+                          <li>
+                             <a href="support.html">Support</a>
+                          </li>
+                     </ul>
+            </div>
+           
+>>>>>>> origin/SarahWedBranch
             <div class="col-md-3 col-sm-6 col-xs-12">
                   <ul class="menu">
                         <span>Contact</span>       

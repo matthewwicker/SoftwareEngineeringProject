@@ -38,6 +38,8 @@ public class logic {
 	}
 	public User authorizeUser(User u){
 		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
+		System.out.println("What we got from freemarker: " + u.getPassword());
+		System.out.println("What we got from database: " + newUser.get(0).getPassword());
 		if(u.getPassword().equals(newUser.get(0).getPassword())){
 			System.out.println("SUCCESS TO SIGN IN");
 			return newUser.get(0);

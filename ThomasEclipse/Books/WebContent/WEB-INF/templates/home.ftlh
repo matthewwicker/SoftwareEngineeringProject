@@ -59,22 +59,23 @@
     
     <div class="collapse navbar-collapse" id="myNavbar">
       
+       <div class="collapse navbar-collapse" id="myNavbar">
+      
       <ul class="nav navbar-nav">
-                <li><button class="btn btn-link" type="submit" name="navigator" value="home.ftlh">Home</button></li>
-        
-		<li class="dropdown">
-			  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
-			  <span class="caret"></span></button>
-			  <ul class="dropdown-menu">
-			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Science Fiction</button></li>
-			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Young Adult</button></li>
-			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Kids</button></li>
-			  </ul>
-			</li>
-                <li><button class="btn btn-link" type="submit" name="navigator" value="best.ftlh">Best Selling</button></li>
-                <li><button class="btn btn-link" type="submit" name="navigator" value="deals.ftlh">Deals</button></li>
-                <li><button class="btn btn-link" type="submit" name="navigator" value="favorites.ftlh">Our Favorites</button></li>
-      </ul>
+                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
+        <li class="dropdown">
+          <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Genres<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+           <li><button type="submit" name="Task" value= "Search_genre_YA"  class="btn otherbtn">Young Adult</button></li>
+           <li><button type="submit" name="Task" value= "Search_genre_kids"  class="btn otherbtn">Kids</button></li>
+           <li><button type="submit" name="Task" value= "Search_genre_scifi"      class="btn otherbtn">Science Fiction</button></li>
+           </ul>
+        </li>
+                <li><button type="submit" name="Task" value= "Search_genre_best"  class="btn otherbtn">Best Selling</button></li>
+                <li><button type="submit" name="Task" value= "Search_genre_deals"  class="btn otherbtn">Deals</button></li>
+                <li><button type="submit" name="Task" value= "Search_genre_favorites"  class="btn otherbtn">Our Favorites</button></li>
+        </ul>
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
@@ -127,7 +128,6 @@
   </div>
 </nav>
 <!---BODY-->
-<div id="content-background">
 <div class="container">
     
     <div id="homebody"> 
@@ -135,19 +135,19 @@
         Free Shipping on orders over $50 with code <b>50SHIP</b><br/>
         10% off your first purchase with code <b>NEWMEM</b><br/>
         <br/>
+
         <button type="submit" name="navigator" value="create.ftlh"  class="btn">Create an Account</button>&nbsp
         <button type="submit" name="navigator" value="signin.ftlh"  class="btn">Log In</button>
         <br/>
         <br/>
-        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Kids</button>
-        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Science Fiction</button>
-        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Young Adult</button>
-        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Fantasy</button>
-        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">Biographies</button>
-        <button type="submit" name="navigator" value= "genres.ftlh"  class="btn otherbtn">New Arrivals</button>
-        <button type="submit" name="navigator" value= "best.ftlh"    class="btn otherbtn">Best Sellers</button>
-        <button type="submit" name="navigator" value= "favorites.ftlh"class="btn otherbtn">Staff Picks</button>
-    </div>
+        <button type="submit" name="Task" value= "Search_genre_Kids"  class="btn otherbtn">Kids</button>
+        <button type="submit" name="Task" value= "Search_genre_scifi"  class="btn otherbtn">Science Fiction</button>
+        <button type="submit" name="Task" value= "Search_genre_fantasy"  class="btn otherbtn">Fantasy</button>
+        <button type="submit" name="Task" value= "Search_genre_biographies"  class="btn otherbtn">Biographies</button>
+        <button type="submit" name="Task" value= "Search_genre_newarrivals"  class="btn otherbtn">New Arrivals</button>
+        <button type="submit" name="Task" value= "Search_genre_best"  class="btn otherbtn">Best Sellers</button>
+        <button type="submit" name="Task" value= "Search_genre_favorites"  class="btn otherbtn">Staff Picks</button>
+       </div>
 </div><br>
 
 <div class="container">    
@@ -184,6 +184,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <div class="col-sm-3">
       <div class="panel panel-default">
@@ -213,12 +214,13 @@
           <span class="glyphicon glyphicon-star-empty"></span>
           <span class="glyphicon glyphicon-star-empty"></span>
           <span class="glyphicon glyphicon-star-empty"></span>
-        </div>
+        </div>  </div>
+        
       </div>
     </div>
 
-  </div>
-</div></div><br><br><br>
+
+</div></div><br><br>
 
 
    </form>
