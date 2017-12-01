@@ -12,8 +12,8 @@ public class UserDBManager {
 	 */
 	public static int addUser(User user) {
 		String query = "INSERT INTO users (email, fname, lname, password, phonenumber, type, verify) ";
-		query += "VALUES ('" + user.getEmail() + "', '" + user.getFname() + "', '" + user.getLname()+"', '";
-		query += user.getPassword() + "', '" +  user.getPhoneNumber() + "', '" + user.getType() + "', '0')";
+		query += "VALUES ('" + user.getEmail() + "', '" + user.getFname() + "', '" + user.getLname()+"', ";
+		query += "AES_ENCRYPT('" + user.getPassword() + "', UNHEX(SHA2('test', 512)))" + "', '" +  user.getPhoneNumber() + "', '" + user.getType() + "', '0')";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
@@ -37,7 +37,7 @@ public class UserDBManager {
 	}
 	
 	public static int setPassword(String value, User user) {
-		String query = "UPDATE users SET password = '"+ value +"' WHERE email = '"+user.getEmail() +"'; ";
+		String query = "UPDATE users SET password = AES_ENCRYPT('"+ value + "', UNHEX(SHA2('test',512)))" +"' WHERE email = '"+user.getEmail() +"'; ";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
@@ -70,7 +70,7 @@ public class UserDBManager {
 	 */
 	public static ArrayList<User> searchUsers(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
-		String query = "select * from users where " + searchParam+ "= '" + searchItem + "'";
+		String query = "select *, AES_DECRYPT(password, UNHEX(SHA2('test',512))) from users where " + searchParam+ "= '" + searchItem + "'";
 		ResultSet rs = driver.retrieve(query);
 		User user = new User();
 		if(rs != null){
@@ -79,7 +79,7 @@ public class UserDBManager {
 					user.setUid(rs.getInt("uid"));
 					user.setFname(rs.getString("fname"));
 					user.setLname(rs.getString("lname"));
-					user.setPassword(rs.getString("password"));
+					user.setPassword(rs.getString("AES_DECRYPT(password, UNHEX(SHA2('test',512)))"));
 					user.setEmail(rs.getString("email"));
 					user.setType(rs.getString("type"));
 					user.setSubscribed(rs.getString("getsPromo"));
