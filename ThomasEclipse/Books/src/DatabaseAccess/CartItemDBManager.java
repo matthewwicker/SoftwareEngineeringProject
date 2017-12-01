@@ -25,22 +25,29 @@ public class CartItemDBManager {
 	 * remove a cartItem from database
 	 * @return -1 if failure and 1 if success
 	 */
-	public static int removeCartItem(CartItem cart) {
-		String query = "DELETE from `bookz`.`caritem` WHERE cartid = " + cart.getCartId();
+	public static int removeCartItem(int cartid, int isbn) {
+		String query = "DELETE from `bookz`.`caritem` WHERE isbn = '" + isbn + "' and cartid = " + cartid;
 		int success = driver.delete(query);
 		return success;
 	}
 	public static int addCartItem(Book book, int uid) {
-		String query = "INSERT INTO caritem (isbn, numbooks, cartid, price) ";
-		query += "VALUES ('" + book.getISBN() + "', '1', ' "+ uid + "' , '";
-		query +=  book.getPrice()  + "')";
+		String query = "INSERT INTO caritem (isbn, numbooks, cartid) ";
+		query += "VALUES ('" + book.getISBN() + "', '1', ' "+ uid +  "')";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	public static int changeQuantity(int cartid, int isbn, int change) {
+		String query = "UPDATE caritem SET numbooks = '" + change + "' WHERE isbn = '" + isbn + "' and cartid = '" + cartid + "'";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
 		return success;
 	}
 	/**
-	 * Search the items in cartitems by searchParam25.00
+	 * Search the items in cartitems by searchPara
+	 * m25.00
 	 * @param searchParam
 	 * @param searchItem
 	 * @return

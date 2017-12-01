@@ -18,6 +18,7 @@ import java.io.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,6 +78,8 @@ public class myservlet extends HttpServlet {
         String email="";
 		String name="";
 		String type="";
+		
+		Cookie cookies[] = request.getCookies();
 		
 		
 		///////////PERFORM TASK////////////
@@ -158,30 +161,61 @@ public class myservlet extends HttpServlet {
 				}
 			} //Create Book
 			
-			else if(task.equals("GoToItem")) {
-				Book item = GetHandlers.getItem(request);
+			else if(task.contains("GoToItem")) {
+				String title = task.split("_")[1];
+				Book item = GetHandlers.getItem(request, title);
+		        System.out.println("Checking");
+			    System.out.println(request.getParameter("test"));
 	            root.put("item", item);        
 				template = "bookInfo.ftlh";
 			} //Go to item
+			
 			else if(task.equals("AddToCart")) {
+				    task = "GoToCart";
 		            Book item = (Book) root.get("item");
 		            Cart cart = GetHandlers.putInCart(request, item, 4);// thisUser.getUid());
 		            ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
 			        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+			        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
 		            root.put("cartitems", cartitems);
 		            root.put("cart", cart);
+		            root.put("total", total);
 					template = "cart.ftlh";
 		    } //Add item to cart
+			
 			else if(task.equals("GoToCart")) {
-				ArrayList<Cart> carts = CartDBManager.searchCart("uid", thisUser.getUid());
+				ArrayList<Cart> carts = CartDBManager.searchCart("uid", 4);//thisUser.getUid());
 		        Cart cart = carts.get(0);
 		        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
 		        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+		        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
 	            root.put("cartitems", cartitems);
 	            root.put("cart", cart);
+	            root.put("total", total);
 				template = "cart.ftlh";
 			}
 			
+			else if(task.contains("UpdateCart")) {
+				template = "cart.ftlh";
+	            Cart cart = (Cart) root.get("cart");
+				int isbn = Integer.parseInt(task.split("_")[1]);
+				int qty  = Integer.parseInt(task.split("_")[2]);
+				if (qty > 0) {
+	        	    CartItemDBManager.changeQuantity(cart.getCartId(), isbn, qty);
+				}
+				else {
+					CartItemDBManager.removeCartItem(cart.getCartId(), isbn);	
+				}
+		        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+		        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+		        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
+	            root.put("cartitems", cartitems);
+	            root.put("total", total);
+				template = "cart.ftlh";
+
+			} //Update this cart information
+			
+
 			else if(task.equals("GoToPromotion")) {
 				template = "editpromo.ftlh";
 			} //Go to promo
@@ -209,10 +243,6 @@ public class myservlet extends HttpServlet {
 				//Compute the exact costs and move to the 
 			} //Checkout with this user
 			
-			else if(task.equals("UpdateCart")) {
-				template = "checkout.ftlh";
-			} //Update this cart information
-			
 			else if(task.equals("ConfirmPurchase")) {
 				template = "checkoutConfirm.ftlh";
 			} //Confirm Purchase
@@ -238,7 +268,6 @@ public class myservlet extends HttpServlet {
 		}
 
    	   
-        System.out.println("WORKING");
         System.out.println(template);
 		
 		/////////NAVIGATE/////////

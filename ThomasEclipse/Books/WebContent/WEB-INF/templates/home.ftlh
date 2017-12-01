@@ -122,7 +122,6 @@
   </div>
 </nav>
 <!---BODY-->
-<div id="content-background">
 <div class="container">
     
     <div id="homebody"> 
@@ -178,6 +177,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <div class="col-sm-3">
       <div class="panel panel-default">
@@ -207,11 +207,11 @@
           <span class="glyphicon glyphicon-star-empty"></span>
           <span class="glyphicon glyphicon-star-empty"></span>
           <span class="glyphicon glyphicon-star-empty"></span>
-        </div>
+        </div>  </div>
+        
       </div>
     </div>
 
-  </div>
 </div></div><br><br>
 
 

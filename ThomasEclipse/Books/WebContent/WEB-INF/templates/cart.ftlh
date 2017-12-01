@@ -144,7 +144,18 @@
                       <#list cartitems as citem>
                       <tr>
                          <td>${citem.title}</td>
-                         <td id="qty"><input type="String" id="editqty" style="width: 45px; padding: 1px" value=${citem.numBooks} min="0"></td>
+                         <td id="qty"><input type="String" id="editqty" style="width: 45px; padding: 1px" value=${citem.numBooks} min="0"><button type="submit" id="Taskk" name="Task" value="UpdateCart"  onclick="javafunction('${citem.ISBN}');">Update</button>
+                         </td>
+                                    <script type="text/javascript">
+              function javafunction(index){
+                     var task = 'UpdateCart_'+ index;
+                     var qty  = document.getElementById("editqty").value;
+                     task += '_' + qty;
+                     document.getElementById("Taskk").setAttribute('value', task);
+                     var newtask = document.getElementById("Taskk").value;
+                     alert(newtask);
+               }
+                </script>
                          <td id="price">$${citem.price}.00</td>
                          <td id="price_sub">${citem.total}.00</td>
                       </tr>
@@ -166,11 +177,10 @@
                       </tr>
                       <tr>
                           <th colspan="3"><span class="pull-right">Total</span></th>
-                          <th id="total">$54.99</th>
+                          <th id="total">$${total}</th>
                       </tr>
                       <tr>
                           <td>
-                             <div class = "button2"><button type="submit" name="Task" value="UpdateCart">Update Cart</button></div>
                           </td>
                           <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="Checkout">Checkout</button></div></td>
                       </tr>

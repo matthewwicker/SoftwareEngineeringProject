@@ -14,8 +14,13 @@
   </style>
 </head>
 <body>
-<form action = "myservlet" method = "post">
-
+<form action = "myservlet" method = "post" onsubmit="javafun();">
+ <script type="text/javascript">
+          function javafun(){
+                 var newtask = document.getElementById("Taskk").value;
+                 alert(newtask);
+             }
+             </script>
 <!---HEADER-->
 <div class="jumbotron">
   <div class="container-fluid">
@@ -144,21 +149,24 @@
             <li><a href="#">Price <span class="glyphicon glyphicon-arrow-up"></a></li>
           </ul>
         </div>
-        
+  
  <#list books as book>
       <div class="col-sm-3">
-      <button  type="submit" name="Task" value= "GoToItem">
+      <button  type="submit" id="Taskk" name="Task" onclick="javafunction('${book.title}');">
+         <script type="text/javascript">
+          function javafunction(title){
+                 var task = 'GoToItem_'+ title;
+                 document.getElementById("Taskk").setAttribute('value',task);
+                 var newtask = document.getElementById("Taskk").value;
+                 alert(newtask);
+             }
+      </script>
       <div class="panel panel-default">
         <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
         <div class="panel-footer">
-            <input type="text" name="itemtitle" value=${book.title} ><br/>
+            ${book.title} <br/>
             ${book.author} <br/>
-            $ ${book.price}<br/>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
+            $${book.price}<br/>
         </div>
       </div>
       </button>

@@ -163,24 +163,9 @@ public class GetHandlers {
 	    
 		return retval;
 	}
-	protected static Book getItem(HttpServletRequest request) {
+	protected static Book getItem(HttpServletRequest request, String title) {
 		Book retval = new Book();
-		
-		String itemtitle = "!*!";
-		
-		Enumeration<String> params = request.getParameterNames(); 
-	    while(params.hasMoreElements()){
-	    		String paramName = params.nextElement();
-	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
-	    		switch(paramName) {
-	    			case "itemtitle":
-	    				itemtitle = request.getParameter(paramName);
-	    				break;
-	    			default:
-	    				break;
-	    		}
-	     }
-	    ArrayList<Book> books = BookDBManager.searchBooks("title", itemtitle);
+		ArrayList<Book> books = BookDBManager.searchBooks("title", title);
         retval = books.get(0); 
     	return retval;
 	}
@@ -192,10 +177,23 @@ public class GetHandlers {
 		ArrayList<Cart> carts = CartDBManager.searchCart("uid", uid);
 
         cart = carts.get(0);
-		System.out.println("check");
-
-	    int success = CartItemDBManager.addCartItem(book, cart.getCartId());
-	        
+        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+        CartItem citem = new CartItem();
+        boolean exists = false;
+        
+        for (CartItem cartitem : cartitems) {
+        	if (cartitem.getISBN() == book.getISBN()) {
+        		citem = cartitem;
+        		citem.setNumBooks(citem.getNumBooks()+1);
+        		exists = true;
+        	}
+        }
+        if (exists) {
+        	CartItemDBManager.changeQuantity(citem.getCartId(), citem.getISBN(), citem.getNumBooks());
+        }
+        else{
+	        int success = CartItemDBManager.addCartItem(book, cart.getCartId());
+        }   
     	return cart;
 	}
 	protected static Cart updateCartTotal(HttpServletRequest request, Cart cart, ArrayList<CartItem> cartitems) {
@@ -215,6 +213,18 @@ public class GetHandlers {
         cart.setPrice(total);
 	  	return cart;
 	}
+	protected static double finalCartTotal(HttpServletRequest request, Cart cart, ArrayList<CartItem> cartitems) {
+		
+		cart = updateCartTotal(request, cart, cartitems);
+		double total = cart.getPrice() + 4.99;
+        return total;
+	}
+    //protected static Address getFirstAddress(HttpServletRequest request, int uid) {
+		
+		//ArrayList<Address> addresses = search(request, cart, cartitems);
+		//double total = cart.getPrice() + 4.99;
+        //return total;
+	//}
 	protected static Promo makePromo(HttpServletRequest request) {
 		Promo retval = new Promo();
 		
