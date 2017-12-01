@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `address` (
-  `aid` int(11) NOT NULL,
+  `aid` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(45) NOT NULL,
   `billing` tinyint(1) NOT NULL,
   `uid` int(11) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE `address` (
   UNIQUE KEY `idaddress_UNIQUE` (`aid`),
   UNIQUE KEY `uid_UNIQUE` (`uid`),
   CONSTRAINT `userid` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES (1,'1004 Cedar StAthens, GA 30602',1,4);
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-08 21:16:11
+-- Dump completed on 2017-11-30 21:52:07

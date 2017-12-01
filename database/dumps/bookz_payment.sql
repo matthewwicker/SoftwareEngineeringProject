@@ -23,18 +23,18 @@ DROP TABLE IF EXISTS `payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payment` (
-  `ccid` int(11) NOT NULL,
+  `ccid` int(11) NOT NULL AUTO_INCREMENT,
   `cc_number` int(11) NOT NULL,
-  `user` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
   `aid` int(11) NOT NULL,
   PRIMARY KEY (`ccid`),
   UNIQUE KEY `ccid_UNIQUE` (`ccid`),
   UNIQUE KEY `cc_number_UNIQUE` (`cc_number`),
   KEY `aid_idx` (`aid`),
-  KEY `uid_idx` (`user`),
+  KEY `uid_idx` (`uid`),
   CONSTRAINT `addressid1` FOREIGN KEY (`aid`) REFERENCES `address` (`aid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `userid1` FOREIGN KEY (`user`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `userid1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+INSERT INTO `payment` VALUES (1,276878,4,1);
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-08 21:16:11
+-- Dump completed on 2017-11-30 21:52:08

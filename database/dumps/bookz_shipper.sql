@@ -16,29 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cart`
+-- Table structure for table `shipper`
 --
 
-DROP TABLE IF EXISTS `cart`;
+DROP TABLE IF EXISTS `shipper`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cart` (
-  `cartid` int(11) NOT NULL,
+CREATE TABLE `shipper` (
+  `shipperid` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `phonenumber` varchar(45) NOT NULL,
   `uid` int(11) NOT NULL,
-  PRIMARY KEY (`cartid`),
-  KEY `uid1_idx` (`uid`),
-  CONSTRAINT `userid5` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`shipperid`),
+  UNIQUE KEY `shipperid_UNIQUE` (`shipperid`),
+  KEY `uid8_idx` (`uid`),
+  CONSTRAINT `uid8` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cart`
+-- Dumping data for table `shipper`
 --
 
-LOCK TABLES `cart` WRITE;
-/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (1,4);
-/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+LOCK TABLES `shipper` WRITE;
+/*!40000 ALTER TABLE `shipper` DISABLE KEYS */;
+/*!40000 ALTER TABLE `shipper` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

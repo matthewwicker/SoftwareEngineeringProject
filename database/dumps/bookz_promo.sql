@@ -23,11 +23,11 @@ DROP TABLE IF EXISTS `promo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `promo` (
-  `code` int(11) NOT NULL,
+  `code` varchar(45) NOT NULL,
   `isbn` int(11) NOT NULL,
   `percentoff` double NOT NULL,
-  `startdate` datetime NOT NULL,
-  `enddate` datetime NOT NULL,
+  `startdate` date NOT NULL,
+  `enddate` date NOT NULL,
   PRIMARY KEY (`code`),
   UNIQUE KEY `code_UNIQUE` (`code`),
   KEY `isbn_idx` (`isbn`),
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-08 21:16:11
+-- Dump completed on 2017-11-30 21:52:07
