@@ -150,27 +150,42 @@
                         <th>Unit Price</th>
                         <th>Total Price</th>
                       </tr>
+       <#list cartitems as citem>
                       <tr>
-                         <td>Cat in the Hat</td>
-                         <td id="qty">2</td>
-                         <td id="price">$25.00</td>
-                         <td id="price_sub">$50.00</td>
+                         <td>${citem.title}</td>
+                         <td id="qty">${citem.numBooks}</td>
+                         <td id="price">$${citem.price}.00</td>
+                         <td id="price_sub">${citem.total}.00</td>
+                      </tr>
+                       </#list>
+                      <tr>
+                         <th colspan="3"><span class="pull-right">Sub Total</span></th>
+                         <th id="subtotal">$${cart.price}</th>
                       </tr>
                       <tr>
-                          <th colspan="3"><span class="pull-right">Total (including shipping)</span></th>
-                          <th id="total">$54.99</th>
+                         <th colspan="3"><span class="pull-right">Shipping</span></th>
+                         <th id="shipping">$4.99</th>
                       </tr>
                       <tr>
-                          <td colspan="3">
-                          <div class = "button2"><button id="update" class="btn btn-default pull-right" type="submit" name="Task" value=" "><span class="glyphicon glyphicon-envelope"></span> Send Invoice</button></div>
-                          <div class = "button2"><button id="update" class="btn btn-default pull-left" type="submit" name="navigator" value="checkout.ftlh"><span class="glyphicon glyphicon-edit"></span> Edit order</button></div>
+                         <th colspan="3"><span class="pull-right">Promotion Code</span></th>
+                         <th>
+                              <input type="text"  placeholder="No Promo Code Used" name='promocode' class="field left" readonly="readonly" value=${promocode}>
+                         </th>
+                      </tr>
+                      <tr>
+                          <th colspan="3"><span class="pull-right">Total</span></th>
+                          <th value="total" name="total">$${total}</th>
+                      </tr>
+                      <tr>
+                          <td>
                           </td>
+                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="MakePurchase">Make Purchase</button></div></td>
+
                       </tr>
                     </tbody>
               </table>
           </div>
       </div>
-
 </div><br><br>
 
 <!---FOOTER-->

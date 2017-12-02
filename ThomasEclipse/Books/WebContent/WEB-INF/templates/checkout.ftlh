@@ -224,17 +224,17 @@
                       <tr>
                          <th colspan="3"><span class="pull-right">Promotion Code</span></th>
                          <th>
-                              <input type="text" name='promocode' value="NEWMEM"> <div class = "button2"><button id="promo" class="btn btn-default" type="submit" name="Task" value="AddPromoToCart"><span class="glyphicon glyphicon-plus"></span> Add Promo</button></div>
+                              <input type="text" placeholder="No Promo Code Used" name='promocode'  class="field left" readonly="readonly" value=${promocode}>
                          </th>
                       </tr>
                       <tr>
                           <th colspan="3"><span class="pull-right">Total</span></th>
-                          <th id="total">$${total}</th>
+                          <th value="total" name="total">$${total}</th>
                       </tr>
                       <tr>
                           <td>
                           </td>
-                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="Make Purchase">Make Purchase</button></div></td>
+                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="MakePurchase">Make Purchase</button></div></td>
 
                       </tr>
                     </tbody>

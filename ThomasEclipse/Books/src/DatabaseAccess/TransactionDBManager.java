@@ -2,6 +2,7 @@ package DatabaseAccess;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -13,10 +14,12 @@ public class TransactionDBManager {
 	 * add a transaction to database
 	 * @return -1 if failure and 1 if success
 	 */
-	public static int Transaction (Transaction transaction) {
-		String query = "INSERT INTO `bookz`.`transaction` (transactionid, cartid, ccid, amount, date, promoid)";
-		query += "VALUES ('" +  transaction.getTransactioncol() + "', '" + transaction.getCartid() + "', '";
-		query += transaction.getCcid() + "', '"+ transaction.getAmount() + "', '" + transaction.getDate() + "', "+ transaction.getPromoCode() +"')";
+
+	public static int addTransaction (Transaction transaction) {
+		String query = "INSERT INTO `bookz`.`transaction` ( cartid, ccid, amount, date, promoid)";
+		query += "VALUES ('" +  transaction.getCartid() + "', '" + transaction.getCcid() + "', '";
+		query += transaction.getAmount() + "', '"+ LocalDateTime.now() + "', '" + transaction.getPromoCode() + "')";
+
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
@@ -26,8 +29,8 @@ public class TransactionDBManager {
 	 * remove a transaction from database
 	 * @return -1 if failure and 1 if success
 	 */
-	public static int removeTransactiton(Transaction transaction) {
-		String query = "DELETE from `bookz`.`transaction` WHERE transactionid = " + transaction.getTransactioncol();
+	public static int AddTransactiton(Transaction transaction) {
+		String query = "INSERT from `bookz`.`transaction` WHERE transactionid = " + transaction.getTransactioncol();
 		int success = driver.delete(query);
 		return success;
 	}

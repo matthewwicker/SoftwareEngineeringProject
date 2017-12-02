@@ -12,9 +12,12 @@ import Entities.Address;
 import DatabaseAccess.BookDBManager;
 import DatabaseAccess.CartDBManager;
 import DatabaseAccess.CartItemDBManager;
+import DatabaseAccess.PaymentDBManager;
+import DatabaseAccess.UserDBManager;
 import Entities.Book;
 import Entities.Payment;
 import Entities.Promo;
+import Entities.Transaction;
 import Entities.User;
 import Logic.logic;
 import Entities.Cart;
@@ -252,7 +255,7 @@ public class GetHandlers {
 	    		String paramName = params.nextElement();
 	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
 	    		switch(paramName) {
-	    			case "code":
+	    			case "promocode":
 	    				promocode = request.getParameter(paramName);
 	    				break;
 	    			case "isbn":
@@ -370,6 +373,37 @@ public class GetHandlers {
 		return retval;
 		
 	}
+	
+	
+	protected static Transaction CreateTransaction(HttpServletRequest request, User u) {
+		//What object do you want to get out of this interaction?
+		Transaction retval = new Transaction();
+		
+		// Get the cartID
+		String cartID = CartDBManager.getUserCartID("uid", u.getUid()).replace(",", "");
+		// Get the userID
+		String userID = Integer.toString(u.getUid());
+		// Get the ccid
+		String ccid = PaymentDBManager.getUserCardID("uid", u.getUid()).replace(",", "");
+		// Get the amount
+		Enumeration<String> params = request.getParameterNames(); 
+	    while(params.hasMoreElements()){
+	    		String paramName = params.nextElement();
+	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+	    }
+		// Get the date today
+	    
+		retval.setAmount(Double.parseDouble("11111"));
+		retval.setCartid(Integer.parseInt(cartID));
+		System.out.println("HERE IS THE CART ID: " + retval.getCartid());
+		retval.setCcid(Integer.parseInt(ccid));;
+		return retval;
+		
+	}
+	
+	
+	
+	
 	protected static Book CreateBook(HttpServletRequest request) {
 		//What object do you want to get out of this interaction?
 		Book retval = new Book();
