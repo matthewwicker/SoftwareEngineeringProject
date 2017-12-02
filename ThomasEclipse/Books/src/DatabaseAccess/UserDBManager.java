@@ -82,6 +82,7 @@ public class UserDBManager {
 					user.setUid(rs.getInt("uid"));
 					user.setFname(rs.getString("fname"));
 					user.setLname(rs.getString("lname"));
+					user.setPhoneNumber(rs.getString("phonenumber"));
 					//user.setPassword(rs.getString("AES_DECRYPT(password, UNHEX(SHA2('test',512)))"));
 					user.setPassword(rs.getString("password"));
 					user.setEmail(rs.getString("email"));
