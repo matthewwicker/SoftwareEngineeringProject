@@ -87,6 +87,7 @@ public class UserDBManager {
 					user.setEmail(rs.getString("email"));
 					user.setType(rs.getString("type"));
 					user.setSubscribed(rs.getString("getsPromo"));
+					user.setPhoneNumber(rs.getString("phonenumber"));
 					search_results.add(user);
 				}
 				driver.disconnect();

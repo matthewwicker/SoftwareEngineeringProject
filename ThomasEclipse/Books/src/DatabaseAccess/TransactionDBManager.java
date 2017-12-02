@@ -16,7 +16,7 @@ public class TransactionDBManager {
 	public static int Transaction (Transaction transaction) {
 		String query = "INSERT INTO `bookz`.`transaction` (transactionid, cartid, ccid, amount, date, promoid)";
 		query += "VALUES ('" +  transaction.getTransactioncol() + "', '" + transaction.getCartid() + "', '";
-		query += transaction.getCcid() + "', '"+ transaction.getAmount() + "', '" + transaction.getDate() + "')";
+		query += transaction.getCcid() + "', '"+ transaction.getAmount() + "', '" + transaction.getDate() + "', "+ transaction.getPromoCode() +"')";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
