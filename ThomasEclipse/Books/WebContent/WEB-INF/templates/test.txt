@@ -3,6 +3,7 @@
 <head>
 <title>Books</title>
     <meta charset="utf-8" />
+        <script type='text/javascript' src="optional.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="custom.css" rel="stylesheet" />
@@ -14,8 +15,8 @@
   </style>
 </head>
 <body>
-<form action = "myservlet" method = "post">
 
+  <form action = "myservlet" method = "post">
 <!---HEADER-->
 <div class="jumbotron">
   <div class="container-fluid">
@@ -127,62 +128,23 @@
   </div>
 </nav>
 
-<!---BODY-->
-<div id="content-background">
-<div class="container">
-   <div class="page-header">
-    <h2>Best Sellers</h2>
-  </div>
-
-  <div class="row">
-
-     <div class="btn-group show-on-hover">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            Sort By <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">ABC <span class="glyphicon glyphicon-arrow-down"></a></li>
-            <li><a href="#">ABC <span class="glyphicon glyphicon-arrow-up"></a></li>
-            <li><a href="#">Price <span class="glyphicon glyphicon-arrow-down"></a></li>
-            <li><a href="#">Price <span class="glyphicon glyphicon-arrow-up"></a></li>
-          </ul>
+<div class="container">           
+  <div class="col-md-6">
+   <div class="text-center">
+          <h3>Change Password</h3>
         </div>
-    
-    <div class="col-sm-3">
-      <div class="panel panel-default">
-        <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
-        <div class="panel-footer">
-            Cat in the Hat <br/>
-            Dr. Seuss <br/>
-            $5.00<br/>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="panel panel-default">
-        <div class="panel-body"><img src="cover2.jpg" class="img-responsive"></div>
-        <div class="panel-footer">
-            Fox in socks <br/>
-            Dr. Seuss <br/>
-            $11.00 <br/>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div><br><br>
-
+        
+        
+        <input name="bpassword" type="text" placeholder="new password" autofocus="autofocus" class="input pass" value=${"bpassword"} />
+        
+        <input name="cpassword" type="text" placeholder="confirm password" autofocus="autofocus" class="input pass" value=${"cpassword"} />
+        
+        
+        
+        <button id="cart" type="submit" name="Task" value="UpdatePassword">Update Password</button>
+        <button id="cart" type="submit" name="Task" value="ForgotPassword">Forgot Password</button>
+       
+       </div></div>
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">
@@ -207,6 +169,7 @@
 
         </div>
     </footer> 
-    <!-- Footer 2 End --></span></div></form>
+    <!-- Footer 2 End -->
+     </form>
 </body>
 </html>

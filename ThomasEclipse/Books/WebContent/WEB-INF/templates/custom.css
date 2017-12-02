@@ -38,6 +38,15 @@
         float:left;
     }
 
+    select {
+    	color:black;
+    	letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+                width: 300px;
+        
+    }
+
    /* NAVIGATION BAR */ 
     .navbar {
         margin-bottom: 25px;

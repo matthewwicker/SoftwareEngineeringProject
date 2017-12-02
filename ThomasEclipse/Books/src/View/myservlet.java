@@ -38,7 +38,7 @@ import freemarker.template.TemplateExceptionHandler;
 @WebServlet("/myservlet")
 public class myservlet extends HttpServlet {
 
-	private User thisUser = null;
+	private User thisUser = new User();
 	private int authcode = -1;
 	private String accountdir = "useraccount";
 	
@@ -64,7 +64,7 @@ public class myservlet extends HttpServlet {
     	    cfg.setServletContextForTemplateLoading(getServletContext(), templateDir);
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
-
+        root.put("loginbutton","Log In");
     }
 
 	/**
@@ -127,7 +127,9 @@ public class myservlet extends HttpServlet {
         	  				else if(thisUser.getType().equals("m")) {
         	  					accountdir = "manageraccount";
         	  				}
+        					root.put("user", thisUser);
         	  				template =  accountdir + "/account.ftlh";
+        					root.put("loginbutton", "Hello " + thisUser.getFname());
         	  			}
         	  		}
         	  		catch(Exception e) {
@@ -135,7 +137,38 @@ public class myservlet extends HttpServlet {
         	  			template = "signinfail.ftlh";
         	  		}
 			}//Sign In
-			
+			else if (task.equals("SignInHead")){
+    	  		User userRequestingAuth = GetHandlers.signInHeader(request);
+    	  		//CHECK THAT USER IS IN THE DATABASE
+    	  		try {
+    	  			User u = l.authorizeUser(userRequestingAuth);
+    	  			boolean userExists = false;
+    	  			if(u != null) userExists = true;
+    	  			if(userExists) {
+    	  				thisUser = u;
+    	  				if(thisUser.getType().equals("u")) {
+    	  					accountdir = "useraccount";
+    	  				}
+    	  				else if(thisUser.getType().equals("a")) {
+    	  					System.out.println("USING THE ADMIN ACCOUNT DIR");
+    	  					accountdir = "adminaccount";
+    	  				}
+    	  				else if(thisUser.getType().equals("s")) {
+    	  					accountdir = "shipmentaccount";
+    	  				}
+    	  				else if(thisUser.getType().equals("m")) {
+    	  					accountdir = "manageraccount";
+    	  				}
+    					root.put("user", thisUser);
+    					root.put("loginbutton", "Hello " + thisUser.getFname());
+    	    	  		
+    	  			}
+    	  		}
+    	  		catch(Exception e) {
+    	  			e.printStackTrace();
+    	  			template = "signinfail.ftlh";
+    	  		}
+		}//Sign In
 			else if (task.equals("GoToCart")){
 				//THIS NEEDS TO BE INVERTED AFTER WE GET ALL THE DB ACCESS WORKING.
     	  			if(thisUser == null && authcode == 0) {
@@ -314,6 +347,14 @@ public class myservlet extends HttpServlet {
 				template = "checkoutConfirm.ftlh";
 			} //Confirm Purchase
 			
+			else if(task.equals("GoToAccount")) {
+				if (thisUser.getFname() == null) {
+					template = "signin.ftlh";
+				}
+				else {
+				    template = accountdir + "/account.ftlh";
+				}
+			} //Confirm Purchase
 			else if(task.equals("Validation")) {
 				template = accountdir + "/account.ftlh";
 				

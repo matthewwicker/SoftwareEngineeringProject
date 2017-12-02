@@ -3,7 +3,6 @@
 <head>
 <title>Books</title>
     <meta charset="utf-8" />
-        <script type='text/javascript' src="optional.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="custom.css" rel="stylesheet" />
@@ -15,8 +14,8 @@
   </style>
 </head>
 <body>
+<form action = "myservlet" method = "post">
 
-  <form action = "myservlet" method = "post">
 <!---HEADER-->
 <div class="jumbotron">
   <div class="container-fluid">
@@ -29,24 +28,20 @@
       
       <div class="col-sm-4">
         <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                      <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#title">Title</a></li>
-                      <div class="bropdown-content">
-                      <li><a href="#title">Title</a></li>
-                      <li><a href="#author">Author</a></li>
-                      <li><a href="#isbn">ISBN</a></li>
-                      <li><a href="#year">Year</a></li>
-                    </ul>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
+                      <div class="input-group-btn search-panel">
+                 <select name="searchby"> <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
+                     <option value="title">Title</option>
+                     <option value="isbn">ISBN</option>
+                     <option value="genre">Genre</option>
+                     <option value="author">Author</option>
+                 </select>
+             </div>
+             <input type="hidden" name="search_param" value="all" id="search_param">
+             <input type="text" class="form-control" name="searchval" placeholder="Search..." value="">
+              <span class="input-group-btn">
+                 <button type="submit" class="btn btn-default" type="button" name="Task" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+               </span>
+       </div>
           </div>
       </div>
      </div> 
@@ -60,42 +55,28 @@
     
     <div class="collapse navbar-collapse" id="myNavbar">
       
+       <div class="collapse navbar-collapse" id="myNavbar">
+      
       <ul class="nav navbar-nav">
-<<<<<<< HEAD
-                <li><button class="btn btn-link" type="submit" name="navigator" value="home.ftlh">Home</button></li>
-        
-		<li class="dropdown">
+      
+                <li><button class="btn btn-link"  type="submit" name="navigator" value="home.ftlh">Home</button></li>
+        <li class="dropdown">
 			  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
 			  <span class="caret"></span></button>
-			  <ul class="dropdown-menu">
-			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Science Fiction</button></li>
-			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Young Adult</button></li>
-			    <li><button class="btn btn-link" type="submit" name="navigator" value="genres.ftlh">Kids</button></li>
-			  </ul>
-			</li>
-                <li><button class="btn btn-link" type="submit" name="navigator" value="best.ftlh">Best Selling</button></li>
-                <li><button class="btn btn-link" type="submit" name="navigator" value="deals.ftlh">Deals</button></li>
-                <li><button class="btn btn-link" type="submit" name="navigator" value="favorites.ftlh">Our Favorites</button></li>
-=======
-                <li><button type="submit" name="navigator" value="home.ftlh">Home</button></li>
-        <li class="dropdown">
-          <a href="genres.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-          Genres</button><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="genres.html">Sciene Fiction</a></li>
-            <li><a href="genres.html">Young Adult</a></li>
-            <li><a href="genres.html">Kids</a></li>
-          </ul>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_YA"  >Young Adult</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_kids">Kids</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_scifi" >Science Fiction</button></li>
+           </ul>
         </li>
-                <li><button type="submit" name="navigator" value="best.html">Best Selling</button></li>
-                <li><button type="submit" name="navigator" value="deals.html">Deals</button></li>
-                <li><button type="submit" name="navigator" value="favorites.html">Our Favorites</button></li>
->>>>>>> origin/SarahWedBranch
-      </ul>
+                <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_best">Best Selling</button></li>
+                <li><button type="submit" name="Task" value= "Search_genre_deals"  class="btn btn-link">Deals</button></li>
+                <li><button type="submit" name="Task" value= "Search_genre_favorites"  class="btn btn-link">Our Favorites</button></li>
+        </ul>
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
-        				<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Log In
+        				<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">${loginbutton}
 			  					<span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
                             <div class="col-lg-12">
@@ -103,12 +84,12 @@
                                 <form id="ajax-login-form" action="m" method="post" role="form" autocomplete="off">
                                     <div class="form-group">
                                         <label for="username">Email</label>
-                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                                        <input type="text" name="qusername" id="qusername" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                                        <input type="password" name="qpassword" id="qpassword" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
                                     </div>
 
                                     <div class="form-group">
@@ -118,7 +99,7 @@
                                                 <label for="remember"> Remember Me</label>
                                             </div>
                                             <div class="col-xs-5 pull-right">
-                                                <button type="submit" name="Task" value="SignIn" tabindex="4" class="btn btn-success">Log In</button>
+                                                <button type="submit" name="Task" value="SignInHead" tabindex="4" class="btn btn-success">Log In</button>
                                             </div>
                                         </div>
                                     </div>
@@ -136,13 +117,14 @@
                             </div>
                         </ul>
         </li>
-        <li><button class="btn btn-link" type="submit" name="navigator" value="account.ftlh"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
-        <li><button class="btn btn-link" type="submit" name="navigator" value="cart.ftlh"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
+        <li><button class="btn btn-link" type="submit" name="Task" value="GoToAccount"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
+        <li><button class="btn btn-link" type="submit" name="Task" value="GoToCart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
       </ul>
 
     </div>
   </div>
 </nav>
+
 
 <div class="container">           
   <div class="col-md-6">

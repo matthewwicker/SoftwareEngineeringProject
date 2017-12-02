@@ -42,7 +42,6 @@ public class GetHandlers {
 		String password = "!*!";
 		String addressline1 = "!*!";
 		String addressline2 = "!*!";
-		String itemtitle = "!*!";
 		
 		//=========================================================
 		//		ITERATING THROUGHT THE ITEMS IN THE REQUEST
@@ -52,9 +51,6 @@ public class GetHandlers {
 	    		String paramName = params.nextElement();
 	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
 	    		switch(paramName) {
-	    	    	case "itemtitle":
-    	    			itemtitle = request.getParameter(paramName);
-         				break;
 	    			case "fname":
 	    				fname = request.getParameter(paramName);
 	    				break;
@@ -176,7 +172,37 @@ public class GetHandlers {
 		}
 		return retval;
 	}
+	protected static User signInHeader(HttpServletRequest request) {
+		User retval = new User();
+		
+		String email = "!*!";
+		String password = "!*!";
+		
+		Enumeration<String> params = request.getParameterNames(); 
+	    while(params.hasMoreElements()){
+	    		String paramName = params.nextElement();
+	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+	    		switch(paramName) {
+	    			case "qusername":
+	    				email = request.getParameter(paramName);
+	    				break;
+	    			case "qpassword":
+	    				password = request.getParameter(paramName);
+	    				break;
+	    			default:
+	    				break;
+	    		}
+	     }
+	    if(email != "!*!") retval.setEmail(email);
+	    if(password != "!*!") retval.setPassword(password);
+	    if(email == "!*!" || password == "!*!") {
+			return null;
+		}
+		return retval;
+	}
+
 	protected static Book getItem(HttpServletRequest request, String title) {
+		
 		Book retval = new Book();
 		ArrayList<Book> books = BookDBManager.searchBooks("title", title);
         retval = books.get(0); 
