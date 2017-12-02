@@ -162,7 +162,7 @@
              }
       </script>
       <div class="panel panel-default">
-        <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
+        <div class="panel-body"><img src="${book.image}" class="img-responsive"></div>
         <div class="panel-footer">
             ${book.title} <br/>
             ${book.author} <br/>

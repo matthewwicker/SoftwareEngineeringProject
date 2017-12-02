@@ -134,7 +134,7 @@
     <div class="col-md-6">
             <div id="homebody">
             <div class = "topImg">
-               <img src="cover1.jpg" class="img-responsive">
+               <img src="${item.image}" class="img-responsive">
             </div> 
             <p>Title: ${item.title}  </p>
             <p>  Author: ${item.author}  </p>
