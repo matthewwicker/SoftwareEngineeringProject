@@ -172,7 +172,7 @@
                       <tr>
                          <th colspan="3"><span class="pull-right">Promotion Code</span></th>
                          <th>
-                              <input type="text" name='promocode' value="NEWMEM"> <div class = "button2"><button id="promo" class="btn btn-default" type="submit" name="Task" value="AddPromoToCart"><span class="glyphicon glyphicon-plus"></span> Add Promo</button></div>
+                              <input type="text" name='promocode' placeholder="Enter Promo Code" value=${promocode}> <div class = "button2"><button id="promo" class="btn btn-default" type="submit" name="Task" value="AddPromoToCart"><span class="glyphicon glyphicon-plus"></span>Add Promotion</button></div>
                          </th>
                       </tr>
                       <tr>
@@ -192,7 +192,7 @@
 </div><br><br>
 
 <!----- Success comment ----> 
-<h3 style="color:black">${message}</h3>
+<h3 style="color:black" placeholder="Something">${message}</h3>
 
 <!---FOOTER-->
     <footer>

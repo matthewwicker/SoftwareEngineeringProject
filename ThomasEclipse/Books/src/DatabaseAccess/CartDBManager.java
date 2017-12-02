@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import Entities.Book;
 import Entities.Cart;
+import Entities.User;
 public class CartDBManager {
 	private static Driver driver = new Driver();
 	/**
@@ -85,6 +86,28 @@ public class CartDBManager {
 		}
 		driver.disconnect();
 		return search_results;
+	}
+	
+	public static String getUserCartID(String searchParam, int searchItem){
+		ArrayList<User> search_results = new ArrayList<User>();
+		String query = "select * from cart where " + "uid"+ "= '" + searchItem + "'";
+		System.out.println("WHAT THE FUCK");
+		System.out.print(query);
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					return rs.getString("cartid");
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "-1";
+			}
+		}
+		return "-1";
 	}
 	
 }

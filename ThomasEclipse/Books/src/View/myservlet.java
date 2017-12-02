@@ -1,5 +1,7 @@
 package View;
 import DatabaseAccess.Driver;
+import DatabaseAccess.PromoDBManager;
+import DatabaseAccess.TransactionDBManager;
 import DatabaseAccess.BookDBManager;
 import DatabaseAccess.CartDBManager;
 import DatabaseAccess.CartItemDBManager;
@@ -52,6 +54,7 @@ public class myservlet extends HttpServlet {
     private Driver driver = new Driver();
     private logic l = new logic();
     private BookDBManager BookManager = new BookDBManager();
+    Cart cart;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -65,6 +68,7 @@ public class myservlet extends HttpServlet {
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         cfg.setLogTemplateExceptions(false);
         root.put("loginbutton","Log In");
+        root.put("promocode", "");
     }
 
 	/**
@@ -232,7 +236,7 @@ public class myservlet extends HttpServlet {
 				    task = "GoToCart";
 		            Book item = (Book) root.get("item");
 		            //System.out.println(thisUser.getUid());
-		            Cart cart = GetHandlers.putInCart(request, item, 4); //thisUser.getUid());
+		            cart = GetHandlers.putInCart(request, item, 4); //thisUser.getUid());
 		            ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
 			        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
 			        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
@@ -334,17 +338,32 @@ public class myservlet extends HttpServlet {
 				//Why aren't we getting to this line?
 				userPromotion = promotodelege;
 				//Search the db for the promo:
-				root.put("message", "SUCCESS!");
+				ArrayList<Promo> results = PromoDBManager.searchPromo("code", userPromotion.getCode());
+				if(results.size() == 0) {
+					root.put("message", "Promo code does not exist.");
+					userPromotion = null;
+				}
+				else {
+					root.put("message", "Add promo successful.");
+					root.put("promocode", userPromotion.getCode());
+				}
 				
 			} //Add promo to this users cart
 			
 			else if(task.equals("Checkout")) {
 				template = "checkout.ftlh";
-				//Compute the exact costs and move to the 
+				// not working.. also not super important
+				//String promocodestring = userPromotion.getCode() + " - " + userPromotion.getPercentOff() + "% off " + userPromotion.getISBN();
+				//root.put("promocode", promocodestring);
+				
 			} //Checkout with this user
 			
 			else if(task.equals("ConfirmPurchase")) {
 				template = "checkoutConfirm.ftlh";
+				
+			} //Confirm Purchase
+			else if(task.equals("GoToAccount")) {
+				template = accountdir + "/account.ftlh";
 			} //Confirm Purchase
 			
 			else if(task.equals("GoToAccount")) {
@@ -458,9 +477,6 @@ public class myservlet extends HttpServlet {
 			    		String paramName = params.nextElement();
 			    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
 			     }
-				
-				
-				System.out.println("INSIDE THE USECASE");
 				template =  "changepassword.ftlh";
 				if(request.getParameter("bpassword").equals(request.getParameter("cpassword"))) {
 					System.out.println("PASSWORDS MATHCED");
@@ -472,7 +488,18 @@ public class myservlet extends HttpServlet {
 				//template =  "forgotpassword.ftlh";
 			}//Forgot Password
 			
-			
+			else if(task.equals("MakePurchase")) {
+				template = "checkoutConfirm.ftlh";
+				try {
+				Transaction t = GetHandlers.CreateTransaction(request, thisUser);
+				t.setAmount(cart.getPrice());
+				try { t.setPromoCode(userPromotion.getCode());}
+				catch (Exception e) { t.setPromoCode("null");}
+				TransactionDBManager.addTransaction(t);
+				}
+				catch(Exception e) {e.printStackTrace();}
+				
+			}//Forgot Password
 
 			
 			else if (task.equals("Search")) {

@@ -78,6 +78,8 @@ public class PromoDBManager {
 		public static ArrayList<Promo> searchPromo(String searchParam, String searchItem){
 			ArrayList<Promo> search_results = new ArrayList<Promo>();
 			String query = "select * from promo where " + searchParam+ "= '" + searchItem+"'";
+			System.out.println(query);
+			try {
 			ResultSet rs = driver.retrieve(query);
 			Promo promo = new Promo();
 			if(rs != null){
@@ -97,6 +99,10 @@ public class PromoDBManager {
 					e.printStackTrace();
 				}
 			}
+			}
+			catch(Exception e) {e.printStackTrace();}
+			System.out.println("HELLO???????????????????");
+			System.out.println(search_results.size());
 			return search_results;
 		}
 		

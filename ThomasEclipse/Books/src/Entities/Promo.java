@@ -40,17 +40,31 @@ datetime
 		return startDate;
 	}
 	public void setStartDate(String startDate) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		LocalDate localDate = LocalDate.parse(startDate, formatter);
-		this.startDate = localDate;
+		try {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			LocalDate localDate = LocalDate.parse(startDate, formatter);
+			this.startDate = localDate;
+		}
+		catch(Exception e) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate localDate = LocalDate.parse(startDate, formatter);
+			this.startDate = localDate;
+		}
 	}
 	public LocalDate getEndDate() {
 		return endDate;
 	}
 	public void setEndDate(String endDate) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		LocalDate localDate = LocalDate.parse(endDate, formatter);
-		this.endDate = localDate;
+		try {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+			LocalDate localDate = LocalDate.parse(endDate, formatter);
+			this.startDate = localDate;
+		}
+		catch(Exception e) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate localDate = LocalDate.parse(endDate, formatter);
+			this.startDate = localDate;
+		}
 	}
 	private int ISBN;
 	private double percentOff;

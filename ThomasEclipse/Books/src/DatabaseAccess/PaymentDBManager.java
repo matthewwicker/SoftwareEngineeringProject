@@ -74,5 +74,28 @@ public class PaymentDBManager {
 		}
 		return search_results;
 	}
+	
+	public static String getUserCardID(String searchParam, int searchItem){
+		ArrayList<User> search_results = new ArrayList<User>();
+		String query = "select * from payment where " + "uid"+ "= '" + searchItem + "'";
+		System.out.println("*************************");
+		
+		System.out.print(query);
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					return rs.getString("ccid");
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "-1";
+			}
+		}
+		return "-1";
+	}
 }
 

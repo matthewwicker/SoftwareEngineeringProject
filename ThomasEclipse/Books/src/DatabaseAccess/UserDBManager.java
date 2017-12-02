@@ -88,6 +88,7 @@ public class UserDBManager {
 					user.setEmail(rs.getString("email"));
 					user.setType(rs.getString("type"));
 					user.setSubscribed(rs.getString("getsPromo"));
+					user.setPhoneNumber(rs.getString("phonenumber"));
 					search_results.add(user);
 				}
 				driver.disconnect();
@@ -151,6 +152,26 @@ public class UserDBManager {
 			try {
 				while(rs.next()){
 					return rs.getString("type");
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "-1";
+			}
+		}
+		return "-1";
+	}
+	
+	public static String getUserCartID(String searchParam, String searchItem){
+		ArrayList<User> search_results = new ArrayList<User>();
+		String query = "select * from users where " + searchParam+ "= '" + searchItem + "'";
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					return rs.getString("cartid");
 				}
 				driver.disconnect();
 			}
