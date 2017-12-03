@@ -14,6 +14,7 @@
   </style>
 </head>
 <body>
+
 <form action = "myservlet" method = "post">
 
 <!---HEADER-->
@@ -145,18 +146,10 @@
             <li><a href="#">Price <span class="glyphicon glyphicon-arrow-up"></a></li>
           </ul>
         </div>
-  
+
  <#list books as book>
       <div class="col-sm-3">
-      <button  type="submit" id="Taskk" name="Task" onclick="javafunction('${book.title}');">
-         <script type="text/javascript">
-          function javafunction(title){
-                 var task = 'GoToItem_'+ title;
-                 document.getElementById("Taskk").setAttribute('value',task);
-                 var newtask = document.getElementById("Taskk").value;
-                 alert(newtask);
-             }
-      </script>
+      <button  type="submit" id=${book.title} name="Task" onclick="javafunction('${book.title}');">
       <div class="panel panel-default">
         <div class="panel-body"><img src="${book.image}" class="img-responsive"></div>
         <div class="panel-footer">
@@ -168,6 +161,21 @@
       </button>
     </div>
 </#list>
+<script type="text/javascript">
+
+		
+         function javafunction(title){
+        	 		alert("About to try to write to file " + title);
+        	 		try {
+        	 			document.getElementById(title).setAttribute('value', "GoToItem_" + title);
+        	 		}
+        	 		catch(err) {
+        	 			alert(err.message);
+        	 		}
+        	 		//WriteFile(filePath, title);
+                alert("Well, that went well!");
+         }
+ </script>
 
 </div><br><br>
 </div>
