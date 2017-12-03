@@ -18,11 +18,13 @@ import DatabaseAccess.CartDBManager;
 import DatabaseAccess.CartItemDBManager;
 import DatabaseAccess.PaymentDBManager;
 import DatabaseAccess.PromoDBManager;
+import DatabaseAccess.SupplierDBManager;
 import DatabaseAccess.TransactionDBManager;
 import DatabaseAccess.UserDBManager;
 import Entities.Book;
 import Entities.Payment;
 import Entities.Promo;
+import Entities.Supplier;
 import Entities.Transaction;
 import Entities.User;
 import Logic.logic;
@@ -531,6 +533,10 @@ public class GetHandlers {
 		String quantity = "!*!";
 		String threshold = "!*!";
 		String image = "!*!";
+		String buyprice = "!*!";
+		String publisher = "!*!";
+		String publicationdate = "!*!";
+		String supplier = "!*!";
 		//=========================================================
 		//		ITERATING THROUGHT THE ITEMS IN THE REQUEST
 		//=========================================================
@@ -554,7 +560,7 @@ public class GetHandlers {
 	    			case "genre":
 	    				genre = request.getParameter(paramName);
 	    				break;
-	    			case "descr":
+	    			case "description":
 	    				description = request.getParameter(paramName);
 	    				break;
 	    			case "quantity":
@@ -565,6 +571,24 @@ public class GetHandlers {
 	    				break;
 	    			case "image":
 	    				image = request.getParameter(paramName);
+	    				break;
+	    			case "publisher":
+	    				publisher = request.getParameter(paramName);
+	    				break;
+	    			case "pubyear":
+	    				publicationdate = request.getParameter(paramName);
+	    				break;
+	    			case "buyprice":
+	    				buyprice = request.getParameter(paramName);
+	    				break;
+	    			case "supplier":
+	    				System.out.println("*************************************");
+	    				System.out.println("*************************************");
+	    				System.out.println("*************************************");
+	    				System.out.println("*************************************");
+	    				System.out.println("*************************************");
+	    				System.out.println("SETTING SUPPLIER TO: " + request.getParameter(paramName));
+	    				supplier = request.getParameter(paramName);
 	    				break;
 	    			default:
 	    				break;
@@ -578,13 +602,30 @@ public class GetHandlers {
 	    
 	    try {
 	    		if(author != "!*!") retval.setAuthor(author);
+	    		if(title != "!*!") retval.setTitle(title);
 	    		if(price != "!*!") retval.setPrice(Double.parseDouble(price));
 	    		if(isbn != "!*!") retval.setISBN(Integer.parseInt(isbn));
-	    		if(isbn != "!*!") retval.setQuantity(Integer.parseInt(quantity));
+	    		if(quantity != "!*!") retval.setQuantity(Integer.parseInt(quantity));
 	    		if(threshold != "!*!") retval.setThreshold(Integer.parseInt(threshold));
 	    		if(genre != "!*!") retval.setGenre(genre);
 	    		if(description != "!*!") retval.setDescription(description);
 	    		if(image != "!*!") retval.setImage(image);
+	    		if(buyprice != "!*!") retval.setBuyingPrice(Double.parseDouble(buyprice));
+	    		if(supplier != "!*!") {
+	    			// If it can be parsed as an int;, then use it as supplier ID
+	    			// else, search for the supplier ID and use that
+	    			int supplierID;
+	    			try {supplierID = Integer.parseInt(supplier);}
+	    			catch(Exception e) {
+	    				try {
+	    				ArrayList<Supplier> results = SupplierDBManager.searchSupplier("name", supplier);
+	    				supplierID = results.get(0).getSupplierid();
+	    				}catch(Exception err) {supplierID = 1; err.printStackTrace();}
+	    			}
+	    			retval.setSupplier(supplierID);
+	    		}
+	    		if(publisher != "!*!") retval.setPublisher(publisher);
+	    		if(publicationdate != "!*!") retval.setPublicationYear(Integer.parseInt(publicationdate));
 	    }
 	    catch(Exception e){
     			e.printStackTrace();
@@ -594,6 +635,7 @@ public class GetHandlers {
 		//=======================-------------------===============
 		//			SEND IT TO THE DATA ACCESS LAYER
 		//=========================================================
+	    BookDBManager.addBook(retval);
 		return retval;
 		
 	}

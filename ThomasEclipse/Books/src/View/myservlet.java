@@ -204,15 +204,6 @@ public class myservlet extends HttpServlet {
 			
 			else if(task.equals("CreateBook")) {
 				Book createdBook = GetHandlers.CreateBook(request);
-				if(createdBook != null) {
-					l.addBook(createdBook);
-					System.out.println("SUCCESS CREATING BOOK!");
-				}
-				else {
-					//KEEP HERE 
-					System.out.println("FAILURE CREATING BOOK!");
-					template = "editbook.ftlh";
-				}
 			} //Create Book
 			
 			

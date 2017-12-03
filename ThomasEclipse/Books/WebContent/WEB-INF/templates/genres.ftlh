@@ -170,6 +170,7 @@
         	 			document.getElementById(title).setAttribute('value', "GoToItem_" + title);
         	 		}
         	 		catch(err) {
+        	 			alert("Failing to get " + title)
         	 			alert(err.message);
         	 		}
         	 		//WriteFile(filePath, title);

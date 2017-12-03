@@ -177,6 +177,30 @@
 		<input type="text" name="image" value=${"image"}></th></tr>
 		         <tr>
                 <th>
+        Supplier 
+                </th><th>
+                <input type="text" name="supplier" value=${"supplier"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+        Publisher  
+                </th><th>
+                <input type="text" name="publisher" value=${"publisher"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+       Publication Year  
+                </th><th>
+                <input type="text" name="pubyear" value=${"pubyear"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+       Buying Price  
+                </th><th>
+                <input type="text" name="buyprice" value=${"buyprice"}><br/>
+                </th></tr>
+                <tr>
+                <th>
 		Threshold
                 </th><th>
 		<input type="text" name="threshold" value=${"thresh"}>
