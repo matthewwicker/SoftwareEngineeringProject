@@ -3,6 +3,7 @@ package View;
 import java.util.ArrayList;
 
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Random;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ import DatabaseAccess.CartDBManager;
 import DatabaseAccess.CartItemDBManager;
 import DatabaseAccess.PaymentDBManager;
 import DatabaseAccess.PromoDBManager;
+import DatabaseAccess.TransactionDBManager;
 import DatabaseAccess.UserDBManager;
 import Entities.Book;
 import Entities.Payment;
@@ -465,37 +467,30 @@ public class GetHandlers {
 	    
 		retval.setAmount(price);
 		retval.setCartid(cartID);
-		retval.setPromoCode(code);
+		if (code == null) {
+			retval.setPromoCode("");
+		}
+		else {
+		    retval.setPromoCode(code);
+		}
 		System.out.println("HERE IS THE CART ID: " + retval.getCartid());
 		retval.setCcid(Integer.parseInt(ccid));;
 		return retval;
 		
 	}
-//	protected static Transaction getTransactions(HttpServletRequest request, User u) {
+	protected static ArrayList<Transaction> getTransactions(HttpServletRequest request, int uid) {
 //		//What object do you want to get out of this interaction?
-//		ArrayList<Transaction = new Transaction();
-//		
-//		// Get the cartID
-//		String cartID = CartDBManager.getUserCartID("uid", u.getUid()).replace(",", "");
-//		// Get the userID
-//		String userID = Integer.toString(u.getUid());
-//		// Get the ccid
-//		String ccid = PaymentDBManager.getUserCardID("uid", u.getUid()).replace(",", "");
-//		// Get the amount
-//		Enumeration<String> params = request.getParameterNames(); 
-//	    while(params.hasMoreElements()){
-//	    		String paramName = params.nextElement();
-//	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
-//	    }
-//		// Get the date today
-//	    
-//		retval.setAmount(Double.parseDouble("11111"));
-//		retval.setCartid(Integer.parseInt(cartID));
-//		System.out.println("HERE IS THE CART ID: " + retval.getCartid());
-//		retval.setCcid(Integer.parseInt(ccid));;
-//		return retval;
-//		
-//	}
+		ArrayList<Transaction> retval= new ArrayList<Transaction>();
+		ArrayList<Cart> carts = CartDBManager.searchCart("uid", uid);
+		List<Integer> cartids = new ArrayList<Integer>();
+        for ( int i = 0; i < carts.size(); i++) {
+        	cartids.add(carts.get(i).getCartId());
+	     }
+        for (int cartid : cartids) {
+        	retval.addAll(TransactionDBManager.searchTransaction("cartid",Integer.toString(cartid)));
+        }
+		return retval;		
+	}
 //	
 	
 	

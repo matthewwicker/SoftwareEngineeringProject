@@ -362,7 +362,16 @@ public class myservlet extends HttpServlet {
 			} //Confirm Purchase
 			else if(task.equals("GoToOrders")) {
 				template = "orderhistory.ftlh";
-				
+				ArrayList<Transaction> trans = GetHandlers.getTransactions(request, thisUser.getUid());
+				ArrayList<CartItem> cartitems= new ArrayList<CartItem>;
+				ArrayList<Integer> numitems= new ArrayList<Integer>;
+                root.put("trans", trans);
+				int cartid = 0;
+				for (Transaction tran : trans){
+			        cartitems.addAll(CartItemDBManager.searchCartItem("cartid", tran.getCartid());
+			        numitems.add(CartItemDBManager.searchCartItem("cartid", tran.getCartid()).size());
+				}
+				root.put("citems_", cartitems);
 			}
 			else if(task.equals("GoToAccount")) {
 				if (thisUser.getFname() == null) {
@@ -501,6 +510,15 @@ public class myservlet extends HttpServlet {
 				TransactionDBManager.addTransaction(t);
 				//}
 				//catch(Exception e) {e.printStackTrace();}
+     			CartDBManager.addCart(thisUser.getUid());
+     		    ArrayList<Cart> carts = CartDBManager.searchCart("uid", thisUser.getUid());
+		        if (carts.size() > 1) {
+		           cart = carts.get(carts.size() - 1);
+		        }
+			    else {
+
+			         cart = carts.get(0);
+	            }	
 				
 			}//Forgot Password
 			else if (task.equals("Search")) {

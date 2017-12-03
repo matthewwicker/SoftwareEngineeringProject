@@ -134,11 +134,20 @@
   </div>
     
   <div id="ohbody">
+   <#list trans as tran>
+  
     <p>
-        Order Number: 0001122<br/>
-        Order Date: 01/01/2001<br/>
-        Order Items: Begin List
+        Order Number: ${tran.transactioncol}<br/>
+        Order Date: ${tran.date}<br/>
+        Order Price: ${tran.amount}<br/>
+        Order PromoCode: ${tran.promoCode}<br/>
+        Order Items:
+        <#assign x = "citem_" + tran?index>
+        <#list x as citem>
+            Item Title: ${citem.title}
+        </#list>
     </p>
+    </#list>
     <button type="button" class="btn" name="navigator" value="account.ftlh">Back to Account</button>&nbsp
   </div>
 
