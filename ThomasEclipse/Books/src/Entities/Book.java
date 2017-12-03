@@ -79,6 +79,43 @@ public class Book {
 		this.image = image;
 	}
 	
+	
+	private int edition;
+	private String publisher;
+	private int publicationYear;
+	private double buyingPrice;
+	private double sellingPrice;
+	
+	public void setEdition(int editon) {
+		this.edition = edition;
+	}
+	public int getEdition() {
+		return edition;
+	}
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	public String getPublisher() {
+		return publisher;
+	}
+	public void setPublicationYear(int year) {
+		this.publicationYear = year;
+	}
+	public int getPublicationYear() {
+		return publicationYear;
+	}
+	public void setBuyingPrice(double bprice) {
+		this.buyingPrice = bprice;
+	}
+	public double getBuyingPrice() {
+		return buyingPrice;
+	}
+	public void setSellingPrice(double sprice) {
+		this.sellingPrice = sprice;
+	}
+	public double getSellingPrice() {
+		return sellingPrice;
+	}
 	//other stuff
 	//supplierID as an int
 }
