@@ -22,6 +22,14 @@ public class CartDBManager {
 		success = driver.create(query);
 		return success;
 	}
+	public static int addCart(int uid) {
+		String query = "INSERT INTO cart (uid) ";
+		query += "VALUES ('" +  Integer.toString(uid) + "')";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
 	/**
 	 * remove a cart from database
 	 * @return -1 if failure and 1 if success

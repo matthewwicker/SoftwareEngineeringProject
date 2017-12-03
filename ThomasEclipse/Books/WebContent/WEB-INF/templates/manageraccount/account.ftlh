@@ -130,34 +130,10 @@
             <div class="page-header">
 			    <h2>Dashboard</h2>
 			</div>
-			
-	   <table>
-                <tr>
-                  <th>First Name</th>
-                  <th><input type="text" name='fname' value=${"fname"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Last Name</th>
-                  <th><input type="text" name="lname" value=${"lname"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Phone No.</th>
-                  <th><input type="text" name="pnumb" value=${"phone"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <th><input type="text" name="email" value=${"email"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Shipping Address</th>
-                <th> <input type="text" name="ship" value=${"addressline1"}><br/>
-                     <input type="text" name="ship" value=${"addressline2"}></p></th>
-                </tr>
-                
-                
-                
-      </table>
-                
+       <input name="fname" type="text" placeholder="First Name" autofocus="autofocus" class="input pass" value=${user.fname}>
+        <input name="lname" type="text" placeholder="Last Name" class="input pass" value=${user.lname}>
+        <input name="email" type="email" placeholder="Email address" class="input pass" value=${user.email}>
+        <input name="phone" type="text" placeholder="Phone Number" value="3193193199" class="input pass" value=${user.phoneNumber}>
                  <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
                 <button id="cart" type="submit" name="Task" value="GetAllReports">Download All Sale Reports</button>
                 <button id="cart" type="submit" name="Task" value="GetAllReports">Download Specific Book Sale Reports</button>

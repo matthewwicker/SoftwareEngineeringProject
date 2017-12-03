@@ -128,46 +128,24 @@
 <!---BODY-->
 <div id="content-background">
             <div class="page-header">
-			    <h2>Dashboard</h2>
+			    <h2>Administrator Dashboard</h2>
 			</div>
 			
-	   <table>
-                <tr>
-                  <th>First Name</th>
-                  <th><input type="text" name='fname' value=${"fname"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Last Name</th>
-                  <th><input type="text" name="lname" value=${"lname"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Phone No.</th>
-                  <th><input type="text" name="pnumb" value=${"phone"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <th><input type="text" name="email" value=${"email"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Shipping Address</th>
-                <th> <input type="text" name="ship" value=${"addressline1"}><br/>
-                     <input type="text" name="ship" value=${"addressline2"}></p></th>
-                </tr>
-                
-                
-                
-      </table>
+       <input name="fname" type="text" placeholder="First Name" autofocus="autofocus" class="input pass" value=${user.fname}>
+        <input name="lname" type="text" placeholder="Last Name" class="input pass" value=${user.lname}>
+        <input name="email" type="email" placeholder="Email address" class="input pass" value=${user.email}>
+        <input name="phone" type="text" placeholder="Phone Number" value="3193193199" class="input pass" value=${user.phoneNumber}>
+            			    <div id="homebody"> 
                 
                 <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="GoToCreateUser">Create New User</button>
-                <button id="cart" type="submit" name="Task" value="GoToSuspend">(Un)Suspend User</button>
-     			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-                <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button>
-                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
-                <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button>
-                <button id="cart" type="submit" name="Task" value="GotToUpdateStatus">Update User Status</button>
-                <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
                 <button id="cart" type="submit" name="Task" value="GoToUpdatePassword">Update Password</button>
+                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
+                <button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button>
+                <br><br><br>
+                <button type="submit" name="Task" value="GoToManageUsers" class="btn otherbtn">Manage Users</button>
+                <button type="submit" name="Task" value="GoToCreateBook" class="btn otherbtn">Create Book</button>
+                <button type="submit" name="Task" value="GoToPromotion" class="btn otherbtn">Create/Edit Promotion</button>
+                <button type="submit" name="Task" value="UpdatePromoPref" class="btn otherbtn">Update Promo Preference </button>
                 
                 </br>
                 </br>
@@ -176,7 +154,7 @@
                 </tr>
                 </br>
                 <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
-                
+                </div>
                 
 </div>
     

@@ -172,18 +172,7 @@ public class myservlet extends HttpServlet {
     	  			e.printStackTrace();
     	  			template = "signinfail.ftlh";
     	  		}
-		}//Sign In
-			else if (task.equals("GoToCart")){
-				//THIS NEEDS TO BE INVERTED AFTER WE GET ALL THE DB ACCESS WORKING.
-    	  			if(thisUser == null && authcode == 0) {
-    	  				template = "cart.ftlh";
-    	  				root.put("message", "");
-    	  			}
-    	  			else {
-    	  				template = "signin.ftlh";
-    	  			}
-			}//Go to cart
-			
+		}//Sign In		
 			else if (task.equals("GoToCreateBook")){
 				template = "editbook.ftlh";
 			}//Go to create book
@@ -250,15 +239,20 @@ public class myservlet extends HttpServlet {
 		    } //Add item to cart
 			
 			else if(task.equals("GoToCart")) {
-				ArrayList<Cart> carts = CartDBManager.searchCart("uid", 4);//thisUser.getUid());
-		        Cart cart = carts.get(0);
-		        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
-		        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
-		        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
-	            root.put("cartitems", cartitems);
-	            root.put("cart", cart);
-	            root.put("total", total);
-				template = "cart.ftlh";
+				if (thisUser.getFname()==null) {
+					template = "signin.ftlh";
+				}
+				else {
+				    ArrayList<Cart> carts = CartDBManager.searchCart("uid", thisUser.getUid());
+		            Cart cart = carts.get(0);
+		            ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+		            cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+		            double total = GetHandlers.finalCartTotal(request, cart, cartitems);
+	                root.put("cartitems", cartitems);
+	                root.put("cart", cart);
+	                root.put("total", total);
+				    template = "cart.ftlh";
+				}
 			}
 			
 			else if(task.contains("UpdateCart")) {
@@ -363,10 +357,6 @@ public class myservlet extends HttpServlet {
 				
 			} //Confirm Purchase
 			else if(task.equals("GoToAccount")) {
-				template = accountdir + "/account.ftlh";
-			} //Confirm Purchase
-			
-			else if(task.equals("GoToAccount")) {
 				if (thisUser.getFname() == null) {
 					template = "signin.ftlh";
 				}
@@ -421,7 +411,9 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("GoToSuspend")) {
 				template =  "suspend.ftlh";
 			}
-			
+			else if(task.equals("GoToManageUsers")) {
+				template =  accountdir + "/manageusers.ftlh";
+			}
 			else if(task.equals("GotToUpdateStatus")) {
 				template =  "updateuserstatus.ftlh";
 			}

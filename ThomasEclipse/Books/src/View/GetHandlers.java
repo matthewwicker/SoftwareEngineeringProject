@@ -141,6 +141,7 @@ public class GetHandlers {
 		int val = rand.nextInt(1000000);
 		payment.setCc_number(val);
 		logic.addUser(retval, address, payment);
+		CartDBManager.addCart(retval.getUid());
 		return retval;
 		
 	}
