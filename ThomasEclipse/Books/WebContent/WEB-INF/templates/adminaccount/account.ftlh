@@ -140,12 +140,14 @@
                 <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
                 <button id="cart" type="submit" name="Task" value="GoToUpdatePassword">Update Password</button>
                 <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
+                <button id="cart" type="submit" name="Task" value="GoToOrders" class="btn otherbtn">Order History</button>
                 <button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button>
                 <br><br><br>
                 <button type="submit" name="Task" value="GoToManageUsers" class="btn otherbtn">Manage Users</button>
                 <button type="submit" name="Task" value="GoToCreateBook" class="btn otherbtn">Create Book</button>
                 <button type="submit" name="Task" value="GoToPromotion" class="btn otherbtn">Create/Edit Promotion</button>
                 <button type="submit" name="Task" value="UpdatePromoPref" class="btn otherbtn">Update Promo Preference </button>
+                <button id="cart"type="submit" name="Task" value="GoToCreateSupplier">Create Supplier</button>
                 
                 </br>
                 </br>

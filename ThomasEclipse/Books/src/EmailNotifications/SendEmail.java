@@ -156,7 +156,11 @@ public class SendEmail {
 		return message;
 	}
 	private String generatePurchaseConfirmationMessage(User u) {return "EMAIL CONTENT";}
-	private String generateShipmentConfirmationMessage(User u) {return "EMAIL CONTENT";}
+	private String generateShipmentConfirmationMessage(User u) {String message = "Hi " + u.getFname() + ", \n \n "
+			+ "Exciting news! We have changed the shipment status of your recent order. Log in to our site to see whats going on! \n"
+			+ "\n \n Have a great day! \n"
+			+ "Bookz team";
+	return message;}
 	private String generateAccountStatusSuspendedMessage(User u) {
 		String message = "Hi " + u.getFname() + ", \n \n "
 				+ "We regret to inform you that your account has been suspended. Please contact our administrators for further details. \n"

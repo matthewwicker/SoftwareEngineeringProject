@@ -125,72 +125,37 @@
   </div>
 </nav>
 
-<!---BODY-->
-<div class="container">
-  
-  <div class="page-header">
-    <h2>Order Confirmation</h2>
-  </div>
 
-<div id="content">
-  <p> Your order ${cart.cartId} is being processed. </p>
-  <p> Shipping Address:</p><p>1004 Cedar Street<br/>Athens, GA 30602</p>
-  <h4> Order Contents </h4>
-</div>
-
-<div class="row">
-        <div class="col-sm-12 col-md-10">
-            <table class="table table-striped table-hover table-bordered">
-                <tbody>
-                      <tr>
-                        <th>Item</th>
-                        <th>QTY</th>
-                        <th>Unit Price</th>
-                        <th>Total Price</th>
-                      </tr>
-       <#list cartitems as citem>
-                      <tr>
-                         <td>${citem.title}</td>
-                         <td id="qty">${citem.numBooks}</td>
-                         <td id="price">$${citem.price}.00</td>
-                         <td id="price_sub">${citem.total}.00</td>
-                      </tr>
-                       </#list>
-                      <tr>
-                         <th colspan="3"><span class="pull-right">Sub Total</span></th>
-                         <th id="subtotal">$${cart.price}</th>
-                      </tr>
-                      <tr>
-                         <th colspan="3"><span class="pull-right">Shipping</span></th>
-                         <th id="shipping">$4.99</th>
-                      </tr>
-                      <tr>
-                         <th colspan="3"><span class="pull-right">Promotion Code</span></th>
-                         <th>
-                              <input type="text"  placeholder="No Promo Code Used" name='promocode' class="field left" readonly="readonly" value=${promocode}>
-                         </th>
-                      </tr>
-                      <tr>
-                          <th colspan="3"><span class="pull-right">Total</span></th>
-                          <th value="total" name="total">$${total}</th>
-                      </tr>
-                      <tr>
-                          <td>
-                          </td>
-                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="GoToOrders">View Order History</button></div></td>
-
-                      </tr>
-                    </tbody>
-              </table>
-          </div>
-      </div>
-</div><br><br>
-
+<div class="container">           
+  <div class="col-md-6">
+   <div class="text-center">
+          <h3>create account</h3>
+        </div>
+        <input name="suppliername" type="text" placeholder="Buisness Name" class="input pass" value=""/>
+        <input name="email" type="email" placeholder="Email address" class="input pass" value=""/>
+        <input name="password" type="password" placeholder="Choose a password (must be more than 6 characters)" class="input pass" value=""/>
+        <input name="cpassword" type="password" placeholder="Confirm password" class="input pass" value=""/>
+        <input name="phone" type="text" placeholder="Phone Number" value="3193193199" class="input pass" value=""/>
+        <input name="address1" type="text" placeholder="Street Address" value="1004 Cedar St" class="input pass" value=""/>
+        <input name="address2" type="text" placeholder="City, State, Zip" value="Athens, GA 30602" class="input pass" value=""/>
+        <input name="ccnum" type="text" placeholder="Credit Card Number" class="input pass" value=""/>
+        <input name="expdate" type="text" placeholder="Credit Card Expiration Date" class="input pass" value=""/>
+        <input name="fname" type="text" placeholder="Contact First Name" autofocus="autofocus" class="input pass" value=""/>
+        <input name="lname" type="text" placeholder="Contact Last Name" class="input pass" value=""/>
+        <input name="contactcell" type="text" placeholder="contact cell num" class="input pass" value=""/>
+        <input name="contactbusiness" type="text" placeholder="contact business num" class="input pass" value=""/>
+        
+        <button type="submit" name="Task" onclick="return requiredParam(fname.value,lname.value,email.value,phone.value)" class="inputButton" value="CreateSupplier">Create New Supplier</button>
+        <div class="text-center">
+            already have an account?<button class="btn btn-link" type="submit" name="navigator" value="signin.ftlh">login</button> having trouble?<button class="btn btn-link" type="submit" name="navigator" value="support.ftlh">support</button>
+        </div>
+        
+       </div></div>
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">
        <div class="row">  
-           
+
             
             <div class="col-md-3 col-sm-6 col-xs-12">
                     <ul class="menu">
@@ -218,7 +183,6 @@
                           </li>
                      </ul>
             </div>
-           
             <div class="col-md-3 col-sm-6 col-xs-12">
                   <ul class="menu">
                         <span>Contact</span>       
@@ -238,6 +202,6 @@
         </div>
     </footer> 
     <!-- Footer 2 End -->
-</form>
+     </form>
 </body>
 </html>

@@ -45,7 +45,7 @@ public class GetHandlers {
 		String lname = "!*!";
 		String type = "!*!";
 		String email = "!*!";
-		String phonenumber = "!*!";java.time.LocalDateTime
+		String phonenumber = "!*!";
 		String accounttype = "!*!";
 		String username = "!*!";
 		String password = "!*!";
@@ -147,7 +147,9 @@ public class GetHandlers {
 		int val = rand.nextInt(1000000);
 		payment.setCc_number(val);
 		logic.addUser(retval, address, payment);
-		CartDBManager.addCart(retval.getUid());
+		String userID  = UserDBManager.getUserUserID("email", retval.getEmail());
+		// This is bogus.
+		CartDBManager.addCart(Integer.parseInt(userID));
 		return retval;
 		
 	}
@@ -407,7 +409,7 @@ public class GetHandlers {
 	    				break;
 	    			case "lname":
 	    				lname = request.getParameter(paramName);
-	    				break;c
+	    				break;
 	    			case "email":
 	    				email = request.getParameter(paramName);
 	    				break;

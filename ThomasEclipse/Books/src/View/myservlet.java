@@ -1,6 +1,7 @@
 package View;
 import DatabaseAccess.Driver;
 import DatabaseAccess.PromoDBManager;
+import DatabaseAccess.SupplierDBManager;
 import DatabaseAccess.TransactionDBManager;
 import DatabaseAccess.BookDBManager;
 import DatabaseAccess.CartDBManager;
@@ -272,14 +273,6 @@ public class myservlet extends HttpServlet {
 			}
 			
 			else if(task.contains("UpdateCart")) {
-				System.out.println("ATTEMPTING TO UPDATE CART AND HERE IS THE TASK STRING: " + task);
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
 				template = "cart.ftlh";
 	            Cart cart = (Cart) root.get("cart");
 				int isbn = 0; 
@@ -502,8 +495,19 @@ public class myservlet extends HttpServlet {
 			
 			else if(task.equals("CreateSupplier")) {
 				template =  "createsupplier.ftlh";
-				
-				//Create user, then fill in the supplier database
+				User potentialUser = GetHandlers.makeUser(request);
+				l.changeStatus("s", potentialUser.getEmail());
+				SendEmail sender = new SendEmail();
+				sender.actuallySendEmail(potentialUser, SendEmail.REGISTRATION_CONFIRMATION);
+				//Fill in the supplier database
+				Supplier s = new Supplier();
+				s.setContactCell(request.getParameter("contactcell"));
+				s.setContactBuisness(request.getParameter("contactbusiness"));
+				String userID  = UserDBManager.getUserUserID("email", potentialUser.getEmail());
+				s.setName(request.getParameter("suppliername"));
+				s.setContactName(potentialUser.getFname() + " " + potentialUser.getLname());
+				s.setUid(Integer.parseInt(userID));
+				SupplierDBManager.addSupplier(s);
 			}//Go To CreateSupplier
 			
 			else if(task.equals("UpdateOrderStatus")) {
