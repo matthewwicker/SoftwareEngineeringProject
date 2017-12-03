@@ -210,9 +210,10 @@ public class myservlet extends HttpServlet {
 			 /* Here is the messed up part */
 			else if(task.contains("GoToItem")) {
 				System.out.println("Here is the value of the task: " + task);
-				String title = task.split("_")[1];
-				Book item = GetHandlers.getItem(request, title);
-		        System.out.println("Checking");
+				String isbn= task.split("_")[1];
+				System.out.println(isbn);
+				Book item = GetHandlers.getItem(request, isbn);
+		        System.out.println(item.getISBN());
 			    System.out.println(request.getParameter("test"));
 	            root.put("item", item);        
 				template = "bookInfo.ftlh";

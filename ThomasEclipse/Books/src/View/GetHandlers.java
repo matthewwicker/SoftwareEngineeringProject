@@ -215,10 +215,10 @@ public class GetHandlers {
 		return retval;
 	}
 
-	protected static Book getItem(HttpServletRequest request, String title) {
+	protected static Book getItem(HttpServletRequest request, String isbn) {
 		
 		Book retval = new Book();
-		ArrayList<Book> books = BookDBManager.searchBooks("title", title);
+		ArrayList<Book> books = BookDBManager.searchBooks("isbn", isbn.replace(",",""));
         retval = books.get(0); 
     	return retval;
 	}

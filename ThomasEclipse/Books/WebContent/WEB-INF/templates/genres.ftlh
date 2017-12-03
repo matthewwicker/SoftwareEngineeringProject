@@ -149,13 +149,14 @@
 
  <#list books as book>
       <div class="col-sm-3">
-      <button  type="submit" id=${book.title} name="Task" onclick="javafunction('${book.title}');">
+      <button  type="submit" id=${book.ISBN} name="Task" onclick="javafunction('${book.ISBN}');">
       <div class="panel panel-default">
         <div class="panel-body"><img src="${book.image}" class="img-responsive"></div>
         <div class="panel-footer">
             ${book.title} <br/>
             ${book.author} <br/>
             $${book.price}<br/>
+            Rating: ${book.rating}/5.0<br/>
         </div>
       </div>
       </button>
@@ -164,18 +165,15 @@
 <script type="text/javascript">
 
 		
-         function javafunction(title){
-        	 		alert("About to try to write to file " + title);
+         function javafunction(isbn){
         	 		try {
-        	 			document.getElementById(title).setAttribute('value', "GoToItem_" + title);
+        	 			document.getElementById(isbn).setAttribute('value', "GoToItem_" + isbn);
         	 		}
         	 		catch(err) {
-        	 			alert("Failing to get " + title)
+        	 			alert("Failing to get " + isbn)
         	 			alert(err.message);
         	 		}
-        	 		//WriteFile(filePath, title);
-                alert("Well, that went well!");
-         }
+        	 		}
  </script>
 
 </div><br><br>
