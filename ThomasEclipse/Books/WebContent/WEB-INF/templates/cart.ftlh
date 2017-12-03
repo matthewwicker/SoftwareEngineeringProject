@@ -145,15 +145,15 @@
                       <#list cartitems as citem>
                       <tr>
                          <td>${citem.title}</td>
-                         <td id="qty"><input type="String" id="editqty" style="width: 45px; padding: 1px" value=${citem.numBooks} min="0"><button type="submit" id="Taskk" name="Task" value="UpdateCart"  onclick="javafunction('${citem.ISBN}');">Update</button>
+                         <td id="qty"><input type="String" id=${citem.title} style="width: 45px; padding: 1px" value=${citem.numBooks} min="0"><button type="submit" id=${citem.ISBN} name="Task" value="UpdateCart"  onclick="javafunction('${citem.ISBN}', '${citem.title}' );">Update</button>
                          </td>
                                     <script type="text/javascript">
-              function javafunction(index){
+              function javafunction(index, titre){
                      var task = 'UpdateCart_'+ index;
-                     var qty  = document.getElementById("editqty").value;
+                     var qty  = document.getElementById(titre).value;
                      task += '_' + qty;
-                     document.getElementById("Taskk").setAttribute('value', task);
-                     var newtask = document.getElementById("Taskk").value;
+                     document.getElementById(index).setAttribute('value', task);
+                     var newtask = document.getElementById(index).value;
                      alert(newtask);
                }
                 </script>
@@ -191,8 +191,7 @@
 
 </div><br><br>
 
-<!----- Success comment ----> 
-<h3 style="color:black" placeholder="Something">${message}</h3>
+<!----- Success comment <h3 style="color:black" placeholder="Something">${message}</h3> ----> 
 
 <!---FOOTER-->
     <footer>

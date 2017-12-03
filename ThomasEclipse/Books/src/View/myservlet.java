@@ -211,7 +211,10 @@ public class myservlet extends HttpServlet {
 				}
 			} //Create Book
 			
+			
+			 /* Here is the messed up part */
 			else if(task.contains("GoToItem")) {
+				System.out.println("Here is the value of the task: " + task);
 				String title = task.split("_")[1];
 				Book item = GetHandlers.getItem(request, title);
 		        System.out.println("Checking");
@@ -256,7 +259,14 @@ public class myservlet extends HttpServlet {
 			}
 			
 			else if(task.contains("UpdateCart")) {
-				
+				System.out.println("ATTEMPTING TO UPDATE CART AND HERE IS THE TASK STRING: " + task);
+				System.out.println("*************************************");
+				System.out.println("*************************************");
+				System.out.println("*************************************");
+				System.out.println("*************************************");
+				System.out.println("*************************************");
+				System.out.println("*************************************");
+				System.out.println("*************************************");
 				template = "cart.ftlh";
 	            Cart cart = (Cart) root.get("cart");
 				System.out.println("check7");
@@ -484,7 +494,7 @@ public class myservlet extends HttpServlet {
 				template = "checkoutConfirm.ftlh";
 				try {
 				Transaction t = GetHandlers.CreateTransaction(request, thisUser);
-				t.setAmount(cart.getPrice());
+				t.setAmount(1111);
 				try { t.setPromoCode(userPromotion.getCode());}
 				catch (Exception e) { t.setPromoCode("null");}
 				TransactionDBManager.addTransaction(t);
@@ -502,9 +512,21 @@ public class myservlet extends HttpServlet {
 	        }
 	        else if (task.contains("Search")) {
 	            ArrayList<Book> books = BookDBManager.searchBooks(task.split("_",3)[1], task.split("_",3)[2]);
-	            root.put("books", books);        
+	            for(Book x : books) {
+	            		System.out.println(x.getTitle());
+	            }
+	            root.put("books", books); 
+	            String array[] = {"fuck", "this", "shit"};
+	            root.put("sequence", books);  
 	            root.put("searchheader", "Search by " + task.split("_",3)[1] + ": " + task.split("_",3)[2] );
 	            template = "genres.ftlh";
+	        }
+	        else {
+	        		Enumeration<String> params = request.getParameterNames(); 
+			    while(params.hasMoreElements()){
+			    		String paramName = params.nextElement();
+			    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+			     }
 	        }
 			
   		}

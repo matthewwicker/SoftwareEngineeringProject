@@ -135,7 +135,6 @@
         </div>
         <input name="fname" type="text" placeholder="First Name" autofocus="autofocus" class="input pass" value=""/>
         <input name="lname" type="text" placeholder="Last Name" class="input pass" value=""/>
-        <input name="type" type="text" placeholder="Account Type" class="input pass" value=""/>
         <input name="email" type="email" placeholder="Email address" class="input pass" value=""/>
         <input name="password" type="password" placeholder="Choose a password (must be more than 6 characters)" class="input pass" value=""/>
         <input name="cpassword" type="password" placeholder="Confirm password" class="input pass" value=""/>
