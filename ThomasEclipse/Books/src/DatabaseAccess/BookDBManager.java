@@ -12,11 +12,12 @@ public class BookDBManager {
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int addBook(Book book) {
-		String query = "INSERT INTO book (isbn, title, author, price, description, image, genre, rating, quantity, supplier, threshold) ";
+		String query = "INSERT INTO book (isbn, title, author, price, description, image, genre, rating, quantity, supplier, threshold, edition, publisher, publicationyear, buyingprice, sellingprice) ";
 		query += "VALUES ('" + book.getISBN() + "', '" + book.getTitle() + "', '";
 		query += book.getAuthor() + "', '" + book.getPrice() + "', '" + book.getDescription() + "', ";
 		query += "'"+book.getImage()+"', " + "'"+book.getGenre()+"', '"+ book.getRating() + "', '" + book.getQuantity() + "', ";
-		query += "'0', '" + book.getThreshold() + "')";
+		query += "'0', '" + book.getThreshold() + "', '"+ book.getEdition()+"', '"+ book.getPublisher()+"', '";
+		query += book.getPublicationYear()+"', '"+ book.getBuyingPrice()+ "', '"+ book.getSellingPrice()+"')";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
@@ -49,14 +50,19 @@ public class BookDBManager {
 					book.setISBN(rs.getInt("ISBN"));
 					book.setTitle(rs.getString("title"));
 					book.setAuthor(rs.getString("author"));
+					book.setPrice(rs.getDouble("price"));
 					book.setDescription(rs.getString("description"));
 					book.setImage(rs.getString("image"));
 					book.setGenre(rs.getString("genre"));
-					book.setPrice(rs.getDouble("price"));
 					book.setRating(rs.getInt("rating"));
 					book.setQuantity(rs.getInt("quantity"));
-					book.setThreshold(rs.getInt("threshold"));
 					book.setSupplier(rs.getInt("supplier"));
+					book.setThreshold(rs.getInt("threshold"));
+					book.setEdition(rs.getInt("edition"));
+					book.setPublisher(rs.getString("publisher"));
+					book.setPublicationYear(rs.getInt("publicationYear"));
+					book.setBuyingPrice(rs.getDouble("buyingprice"));
+					book.setSellingPrice(rs.getDouble("sellingPrice"));
 					search_results.add(book);
 				}
 				
@@ -169,6 +175,46 @@ public class BookDBManager {
 	
 	public static int setSupplier(String value, Book book) {
 		String query = "UPDATE book SET supplier = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setEdition(String value, Book book) {
+		String query = "UPDATE book SET edition = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setPublisher(String value, Book book) {
+		String query = "UPDATE book SET publisher = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setPublicationYear(String value, Book book) {
+		String query = "UPDATE book SET publicationyear = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setBuyingPrice(String value, Book book) {
+		String query = "UPDATE book SET buyingprice = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setSellingPrice(String value, Book book) {
+		String query = "UPDATE book SET sellingprice = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
