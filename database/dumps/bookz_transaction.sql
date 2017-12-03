@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `transaction`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaction` (
-  `transactionid` int(11) NOT NULL,
+  `transactionid` int(11) NOT NULL AUTO_INCREMENT,
   `cartid` int(11) NOT NULL,
   `ccid` int(11) NOT NULL,
   `amount` double NOT NULL,
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-01 17:01:56
+-- Dump completed on 2017-12-02 20:09:57
