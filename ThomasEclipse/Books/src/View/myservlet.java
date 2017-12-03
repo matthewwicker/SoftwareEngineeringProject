@@ -71,6 +71,7 @@ public class myservlet extends HttpServlet {
         root.put("promocode", "");
         root.put("message", "");
         userPromotion.setPercentOff(0.0);
+        userPromotion.setCode("No Promotion Used");
 }
 
 	/**
@@ -458,14 +459,15 @@ public class myservlet extends HttpServlet {
 			
 			else if(task.equals("UpdateUserStatus")) {
 				template =  "updateuserstatus.ftlh";
-				String newpref = UserDBManager.getUserStatus("email", request.getParameter("email"));
+				String value = request.getParameter("email");
+				System.out.println("User email from form: " + value);
+				String newpref = UserDBManager.getUserStatus("email", value);
 				String status_to_update = request.getParameter("status");
 				if(!"apesm".contains(status_to_update) ) {
 					template =  "updateuserstatusfail.ftlh";
 				}
 				else {
-					thisUser.setSuspended(request.getParameter("email"));
-					l.changeStatus(request.getParameter("status"), thisUser);
+					l.changeStatus(request.getParameter("status"), value);
 					SendEmail sender = new SendEmail();
 					sender.actuallySendEmail(thisUser, SendEmail.ACCOUNT_STATUS_CHANGED);
 					template =  "updateuserstatussucc.ftlh";
@@ -493,6 +495,32 @@ public class myservlet extends HttpServlet {
 					template =  "suspendsucc.ftlh";
 				}
 			} //Confirm Purchase
+			
+			else if(task.equals("GoToCreateSupplier")) {
+				template =  "createsupplier.ftlh";
+			}//Go To CreateSupplier
+			
+			else if(task.equals("CreateSupplier")) {
+				template =  "createsupplier.ftlh";
+				
+				//Create user, then fill in the supplier database
+			}//Go To CreateSupplier
+			
+			else if(task.equals("UpdateOrderStatus")) {
+				template =  "updateOrderStatus.ftlh";
+				ArrayList<User> usr = UserDBManager.searchUsers("email", request.getParameter("email"));
+				int ordernum = Integer.parseInt(request.getParameter("ordernum"));
+				String status = request.getParameter("status");
+				try {
+					TransactionDBManager.UpdateTransactitonStatus(status, ordernum);
+					SendEmail sender = new SendEmail();
+					sender.actuallySendEmail(usr.get(0), SendEmail.SHIPMENT_CONFIRMATION);
+				}
+				catch(Exception e) {
+					System.out.println("uh oh, idiot.");
+				}
+				
+			}//Update Order Status
 			
 			
 			else if(task.equals("GoToUpdatePassword")) {
