@@ -273,6 +273,23 @@ public class GetHandlers {
         }   
     	return cart;
 	}
+	protected static Cart putItemsInCart(HttpServletRequest request, ArrayList<CartItem> cartitems, int uid) {
+		
+		Cart cart = new Cart(); 
+		ArrayList<Cart> carts = CartDBManager.searchCart("uid", uid);
+        if (carts.size() > 1) {
+            cart = carts.get(carts.size() - 1);
+        }
+        else {
+
+            cart = carts.get(0);
+        }
+        int cartid = cart.getCartId();
+        for (CartItem cartitem : cartitems) {
+        	CartItemDBManager.addCartItem(cartitem, cartid);
+        }
+    	return cart;
+	}
 	protected static Cart updateCartTotal(HttpServletRequest request, Cart cart, ArrayList<CartItem> cartitems) {
 		
 		Double total = 0.0;
@@ -474,6 +491,7 @@ public class GetHandlers {
 		    retval.setPromoCode(code);
 		}
 		System.out.println("HERE IS THE CART ID: " + retval.getCartid());
+		CartDBManager.addCart(u.getUid());
 		retval.setCcid(Integer.parseInt(ccid));;
 		return retval;
 		

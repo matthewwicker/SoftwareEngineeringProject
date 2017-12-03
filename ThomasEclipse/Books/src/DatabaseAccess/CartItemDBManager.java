@@ -45,7 +45,14 @@ public class CartItemDBManager {
 		success = driver.create(query);
 		return success;
 	}
-	
+	public static int addCartItem(CartItem cartitem, int cartid) {
+		String query = "INSERT INTO caritem (isbn, numbooks, cartid) ";
+		query += "VALUES ('" + cartitem.getISBN() + "', '" + cartitem.getNumBooks() + "', ' "+ cartid +  "')";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
 	/**
 	 * Search the items in cartitems by searchPara
 	 * m25.00

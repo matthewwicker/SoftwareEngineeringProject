@@ -373,16 +373,27 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("GoToOrders")) {
 				template = "orderhistory.ftlh";
 				ArrayList<Transaction> trans = GetHandlers.getTransactions(request, thisUser.getUid());
-				ArrayList<CartItem> cartitems= new ArrayList<CartItem>;
-				ArrayList<Integer> numitems= new ArrayList<Integer>;
+				ArrayList<ArrayList<CartItem>> cartitems= new ArrayList<ArrayList<CartItem>>();
                 root.put("trans", trans);
 				int cartid = 0;
 				for (Transaction tran : trans){
-			        cartitems.addAll(CartItemDBManager.searchCartItem("cartid", tran.getCartid());
-			        numitems.add(CartItemDBManager.searchCartItem("cartid", tran.getCartid()).size());
+			        cartitems.add(CartItemDBManager.searchCartItem("cartid", tran.getCartid()));
 				}
 				root.put("citems_", cartitems);
 			}
+			else if(task.contains("MakeCart")) {
+				int cartid = Integer.parseInt(task.split("_")[1]);
+				ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cartid);
+                Cart cart = GetHandlers.putItemsInCart(request, cartitems, thisUser.getUid());
+                root.put("cart", cart);
+		        cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+	            cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+	            double total = GetHandlers.finalCartTotal(request, cart, cartitems,  userPromotion.getPercentOff());
+                root.put("cartitems", cartitems);
+                root.put("cart", cart);
+                root.put("total", total);
+			    template = "cart.ftlh";			
+			    }
 			else if(task.equals("GoToAccount")) {
 				if (thisUser.getFname() == null) {
 					template = "signin.ftlh";
