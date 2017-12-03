@@ -181,7 +181,7 @@
                     <th> <input type="text" name="cdate" value="01/01/2001"><br/><br/></th>
                   </tr>
                   <tr>
-                    <th>Shipping Address</th>
+                    <th>Billing Address</th>
                   <th> <input type="text" name="ship" value="1004 Cedar Street"><br/>
                        <input type="text" name="ship" value="Athens, GA 30602"></p></th>
                   </tr>
@@ -191,9 +191,7 @@
 
 <div class="container">
   
-  <div class="page-header">
-    <h2>Cart</h2>
-  </div>
+
 <div class="row">
         <div class="col-sm-12 col-md-10">
             <table class="table table-striped table-hover table-bordered">

@@ -133,7 +133,7 @@
   </div>
 
 <div id="content">
-  <p> Your order orderNumber is being processed. </p>
+  <p> Your order ${cart.cartId} is being processed. </p>
   <p> Shipping Address:</p><p>1004 Cedar Street<br/>Athens, GA 30602</p>
   <h4> Order Contents </h4>
 </div>
@@ -190,10 +190,7 @@
     <footer>
      <div class="container-fluid">
        <div class="row">  
-<<<<<<< HEAD
-         
-                    
-=======
+           
             
             <div class="col-md-3 col-sm-6 col-xs-12">
                     <ul class="menu">
@@ -222,7 +219,6 @@
                      </ul>
             </div>
            
->>>>>>> origin/SarahWedBranch
             <div class="col-md-3 col-sm-6 col-xs-12">
                   <ul class="menu">
                         <span>Contact</span>       

@@ -1,9 +1,12 @@
 package View;
 
 import java.util.ArrayList;
+
 import java.util.Enumeration;
 import java.util.Random;
 
+import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +16,7 @@ import DatabaseAccess.BookDBManager;
 import DatabaseAccess.CartDBManager;
 import DatabaseAccess.CartItemDBManager;
 import DatabaseAccess.PaymentDBManager;
+import DatabaseAccess.PromoDBManager;
 import DatabaseAccess.UserDBManager;
 import Entities.Book;
 import Entities.Payment;
@@ -39,7 +43,7 @@ public class GetHandlers {
 		String lname = "!*!";
 		String type = "!*!";
 		String email = "!*!";
-		String phonenumber = "!*!";
+		String phonenumber = "!*!";java.time.LocalDateTime
 		String accounttype = "!*!";
 		String username = "!*!";
 		String password = "!*!";
@@ -89,7 +93,7 @@ public class GetHandlers {
 	    //=========================================================
 	    //				PERFORM DATA VALIDATION
 	    //=========================================================
-		// IM A NAUGHTY BOY (<--I'm disturbed <3 SNE) AND DIDNT ADD DATA VALIDATION - LOVE, MATT <3
+		// IM A NAUGHTY BOY (<--I'm disturbed <3java.time.LocalDateTime SNE) AND DIDNT ADD DATA VALIDATION - LOVE, MATT <3
 	    if(fname != "!*!") {
 	    		retval.setFname(fname);
 	    		//System.out.println("set!");
@@ -212,13 +216,42 @@ public class GetHandlers {
         retval = books.get(0); 
     	return retval;
 	}
-
+	protected static Promo getPromo(HttpServletRequest request) {
+		
+		Promo retval = new Promo();
+		String promocode = "!*!";
+		
+		Enumeration<String> params = request.getParameterNames(); 
+	    while(params.hasMoreElements()){
+	    		String paramName = params.nextElement();
+	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+	    		switch(paramName) {
+	    			case "promocode":
+	    				promocode = request.getParameter(paramName);
+	    				break;
+	    			default:
+	    				break;
+	    		}
+	     }
+	    if(PromoDBManager.searchPromo("code",promocode).size() == 0) {
+		    retval.setPercentOff(0.0);
+			}
+		else {
+	    	retval = PromoDBManager.searchPromo("code", promocode).get(0);
+	    }
+	    return retval;
+	}
 	protected static Cart putInCart(HttpServletRequest request, Book book, int uid) {
 		
 		Cart cart = new Cart(); 
 		ArrayList<Cart> carts = CartDBManager.searchCart("uid", uid);
+        if (carts.size() > 1) {
+            cart = carts.get(carts.size() - 1);
+        }
+        else {
 
-        cart = carts.get(0);
+            cart = carts.get(0);
+        }
         ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
         CartItem citem = new CartItem();
         boolean exists = false;
@@ -255,10 +288,11 @@ public class GetHandlers {
         cart.setPrice(total);
 	  	return cart;
 	}
-	protected static double finalCartTotal(HttpServletRequest request, Cart cart, ArrayList<CartItem> cartitems) {
+	protected static double finalCartTotal(HttpServletRequest request, Cart cart, ArrayList<CartItem> cartitems, double PercentOff) {
 		
 		cart = updateCartTotal(request, cart, cartitems);
 		double total = cart.getPrice() + 4.99;
+		total = total - PercentOff * total;
         return total;
 	}
     //protected static Address getFirstAddress(HttpServletRequest request, int uid) {
@@ -313,11 +347,11 @@ public class GetHandlers {
 	    		e.printStackTrace();
 	    		return null;
 	    }
-	    
+
 	    
 	    //if(promocode == "!*!" || isbn == "!*!" || sdate == "!*!" || edate == "!*!" || percentoff == "!*!") {
 	    	//	System.out.println("Null value caught");
-	    //		return null;
+	    //		return null;c
 		//}
 
 		return retval;
@@ -354,7 +388,7 @@ public class GetHandlers {
 	    				break;
 	    			case "lname":
 	    				lname = request.getParameter(paramName);
-	    				break;
+	    				break;c
 	    			case "email":
 	    				email = request.getParameter(paramName);
 	    				break;
@@ -402,12 +436,21 @@ public class GetHandlers {
 	}
 	
 	
-	protected static Transaction CreateTransaction(HttpServletRequest request, User u) {
+	protected static Transaction CreateTransaction(HttpServletRequest request, User u, String code, Cart cart) {
 		//What object do you want to get out of this interaction?
 		Transaction retval = new Transaction();
-		
-		// Get the cartID
-		String cartID = CartDBManager.getUserCartID("uid", u.getUid()).replace(",", "");
+//		Cart cart = new Cart();
+//		// Get the cartID
+//		ArrayList<Cart> carts = CartDBManager.searchCart("uid", u.getUid());
+//        if (carts.size() > 1) {
+//            cart = carts.get(carts.size() - 1);
+//        }
+//        else {
+//
+//            cart = carts.get(0);
+//        }
+		int cartID = cart.getCartId();
+		double price = cart.getPrice();
 		// Get the userID
 		String userID = Integer.toString(u.getUid());
 		// Get the ccid
@@ -420,14 +463,40 @@ public class GetHandlers {
 	    }
 		// Get the date today
 	    
-		retval.setAmount(Double.parseDouble("11111"));
-		retval.setCartid(Integer.parseInt(cartID));
+		retval.setAmount(price);
+		retval.setCartid(cartID);
+		retval.setPromoCode(code);
 		System.out.println("HERE IS THE CART ID: " + retval.getCartid());
 		retval.setCcid(Integer.parseInt(ccid));;
 		return retval;
 		
 	}
-	
+//	protected static Transaction getTransactions(HttpServletRequest request, User u) {
+//		//What object do you want to get out of this interaction?
+//		ArrayList<Transaction = new Transaction();
+//		
+//		// Get the cartID
+//		String cartID = CartDBManager.getUserCartID("uid", u.getUid()).replace(",", "");
+//		// Get the userID
+//		String userID = Integer.toString(u.getUid());
+//		// Get the ccid
+//		String ccid = PaymentDBManager.getUserCardID("uid", u.getUid()).replace(",", "");
+//		// Get the amount
+//		Enumeration<String> params = request.getParameterNames(); 
+//	    while(params.hasMoreElements()){
+//	    		String paramName = params.nextElement();
+//	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+//	    }
+//		// Get the date today
+//	    
+//		retval.setAmount(Double.parseDouble("11111"));
+//		retval.setCartid(Integer.parseInt(cartID));
+//		System.out.println("HERE IS THE CART ID: " + retval.getCartid());
+//		retval.setCcid(Integer.parseInt(ccid));;
+//		return retval;
+//		
+//	}
+//	
 	
 	
 	

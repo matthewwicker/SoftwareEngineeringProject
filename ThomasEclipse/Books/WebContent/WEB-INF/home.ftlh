@@ -124,43 +124,103 @@
     </div>
   </div>
 </nav>
-
-
 <!---BODY-->
-<div id="content-background">
-
-			<div class="text-center">
-          <h3>Member Dashboard</h3>
-        </div>
-        <input name="fname" type="text" placeholder="First Name" autofocus="autofocus" class="input pass" value=${user.fname}>
-        <input name="lname" type="text" placeholder="Last Name" class="input pass" value=${user.lname}>
-        <input name="email" type="email" placeholder="Email address" class="input pass" value=${user.email}>
-        <input name="phone" type="text" placeholder="Phone Number" value="3193193199" class="input pass" value=${user.phoneNumber}>
-        	    <div id="homebody"> 
-                
-               <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToCreateUser">Create New User</button> ---->
-     			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
-                <button id="cart" type="submit" name="Task" value="GoToCart"  class="btn otherbtn">View Cart</button>
-                <button id="cart" type="submit" name="Task" value="GoToOrders" class="btn otherbtn">Order History</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion" class="btn otherbtn">Create/Edit Promotion</button> ---->
-                <button id="cart" type="submit" name="Task" value="UpdatePromoPref" class="btn otherbtn">Update Promo Preference </button>
-                
-                </br>
-                </br>
-                <th>Validate</th>
-                <th> <input type="text" name="vcode" value=${"vcode"}><br/>
-                </tr>
-                </br>
-                <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
-                
-                </div>
-</div>
+<div class="container">
     
- </form>
+    <div id="homebody"> 
+        Treat your self</br> with a new book from <i>yourShelf</i></br>
+        Free Shipping on orders over $50 with code <b>50SHIP</b><br/>
+        10% off your first purchase with code <b>NEWMEM</b><br/>
+        <br/>
 
-</body>
-</html>
+        <button type="submit" name="navigator" value="create.ftlh"  class="btn">Create an Account</button>&nbsp
+        <button type="submit" name="navigator" value="signin.ftlh"  class="btn">Log In</button>
+        <br/>
+        <br/>
+        <button type="submit" name="Task" value= "Search_genre_Kids"  class="btn otherbtn">Kids</button>
+        <button type="submit" name="Task" value= "Search_genre_scifi"  class="btn otherbtn">Science Fiction</button>
+        <button type="submit" name="Task" value= "Search_genre_fantasy"  class="btn otherbtn">Fantasy</button>
+        <button type="submit" name="Task" value= "Search_genre_biographies"  class="btn otherbtn">Biographies</button>
+        <button type="submit" name="Task" value= "Search_genre_newarrivals"  class="btn otherbtn">New Arrivals</button>
+        <button type="submit" name="Task" value= "Search_genre_best"  class="btn otherbtn">Best Sellers</button>
+        <button type="submit" name="Task" value= "Search_genre_favorites"  class="btn otherbtn">Staff Picks</button>
+       </div>
+</div><br>
+
+<div class="container">    
+  <div class="row">
+    
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
+        <div class="panel-footer">
+          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div>   <br/>
+          Dr. Seuss <br/>
+          $5.00<br/>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
+        <div class="panel-footer">
+          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div>  <br/>
+          Dr. Seuss <br/>
+          $5.00<br/>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
+        <div class="panel-footer">
+          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div>  <br/>
+          Dr. Seuss <br/>
+          $5.00<br/>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+        </div>
+      </div>
+    </div>
+
+     <div class="col-sm-3">
+      <div class="panel panel-default">
+        <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
+        <div class="panel-footer">
+          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div>  <br/>
+          Dr. Seuss <br/>
+          $5.00<br/>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+        </div>  </div>
+        
+      </div>
+    </div>
+
+
+</div></div><br><br>
+
+
+   </form>
+
 </body>
 </html>

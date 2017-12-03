@@ -45,7 +45,7 @@ public class myservlet extends HttpServlet {
 	private String accountdir = "useraccount";
 	
     Map<String, Object> root = new HashMap<>();
-    private Promo userPromotion;
+    private Promo userPromotion = new Promo();
 	Book newBook = new Book();
 	User newUser = new User();
 	private static final long serialVersionUID = 1L;
@@ -69,7 +69,9 @@ public class myservlet extends HttpServlet {
         cfg.setLogTemplateExceptions(false);
         root.put("loginbutton","Log In");
         root.put("promocode", "");
-    }
+        root.put("message", "");
+        userPromotion.setPercentOff(0.0);
+}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -188,11 +190,11 @@ public class myservlet extends HttpServlet {
 			
 			else if (task.equals("UpdateInfo")){
 				User updatedUser = GetHandlers.UpdateUser(request, thisUser);
-				//SEND TO THE DATABASE ACCESS
+				//SEN GetHandlersD TO THE DATABASE ACCESS
 			}//Update Info
 			
 			else if (task.equals("SignOut")){
-				thisUser = null;
+				thisUser = new User();
 				authcode = 0;
 				template = "home.ftlh";
 				//Clear the user info
@@ -221,20 +223,23 @@ public class myservlet extends HttpServlet {
 			} //Go to item
 			
 			else if(task.equals("AddToCart")) {
-				try {
+				if (thisUser.getFname() == null) {
+					template = "signin.ftlh";
+				}
+				else {
 				    task = "GoToCart";
 		            Book item = (Book) root.get("item");
 		            //System.out.println(thisUser.getUid());
-		            cart = GetHandlers.putInCart(request, item, 4); //thisUser.getUid());
+		            cart = GetHandlers.putInCart(request, item, thisUser.getUid());
 		            ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
 			        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
-			        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
+			        double total = GetHandlers.finalCartTotal(request, cart, cartitems, userPromotion.getPercentOff());
 		            root.put("cartitems", cartitems);
 		            root.put("cart", cart);
 		            root.put("total", total);
 					template = "cart.ftlh";
 					root.put("message", "");
-				} catch(Exception e) {e.printStackTrace();}
+				}
 					
 		    } //Add item to cart
 			
@@ -243,11 +248,18 @@ public class myservlet extends HttpServlet {
 					template = "signin.ftlh";
 				}
 				else {
+                    Cart cart = new Cart();
 				    ArrayList<Cart> carts = CartDBManager.searchCart("uid", thisUser.getUid());
-		            Cart cart = carts.get(0);
-		            ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+			        if (carts.size() > 1) {
+			           cart = carts.get(carts.size() - 1);
+			        }
+			        else {
+
+			            cart = carts.get(0);
+			        }		            
+			        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
 		            cart = GetHandlers.updateCartTotal(request, cart, cartitems);
-		            double total = GetHandlers.finalCartTotal(request, cart, cartitems);
+		            double total = GetHandlers.finalCartTotal(request, cart, cartitems,  userPromotion.getPercentOff());
 	                root.put("cartitems", cartitems);
 	                root.put("cart", cart);
 	                root.put("total", total);
@@ -259,15 +271,10 @@ public class myservlet extends HttpServlet {
 				
 				template = "cart.ftlh";
 	            Cart cart = (Cart) root.get("cart");
-				System.out.println("check7");
 				int isbn = 0; 
 				int qty = 0;
-				try {
 				isbn = Integer.parseInt(task.split("_")[1].replace(",", ""));
-				System.out.println(isbn);
 				qty  = Integer.parseInt(task.split("_")[2].replace(",", ""));
-				System.out.println(qty);
-				} catch(Exception e) {e.printStackTrace();}
 				System.out.println("check0");
 				
 				if (qty > 0) {
@@ -280,10 +287,8 @@ public class myservlet extends HttpServlet {
 					CartItemDBManager.removeCartItem(cart.getCartId(), isbn);	
 				}
 		        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
-			    System.out.println("check2");
-
 		        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
-		        double total = GetHandlers.finalCartTotal(request, cart, cartitems);
+		        double total = GetHandlers.finalCartTotal(request, cart, cartitems,  userPromotion.getPercentOff());
 	            root.put("cartitems", cartitems);
 	            root.put("total", total);
 				template = "cart.ftlh";
@@ -325,23 +330,22 @@ public class myservlet extends HttpServlet {
 				}
 				//Why aren't we getting here
 			} //Delete promo to database
-			
 			else if(task.equals("AddPromoToCart")) {
 				template = "cart.ftlh";
-				Promo promotodelege = GetHandlers.makePromo(request);
-				//Why aren't we getting to this line?
+				Promo promotodelege = GetHandlers.getPromo(request);
 				userPromotion = promotodelege;
-				//Search the db for the promo:
-				ArrayList<Promo> results = PromoDBManager.searchPromo("code", userPromotion.getCode());
-				if(results.size() == 0) {
-					root.put("message", "Promo code does not exist.");
-					userPromotion = null;
-				}
-				else {
+                if (userPromotion.getPercentOff()==0.0) {
+                	root.put("message", "promo does not exist.");
+                }
+                else {
 					root.put("message", "Add promo successful.");
 					root.put("promocode", userPromotion.getCode());
 				}
-				
+	            Cart cart = (Cart) root.get("cart");
+	            ArrayList<CartItem> cartitems = (ArrayList<CartItem>) root.get("cartitems");
+		        double total = GetHandlers.finalCartTotal(request, cart, cartitems,  userPromotion.getPercentOff());
+	            root.put("total", total);
+				template = "cart.ftlh";
 			} //Add promo to this users cart
 			
 			else if(task.equals("Checkout")) {
@@ -356,6 +360,10 @@ public class myservlet extends HttpServlet {
 				template = "checkoutConfirm.ftlh";
 				
 			} //Confirm Purchase
+			else if(task.equals("GoToOrders")) {
+				template = "orderhistory.ftlh";
+				
+			}
 			else if(task.equals("GoToAccount")) {
 				if (thisUser.getFname() == null) {
 					template = "signin.ftlh";
@@ -377,7 +385,7 @@ public class myservlet extends HttpServlet {
 					template = accountdir + "/accountvalfail.ftlh";
 				}
 			} //Confirm Purchase
-			
+
 			else if(task.equals("UpdatePromoPref")) {
 				System.out.println("Hi?");
 				//Invert User Pref
@@ -482,18 +490,19 @@ public class myservlet extends HttpServlet {
 			
 			else if(task.equals("MakePurchase")) {
 				template = "checkoutConfirm.ftlh";
-				try {
-				Transaction t = GetHandlers.CreateTransaction(request, thisUser);
-				t.setAmount(cart.getPrice());
-				try { t.setPromoCode(userPromotion.getCode());}
-				catch (Exception e) { t.setPromoCode("null");}
+	            double total = (double) root.get("total");
+	            Cart cart = (Cart) root.get("cart");
+				//try {  MATT I changed it so cart.price is updated upon adding a promocode or changing quantity in cart
+	            //I think this stuff isn't necessary now, but i'm leaving it in case it does something I don't understand.
+				Transaction t = GetHandlers.CreateTransaction(request, thisUser, userPromotion.getCode(), cart);
+				//t.setAmount(cart.getPrice());
+				//try { t.setPromoCode(userPromotion.getCode());} 
+				//catch (Exception e) { t.setPromoCode("null");}
 				TransactionDBManager.addTransaction(t);
-				}
-				catch(Exception e) {e.printStackTrace();}
+				//}
+				//catch(Exception e) {e.printStackTrace();}
 				
 			}//Forgot Password
-
-			
 			else if (task.equals("Search")) {
 	            ArrayList<Book> books = BookDBManager.searchBooks(request.getParameter("searchby"), request.getParameter("searchval"));
 	            root.put("books", books);        
