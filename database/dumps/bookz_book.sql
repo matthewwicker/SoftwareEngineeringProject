@@ -34,6 +34,11 @@ CREATE TABLE `book` (
   `quantity` int(11) NOT NULL,
   `supplier` int(11) NOT NULL,
   `threshold` int(11) NOT NULL,
+  `edition` int(11) DEFAULT NULL,
+  `publisher` varchar(45) DEFAULT NULL,
+  `publicationyear` int(11) DEFAULT NULL,
+  `buyingprice` double DEFAULT NULL,
+  `sellingprice` double DEFAULT NULL,
   PRIMARY KEY (`isbn`),
   UNIQUE KEY `isbn_UNIQUE` (`isbn`),
   KEY `supplierid_idx` (`supplier`),
@@ -47,7 +52,7 @@ CREATE TABLE `book` (
 
 LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `book` DISABLE KEYS */;
-INSERT INTO `book` VALUES (1234,'NotNull','A GUY',123,'null','aurl.com/image.png','fantasy',0,123,0,0),(123412,'NotNull','asdfklhagourh',23425,'null','poop.com/image/images/imageofpoop.jpg','klfajs;dlkfja',0,23445234,0,0);
+INSERT INTO `book` VALUES (1234,'NotNull','A GUY',123,'null','aurl.com/image.png','fantasy',0,123,0,0,NULL,NULL,NULL,NULL,NULL),(123412,'NotNull','asdfklhagourh',23425,'null','poop.com/image/images/imageofpoop.jpg','klfajs;dlkfja',0,23445234,0,0,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `book` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +65,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-02 23:06:41
+-- Dump completed on 2017-12-02 23:16:09
