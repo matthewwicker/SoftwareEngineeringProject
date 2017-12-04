@@ -147,7 +147,7 @@ public class myservlet extends HttpServlet {
         	  		}
         	  		catch(Exception e) {
         	  			e.printStackTrace();
-        	  			template = "signinfail.ftlh";
+        	  			template = "signin.ftlh";
         	  		}
 			}//Sign In
 			else if (task.equals("SignInHead")){
@@ -184,7 +184,7 @@ public class myservlet extends HttpServlet {
     	  		}
     	  		catch(Exception e) {
     	  			e.printStackTrace();
-    	  			template = "signinfail.ftlh";
+    	  			template = "signin.ftlh";
     	  		}
 		}//Sign In		
 			else if (task.equals("GoToCreateBook")){
@@ -504,6 +504,13 @@ public class myservlet extends HttpServlet {
 				GetHandlers.updateQuantitySupplied(request);
 				template =  "changesupply.ftlh";
 			}//Go 
+			else if(task.equals("NewSupply")) {
+				template =  "newsupply.ftlh";
+			}//Go
+			else if(task.equals("EmailAdmin")) {
+     			GetHandlers.supplierEmailAdmin(request, thisUser);
+				template =  "newsupply.ftlh";
+			}//Go
 			else if(task.equals("CreateSupplier")) {
 				template =  "createsupplier.ftlh";
 				User potentialUser = GetHandlers.makeUser(request);

@@ -30,6 +30,7 @@ import Entities.User;
 import Logic.logic;
 import Entities.Cart;
 import Entities.CartItem;
+import EmailNotifications.SendEmail;
 
 public class GetHandlers {
 	static logic logic = new logic();
@@ -244,6 +245,31 @@ public class GetHandlers {
 	    		}
 	     }
 	    BookDBManager.setQuantityByISBN(qty, isbn);
+		return;
+	}
+	protected static void supplierEmailAdmin(HttpServletRequest request, User u) {
+		User retval = new User();
+		
+		String isbn = "!*!";
+		String qty = "!*!";
+		
+		Enumeration<String> params = request.getParameterNames(); 
+	    while(params.hasMoreElements()){
+	    		String paramName = params.nextElement();
+	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+	    		switch(paramName) {
+	    			case "qty":
+	    				isbn = request.getParameter(paramName);
+	    				break;
+	    			case "isbn":
+	    				qty = request.getParameter(paramName);
+	    				break;
+	    			default:
+	    				break;
+	    		}
+	     }
+	    SendEmail sender = new SendEmail();
+	    sender.sendSupplyUpdate(u, isbn, qty);
 		return;
 	}
 	protected static Book getItem(HttpServletRequest request, String isbn) {
@@ -525,9 +551,15 @@ public class GetHandlers {
 		else {
 		    retval.setPromoCode(code);
 		}
+        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
 		System.out.println("HERE IS THE CART ID: " + retval.getCartid());
-		CartDBManager.addCart(u.getUid());
 		retval.setCcid(Integer.parseInt(ccid));;
+
+		SendEmail sender = new SendEmail();
+		sender.sendTransactionalEmail(u, retval, cartitems);
+		
+		CartDBManager.addCart(u.getUid());
+
 		return retval;
 		
 	}
