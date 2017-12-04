@@ -176,6 +176,9 @@ public class myservlet extends HttpServlet {
     	  					accountdir = "manageraccount";
     	  				}
     					root.put("user", thisUser);
+    					System.out.println(thisUser.getShipAddress());
+    	  				root.put("sadd", thisUser.getShipAddress());
+    	  				root.put("badd", thisUser.getBillAddress());
     					root.put("loginbutton", "Hello " + thisUser.getFname());
     	    	  		
     	  			}
@@ -594,7 +597,6 @@ public class myservlet extends HttpServlet {
 	            		System.out.println(x.getTitle());
 	            }
 	            root.put("books", books); 
-	            String array[] = {"fuck", "this", "shit"};
 	            root.put("sequence", books);  
 	            root.put("searchheader", "Search by " + task.split("_",3)[1] + ": " + task.split("_",3)[2] );
 	            template = "genres.ftlh";
