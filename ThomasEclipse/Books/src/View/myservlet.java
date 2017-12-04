@@ -580,7 +580,6 @@ public class myservlet extends HttpServlet {
 				TransactionDBManager.addTransaction(t);
 				//}
 				//catch(Exception e) {e.printStackTrace();}
-     			CartDBManager.addCart(thisUser.getUid());
      		    ArrayList<Cart> carts = CartDBManager.searchCart("uid", thisUser.getUid());
 		        if (carts.size() > 1) {
 		           cart = carts.get(carts.size() - 1);
