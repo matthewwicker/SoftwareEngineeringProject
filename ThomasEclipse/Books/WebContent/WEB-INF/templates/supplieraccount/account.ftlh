@@ -128,7 +128,7 @@
 <!---BODY-->
 <div id="content-background">
             <div class="page-header">
-			    <h2>Dashboard</h2>
+			    <h2>Supplier Dashboard</h2>
 			</div>
 			
        <input name="fname" type="text" placeholder="First Name" autofocus="autofocus" class="input pass" value=${user.fname}>
@@ -137,8 +137,8 @@
         <input name="phone" type="text" placeholder="Phone Number" value="3193193199" class="input pass" value=${user.phoneNumber}>
                 
                 <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="AddNewBookShipment">Supply New Book</button>
-                <button id="cart" type="submit" name="Task" value="AddNewBookShipment">Update Quantity</button>
+                <button id="cart" type="submit" name="Task" value="NewSupply">Supply New Book</button>
+                <button id="cart" type="submit" name="Task" value="ChangeQuantitySupplied">Update Quantity</button>
      			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
                <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
                 <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>

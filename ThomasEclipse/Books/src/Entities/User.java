@@ -44,6 +44,12 @@ public class User {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public void setShipAddress(String address) {
+		this.shipadd = address;
+	}
+	public void setBillAddress(String address) {
+		this.billadd = address;
+	}
 	public void setAddress(String address1, String address2) {
 		this.address = address1 + address2;
 	}
@@ -81,6 +87,8 @@ public class User {
 	private String phoneNumber;
 	private String type;
 	private String address;
+	private String billadd;
+	private String shipadd;
 	private String username;
 	private String subscribed;
 	private String suspended;

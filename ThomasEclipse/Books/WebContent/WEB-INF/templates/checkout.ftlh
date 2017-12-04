@@ -138,20 +138,19 @@
       <table>
                 <tr>
                   <th>First Name</th>
-                  <th><input type="text" name='fname' value="Sally"><br/><br/></th>
+                  <th>${user.fname}</th>
                 </tr>
                 <tr>
                   <th>Last Name</th>
-                  <th><input type="text" name="lname" value="Smith"><br/><br/></th>
+                  <th>${user.lname}</th>
                 </tr>
                 <tr>
                   <th>Phone No.</th>
-                  <th> <input type="text" name="pnumb" value="3193193199"><br/><br/></th>
+                  <th>${user.phoneNumber}</th>
                 </tr>
                 <tr>
                   <th>Shipping Address</th>
-                <th> <input type="text" name="ship" value="1004 Cedar Street"><br/>
-                     <input type="text" name="ship" value="Athens, GA 30602"></p></th>
+                <th> ${user.shipadd}</th>
                 </tr>
       </table>
   </div>
@@ -161,11 +160,11 @@
         <table>
                   <tr>
                     <th>First Name</th>
-                    <th><input type="text" name='fname' value="Sally"><br/><br/></th>
+                   <th>${user.fname}</th>
                   </tr>
                   <tr>
                     <th>Last Name</th>
-                    <th><input type="text" name="lname" value="Smith"><br/><br/></th>
+                    <th>${user.lname}></th>
                   </tr>
                   <tr>
                     <th>CC No.</th>

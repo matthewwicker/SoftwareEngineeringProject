@@ -146,12 +146,9 @@ public class GetHandlers {
 		//=========================================================
 		System.out.println("User email entered: " + retval.getEmail());
 		Random rand = new Random();
-		int val = rand.nextInt(1000000);
-		payment.setCc_number(val);
 		logic.addUser(retval, address, payment);
 		String userID  = UserDBManager.getUserUserID("email", retval.getEmail());
-		// This is bogus.
-		CartDBManager.addCart(Integer.parseInt(userID));
+    	CartDBManager.addCart(Integer.parseInt(userID));
 		return retval;
 		
 	}
@@ -214,7 +211,30 @@ public class GetHandlers {
 		}
 		return retval;
 	}
-
+	protected static void updateQuantitySupplied(HttpServletRequest request) {
+		User retval = new User();
+		
+		String isbn = "!*!";
+		String qty = "!*!";
+		
+		Enumeration<String> params = request.getParameterNames(); 
+	    while(params.hasMoreElements()){
+	    		String paramName = params.nextElement();
+	    		System.out.println("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+	    		switch(paramName) {
+	    			case "qty":
+	    				isbn = request.getParameter(paramName);
+	    				break;
+	    			case "isbn":
+	    				qty = request.getParameter(paramName);
+	    				break;
+	    			default:
+	    				break;
+	    		}
+	     }
+	    BookDBManager.setQuantityByISBN(qty, isbn);
+		return;
+	}
 	protected static Book getItem(HttpServletRequest request, String isbn) {
 		
 		Book retval = new Book();

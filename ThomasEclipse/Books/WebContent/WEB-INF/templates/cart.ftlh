@@ -145,16 +145,15 @@
                       <#list cartitems as citem>
                       <tr>
                          <td>${citem.title}</td>
-                         <td id="qty"><input type="String" id=${citem.title} style="width: 45px; padding: 1px" value=${citem.numBooks} min="0"><button type="submit" id=${citem.ISBN} name="Task" value="UpdateCart"  onclick="javafunction('${citem.ISBN}', '${citem.title}' );">Update</button>
+                         <td id="qty"><input type="String" id=${citem.ISBN} style="width: 45px; padding: 1px" value=${citem.numBooks} min="0"><button type="submit" id=${citem?index} name="Task" value="UpdateCart"  onclick="javafunction('${citem.ISBN}', '${citem?index}');">Update</button>
                          </td>
                                     <script type="text/javascript">
-              function javafunction(index, titre){
-                     var task = 'UpdateCart_'+ index;
-                     var qty  = document.getElementById(titre).value;
-                     task += '_' + qty;
-                     document.getElementById(index).setAttribute('value', task);
-                     var newtask = document.getElementById(index).value;
-                     alert(newtask);
+              function javafunction(isbn, index){
+                       var task = 'UpdateCart_'+ isbn;
+                       var qty  = document.getElementById(isbn).value;
+                       task += '_' + qty;
+                       document.getElementById(index).setAttribute('value', task);
+                       var newtask = document.getElementById(index).value;
                }
                 </script>
                          <td id="price">$${citem.price}.00</td>

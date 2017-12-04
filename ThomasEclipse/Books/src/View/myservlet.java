@@ -132,6 +132,9 @@ public class myservlet extends HttpServlet {
         	  				else if(thisUser.getType().equals("s")) {
         	  					accountdir = "shipmentaccount";
         	  				}
+        	  				else if(thisUser.getType().equals("p")) {
+        	  					accountdir = "supplieraccount";
+        	  				}
         	  				else if(thisUser.getType().equals("m")) {
         	  					accountdir = "manageraccount";
         	  				}
@@ -164,6 +167,9 @@ public class myservlet extends HttpServlet {
     	  				else if(thisUser.getType().equals("s")) {
     	  					accountdir = "shipmentaccount";
     	  				}
+    	  				else if(thisUser.getType().equals("p")) {
+    	  					accountdir = "supplieraccount";
+    	  				}
     	  				else if(thisUser.getType().equals("m")) {
     	  					accountdir = "manageraccount";
     	  				}
@@ -192,12 +198,14 @@ public class myservlet extends HttpServlet {
 			
 			else if (task.equals("UpdateInfo")){
 				User updatedUser = GetHandlers.UpdateUser(request, thisUser);
+				template = accountdir + "/account.ftlh";
 				//SEN GetHandlersD TO THE DATABASE ACCESS
 			}//Update Info
 			
 			else if (task.equals("SignOut")){
 				thisUser = new User();
 				authcode = 0;
+		        root.put("loginbutton","Log In");
 				template = "home.ftlh";
 				//Clear the user info
 			}//Sign Out
@@ -484,7 +492,13 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("GoToCreateSupplier")) {
 				template =  "createsupplier.ftlh";
 			}//Go To CreateSupplier
-			
+			else if(task.equals("ChangeQuantitySupplied")) {
+				template =  "changesupply.ftlh";
+			}//Go T		
+			else if(task.equals("UpdateSupply")) {
+				GetHandlers.updateQuantitySupplied(request);
+				template =  "changesupply.ftlh";
+			}//Go 
 			else if(task.equals("CreateSupplier")) {
 				template =  "createsupplier.ftlh";
 				User potentialUser = GetHandlers.makeUser(request);

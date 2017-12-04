@@ -135,18 +135,7 @@
 
   <div class="row">
 
-     <div class="btn-group show-on-hover">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            Sort By <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">ABC <span class="glyphicon glyphicon-arrow-down"></a></li>
-            <li><a href="#">ABC <span class="glyphicon glyphicon-arrow-up"></a></li>
-            <li><a href="#">Price <span class="glyphicon glyphicon-arrow-down"></a></li>
-            <li><a href="#">Price <span class="glyphicon glyphicon-arrow-up"></a></li>
-          </ul>
-        </div>
-
+ 
  <#list books as book>
       <div class="col-sm-3">
       <button  type="submit" id=${book.ISBN} name="Task" onclick="javafunction('${book.ISBN}');">

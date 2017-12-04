@@ -8,6 +8,9 @@
   <link href="custom.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  
   <style>
       @import url('https://fonts.googleapis.com/css?family=Lobster');
       @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -19,17 +22,17 @@
 <!---HEADER-->
 <div class="jumbotron">
   <div class="container-fluid">
-    
-    <div class="row">  
+
+    <div class="row">
       <div class="col-md-8">
           <img src="book.png" class="img-responsive">
           <h1><small>yourShelf</small></h1>
       </div>
-      
+
       <div class="col-sm-4">
         <div class="input-group">
                       <div class="input-group-btn search-panel">
-                 <select name="searchby"> <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
+                 <select name="searchby" class="selectpicker show-tick" data-width="105px" title="Filter By">
                      <option value="title">Title</option>
                      <option value="isbn">ISBN</option>
                      <option value="genre">Genre</option>
@@ -44,10 +47,11 @@
        </div>
           </div>
       </div>
-     </div> 
+     </div>
 
   </div>
 </div>
+
 
 <!---NAVIGATION BAR-->
 <nav class="navbar">

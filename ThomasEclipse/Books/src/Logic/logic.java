@@ -38,11 +38,26 @@ public class logic {
 	}
 	public User authorizeUser(User u){
 		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
+		User user = newUser.get(0);
 		System.out.println("What we got from freemarker: " + u.getPassword());
 		System.out.println("What we got from database: " + newUser.get(0).getPassword());
 		if(u.getPassword().equals(newUser.get(0).getPassword())){
 			System.out.println("SUCCESS TO SIGN IN");
-			return newUser.get(0);
+			ArrayList<Address> adds = AddressDBManager.searcShippingAddress("uid", u.getUsername(), "0");
+			if (adds.size() > 0) {
+				user.setShipAddress(adds.get(adds.size()-1).getAddress());
+			}
+			else {
+				user.setShipAddress("");
+			}
+			adds = AddressDBManager.searcShippingAddress("uid", u.getUsername(), "1");
+			if (adds.size() > 0) {
+				user.setBillAddress(adds.get(adds.size()-1).getAddress());
+			}
+			else {
+				user.setBillAddress("");
+			}
+			return user;
 		}
 		else {
 			ArrayList<User> otherUsers = UManager.searchUsers("uid", Integer.toString(u.getUid()));
@@ -84,6 +99,8 @@ public class logic {
 		int userId = newUser.get(0).getUid();
 		address.setUid(userId);
 		
+		success = AManager.addAddress(address);
+		address.setBilling(0);
 		success = AManager.addAddress(address);
 		if(success == -1){
 			return -1;

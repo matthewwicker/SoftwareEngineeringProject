@@ -125,47 +125,17 @@
   </div>
 </nav>
 
-    <div class="container">
-  
-              
-  <div class="col-md-6">
-  
-   <div class="text-center">
-          <h3>Login!</h3>
-        </div>
-         <input name="email" placeholder="email" type="email" value="" class="input pass"/>
-         <input name="password" type="password" placeholder="password" value="" class="input pass"/>
-          <button class="inputButton" type="submit" name="Task" value="SignIn" onclick="return validateUserName(username.value,password.value)">Sign In</button>
-        <div class="text-center"">
-        <button class="btn btn-link" type="submit" name="navigator" value="create.ftlh">create an account</button>
-        <button class="btn btn-link" type="submit" name="navigator" value="home.ftlh">forgot password</button>
-        </div>
-       </div></div>
-<!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-         
-                    
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            bookyourshelf@mail.com
-                        </li> 
-                   </ul>
-            </div>
+<!---BODY-->
+<div class="container">
+   
+       <input name="isbn" type="text" placeholder="Book ISBN" autofocus="autofocus" class="input pass" value="">
+        <input name="qty" type="text" placeholder="Quantity" class="input pass" value="">
+      	<button type="submit" name="Task" onclick="return requiredParam(isbn.value)" class="inputButton" value="UpdateSupply">Update Quantity</button>
+        <button type="submit" name="Task" class="inputButton" value="GoToAccount">Return to Dashboard</button>
+    </div>
 
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
-     </form>
+
+   </form>
+
 </body>
 </html>

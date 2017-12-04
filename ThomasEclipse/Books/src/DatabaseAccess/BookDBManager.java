@@ -148,7 +148,13 @@ public class BookDBManager {
 		success = driver.create(query);
 		return success;
 	}
-	
+	public static int setQuantityByISBN(String value, String isbn) {
+		String query = "UPDATE book SET quantity = '"+ value + "' WHERE ISBN = '"+isbn +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}	
 	public static int setThreshold(String value, Book book) {
 		String query = "UPDATE book SET threshold = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
 		System.out.println(query);
