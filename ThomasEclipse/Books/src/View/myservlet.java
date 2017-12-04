@@ -71,6 +71,7 @@ public class myservlet extends HttpServlet {
         root.put("loginbutton","Log In");
         root.put("promocode", "");
         root.put("message", "");
+        root.put("error", "");
         userPromotion.setPercentOff(0.0);
         userPromotion.setCode("No Promotion Used");
 }
@@ -569,51 +570,70 @@ public class myservlet extends HttpServlet {
 			}//Forgot Password
 			
 			else if(task.equals("MakePurchase")) {
-				template = "checkoutConfirm.ftlh";
-	            double total = (double) root.get("total");
+				boolean doTransaction = true;
+				template = "checkout.ftlh";
+				double total = (double) root.get("total");
 	            Cart cart = (Cart) root.get("cart");
-				//try {  MATT I changed it so cart.price is updated upon adding a promocode or changing quantity in cart
-	            //I think this stuff isn't necessary now, but i'm leaving it in case it does something I don't understand.
-				Transaction t = GetHandlers.CreateTransaction(request, thisUser, userPromotion.getCode(), cart);
-				//t.setAmount(cart.getPrice());
-				//try { t.setPromoCode(userPromotion.getCode());} 
-				//catch (Exception e) { t.setPromoCode("null");}
-				TransactionDBManager.addTransaction(t);
-				//}
-				//catch(Exception e) {e.printStackTrace();}
-     			CartDBManager.addCart(thisUser.getUid());
      		    ArrayList<Cart> carts = CartDBManager.searchCart("uid", thisUser.getUid());
-		        if (carts.size() > 1) {
-		           cart = carts.get(carts.size() - 1);
-		        }
-			    else {
+				  try {
+				      //Here is where I am going to add the updating of the quantities.
+				        	System.out.println("We are updating the book quantities now");
+				        int userID = thisUser.getUid();
+				        System.out.println("check1");
+						carts = CartDBManager.searchCart("uid", userID);
+				        if (carts.size() > 1) {
+				            cart = carts.get(carts.size() - 1);
+				        }
+				        else {
 
-			         cart = carts.get(0);
-	            }	
+				            cart = carts.get(0);
+				        }
+				        System.out.println("check2");
+						System.out.println("Here is the user's cartID: " + cart.getCartId());
+						ArrayList<CartItem> cartItems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+						for(CartItem c : cartItems) {
+							System.out.println("check3");
+							//For each item in the users cart, remove it from the database
+							ArrayList<Book> books = BookDBManager.searchBooks("isbn", c.getISBN());
+							int newQuant = books.get(0).getQuantity() - c.getNumBooks();
+							System.out.println("For this book, the user is trying to purchase this amount: " + c.getNumBooks());
+							if(newQuant < 0) {
+								// FAILURE BECAUSE THERE ARE NO BOOKS LEFT
+								System.out.println("NOT ENOUGH BOOKS LEFT");
+								root.put("error", "Sorry! Not enough books in stock to fill this error.");
+								doTransaction = false;
+							}
+							else {
+								if(newQuant <= books.get(0).getThreshold()) {
+									//SEND THRESHOLD EMAIL TO SUPPLIERS
+									System.out.println("THRESHOLD HIT, SENDING EMAIL");
+								}
+								BookDBManager.setQuantity(Integer.toString(newQuant), books.get(0));
+							
+								//Also, remove this item from their cart.
+								int cid = cart.getCartId();
+								CartItemDBManager.removeCartItem(cid, c.getISBN());
+							}
+						}
+						}catch(Exception e) {e.printStackTrace();}
+				        System.out.println("check5");
+				        
+				if(doTransaction) {
+					template = "checkoutConfirm.ftlh";
+
+					Transaction t = GetHandlers.CreateTransaction(request, thisUser, userPromotion.getCode(), cart);
+					TransactionDBManager.addTransaction(t);
+     				CartDBManager.addCart(thisUser.getUid());
+     				if (carts.size() > 1) {
+		        			cart = carts.get(carts.size() - 1);
+		        		}
+			    		else {
+			         	cart = carts.get(0);
+	            		}	
+				}
 				
 		        
-		        try {
-		      //Here is where I am going to add the updating of the quantities.
-		        	System.out.println("We are updating the book quantities now");
-		        int userID = thisUser.getUid();
-				String cartID = CartDBManager.getUserCartID("uid", userID);
-				System.out.println("Here is the user's cartID: " + cartID);
-				ArrayList<CartItem> cartItems = CartItemDBManager.searchCartItem("cartid", cartID);
-				for(CartItem c : cartItems) {
-					System.out.println("We are updating the book quantities now");
-					//For each item in the users cart, remove it from the database
-					ArrayList<Book> books = BookDBManager.searchBooks("isbn", c.getISBN());
-					int newQuant = books.get(0).getQuantity() - c.getNumBooks();
-					System.out.println("For this book, the user is trying to purchase this amount: " + c.getNumBooks());
-					BookDBManager.setQuantity(Integer.toString(newQuant), books.get(0));
-					
-					//Also, remove this item from their cart.
-					int cid = Integer.parseInt(cartID);
-					CartItemDBManager.removeCartItem(cid, c.getISBN());
-				}
-				}catch(Exception e) {e.printStackTrace();}
-		        
-		        
+		      
 			}//Forgot Password
 			else if (task.equals("Search")) {
 	            ArrayList<Book> books = BookDBManager.searchBooks(request.getParameter("searchby"), request.getParameter("searchval"));

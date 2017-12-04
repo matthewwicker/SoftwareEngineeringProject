@@ -37,6 +37,14 @@ public class UserDBManager {
 		return success;
 	}
 	
+	public static int setValue(String feild, String value, User user) {
+		String query = "UPDATE users SET "+ feild + " = '"+ value +"' WHERE email = '"+user.getEmail() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
 	public static int setPassword(String value, User user) {
 		//String query = "UPDATE users SET password = AES_ENCRYPT('"+ value + "', UNHEX(SHA2('test',512)))" +"' WHERE email = '"+user.getEmail() +"'; ";
 		String query = "UPDATE users SET password = '"+ value + "' WHERE email = '"+user.getEmail() +"'; ";

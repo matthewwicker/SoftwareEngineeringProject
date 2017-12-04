@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import javax.servlet.http.HttpServletRequest;
 
 import Entities.Address;
-
+import DatabaseAccess.AddressDBManager;
 import DatabaseAccess.BookDBManager;
 import DatabaseAccess.CartDBManager;
 import DatabaseAccess.CartItemDBManager;
@@ -499,18 +499,38 @@ public class GetHandlers {
 	    //				PERFORM DATA VALIDATION
 	    //=========================================================
 		// IM A NAUGHTY BOY AND DIDNT ADD DATA VALIDATION - LOVE, MATT <3
-	    if(fname != "!*!") retval.setFname(fname);
-	    if(lname != "!*!") retval.setLname(lname);
-	    if(email != "!*!") retval.setEmail(email);
-	    if(password != "!*!") retval.setPassword(password);
-	    if(accounttype != "!*!") retval.setType(accounttype);
-	    if(username != "!*!") retval.setUsername(username);
-		if(addressline1 != "!*!" ) retval.setAddress(addressline1, addressline2);
+	    if(fname != "!*!") { 
+	    		retval.setFname(fname);
+	    		UserDBManager.setValue("fname", fname, utoupdate);
+	    }
+	    if(lname != "!*!") {
+	    		retval.setLname(lname);
+	    		UserDBManager.setValue("lname", lname, utoupdate);
+	    }
+	    if(email != "!*!") {
+	    		retval.setEmail(email);
+	    		//UserDBManager.setValue("fname", fname, utoupdate);
+	    }
+	    if(password != "!*!") {
+	    		//retval.setPassword(password);
+	    }
+	    if(accounttype != "!*!") {
+	    		retval.setType(accounttype);
+	    }
+	    if(username != "!*!") {
+	    		retval.setUsername(username);
+	    }
+		if(addressline1 != "!*!" ) {
+			retval.setAddress(addressline1, addressline2);
+			//AddressDBManager.setAddress(value, addressline1 + " " + addressline2); 
+		}
 		
 		
 		//=======================-------------------===============
 		//			SEND IT TO THE DATA ACCESS LAYER
 		//=========================================================
+		
+		
 		return retval;
 		
 	}
