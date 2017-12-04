@@ -126,68 +126,63 @@
 </nav>
 
 
-<!---BODY-->
-<div id="content-background">
-<div class="container">
-   <div class="page-header">
-    <h2>Deals</h2>
-  </div>
-
-  <div class="row">
-
-     <div class="btn-group show-on-hover">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            Sort By <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">ABC <span class="glyphicon glyphicon-arrow-down"></a></li>
-            <li><a href="#">ABC <span class="glyphicon glyphicon-arrow-up"></a></li>
-            <li><a href="#">Price <span class="glyphicon glyphicon-arrow-down"></a></li>
-            <li><a href="#">Price <span class="glyphicon glyphicon-arrow-up"></a></li>
-          </ul>
+<div class="container">           
+  <div class="col-md-6">
+   <div class="text-center">
+          <h3>create account</h3>
         </div>
-    
-    <div class="col-sm-3">
-      <div class="panel panel-default">
-        <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
-        <div class="panel-footer">
-            Cat in the Hat <br/>
-            Dr. Seuss <br/>
-            $5.00<br/>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
+        <input name="suppliername" type="text" placeholder="Buisness Name" class="input pass" value=""/>
+        <input name="email" type="email" placeholder="Email address" class="input pass" value=""/>
+        <input name="password" type="password" placeholder="Choose a password (must be more than 6 characters)" class="input pass" value=""/>
+        <input name="cpassword" type="password" placeholder="Confirm password" class="input pass" value=""/>
+        <input name="phone" type="text" placeholder="Phone Number" value="3193193199" class="input pass" value=""/>
+        <input name="address1" type="text" placeholder="Street Address" value="1004 Cedar St" class="input pass" value=""/>
+        <input name="address2" type="text" placeholder="City, State, Zip" value="Athens, GA 30602" class="input pass" value=""/>
+        <input name="ccnum" type="text" placeholder="Credit Card Number" class="input pass" value=""/>
+        <input name="expdate" type="text" placeholder="Credit Card Expiration Date" class="input pass" value=""/>
+        <input name="fname" type="text" placeholder="Contact First Name" autofocus="autofocus" class="input pass" value=""/>
+        <input name="lname" type="text" placeholder="Contact Last Name" class="input pass" value=""/>
+        <input name="contactcell" type="text" placeholder="contact cell num" class="input pass" value=""/>
+        <input name="contactbusiness" type="text" placeholder="contact business num" class="input pass" value=""/>
+        
+        <button type="submit" name="Task" onclick="return requiredParam(fname.value,lname.value,email.value,phone.value)" class="inputButton" value="CreateSupplier">Create New Supplier</button>
+        <div class="text-center">
+            already have an account?<button class="btn btn-link" type="submit" name="navigator" value="signin.ftlh">login</button> having trouble?<button class="btn btn-link" type="submit" name="navigator" value="support.ftlh">support</button>
         </div>
-      </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="panel panel-default">
-        <div class="panel-body"><img src="cover2.jpg" class="img-responsive"></div>
-        <div class="panel-footer">
-            Fox in socks <br/>
-            Dr. Seuss <br/>
-            $11.00 <br/>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div><br><br>
-
+        
+       </div></div>
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">
        <div class="row">  
-         
-                    
+
+            
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                    <ul class="menu">
+                         <span>Menu</span>    
+                         <li>
+                            <a href="home.ftlh">Home</a>
+                          </li>
+                               
+                          <li>
+                             <a href="genres.html">Genres</a>
+                          </li>
+                               
+                          <li>
+                            <a href="deals.html">Deals</a>
+                          </li>
+                               
+                          <li>
+                             <a href="best.html">Best Selling</a>
+                          </li>
+                          <li>
+                             <a href="favorites.html">Our Favorites</a>
+                          </li>
+                          <li>
+                             <a href="support.html">Support</a>
+                          </li>
+                     </ul>
+            </div>
             <div class="col-md-3 col-sm-6 col-xs-12">
                   <ul class="menu">
                         <span>Contact</span>       
@@ -206,6 +201,7 @@
 
         </div>
     </footer> 
-    <!-- Footer 2 End --></span></div></form>
+    <!-- Footer 2 End -->
+     </form>
 </body>
 </html>

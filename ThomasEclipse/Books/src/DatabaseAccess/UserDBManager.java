@@ -46,8 +46,8 @@ public class UserDBManager {
 		return success;
 	}
 	
-	public static int setStatus(String value, User user) {
-		String query = "UPDATE users SET type = '"+ value +"' WHERE email = '"+user.getEmail() +"'; ";
+	public static int setStatus(String value, String user) {
+		String query = "UPDATE users SET type = '"+ value +"' WHERE email = '"+user +"'; ";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
@@ -172,6 +172,26 @@ public class UserDBManager {
 			try {
 				while(rs.next()){
 					return rs.getString("cartid");
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "-1";
+			}
+		}
+		return "-1";
+	}
+	
+	public static String getUserUserID(String searchParam, String searchItem){
+		ArrayList<User> search_results = new ArrayList<User>();
+		String query = "select * from users where " + searchParam + "= '" + searchItem + "'";
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					return rs.getString("uid");
 				}
 				driver.disconnect();
 			}

@@ -18,11 +18,13 @@ import DatabaseAccess.CartDBManager;
 import DatabaseAccess.CartItemDBManager;
 import DatabaseAccess.PaymentDBManager;
 import DatabaseAccess.PromoDBManager;
+import DatabaseAccess.SupplierDBManager;
 import DatabaseAccess.TransactionDBManager;
 import DatabaseAccess.UserDBManager;
 import Entities.Book;
 import Entities.Payment;
 import Entities.Promo;
+import Entities.Supplier;
 import Entities.Transaction;
 import Entities.User;
 import Logic.logic;
@@ -45,7 +47,7 @@ public class GetHandlers {
 		String lname = "!*!";
 		String type = "!*!";
 		String email = "!*!";
-		String phonenumber = "!*!";java.time.LocalDateTime
+		String phonenumber = "!*!";
 		String accounttype = "!*!";
 		String username = "!*!";
 		String password = "!*!";
@@ -147,7 +149,9 @@ public class GetHandlers {
 		int val = rand.nextInt(1000000);
 		payment.setCc_number(val);
 		logic.addUser(retval, address, payment);
-		CartDBManager.addCart(retval.getUid());
+		String userID  = UserDBManager.getUserUserID("email", retval.getEmail());
+		// This is bogus.
+		CartDBManager.addCart(Integer.parseInt(userID));
 		return retval;
 		
 	}
@@ -211,10 +215,10 @@ public class GetHandlers {
 		return retval;
 	}
 
-	protected static Book getItem(HttpServletRequest request, String title) {
+	protected static Book getItem(HttpServletRequest request, String isbn) {
 		
 		Book retval = new Book();
-		ArrayList<Book> books = BookDBManager.searchBooks("title", title);
+		ArrayList<Book> books = BookDBManager.searchBooks("isbn", isbn.replace(",",""));
         retval = books.get(0); 
     	return retval;
 	}
@@ -271,6 +275,23 @@ public class GetHandlers {
         else{
 	        int success = CartItemDBManager.addCartItem(book, cart.getCartId());
         }   
+    	return cart;
+	}
+	protected static Cart putItemsInCart(HttpServletRequest request, ArrayList<CartItem> cartitems, int uid) {
+		
+		Cart cart = new Cart(); 
+		ArrayList<Cart> carts = CartDBManager.searchCart("uid", uid);
+        if (carts.size() > 1) {
+            cart = carts.get(carts.size() - 1);
+        }
+        else {
+
+            cart = carts.get(0);
+        }
+        int cartid = cart.getCartId();
+        for (CartItem cartitem : cartitems) {
+        	CartItemDBManager.addCartItem(cartitem, cartid);
+        }
     	return cart;
 	}
 	protected static Cart updateCartTotal(HttpServletRequest request, Cart cart, ArrayList<CartItem> cartitems) {
@@ -390,7 +411,7 @@ public class GetHandlers {
 	    				break;
 	    			case "lname":
 	    				lname = request.getParameter(paramName);
-	    				break;c
+	    				break;
 	    			case "email":
 	    				email = request.getParameter(paramName);
 	    				break;
@@ -474,6 +495,7 @@ public class GetHandlers {
 		    retval.setPromoCode(code);
 		}
 		System.out.println("HERE IS THE CART ID: " + retval.getCartid());
+		CartDBManager.addCart(u.getUid());
 		retval.setCcid(Integer.parseInt(ccid));;
 		return retval;
 		
@@ -511,6 +533,10 @@ public class GetHandlers {
 		String quantity = "!*!";
 		String threshold = "!*!";
 		String image = "!*!";
+		String buyprice = "!*!";
+		String publisher = "!*!";
+		String publicationdate = "!*!";
+		String supplier = "!*!";
 		//=========================================================
 		//		ITERATING THROUGHT THE ITEMS IN THE REQUEST
 		//=========================================================
@@ -534,7 +560,7 @@ public class GetHandlers {
 	    			case "genre":
 	    				genre = request.getParameter(paramName);
 	    				break;
-	    			case "descr":
+	    			case "description":
 	    				description = request.getParameter(paramName);
 	    				break;
 	    			case "quantity":
@@ -545,6 +571,24 @@ public class GetHandlers {
 	    				break;
 	    			case "image":
 	    				image = request.getParameter(paramName);
+	    				break;
+	    			case "publisher":
+	    				publisher = request.getParameter(paramName);
+	    				break;
+	    			case "pubyear":
+	    				publicationdate = request.getParameter(paramName);
+	    				break;
+	    			case "buyprice":
+	    				buyprice = request.getParameter(paramName);
+	    				break;
+	    			case "supplier":
+	    				System.out.println("*************************************");
+	    				System.out.println("*************************************");
+	    				System.out.println("*************************************");
+	    				System.out.println("*************************************");
+	    				System.out.println("*************************************");
+	    				System.out.println("SETTING SUPPLIER TO: " + request.getParameter(paramName));
+	    				supplier = request.getParameter(paramName);
 	    				break;
 	    			default:
 	    				break;
@@ -558,13 +602,30 @@ public class GetHandlers {
 	    
 	    try {
 	    		if(author != "!*!") retval.setAuthor(author);
+	    		if(title != "!*!") retval.setTitle(title);
 	    		if(price != "!*!") retval.setPrice(Double.parseDouble(price));
 	    		if(isbn != "!*!") retval.setISBN(Integer.parseInt(isbn));
-	    		if(isbn != "!*!") retval.setQuantity(Integer.parseInt(quantity));
+	    		if(quantity != "!*!") retval.setQuantity(Integer.parseInt(quantity));
 	    		if(threshold != "!*!") retval.setThreshold(Integer.parseInt(threshold));
 	    		if(genre != "!*!") retval.setGenre(genre);
 	    		if(description != "!*!") retval.setDescription(description);
 	    		if(image != "!*!") retval.setImage(image);
+	    		if(buyprice != "!*!") retval.setBuyingPrice(Double.parseDouble(buyprice));
+	    		if(supplier != "!*!") {
+	    			// If it can be parsed as an int;, then use it as supplier ID
+	    			// else, search for the supplier ID and use that
+	    			int supplierID;
+	    			try {supplierID = Integer.parseInt(supplier);}
+	    			catch(Exception e) {
+	    				try {
+	    				ArrayList<Supplier> results = SupplierDBManager.searchSupplier("name", supplier);
+	    				supplierID = results.get(0).getSupplierid();
+	    				}catch(Exception err) {supplierID = 1; err.printStackTrace();}
+	    			}
+	    			retval.setSupplier(supplierID);
+	    		}
+	    		if(publisher != "!*!") retval.setPublisher(publisher);
+	    		if(publicationdate != "!*!") retval.setPublicationYear(Integer.parseInt(publicationdate));
 	    }
 	    catch(Exception e){
     			e.printStackTrace();
@@ -574,6 +635,7 @@ public class GetHandlers {
 		//=======================-------------------===============
 		//			SEND IT TO THE DATA ACCESS LAYER
 		//=========================================================
+	    BookDBManager.addBook(retval);
 		return retval;
 		
 	}

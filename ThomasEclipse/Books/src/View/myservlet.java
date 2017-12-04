@@ -1,6 +1,7 @@
 package View;
 import DatabaseAccess.Driver;
 import DatabaseAccess.PromoDBManager;
+import DatabaseAccess.SupplierDBManager;
 import DatabaseAccess.TransactionDBManager;
 import DatabaseAccess.BookDBManager;
 import DatabaseAccess.CartDBManager;
@@ -71,6 +72,7 @@ public class myservlet extends HttpServlet {
         root.put("promocode", "");
         root.put("message", "");
         userPromotion.setPercentOff(0.0);
+        userPromotion.setCode("No Promotion Used");
 }
 
 	/**
@@ -202,24 +204,16 @@ public class myservlet extends HttpServlet {
 			
 			else if(task.equals("CreateBook")) {
 				Book createdBook = GetHandlers.CreateBook(request);
-				if(createdBook != null) {
-					l.addBook(createdBook);
-					System.out.println("SUCCESS CREATING BOOK!");
-				}
-				else {
-					//KEEP HERE 
-					System.out.println("FAILURE CREATING BOOK!");
-					template = "editbook.ftlh";
-				}
 			} //Create Book
 			
 			
 			 /* Here is the messed up part */
 			else if(task.contains("GoToItem")) {
 				System.out.println("Here is the value of the task: " + task);
-				String title = task.split("_")[1];
-				Book item = GetHandlers.getItem(request, title);
-		        System.out.println("Checking");
+				String isbn= task.split("_")[1];
+				System.out.println(isbn);
+				Book item = GetHandlers.getItem(request, isbn);
+		        System.out.println(item.getISBN());
 			    System.out.println(request.getParameter("test"));
 	            root.put("item", item);        
 				template = "bookInfo.ftlh";
@@ -271,14 +265,6 @@ public class myservlet extends HttpServlet {
 			}
 			
 			else if(task.contains("UpdateCart")) {
-				System.out.println("ATTEMPTING TO UPDATE CART AND HERE IS THE TASK STRING: " + task);
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
-				System.out.println("*************************************");
 				template = "cart.ftlh";
 	            Cart cart = (Cart) root.get("cart");
 				int isbn = 0; 
@@ -373,16 +359,27 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("GoToOrders")) {
 				template = "orderhistory.ftlh";
 				ArrayList<Transaction> trans = GetHandlers.getTransactions(request, thisUser.getUid());
-				ArrayList<CartItem> cartitems= new ArrayList<CartItem>;
-				ArrayList<Integer> numitems= new ArrayList<Integer>;
+				ArrayList<ArrayList<CartItem>> cartitems= new ArrayList<ArrayList<CartItem>>();
                 root.put("trans", trans);
 				int cartid = 0;
 				for (Transaction tran : trans){
-			        cartitems.addAll(CartItemDBManager.searchCartItem("cartid", tran.getCartid());
-			        numitems.add(CartItemDBManager.searchCartItem("cartid", tran.getCartid()).size());
+			        cartitems.add(CartItemDBManager.searchCartItem("cartid", tran.getCartid()));
 				}
 				root.put("citems_", cartitems);
 			}
+			else if(task.contains("MakeCart")) {
+				int cartid = Integer.parseInt(task.split("_")[1]);
+				ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cartid);
+                Cart cart = GetHandlers.putItemsInCart(request, cartitems, thisUser.getUid());
+                root.put("cart", cart);
+		        cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+	            cart = GetHandlers.updateCartTotal(request, cart, cartitems);
+	            double total = GetHandlers.finalCartTotal(request, cart, cartitems,  userPromotion.getPercentOff());
+                root.put("cartitems", cartitems);
+                root.put("cart", cart);
+                root.put("total", total);
+			    template = "cart.ftlh";			
+			    }
 			else if(task.equals("GoToAccount")) {
 				if (thisUser.getFname() == null) {
 					template = "signin.ftlh";
@@ -447,14 +444,15 @@ public class myservlet extends HttpServlet {
 			
 			else if(task.equals("UpdateUserStatus")) {
 				template =  "updateuserstatus.ftlh";
-				String newpref = UserDBManager.getUserStatus("email", request.getParameter("email"));
+				String value = request.getParameter("email");
+				System.out.println("User email from form: " + value);
+				String newpref = UserDBManager.getUserStatus("email", value);
 				String status_to_update = request.getParameter("status");
 				if(!"apesm".contains(status_to_update) ) {
 					template =  "updateuserstatusfail.ftlh";
 				}
 				else {
-					thisUser.setSuspended(request.getParameter("email"));
-					l.changeStatus(request.getParameter("status"), thisUser);
+					l.changeStatus(request.getParameter("status"), value);
 					SendEmail sender = new SendEmail();
 					sender.actuallySendEmail(thisUser, SendEmail.ACCOUNT_STATUS_CHANGED);
 					template =  "updateuserstatussucc.ftlh";
@@ -482,6 +480,43 @@ public class myservlet extends HttpServlet {
 					template =  "suspendsucc.ftlh";
 				}
 			} //Confirm Purchase
+			
+			else if(task.equals("GoToCreateSupplier")) {
+				template =  "createsupplier.ftlh";
+			}//Go To CreateSupplier
+			
+			else if(task.equals("CreateSupplier")) {
+				template =  "createsupplier.ftlh";
+				User potentialUser = GetHandlers.makeUser(request);
+				l.changeStatus("s", potentialUser.getEmail());
+				SendEmail sender = new SendEmail();
+				sender.actuallySendEmail(potentialUser, SendEmail.REGISTRATION_CONFIRMATION);
+				//Fill in the supplier database
+				Supplier s = new Supplier();
+				s.setContactCell(request.getParameter("contactcell"));
+				s.setContactBuisness(request.getParameter("contactbusiness"));
+				String userID  = UserDBManager.getUserUserID("email", potentialUser.getEmail());
+				s.setName(request.getParameter("suppliername"));
+				s.setContactName(potentialUser.getFname() + " " + potentialUser.getLname());
+				s.setUid(Integer.parseInt(userID));
+				SupplierDBManager.addSupplier(s);
+			}//Go To CreateSupplier
+			
+			else if(task.equals("UpdateOrderStatus")) {
+				template =  "updateOrderStatus.ftlh";
+				ArrayList<User> usr = UserDBManager.searchUsers("email", request.getParameter("email"));
+				int ordernum = Integer.parseInt(request.getParameter("ordernum"));
+				String status = request.getParameter("status");
+				try {
+					TransactionDBManager.UpdateTransactitonStatus(status, ordernum);
+					SendEmail sender = new SendEmail();
+					sender.actuallySendEmail(usr.get(0), SendEmail.SHIPMENT_CONFIRMATION);
+				}
+				catch(Exception e) {
+					System.out.println("uh oh, idiot.");
+				}
+				
+			}//Update Order Status
 			
 			
 			else if(task.equals("GoToUpdatePassword")) {

@@ -12,10 +12,11 @@ public class SupplierDBManager {
 	 * add a supplier to database
 	 * @return -1 if failure and 1 if success
 	 */
-	public static int Supplier (Supplier supplier) {
-		String query = "INSERT INTO `bookz`.`supplier` (supplierid, name, uid)";
+	public static int addSupplier (Supplier supplier) {
+		String query = "INSERT INTO `bookz`.`supplier` (supplierid, name, uid, contactname, contactcell, contactbusiness)";
 		query += "VALUES ('" +  supplier.getSupplierid() + "', '";
-		query += supplier.getName() + "', '"+ supplier.getUid() + "')";
+		query += supplier.getName() + "', '"+ supplier.getUid() + "', '"
+		+ supplier.getContactName() + "', ' " + supplier.getContactCell()+ "', '" +supplier.getContactBuisness()+ "')";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);

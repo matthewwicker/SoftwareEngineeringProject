@@ -136,10 +136,12 @@
                <img src="${item.image}" class="img-responsive">
             </div> 
             <p>Title: ${item.title}  </p>
+            <p>ISBN: ${item.ISBN}  </p>
             <p>  Author: ${item.author}  </p>
             <p>  Price:   ${item.price} </p>
+            <p>  Genre:   ${item.genre} </p>
             <p>  Description:   ${item.description} </p>
-            <p>  Reviews:</p>
+            <p>  Rating: ${item.rating}</p>
            <button type="submit" name="Task" value="AddToCart">Add to Cart</button>         
         </div>
         </div>

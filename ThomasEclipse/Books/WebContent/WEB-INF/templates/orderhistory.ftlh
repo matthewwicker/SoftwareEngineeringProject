@@ -136,48 +136,49 @@
   <div id="ohbody">
    <#list trans as tran>
   
-    <p>
-        Order Number: ${tran.transactioncol}<br/>
-        Order Date: ${tran.date}<br/>
-        Order Price: ${tran.amount}<br/>
-        Order PromoCode: ${tran.promoCode}<br/>
-        Order Items:
-        <#assign x = "citem_" + tran?index>
-        <#list x as citem>
-            Item Title: ${citem.title}
-        </#list>
-    </p>
+    <table><tr><th>
+        Order Number</th><td>${tran.transactioncol}</td></tr>
+        <th>Order Status</th><td>WENEEDORDERSTATUSINTRANSACITOn</td></tr>
+        <th>Order Date</th><td>${tran.date}</td></tr>
+        <th>Order Price</th><td>$${tran.amount}</td></tr>
+        <th>Order PromoCode</th><td>${tran.promoCode}</td></tr>
+        <th>Order Items</th></tr></table>
+        <div class="row">
+        <div class="col-sm-12 col-md-10">
+            <table class="table table-striped table-hover table-bordered">
+                <tbody>
+                      <tr>
+                        <th>Title</th>
+                        <th>QTY</th>
+                        <th>Unit Price</th>
+                      </tr>
+                       <#list citems_[tran?index] as citem>
+                      <tr>
+                         <td>${citem.title}</td>
+                         <td>${citem.numBooks}</td>
+                         <td> $${citem.price}.00</td>
+                      </tr>
+                       </#list></tbody></table></div></div>
+                                
+      <button  type="submit" id=${tran?index} name="Task" onclick="javafunction('${tran.cartid}','${tran?index}');">RePurchase</button>
+    </p><hr>
     </#list>
-    <button type="button" class="btn" name="navigator" value="account.ftlh">Back to Account</button>&nbsp
+    <button type="button" class="btn" name="Task" value="GoToAccount">Back to Account</button>&nbsp
   </div>
 
 </div><br>
 </div>
-<!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-         
-                    
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            bookyourshelf@mail.com
-                        </li> 
-                   </ul>
-            </div>
-
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
+		<script type="text/javascript">
+         function javafunction(cartid,index){
+                    alert(index)
+        	 		try {
+        	 			document.getElementById(index).setAttribute('value', "MakeCart_" + cartid);
+        	 		}
+        	 		catch(err) {
+        	 			alert(err.message);
+        	 		}
+                alert("Well, that went well!");
+         } </script>
 </form>
 </body>
 </html>

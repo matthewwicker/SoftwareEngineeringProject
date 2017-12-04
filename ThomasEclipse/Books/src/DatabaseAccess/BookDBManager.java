@@ -16,7 +16,7 @@ public class BookDBManager {
 		query += "VALUES ('" + book.getISBN() + "', '" + book.getTitle() + "', '";
 		query += book.getAuthor() + "', '" + book.getPrice() + "', '" + book.getDescription() + "', ";
 		query += "'"+book.getImage()+"', " + "'"+book.getGenre()+"', '"+ book.getRating() + "', '" + book.getQuantity() + "', ";
-		query += "'0', '" + book.getThreshold() + "', '"+ book.getEdition()+"', '"+ book.getPublisher()+"', '";
+		query += "'"+ book.getSupplier() + "', '" + book.getThreshold() + "', '"+ book.getEdition()+"', '"+ book.getPublisher()+"', '";
 		query += book.getPublicationYear()+"', '"+ book.getBuyingPrice()+ "', '"+ book.getSellingPrice()+"')";
 		System.out.println(query);
 		int success = 0;

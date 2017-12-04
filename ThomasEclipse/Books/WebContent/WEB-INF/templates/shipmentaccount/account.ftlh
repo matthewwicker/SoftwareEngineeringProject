@@ -137,7 +137,7 @@
         <input name="phone" type="text" placeholder="Phone Number" value="3193193199" class="input pass" value=${user.phoneNumber}>
                 
                 <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="AddNewBookShipment">Change Order Status</button>
+                <button id="cart" type="submit" name="Task" value="GoToUpdateOrderStatus">Change Order Status</button>
      			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
                <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
                 <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>

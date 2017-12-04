@@ -177,7 +177,7 @@
                       <tr>
                           <td>
                           </td>
-                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="MakePurchase">Make Purchase</button></div></td>
+                          <td colspan="3"><div class = "button2"><button type="submit" name="Task" value="GoToOrders">View Order History</button></div></td>
 
                       </tr>
                     </tbody>

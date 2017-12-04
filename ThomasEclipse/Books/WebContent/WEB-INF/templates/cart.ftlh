@@ -137,7 +137,7 @@
             <table class="table table-striped table-hover table-bordered">
                 <tbody>
                       <tr>
-                        <th>ISBN</th>
+                        <th>Title</th>
                         <th>QTY</th>
                         <th>Unit Price</th>
                         <th>Total Price</th>

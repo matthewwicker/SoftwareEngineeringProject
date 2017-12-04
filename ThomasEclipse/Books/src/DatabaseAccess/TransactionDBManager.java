@@ -35,6 +35,15 @@ public class TransactionDBManager {
 		return success;
 	}
 	
+	
+	
+	public static int UpdateTransactitonStatus(String status, int tid) {
+		String query = "UPDATE transaction SET status = '"+ status +"' WHERE transactionid = '"+tid+"'; ";
+		System.out.println(query);
+		int success = driver.delete(query);
+		return success;
+	}
+	
 	/**
 	 * Search the items in transaction by searchParam
 	 * @param searchParam

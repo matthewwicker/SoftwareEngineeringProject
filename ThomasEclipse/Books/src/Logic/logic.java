@@ -68,7 +68,7 @@ public class logic {
 	public int changeSuspension(String value, User user) {
 		return UManager.setSuspension(value, user);
 	}
-	public int changeStatus(String value, User user) {
+	public int changeStatus(String value, String user) {
 		return UManager.setStatus(value, user);
 	}
 	public int changePassword(String value, User user) {

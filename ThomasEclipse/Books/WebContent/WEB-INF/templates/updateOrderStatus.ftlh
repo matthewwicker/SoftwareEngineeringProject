@@ -126,62 +126,18 @@
 </nav>
 
 
-<!---BODY-->
-<div id="content-background">
-<div class="container">
-   <div class="page-header">
-    <h2>Our Favorites</h2>
-  </div>
-
-  <div class="row">
-
-     <div class="btn-group show-on-hover">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            Sort By <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">ABC <span class="glyphicon glyphicon-arrow-down"></a></li>
-            <li><a href="#">ABC <span class="glyphicon glyphicon-arrow-up"></a></li>
-            <li><a href="#">Price <span class="glyphicon glyphicon-arrow-down"></a></li>
-            <li><a href="#">Price <span class="glyphicon glyphicon-arrow-up"></a></li>
-          </ul>
+<div class="container">           
+  <div class="col-md-6">
+   <div class="text-center">
+          <h3>Update Order Status</h3>
         </div>
-    
-    <div class="col-sm-3">
-      <div class="panel panel-default">
-        <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
-        <div class="panel-footer">
-            Cat in the Hat <br/>
-            Dr. Seuss <br/>
-            $5.00<br/>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="panel panel-default">
-        <div class="panel-body"><img src="cover2.jpg" class="img-responsive"></div>
-        <div class="panel-footer">
-            Fox in socks <br/>
-            Dr. Seuss <br/>
-            $11.00 <br/>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div><br><br>
-
+        <input name="email" type="text" placeholder="Email" autofocus="autofocus" class="input pass" value=${"email"} />
+        <input name="ordernum" type="text" placeholder="Order Number" autofocus="autofocus" class="input pass" value=${"ordernum"} />
+        <input name="status" type="text" placeholder="Status" autofocus="autofocus" class="input pass" value=${"status"} />
+        <button id="cart" type="submit" name="Task" value="UpdateOrderStatus">Update Order Status</button>
+        
+       
+       </div></div>
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">
@@ -206,6 +162,7 @@
 
         </div>
     </footer> 
-    <!-- Footer 2 End --></span></div></form>
+    <!-- Footer 2 End -->
+     </form>
 </body>
 </html>
