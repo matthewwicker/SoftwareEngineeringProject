@@ -40,31 +40,48 @@ public class logic {
 		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
 		User user = newUser.get(0);
 		System.out.println("What we got from freemarker: " + u.getPassword());
-		System.out.println("What we got from database: " + newUser.get(0).getPassword());
+		System.out.println("What we got from database: " + user.getPassword());
 		if(u.getPassword().equals(newUser.get(0).getPassword())){
 			System.out.println("SUCCESS TO SIGN IN");
-			ArrayList<Address> adds = AddressDBManager.searcShippingAddress("uid", u.getUsername(), "0");
+			ArrayList<Address> adds = AddressDBManager.searcShippingAddress("uid", Integer.toString(user.getUid()), "0");
 			if (adds.size() > 0) {
 				user.setShipAddress(adds.get(adds.size()-1).getAddress());
 			}
 			else {
 				user.setShipAddress("");
 			}
-			adds = AddressDBManager.searcShippingAddress("uid", u.getUsername(), "1");
+			adds = AddressDBManager.searcShippingAddress("uid", Integer.toString(user.getUid()), "1");
 			if (adds.size() > 0) {
 				user.setBillAddress(adds.get(adds.size()-1).getAddress());
 			}
 			else {
 				user.setBillAddress("");
 			}
+
+			System.out.println(user.getBillAddress());
+			System.out.println(user.getShipAddress());
 			return user;
 		}
 		else {
 			ArrayList<User> otherUsers = UManager.searchUsers("uid", Integer.toString(u.getUid()));
 			if(u.getPassword().equals(otherUsers.get(0).getPassword())){
 				System.out.println("SUCCESS TO SIGN IN");
-				return otherUsers.get(0);
-			}
+				user = otherUsers.get(0);
+				ArrayList<Address> adds = AddressDBManager.searcShippingAddress("uid",  Integer.toString(user.getUid()), "0");
+				if (adds.size() > 0) {
+					user.setShipAddress(adds.get(adds.size()-1).getAddress());
+				}
+				else {
+					user.setShipAddress("");
+				}
+				adds = AddressDBManager.searcShippingAddress("uid",  Integer.toString(user.getUid()), "1");
+				if (adds.size() > 0) {
+					user.setBillAddress(adds.get(adds.size()-1).getAddress());
+				}
+				else {
+					user.setBillAddress("");
+				}
+				return user;			}
 		}
 		return null;
 	}

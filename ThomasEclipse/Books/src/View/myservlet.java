@@ -140,6 +140,8 @@ public class myservlet extends HttpServlet {
         	  				}
         					root.put("user", thisUser);
         	  				template =  accountdir + "/account.ftlh";
+        	  				root.put("sadd", thisUser.getShipAddress());
+        	  				root.put("badd", thisUser.getBillAddress());
         					root.put("loginbutton", "Hello " + thisUser.getFname());
         	  			}
         	  		}
@@ -395,7 +397,7 @@ public class myservlet extends HttpServlet {
 				else {
 				    template = accountdir + "/account.ftlh";
 				}
-			} //Confirm Purchase
+				} //Confirm Purchase
 			else if(task.equals("Validation")) {
 				template = accountdir + "/account.ftlh";
 				

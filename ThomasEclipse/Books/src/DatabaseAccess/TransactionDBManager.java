@@ -16,9 +16,9 @@ public class TransactionDBManager {
 	 */
 
 	public static int addTransaction (Transaction transaction) {
-		String query = "INSERT INTO `bookz`.`transaction` ( cartid, ccid, amount, date, promoid)";
+		String query = "INSERT INTO `bookz`.`transaction` ( cartid, ccid, amount, date, promoid, status)";
 		query += "VALUES ('" +  Integer.toString(transaction.getCartid()) + "', '" + transaction.getCcid() + "', '";
-		query += transaction.getAmount() + "', '"+ LocalDateTime.now() + "', '" + transaction.getPromoCode() + "')";
+		query += transaction.getAmount() + "', '"+ LocalDateTime.now() + "', '" + transaction.getPromoCode() + "', 'Processing')";
 
 		System.out.println(query);
 		int success = 0;
@@ -63,6 +63,7 @@ public class TransactionDBManager {
 					transaction.setCcid(rs.getInt("ccid"));
 					transaction.setAmount(rs.getDouble("amount"));
 					transaction.setDate(rs.getString("date"));
+					transaction.setStatus(rs.getString("status"));
 					transaction.setPromoCode(rs.getString("promoid"));
 					search_results.add(transaction);
 				}

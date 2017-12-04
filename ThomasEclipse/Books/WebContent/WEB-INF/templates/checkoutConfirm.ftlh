@@ -134,7 +134,7 @@
 
 <div id="content">
   <p> Your order ${cart.cartId} is being processed. </p>
-  <p> Shipping Address:</p><p>1004 Cedar Street<br/>Athens, GA 30602</p>
+  <p> Shipping Address:</p><p>${sadd}</p>
   <h4> Order Contents </h4>
 </div>
 

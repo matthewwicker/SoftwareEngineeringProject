@@ -62,7 +62,8 @@ public class AddressDBManager {
 	}
 	public static ArrayList<Address> searcShippingAddress(String searchParam, String uid, String billing){
 		ArrayList<Address> search_results = new ArrayList<Address>();
-		String query = "select * from address where uid = '" + uid +  "' and billing = '" + billing + "'" ;
+		String query = "select * from address where uid = '" + uid +  "' and billing = '" + billing + "'";
+		System.out.println(query);
 		ResultSet rs = driver.retrieve(query);
 		Address address = new Address();
 		if(rs != null){

@@ -138,7 +138,7 @@
   
     <table><tr><th>
         Order Number</th><td>${tran.transactioncol}</td></tr>
-        <th>Order Status</th><td>WENEEDORDERSTATUSINTRANSACITOn</td></tr>
+        <th>Order Status</th><td>${tran.status}</td></tr>
         <th>Order Date</th><td>${tran.date}</td></tr>
         <th>Order Price</th><td>$${tran.amount}</td></tr>
         <th>Order PromoCode</th><td>${tran.promoCode}</td></tr>
@@ -170,14 +170,12 @@
 </div>
 		<script type="text/javascript">
          function javafunction(cartid,index){
-                    alert(index)
         	 		try {
         	 			document.getElementById(index).setAttribute('value', "MakeCart_" + cartid);
         	 		}
         	 		catch(err) {
         	 			alert(err.message);
         	 		}
-                alert("Well, that went well!");
          } </script>
 </form>
 </body>

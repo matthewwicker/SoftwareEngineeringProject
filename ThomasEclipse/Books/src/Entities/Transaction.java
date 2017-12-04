@@ -38,11 +38,18 @@ public class Transaction {
 	public String getPromoCode() {
 		return promoCode;
 	}
+	public void setStatus(String code) {
+		this.status = code;
+	}
+	public String getStatus() {
+		return status;
+	}
 	private int transactioncol;
 	private int cartid;
 	private int ccid;
 	private double amount;
 	private String date;
+	private String status;
 	private String promoCode;
 	
 }

@@ -41,6 +41,12 @@ public class User {
 	public String getAddress() {
 		return address;
 	}
+	public String getShipAddress() {
+		return shipadd;
+	}
+	public String getBillAddress() {
+		return billadd;
+	}
 	public void setAddress(String address) {
 		this.address = address;
 	}

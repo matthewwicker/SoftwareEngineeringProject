@@ -150,7 +150,7 @@
                 </tr>
                 <tr>
                   <th>Shipping Address</th>
-                <th> ${user.shipadd}</th>
+                <th> ${sadd}</th>
                 </tr>
       </table>
   </div>
@@ -164,31 +164,30 @@
                   </tr>
                   <tr>
                     <th>Last Name</th>
-                    <th>${user.lname}></th>
+                    <th>${user.lname}</th>
                   </tr>
                   <tr>
                     <th>CC No.</th>
-                    <th> <input type="password" name="ccard" value="11111111111"><br/><br/></th>
+                    <th> 11111111111 </th>
                   </tr>
                   <tr>
                     <th>CVV</th>
-                    <th> <input type="text" name="cvv" value="215"><br/><br/></th>
+                    <th> <input type="text" name="cvv" placeholder="cvv" value=""><br/><br/></th>
                   </tr>
                   <tr>
                   <tr>
                     <th>Exp. Date</th>
-                    <th> <input type="text" name="cdate" value="01/01/2001"><br/><br/></th>
+                    <th> 01/01/2001></th>
                   </tr>
                   <tr>
                     <th>Billing Address</th>
-                  <th> <input type="text" name="ship" value="1004 Cedar Street"><br/>
-                       <input type="text" name="ship" value="Athens, GA 30602"></p></th>
+                  <th> ${badd} </th>
                   </tr>
         </table>
     </div>
   </div>
-
 <div class="container">
+<br/><br/>
   
 
 <div class="row">
