@@ -29,8 +29,8 @@ CREATE TABLE `address` (
   `uid` int(11) NOT NULL,
   PRIMARY KEY (`aid`),
   UNIQUE KEY `idaddress_UNIQUE` (`aid`),
-  UNIQUE KEY `uid_UNIQUE` (`uid`),
-  CONSTRAINT `userid` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `uid10_idx` (`uid`),
+  CONSTRAINT `uid10` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-03  0:14:05
+-- Dump completed on 2017-12-03 22:10:49
