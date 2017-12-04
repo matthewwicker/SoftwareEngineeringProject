@@ -365,8 +365,9 @@ public class myservlet extends HttpServlet {
 			} //Checkout with this user
 			
 			else if(task.equals("ConfirmPurchase")) {
-				template = "checkoutConfirm.ftlh";
 				
+				template = "checkoutConfirm.ftlh";
+			
 			} //Confirm Purchase
 			else if(task.equals("GoToOrders")) {
 				template = "orderhistory.ftlh";
@@ -589,6 +590,29 @@ public class myservlet extends HttpServlet {
 			         cart = carts.get(0);
 	            }	
 				
+		        
+		        try {
+		      //Here is where I am going to add the updating of the quantities.
+		        	System.out.println("We are updating the book quantities now");
+		        int userID = thisUser.getUid();
+				String cartID = CartDBManager.getUserCartID("uid", userID);
+				System.out.println("Here is the user's cartID: " + cartID);
+				ArrayList<CartItem> cartItems = CartItemDBManager.searchCartItem("cartid", cartID);
+				for(CartItem c : cartItems) {
+					System.out.println("We are updating the book quantities now");
+					//For each item in the users cart, remove it from the database
+					ArrayList<Book> books = BookDBManager.searchBooks("isbn", c.getISBN());
+					int newQuant = books.get(0).getQuantity() - c.getNumBooks();
+					System.out.println("For this book, the user is trying to purchase this amount: " + c.getNumBooks());
+					BookDBManager.setQuantity(Integer.toString(newQuant), books.get(0));
+					
+					//Also, remove this item from their cart.
+					int cid = Integer.parseInt(cartID);
+					CartItemDBManager.removeCartItem(cid, c.getISBN());
+				}
+				}catch(Exception e) {e.printStackTrace();}
+		        
+		        
 			}//Forgot Password
 			else if (task.equals("Search")) {
 	            ArrayList<Book> books = BookDBManager.searchBooks(request.getParameter("searchby"), request.getParameter("searchval"));

@@ -164,6 +164,27 @@ public class UserDBManager {
 		return "-1";
 	}
 	
+	
+	public static String getUserEmailFromUID(int userid){
+		ArrayList<User> search_results = new ArrayList<User>();
+		String query = "select * from users where " + "uid" + "= '" + userid + "'";
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					return rs.getString("email");
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "-1";
+			}
+		}
+		return "-1";
+	}
+	
 	public static String getUserCartID(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
 		String query = "select * from users where " + searchParam+ "= '" + searchItem + "'";

@@ -75,6 +75,7 @@ public class CartItemDBManager {
 					tempBook = BookDBManager.searchBooks("isbn", cart.getISBN()).get(0);
 					cart.setPrice(tempBook.getPrice());
 					cart.setTitle(tempBook.getTitle());
+					cart.setNumBooks(rs.getInt("numbooks"));
 					cart.setTotal();
 					search_results.add(cart);
 				}
