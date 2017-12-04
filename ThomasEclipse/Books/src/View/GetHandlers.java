@@ -176,13 +176,24 @@ public class GetHandlers {
 	    				break;
 	    		}
 	     }
-	    if(email != "!*!") retval.setEmail(email);
+	    if(email != "!*!") {
+	    		try {
+	    			int userid = Integer.parseInt(email);
+	    			String e = UserDBManager.getUserEmailFromUID(userid);
+	    			retval.setEmail(e);
+	    		} catch(Exception e) {
+	    			retval.setEmail(email);
+	    		}
+	    }
 	    if(password != "!*!") retval.setPassword(password);
+	    
+	    
 	    if(email == "!*!" || password == "!*!") {
 			return null;
 		}
 		return retval;
 	}
+	
 	protected static User signInHeader(HttpServletRequest request) {
 		User retval = new User();
 		

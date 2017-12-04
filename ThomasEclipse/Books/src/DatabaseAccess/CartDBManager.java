@@ -82,6 +82,8 @@ public class CartDBManager {
 					Cart cart = new Cart();
 					cart.setCartId(rs.getInt("cartid"));
 					cart.setUid(rs.getInt("uid"));
+					//cart.setISBN(rs.getInt("isbn"));
+					//cart.setNumOrdered(rs.getInt("numbooks"));
 					
 					search_results.add(cart);
 				}
@@ -99,7 +101,6 @@ public class CartDBManager {
 	public static String getUserCartID(String searchParam, int searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
 		String query = "select * from cart where " + "uid"+ "= '" + searchItem + "'";
-		System.out.println("WHAT THE FUCK");
 		System.out.print(query);
 		ResultSet rs = driver.retrieve(query);
 		if(rs != null){
