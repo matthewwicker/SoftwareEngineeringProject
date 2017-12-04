@@ -1,5 +1,7 @@
 package EmailNotifications;
 import Entities.Promo;
+import Entities.Transaction;
+import Entities.CartItem;
 import Entities.User;
 import java.util.*;  
 import javax.mail.*;  
@@ -76,7 +78,7 @@ public class SendEmail {
 	        		subject = "Thanks for verifying your account with Bookz!";
 	        		body = this.generateStatusMessage(u);
 	        	}
-
+	     
 	        try {
 	            message.setFrom(new InternetAddress(from));
 	            InternetAddress toAddress = new InternetAddress();
@@ -141,10 +143,95 @@ public class SendEmail {
             me.printStackTrace();
         } 
 }
+	public void sendTransactionalEmail(User u, Transaction p, ArrayList<CartItem> cartitems) {
+		String from = "ITSBOOKZB"; 
+		String pass = "ITSBOOKZB123"; 
+		String to = u.getEmail();
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
 
-	
-	
-	
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+        String subject = "Your order " + p.getCartid() + " from BOOKZ";
+        String body = "Hi "+ u.getFname() +", \n \n" + 
+        				"We have received your order " + p.getCartid() + "and are processing it now.  We'll update you when it's on its way!\n\n\n"
+        				+ "Order summary\n\nConfirmation Number: " + p.getCartid() + "1\nPrice: $" + p.getAmount() 
+        				+ "\nDate: " + p.getDate() + "\nPromoCode: " + p.getPromoCode() + "\n"
+        				+ "Shipping Address: " + u.getShipAddress() + "\n\nItems:\n";
+        for (CartItem item: cartitems) {
+        	   body += item.getNumBooks() + " copy of " +  item.getTitle() + "\n";
+        }
+        	    		body += "\nHave a wonderful day! \n\n \n Best, \n Bookz team";
+        try {
+            message.setFrom(new InternetAddress(from));
+            InternetAddress toAddress = new InternetAddress();
+
+            toAddress = new InternetAddress(to);
+            message.addRecipient(Message.RecipientType.TO, toAddress);
+
+            message.setSubject(subject);
+            message.setText(body);
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        }
+        catch (AddressException ae) {
+            ae.printStackTrace();
+        }
+        catch (MessagingException me) {
+            me.printStackTrace();
+        } 
+	}
+	public void sendSupplyUpdate(User u, String isbn, String qty) {
+		String from = "ITSBOOKZB"; 
+		String pass = "ITSBOOKZB123"; 
+		String to = "itsbookzb@gmail.com";
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+        String subject = "New Book from Supplier " + Integer.toString(u.getUid());
+        String body = "Hello, Bookz administrator -- \n \n" + 
+        				"We have a ne book in stock!\n\n"
+        				+ "ISBN: " + isbn   
+        				+ "\nQuantity: " + qty
+        				+ "\n\nHave a wonderful day! \n\n\nBest, \n" + u.getFname() + " "  + u.getLname()
+        				+ " (supplier " + u.getUid() + ")";
+        try {
+            message.setFrom(new InternetAddress(from));
+            InternetAddress toAddress = new InternetAddress();
+
+            toAddress = new InternetAddress(to);
+            message.addRecipient(Message.RecipientType.TO, toAddress);
+
+            message.setSubject(subject);
+            message.setText(body);
+            Transport transport = session.getTransport("smtp");
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        }
+        catch (AddressException ae) {
+            ae.printStackTrace();
+        }
+        catch (MessagingException me) {
+            me.printStackTrace();
+        } 
+	}	
 	private String generateRegistrationConfirmationMessage(User u) {
 		UserDBManager UManager = new UserDBManager();
 		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
@@ -208,7 +295,6 @@ public class SendEmail {
 				+ "Bookz team";
 		return message;
 	}
-	
 	public static void main(String[] args) {
 		User us = new User();
 		SendEmail s = new SendEmail();
