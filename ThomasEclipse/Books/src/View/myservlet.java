@@ -176,7 +176,6 @@ public class myservlet extends HttpServlet {
     	  					accountdir = "manageraccount";
     	  				}
     					root.put("user", thisUser);
-    					System.out.println(thisUser.getShipAddress());
     	  				root.put("sadd", thisUser.getShipAddress());
     	  				root.put("badd", thisUser.getBillAddress());
     					root.put("loginbutton", "Hello " + thisUser.getFname());
