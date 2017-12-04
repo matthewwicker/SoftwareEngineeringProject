@@ -622,7 +622,17 @@ public class myservlet extends HttpServlet {
 	            template = "genres.ftlh";    
 	        }
 	        else if (task.contains("Search")) {
-	            ArrayList<Book> books = BookDBManager.searchBooks(task.split("_",3)[1], task.split("_",3)[2]);
+	        	String searchItem = task.split("_", 3)[2];
+	        	if(searchItem.equals("YA")){
+	        		searchItem = "young adult";
+	        	}
+	        	if(searchItem.equals("scifi")){
+	        		searchItem = "science fiction";
+	        	}
+	        	if(searchItem.equals("biographies")){
+	        		searchItem = "biography";
+	        	}
+	            ArrayList<Book> books = BookDBManager.searchBooks(task.split("_",3)[1], searchItem);
 	            for(Book x : books) {
 	            		System.out.println(x.getTitle());
 	            }
