@@ -5,9 +5,11 @@
     <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <link href="custom.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <style>
       @import url('https://fonts.googleapis.com/css?family=Lobster');
       @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -29,7 +31,7 @@
       <div class="col-sm-4">
         <div class="input-group">
                       <div class="input-group-btn search-panel">
-                 <select name="searchby"> <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
+                 <select name="searchby" class="selectpicker show-tick" data-width="105px" title="Filter By">
                      <option value="title">Title</option>
                      <option value="isbn">ISBN</option>
                      <option value="genre">Genre</option>
@@ -61,23 +63,25 @@
       
                 <li><button class="btn btn-link"  type="submit" name="navigator" value="home.ftlh">Home</button></li>
         <li class="dropdown">
-			  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
-			  <span class="caret"></span></button>
+        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
+        <span class="caret"></span></button>
           <ul class="dropdown-menu">
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_YA"  >Young Adult</button></li>
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_kids">Kids</button></li>
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_scifi" >Science Fiction</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_fantasy" >Fantasy</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_biographies" >Biographies</button></li>
            </ul>
         </li>
                 <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_best">Best Selling</button></li>
-                <li><button type="submit" name="Task" value= "Search_genre_deals"  class="btn btn-link">Deals</button></li>
+                <li><button type="submit" name="navigator" value="promotions.ftlh"  class="btn btn-link">Promotions</button></li>
                 <li><button type="submit" name="Task" value= "Search_genre_favorites"  class="btn btn-link">Our Favorites</button></li>
         </ul>
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
-        				<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">${loginbutton}
-			  					<span class="caret"></span></button>
+                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">${loginbutton}
+                  <span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
                             <div class="col-lg-12">
                                 <div class="text-center"><h3><b>Log In</b></h3></div>
@@ -137,45 +141,45 @@
                 </th></tr>
                 <tr>
                 <th>
-	        Title  
+          Title  
                 </th><th>
                 <input type="text" name="title" value=${"title"}><br/>
                 </th></tr>
                 <tr>
                 <th>
-		Author 
+    Author 
                 </th><th>
                 <input type="text" name="author" value=${"author"}><br/>
                 </th></tr>
                 <tr>
                 <th>
-		Price
+    Price
                 </th><th>
                 <input type="text" name="price" value=${"price"}><br/>
                 </th></tr>
                 <tr>
                 <th>
-		Genre 
+    Genre 
                 </th><th>
                  <input type="text" name="genre" value=${"genre"}><br/>
                 </th></tr>
                 <tr>
                 <th>
-		Description 
+    Description 
                 </th><th>
-		<input type="text" name="description" value=${"descr"}><br/>
+    <input type="text" name="description" value=${"descr"} style="width:300px; height:100px;"><br/>
                 </th></tr>
                 <tr>
                 <th>
-		Quantity
+    Quantity
                 </th><th>
-		<input type="text" name="quantity" value=${"quantity"}></th></tr>
-		<tr>
+    <input type="text" name="quantity" value=${"quantity"}></th></tr>
+    <tr>
                 <th>
-		Image
+    Image
                 </th><th>
-		<input type="text" name="image" value=${"image"}></th></tr>
-		         <tr>
+    <input type="text" name="image" value=${"image"}></th></tr>
+             <tr>
                 <th>
         Supplier 
                 </th><th>
@@ -201,18 +205,14 @@
                 </th></tr>
                 <tr>
                 <th>
-		Threshold
+    Threshold
                 </th><th>
-		<input type="text" name="threshold" value=${"thresh"}>
-                </th></tr><tr><th></th><th>
-      	<button type="submit" name="Task" onclick="return requiredParam(isbn.value, title.value, author.value, price.value, genre.value, description.value, quantity.value, threshold.value)" class="inputButton" value="CreateBook">Create Book</button>
-        
-    
-            	</th></tr></table></div> 
+    <input type="text" name="threshold" value=${"thresh"}>
+                </th></tr><tr><th>
+        <button type="submit" name="Task" onclick="return requiredParam(isbn.value, title.value, author.value, price.value, genre.value, description.value, quantity.value, threshold.value)" class="inputButton" value="CreateBook">Create Book</button>
+        </th></tr></table></div> 
          </div></div>
     </div>
-
-
    </form>
 
 </body>

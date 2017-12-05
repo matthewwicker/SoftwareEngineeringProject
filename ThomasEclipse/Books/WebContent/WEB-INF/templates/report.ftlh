@@ -14,6 +14,7 @@
   </style>
 </head>
 <body>
+
 <form action = "myservlet" method = "post">
 
 <!---HEADER-->
@@ -110,6 +111,7 @@
                                                 <div class="text-center">
                                                     <li><button class="btn btn-link" type="submit" name="navigator" value="" style="background-color:white;text-transform:lowercase">Forgot Password?</button></li>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -124,64 +126,31 @@
     </div>
   </div>
 </nav>
+                                                <!---BODY-->
+<div class="container">
+  
+  <div class="page-header">
+    <h2>${header}</h2>
+  </div>
 
-<!---BODY-->
-<div id="content-background">
-            <div class="page-header">
-			    <h2>Dashboard</h2>
-			</div>
-			
-	   <table>
-                <tr>
-                  <th>First Name</th>
-                  <th><input type="text" name='fname' value=${"fname"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Last Name</th>
-                  <th><input type="text" name="lname" value=${"lname"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Phone No.</th>
-                  <th><input type="text" name="pnumb" value=${"phone"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <th><input type="text" name="email" value=${"email"}><br/><br/></th>
-                </tr>
-                <tr>
-                  <th>Shipping Address</th>
-                <th> <input type="text" name="ship" value=${"addressline1"}><br/>
-                     <input type="text" name="ship" value=${"addressline2"}></p></th>
-                </tr>
-                
-                
-                
-      </table>
-                
-                <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="GetAllReports">Download All Sale Reports</button>
-                <button id="cart" type="submit" name="Task" value="GetAllReports">Download Specific Book Sale Reports</button>
-     			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
-                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button> ---->
-                <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
-                </br>
-                <th>Validate</th>
-                <th> <input type="text" name="vcode" value=${"vcode"}><br/>
-                </tr>
-                </br>
-                </br>
-                <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
-                </br>
-                <h2 style="color:green">Validation successful</h2>
-                
-</div>
+  <div class="row">
+
+ 			    <div id="homebody"> 
+			<br><br>
+  <#list tablehead?split("_") as x>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<bold>${x}</bold>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  </#list><br>
     
+ <#list results as result>
+    <#list result?split("_") as x>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${x}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    </#list><br> 
+</#list>
+</div>
 
-   </form>
-
-</body>
-</html>
+</div><br><br>
+</div>
+    <!-- Footer 2 End -->
+    </form>
 </body>
 </html>

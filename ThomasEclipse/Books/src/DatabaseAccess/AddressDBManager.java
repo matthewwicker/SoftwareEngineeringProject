@@ -16,6 +16,7 @@ public class AddressDBManager {
 	{
 		String query = "INSERT INTO address (address, billing, uid) ";
 		query += "VALUES ('" + address.getAddress() + "', '" + address.isBilling() + "', '"+ address.getUid()+"')";
+		System.out.println(query);
 		int value = driver.create(query);
 		
 		return value;
