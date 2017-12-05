@@ -160,7 +160,7 @@
                       <tr>
                          <td>${citem.title}</td>
                          <td>${citem.numBooks}</td>
-                         <td> $${citem.price}.00</td>
+                         <td> $${citem.price}</td>
                       </tr>
                        </#list></tbody></table></div></div>
                                 
@@ -182,31 +182,7 @@
               }
          } </script>
 
-         <!---FOOTER-->
-    <footer>
-     <div class="container-fluid">
-       <div class="row">  
-         
-                    
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                  <ul class="menu">
-                        <span>Contact</span>       
-                        <li>
-                            770-584-8574
-                        </li>
-                        <li>
-                            95 Kuhl Avenue
-                            <br/>Atlanta, Georgia 30329
-                        </li> 
-                        <li>
-                            itsbookzb@gmail.com
-                        </li> 
-                   </ul>
-            </div>
 
-        </div>
-    </footer> 
-    <!-- Footer 2 End -->
 </form>
 </body>
 </html>

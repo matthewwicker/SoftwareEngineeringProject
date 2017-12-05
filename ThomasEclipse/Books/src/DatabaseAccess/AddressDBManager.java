@@ -60,6 +60,30 @@ public class AddressDBManager {
 		driver.disconnect();
 		return search_results;
 	}
+	public static ArrayList<Address> searcShippingAddress(String query){
+		ArrayList<Address> search_results = new ArrayList<Address>();
+		System.out.println(query);
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					Address address = new Address();
+					address.setAid(rs.getInt("aid"));
+					address.setAddress(rs.getString("address"));
+					address.setBilling(rs.getInt("billing"));
+					address.setUid(rs.getInt("uid"));
+					search_results.add(address);
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return search_results;
+	}
+	
 	public static ArrayList<Address> searcShippingAddress(String searchParam, String uid, String billing){
 		ArrayList<Address> search_results = new ArrayList<Address>();
 		String query = "select * from address where uid = '" + uid +  "' and billing = '" + billing + "'";

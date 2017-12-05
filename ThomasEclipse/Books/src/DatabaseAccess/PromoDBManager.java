@@ -89,10 +89,10 @@ public class PromoDBManager {
 			System.out.println(query);
 			try {
 			ResultSet rs = driver.retrieve(query);
-			Promo promo = new Promo();
 			if(rs != null){
 				try {
 					while(rs.next()){
+						Promo promo = new Promo();
 						promo.setCode(rs.getString("code"));
 						promo.setPercentOff(rs.getDouble("percentoff"));
 						promo.setEndDate(rs.getString("enddate"));
@@ -112,7 +112,35 @@ public class PromoDBManager {
 			System.out.println(search_results.size());
 			return search_results;
 		}
-		
+		public static ArrayList<Promo> searchPromo(String query){
+			ArrayList<Promo> search_results = new ArrayList<Promo>();
+			System.out.println(query);
+			try {
+			ResultSet rs = driver.retrieve(query);
+			if(rs != null){
+				try {
+					while(rs.next()){
+						Promo promo = new Promo();
+						promo.setCode(rs.getString("code"));
+						promo.setPercentOff(rs.getDouble("percentoff"));
+						promo.setEndDate(rs.getString("enddate"));
+						promo.setStartDate(rs.getString("startdate"));
+						search_results.add(promo);
+					}
+					driver.disconnect();
+				}
+				 catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			}
+			catch(Exception e) {e.printStackTrace();}
+			System.out.println("HELLO???????????????????");
+			System.out.println(search_results.size());
+			return search_results;
+		}
+				
 	}
 
 

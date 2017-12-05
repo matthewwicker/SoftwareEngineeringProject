@@ -77,7 +77,6 @@ public class CartDBManager {
 			try {
 
 				while(rs.next()){
-					System.out.println("check");
 					
 					Cart cart = new Cart();
 					cart.setCartId(rs.getInt("cartid"));
@@ -97,7 +96,31 @@ public class CartDBManager {
 		driver.disconnect();
 		return search_results;
 	}
-	
+	public static ArrayList<Cart> searchCart(String query){
+		ArrayList<Cart> search_results = new ArrayList<Cart>();
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+
+				while(rs.next()){
+				 	Cart cart = new Cart();
+					cart.setCartId(rs.getInt("cartid"));
+					cart.setUid(rs.getInt("uid"));
+					//cart.setISBN(rs.getInt("isbn"));
+					//cart.setNumOrdered(rs.getInt("numbooks"));
+					
+					search_results.add(cart);
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		driver.disconnect();
+		return search_results;
+	}	
 	public static String getUserCartID(String searchParam, int searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
 		String query = "select * from cart where " + "uid"+ "= '" + searchItem + "' AND valid = 1";

@@ -67,10 +67,10 @@ public class TransactionDBManager {
 		ArrayList<Transaction> search_results = new ArrayList<Transaction>();
 		String query = "select * from transaction where " + searchParam+ "= '" + searchItem+"' AND valid = 1";
 		ResultSet rs = driver.retrieve(query);
-		Transaction transaction = new Transaction();
 		if(rs != null){
 			try {
 				while(rs.next()){
+					Transaction transaction = new Transaction();
 					transaction.setTransactioncol(rs.getInt("transactionid"));
 					transaction.setCartid(rs.getInt("cartid"));
 					transaction.setCcid(rs.getInt("ccid"));
@@ -89,5 +89,29 @@ public class TransactionDBManager {
 		}
 		return search_results;
 	}
-	
+	public static ArrayList<Transaction> searchTransaction(String query){
+		ArrayList<Transaction> search_results = new ArrayList<Transaction>();
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					Transaction transaction = new Transaction();
+					transaction.setTransactioncol(rs.getInt("transactionid"));
+					transaction.setCartid(rs.getInt("cartid"));
+					transaction.setCcid(rs.getInt("ccid"));
+					transaction.setAmount(rs.getDouble("amount"));
+					transaction.setDate(rs.getDate("date"));
+					transaction.setStatus(rs.getString("status"));
+					transaction.setPromoCode(rs.getString("promoid"));
+					search_results.add(transaction);
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return search_results;
+	}	
 }

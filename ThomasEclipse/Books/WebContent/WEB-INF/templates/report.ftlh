@@ -138,12 +138,12 @@
  			    <div id="homebody"> 
 			<br><br>
   <#list tablehead?split("_") as x>
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<bold>${x}</bold>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<bold>${x}</bold>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   </#list><br>
     
  <#list results as result>
     <#list result?split("_") as x>
-    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${x}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${x}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     </#list><br> 
 </#list>
 </div>

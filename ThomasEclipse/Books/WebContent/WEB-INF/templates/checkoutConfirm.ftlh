@@ -156,8 +156,8 @@
                       <tr>
                          <td>${citem.title}</td>
                          <td id="qty">${citem.numBooks}</td>
-                         <td id="price">$${citem.price}.00</td>
-                         <td id="price_sub">${citem.total}.00</td>
+                         <td id="price">$${citem.price}</td>
+                         <td id="price_sub">${citem.total}</td>
                       </tr>
                        </#list>
                       <tr>

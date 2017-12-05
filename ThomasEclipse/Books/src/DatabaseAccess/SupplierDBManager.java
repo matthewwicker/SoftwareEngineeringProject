@@ -91,5 +91,25 @@ public class SupplierDBManager {
 		}
 		return search_results;
 	}
-	
+	public static ArrayList<Supplier> searchSupplier(String query){
+		ArrayList<Supplier> search_results = new ArrayList<Supplier>();
+		ResultSet rs = driver.retrieve(query);
+		Supplier supplier = new Supplier();
+		if(rs != null){
+			try {
+				while(rs.next()){
+					supplier.setSupplierid(rs.getInt("supplierid"));
+					supplier.setName(rs.getString("name"));
+					supplier.setUid(rs.getInt("uid"));
+					search_results.add(supplier);
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return search_results;
+	}	
 }

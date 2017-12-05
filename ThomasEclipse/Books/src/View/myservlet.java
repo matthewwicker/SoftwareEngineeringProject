@@ -84,6 +84,7 @@ public class myservlet extends HttpServlet {
         String email="";
 		String name="";
 		String type="";
+		root.put("results", "");
 		Cookie cookies[] = request.getCookies();
 		
 		
@@ -238,6 +239,8 @@ public class myservlet extends HttpServlet {
 				template = "report.ftlh";
 				String header = "Promotion Report";
 				String tablehead = "Promotion_Uses";
+				ArrayList<String> info = reports.promoUse();
+				root.put("results", info);
 				root.put("header", header);
 				root.put("tablehead",tablehead);
 				
@@ -246,6 +249,8 @@ public class myservlet extends HttpServlet {
 				template = "report.ftlh";
 				String header = "Earnings by Book";
 				String tablehead = "Book_Earning";
+				ArrayList<String> info = reports.bookSales();
+				root.put("results", info);
 				root.put("header", header);
 				root.put("tablehead",tablehead);
 				
@@ -256,20 +261,24 @@ public class myservlet extends HttpServlet {
 				String tablehead = "Book_Quantity";
 				root.put("header", header);
 				root.put("tablehead",tablehead);
-				
+				ArrayList<String> info = reports.booksPurchased();
+				root.put("results", info);
 			}
-			else if(task.equals("GoToAllTransactions")) {
+			else if(task.equals("GoToCurrentShipRep")) {
 				template = "report.ftlh";
 				String header = "Summary of Transactions";
 				String tablehead = "OrderID_Number of Items_Order Status";
+				ArrayList<String> info = reports.currentShipments();
+				root.put("results", info);
 				root.put("header", header);
-				root.put("tablehead",tablehead);
-				
+				root.put("tablehead",tablehead);				
 			}
 			else if(task.equals("GoToUserInfoRep")) {
 				template = "report.ftlh";
-				String header = "Summary of Transactions";
-				String tablehead = "OrderID_Number of Items_Order Status";
+				String header = "User Summaries";
+				String tablehead = " ";
+				ArrayList<String> info = reports.userInfo();
+				root.put("results", info);
 				root.put("header", header);
 				root.put("tablehead",tablehead);
 				
@@ -278,6 +287,8 @@ public class myservlet extends HttpServlet {
 				template = "report.ftlh";
 				String header = "Book Sales for your Agency";
 				String tablehead = "ISBN_Quantity Sold";
+				ArrayList<String> info = reports.sBookSales(thisUser.getUid());
+				root.put("results", info);
 				root.put("header", header);
 				root.put("tablehead",tablehead);
 				
@@ -285,7 +296,9 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("GotToInventoryRep")) {
 				template = "report.ftlh";
 				String header = "Current Inventory";
-				String tablehead = "ISBN_Stock";
+				String tablehead = "ISBN_Quantity_Threshold";
+				ArrayList<String> info = reports.sBookInventory(thisUser.getUid());
+				root.put("results", info);
 				root.put("header", header);
 				root.put("tablehead",tablehead);
 				
