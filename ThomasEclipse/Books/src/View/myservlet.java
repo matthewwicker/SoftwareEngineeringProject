@@ -72,6 +72,7 @@ public class myservlet extends HttpServlet {
         root.put("promocode", "");
         root.put("message", "");
         root.put("error", "");
+        root.put("createusererror", "");
         userPromotion.setPercentOff(0.0);
         userPromotion.setCode("No Promotion Used");
 }
@@ -102,15 +103,17 @@ public class myservlet extends HttpServlet {
 			if (task.equals("none")){}
 			
 			else if (task.equals("CreateUser")){
-				User potentialUser = GetHandlers.makeUser(request);
-				SendEmail sender = new SendEmail();
-				sender.actuallySendEmail(potentialUser, SendEmail.REGISTRATION_CONFIRMATION);
-				/*if(potentialUser != null) {
-	        	  		int i = UserDBManager.addUser(potentialUser);
+				template = "create.ftlh";
+				User potentialUser = null;
+				try{potentialUser = GetHandlers.makeUser(request);}
+				catch(Exception e) {e.printStackTrace();}
+				if(potentialUser != null) {
+					SendEmail sender = new SendEmail();
+					sender.actuallySendEmail(potentialUser, SendEmail.REGISTRATION_CONFIRMATION);
 				}
 				else {
-	        	  		System.out.println("REQUREMENTS NOT SATISFIED");
-				}*/
+					root.put("createusererror", GetHandlers.errorString);
+				}
 			}//Create user
 			
 			else if (task.equals("SignIn")){

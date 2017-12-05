@@ -19,6 +19,7 @@ public class PaymentDBManager {
 	{
 		String query = "INSERT INTO payment (cc_number, expdate, type, uid, aid) ";
 		query += "VALUES ('" + payment.getCc_number() + "', '"+payment.getExpdate()+"', '"+payment.getType()+"', '" + payment.getUser() + "', '"+ payment.getAid()+"')";
+		System.out.println(query);
 		int value = driver.create(query);
 		
 		return value;

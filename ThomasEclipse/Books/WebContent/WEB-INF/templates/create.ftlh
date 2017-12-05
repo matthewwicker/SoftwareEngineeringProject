@@ -142,20 +142,18 @@
         <input name="ccnum" type="text" placeholder="Credit Card Number" class="input pass" value=""/>
         <input name="expdate" type="text" placeholder="Credit Card Expiration Date" class="input pass" value=""/>
         <input name="ccv" type="text" placeholder="CCV" class="input pass" value=""/>
+         <input name="type" type="text" placeholder="debit/credit" class="input pass" value=""/>
         <button type="submit" name="Task" onclick="return requiredParam(fname.value,lname.value,email.value,phone.value)" class="inputButton" value="CreateUser">Sign me up!</button>
         <div class="text-center">
             already have an account?<button class="btn btn-link" type="submit" name="navigator" value="signin.ftlh">login</button> having trouble?<button class="btn btn-link" type="submit" name="navigator" value="support.ftlh">support</button>
         </div>
-        
+        <h3 style="color:red">${createusererror}</h3>
        </div></div>
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">
        <div class="row">  
-<<<<<<< HEAD
-         
-                    
-=======
+
             
             <div class="col-md-3 col-sm-6 col-xs-12">
                     <ul class="menu">
@@ -183,8 +181,7 @@
                           </li>
                      </ul>
             </div>
-           
->>>>>>> origin/SarahWedBranch
+          
             <div class="col-md-3 col-sm-6 col-xs-12">
                   <ul class="menu">
                         <span>Contact</span>       
