@@ -25,12 +25,16 @@ DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE `supplier` (
   `supplierid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `uid` int(11) NOT NULL,
   `phonenumber` varchar(45) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `contactname` varchar(45) NOT NULL,
+  `contactcell` varchar(45) NOT NULL,
+  `contactbusiness` varchar(45) NOT NULL,
+  `valid` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`supplierid`),
   KEY `userid2_idx` (`uid`),
   CONSTRAINT `userid2` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +43,7 @@ CREATE TABLE `supplier` (
 
 LOCK TABLES `supplier` WRITE;
 /*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-INSERT INTO `supplier` VALUES (1,'defaultS',3,'');
+INSERT INTO `supplier` VALUES (1,'defaultS','123456789',3,'steve','123456789','steves books',1);
 /*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-03 22:10:49
+-- Dump completed on 2017-12-04 21:05:25

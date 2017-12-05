@@ -24,14 +24,12 @@ DROP TABLE IF EXISTS `promo`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `promo` (
   `code` varchar(45) NOT NULL,
-  `isbn` int(11) NOT NULL,
   `percentoff` double NOT NULL,
   `startdate` date NOT NULL,
   `enddate` date NOT NULL,
+  `valid` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`code`),
-  UNIQUE KEY `code_UNIQUE` (`code`),
-  KEY `isbn_idx` (`isbn`),
-  CONSTRAINT `isbn` FOREIGN KEY (`isbn`) REFERENCES `book` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  UNIQUE KEY `code_UNIQUE` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,6 +39,7 @@ CREATE TABLE `promo` (
 
 LOCK TABLES `promo` WRITE;
 /*!40000 ALTER TABLE `promo` DISABLE KEYS */;
+INSERT INTO `promo` VALUES ('NO PERCENT OFF',0,'1993-01-01','2022-01-01',1);
 /*!40000 ALTER TABLE `promo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-03 22:10:49
+-- Dump completed on 2017-12-04 21:05:25
