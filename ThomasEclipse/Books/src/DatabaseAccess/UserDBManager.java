@@ -15,7 +15,7 @@ public class UserDBManager {
 	public static int addUser(User user) {
 		String query = "INSERT INTO users (email, fname, lname, password, phonenumber, type, verify, signupdate) ";
 		query += "VALUES ('" + user.getEmail() + "', '" + user.getFname() + "', '" + user.getLname()+"', ";
-		//query += "AES_ENCRYPT('" + user.getPassword() + "', UNHEX(SHA2('test', 512)))" + "', '" +  user.getPhoneNumber() + "', '" + user.getType() + "', '0')";
+		//query += "AES_ENCRYPT('" + user.getPassword() + "', 'UNHEX(SHA2('password', 512)))" + "', '" +  user.getPhoneNumber() + "', '" + user.getType() + "', '0', '"+LocalDateTime.now()+"')";
 		query += "'" + user.getPassword() + "', '" +  user.getPhoneNumber() + "', '" + user.getType() + "', '0', '" + LocalDateTime.now() + "')";
 		System.out.println(query);
 		int success = 0;
@@ -96,7 +96,7 @@ public class UserDBManager {
 	 */
 	public static ArrayList<User> searchUsers(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
-		//String query = "select *, AES_DECRYPT(password, UNHEX(SHA2('test',512))) from users where " + searchParam+ "= '" + searchItem + "'";
+		//String query = "select *, AES_DECRYPT(password, UNHEX(SHA2('password',512))) from users where " + searchParam+ "= '" + searchItem + "'";
 		String query = "select * from users where " + searchParam+ "= '" + searchItem + "' AND valid = 1";
 		ResultSet rs = driver.retrieve(query);
 		if(rs != null){
@@ -107,7 +107,7 @@ public class UserDBManager {
 					user.setFname(rs.getString("fname"));
 					user.setLname(rs.getString("lname"));
 					user.setPhoneNumber(rs.getString("phonenumber"));
-					//user.setPassword(rs.getString("AES_DECRYPT(password, UNHEX(SHA2('test',512)))"));
+					//user.setPassword(rs.getString("AES_DECRYPT(password, UNHEX(SHA2('password',512)))"));
 					user.setPassword(rs.getString("password"));
 					user.setEmail(rs.getString("email"));
 					user.setType(rs.getString("type"));
@@ -138,7 +138,7 @@ public class UserDBManager {
 					user.setFname(rs.getString("fname"));
 					user.setLname(rs.getString("lname"));
 					user.setPhoneNumber(rs.getString("phonenumber"));
-					//user.setPassword(rs.getString("AES_DECRYPT(password, UNHEX(SHA2('test',512)))"));
+					//user.setPassword(rs.getString("AES_DECRYPT(password, UNHEX(SHA2('password',512)))"));
 					user.setPassword(rs.getString("password"));
 					user.setEmail(rs.getString("email"));
 					user.setType(rs.getString("type"));

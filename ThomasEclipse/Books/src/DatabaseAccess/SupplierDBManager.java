@@ -71,7 +71,7 @@ public class SupplierDBManager {
 	 */
 	public static ArrayList<Supplier> searchSupplier(String searchParam, String searchItem){
 		ArrayList<Supplier> search_results = new ArrayList<Supplier>();
-		String query = "select * from supplier where " + searchParam+ "= '" + searchItem+"' valid = 1";
+		String query = "select * from supplier where " + searchParam+ "= '" + searchItem+"' and  valid = '1'";
 		ResultSet rs = driver.retrieve(query);
 		Supplier supplier = new Supplier();
 		if(rs != null){

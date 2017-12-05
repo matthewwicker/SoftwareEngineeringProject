@@ -97,15 +97,17 @@ public class myservlet extends HttpServlet {
 			if (task.equals("none")){}
 			
 			else if (task.equals("CreateUser")){
-				User potentialUser = GetHandlers.makeUser(request);
-				SendEmail sender = new SendEmail();
-				sender.actuallySendEmail(potentialUser, SendEmail.REGISTRATION_CONFIRMATION);
-				/*if(potentialUser != null) {
-	        	  		int i = UserDBManager.addUser(potentialUser);
+				template = "create.ftlh";
+				User potentialUser = null;
+				try{potentialUser = GetHandlers.makeUser(request);}
+				catch(Exception e) {e.printStackTrace();}
+				if(potentialUser != null) {
+					SendEmail sender = new SendEmail();
+					sender.actuallySendEmail(potentialUser, SendEmail.REGISTRATION_CONFIRMATION);
 				}
 				else {
-	        	  		System.out.println("REQUREMENTS NOT SATISFIED");
-				}*/
+					root.put("createusererror", GetHandlers.errorString);
+				}
 			}//Create user
 			
 			else if (task.equals("SignIn")){
@@ -140,6 +142,8 @@ public class myservlet extends HttpServlet {
         	  				}
         					
         					String cc = pay.getCc_number();
+        					System.out.println(cc);
+        					System.out.println(cc.substring(11,15));
         					cc = cc.substring(12, 16);
         					Payment payment = new Payment();
         					
@@ -287,7 +291,10 @@ public class myservlet extends HttpServlet {
 				template = "report.ftlh";
 				String header = "Book Sales for your Agency";
 				String tablehead = "ISBN_Quantity Sold";
-				ArrayList<String> info = reports.sBookSales(thisUser.getUid());
+				int id = SupplierDBManager.searchSupplier("uid", Integer.toString(thisUser.getUid())).get(0).getSupplierid();
+				System.out.println("ID");
+				System.out.println(id);
+				ArrayList<String> info = reports.sBookSales(id);
 				root.put("results", info);
 				root.put("header", header);
 				root.put("tablehead",tablehead);
@@ -297,7 +304,8 @@ public class myservlet extends HttpServlet {
 				template = "report.ftlh";
 				String header = "Current Inventory";
 				String tablehead = "ISBN_Quantity_Threshold";
-				ArrayList<String> info = reports.sBookInventory(thisUser.getUid());
+				int id = SupplierDBManager.searchSupplier("uid", Integer.toString(thisUser.getUid())).get(0).getSupplierid();
+				ArrayList<String> info = reports.sBookInventory(id);
 				root.put("results", info);
 				root.put("header", header);
 				root.put("tablehead",tablehead);
@@ -636,7 +644,9 @@ public class myservlet extends HttpServlet {
 				s.setUid(Integer.parseInt(userID));
 				SupplierDBManager.addSupplier(s);
 			}//Go To CreateSupplier
-			
+			else if(task.equals("GoToUpdateOrderStatus")) {
+				template = "updateOrderStatus.ftlh";
+			}
 			else if(task.equals("UpdateOrderStatus")) {
 				template =  "updateOrderStatus.ftlh";
 				ArrayList<User> usr = UserDBManager.searchUsers("email", request.getParameter("email"));
@@ -697,11 +707,9 @@ public class myservlet extends HttpServlet {
 
 	            			cart = carts.get(0);
 	            		}
-	            		System.out.println("check2");
 	            		System.out.println("Here is the user's cartID: " + cart.getCartId());
 	            		ArrayList<CartItem> cartItems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
 	            		for(CartItem c : cartItems) {
-	            			System.out.println("check3");
 	            			//For each item in the users cart, remove it from the database
 	            			ArrayList<Book> books = BookDBManager.searchBooks("isbn", c.getISBN());
 	            			int newQuant = books.get(0).getQuantity() - c.getNumBooks();
@@ -730,15 +738,10 @@ public class myservlet extends HttpServlet {
 
 	            	if(doTransaction) {
 	            		template = "checkoutConfirm.ftlh";
-
+                        cart.setPrice(total);
 	            		Transaction t = GetHandlers.CreateTransaction(request, thisUser, userPromotion.getCode(), cart);
 	            		TransactionDBManager.addTransaction(t);
-	            		if (carts.size() > 1) {
-	            			cart = carts.get(carts.size() - 1);
-	            		}
-	            		else {
-	            			cart = carts.get(0);
-	            		}	
+	            	
 	            	}
 				}
 	            else {
