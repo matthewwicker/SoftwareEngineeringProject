@@ -22,6 +22,7 @@ public class SendEmail {
 	public static int UNSUBBED_PROMOTIONS = 7;
 	public static int ACCOUNT_VERIFICATION = 8;
 	public static int ACCOUNT_STATUS_CHANGED = 9;
+	public static int THRESHOLD_HIT = 10;
 	public SendEmail() {}
 	public void actuallySendEmail(User u, int email_type) {
 			String from = "ITSBOOKZB"; 
@@ -77,6 +78,10 @@ public class SendEmail {
 	        	else if(email_type == ACCOUNT_STATUS_CHANGED) {
 	        		subject = "Thanks for verifying your account with Bookz!";
 	        		body = this.generateStatusMessage(u);
+	        	}
+	        	else if(email_type == ACCOUNT_STATUS_CHANGED) {
+	        		subject = "Book quantity has fallen below threshold!";
+	        		body = this.generateThresholdMessage(u);
 	        	}
 	     
 	        try {
@@ -295,6 +300,16 @@ public class SendEmail {
 				+ "Bookz team";
 		return message;
 	}
+	
+	private String generateThresholdMessage(User u) {
+		String message = "Hi " + u.getFname() + ", \n \n "
+				+ " Bookz would like to let you know that one of your books has fallen below your preset threshold. Please logon "
+				+ "to download your book reports and to check which items are insufficently stocked! \n \n "
+				+ "Have a great day! \n"
+				+ "Bookz team";
+		return message;
+	}
+	
 	public static void main(String[] args) {
 		User us = new User();
 		SendEmail s = new SendEmail();
