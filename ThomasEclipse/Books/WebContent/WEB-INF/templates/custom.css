@@ -38,15 +38,6 @@
         float:left;
     }
 
-    select {
-    	color:black;
-    	letter-spacing: 1px;
-        text-transform: uppercase;
-        text-decoration: none;
-                width: 300px;
-        
-    }
-
    /* NAVIGATION BAR */ 
     .navbar {
         margin-bottom: 25px;
@@ -224,6 +215,12 @@
         color: #ffffff;
         border: 2px solid #DB7093;
     }
+    
+    #inverse{
+        background-color: !important #DB7093;
+        color: #ffffff;
+        border: !important 2px solid #3d6594;
+    }
 
     /*BODY BOOK INFO*/
     .topImg {
@@ -302,7 +299,3 @@
         -o-transition: all 1s ease-in-out;
         transition: all 1s ease-in-out;
     }
-
-
-
-    

@@ -69,10 +69,12 @@
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_YA"  >Young Adult</button></li>
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_kids">Kids</button></li>
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_scifi" >Science Fiction</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_fantasy" >Fantasy</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_biographies" >Biographies</button></li>
            </ul>
         </li>
                 <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_best">Best Selling</button></li>
-                <li><button type="submit" name="Task" value= "Search_genre_deals"  class="btn btn-link">Deals</button></li>
+                <li><button type="submit" name="navigator" value="promotions.ftlh"  class="btn btn-link">Promotions</button></li>
                 <li><button type="submit" name="Task" value= "Search_genre_favorites"  class="btn btn-link">Our Favorites</button></li>
         </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -131,8 +133,8 @@
 <div class="container">
     
     <div id="homebody"> 
-        Treat your self</br> with a new book from <i>yourShelf</i></br>
-        Free Shipping on orders over $50 with code <b>50SHIP</b><br/>
+    	Welcome to yourShelf!<br>
+        Treat your self with a new book from <i>yourShelf</i></br>
         10% off your first purchase with code <b>NEWMEM</b><br/>
         <br/>
 
@@ -157,7 +159,7 @@
       <div class="panel panel-default">
         <div class="panel-body"><img src="cover1.jpg" class="img-responsive"></div>
         <div class="panel-footer">
-          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div>   <br/>
+          <div class = "button2"><button type="submit" name="Task" value="GoToItem">Cat in the Hat</button></div><br/>
           Dr. Seuss <br/>
           $5.00<br/>
           <span class="glyphicon glyphicon-star-empty"></span>
@@ -218,10 +220,33 @@
         
       </div>
     </div>
-
-
 </div></div><br><br>
 
+<!---FOOTER-->
+    <footer>
+     <div class="container-fluid">
+       <div class="row">  
+         
+                    
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                  <ul class="menu">
+                        <span>Contact</span>       
+                        <li>
+                            770-584-8574
+                        </li>
+                        <li>
+                            95 Kuhl Avenue
+                            <br/>Atlanta, Georgia 30329
+                        </li> 
+                        <li>
+                            itsbookzb@gmail.com
+                        </li> 
+                   </ul>
+            </div>
+
+        </div>
+    </footer> 
+    <!-- Footer 2 End -->
 
    </form>
 
