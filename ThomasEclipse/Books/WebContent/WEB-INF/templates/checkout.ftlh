@@ -5,9 +5,11 @@
     <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <link href="custom.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <style>
       @import url('https://fonts.googleapis.com/css?family=Lobster');
       @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -29,7 +31,7 @@
       <div class="col-sm-4">
         <div class="input-group">
                       <div class="input-group-btn search-panel">
-                 <select name="searchby"> <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
+                 <select name="searchby" class="selectpicker show-tick" data-width="105px" title="Filter By">
                      <option value="title">Title</option>
                      <option value="isbn">ISBN</option>
                      <option value="genre">Genre</option>
@@ -61,23 +63,25 @@
       
                 <li><button class="btn btn-link"  type="submit" name="navigator" value="home.ftlh">Home</button></li>
         <li class="dropdown">
-			  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
-			  <span class="caret"></span></button>
+        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
+        <span class="caret"></span></button>
           <ul class="dropdown-menu">
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_YA"  >Young Adult</button></li>
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_kids">Kids</button></li>
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_scifi" >Science Fiction</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_fantasy" >Fantasy</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_biographies" >Biographies</button></li>
            </ul>
         </li>
                 <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_best">Best Selling</button></li>
-                <li><button type="submit" name="Task" value= "Search_genre_deals"  class="btn btn-link">Deals</button></li>
+                <li><button type="submit" name="navigator" value="promotions.ftlh"  class="btn btn-link">Promotions</button></li>
                 <li><button type="submit" name="Task" value= "Search_genre_favorites"  class="btn btn-link">Our Favorites</button></li>
         </ul>
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
-        				<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">${loginbutton}
-			  					<span class="caret"></span></button>
+                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">${loginbutton}
+                  <span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
                             <div class="col-lg-12">
                                 <div class="text-center"><h3><b>Log In</b></h3></div>
@@ -155,6 +159,7 @@
       </table>
   </div>
 
+
     <div class="col-md-6">
       <h4>Billing Information</h4>
         <table>
@@ -177,7 +182,7 @@
                   <tr>
                   <tr>
                     <th>Exp. Date</th>
-                    <th> 01/01/2001></th>
+                    <th> 01/01/2001</th>
                   </tr>
                   <tr>
                     <th>Billing Address</th>
@@ -236,9 +241,35 @@
               </table>
           </div>
       </div>
-</div><br><br>
+</div></div><br><br>
 
 <h3 style="color:red">${error}</h3>
+
+<!---FOOTER-->
+    <footer>
+     <div class="container-fluid">
+       <div class="row">  
+         
+                    
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                  <ul class="menu">
+                        <span>Contact</span>       
+                        <li>
+                            770-584-8574
+                        </li>
+                        <li>
+                            95 Kuhl Avenue
+                            <br/>Atlanta, Georgia 30329
+                        </li> 
+                        <li>
+                            itsbookzb@gmail.com
+                        </li> 
+                   </ul>
+            </div>
+
+        </div>
+    </footer> 
+    <!-- Footer 2 End -->
 
 </form>
 </body>
