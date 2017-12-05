@@ -130,7 +130,6 @@
 </nav>
 
 <!---BODY-->
-<div id="content-background">
             <div class="page-header">
           <h2>Manager Dashboard</h2>
       </div>
@@ -155,7 +154,6 @@
                 <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button></center>
                 </div>
                 
-</div>
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">

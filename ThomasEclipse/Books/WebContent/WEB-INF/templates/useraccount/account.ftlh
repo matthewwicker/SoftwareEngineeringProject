@@ -129,7 +129,6 @@
   </div>
 </nav>
 <!---BODY-->
-<div id="content-background">
 
       <div class="text-center">
           <h3>Member Dashboard</h3>
@@ -158,7 +157,6 @@
                 <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
                 
                 </div>
-</div>
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">

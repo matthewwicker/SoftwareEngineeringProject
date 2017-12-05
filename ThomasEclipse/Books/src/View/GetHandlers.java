@@ -34,7 +34,7 @@ import EmailNotifications.SendEmail;
 
 public class GetHandlers {
 	static logic logic = new logic();
-	
+	public static String errorString = "";
 	protected static User makeUser(HttpServletRequest request) {
 		//What object do you want to get out of this interaction?
 		User retval = new User();
@@ -52,9 +52,12 @@ public class GetHandlers {
 		String accounttype = "!*!";
 		String username = "!*!";
 		String password = "!*!";
+		String cpassword = "!*!";
 		String addressline1 = "!*!";
 		String addressline2 = "!*!";
-		
+		String ccv = "!*!";
+		String ccnum = "!*!";
+		String expdate = "!*!";
 		//=========================================================
 		//		ITERATING THROUGHT THE ITEMS IN THE REQUEST
 		//=========================================================
@@ -78,8 +81,11 @@ public class GetHandlers {
 	    			case "uname":
 	    				username = request.getParameter(paramName);
 	    				break;
-	    			case "cpassword":
+	    			case "password":
 	    				password = request.getParameter(paramName);
+	    				break;
+	    			case "cpassword":
+	    				cpassword = request.getParameter(paramName);
 	    				break;
 	    			case "phone":
 	    				phonenumber = request.getParameter(paramName);
@@ -89,6 +95,15 @@ public class GetHandlers {
 	    				break;
 	    			case "address2":
 	    				addressline2 = request.getParameter(paramName);
+	    				break;
+	    			case "ccnum":
+	    				ccnum = request.getParameter(paramName);
+	    				break;
+	    			case "ccv":
+	    				ccv = request.getParameter(paramName);
+	    				break;
+	    			case "expdate":
+	    				expdate = request.getParameter(paramName);
 	    				break;
 	    			default:
 	    				break;
@@ -111,14 +126,17 @@ public class GetHandlers {
 	    		retval.setEmail(email);
 	    		//System.out.println("set!");
 	    	}
-	    if(password != "!*!") {
+	    if(password != "!*!" && cpassword != "!*!") {
+	    		if(!(password.equals(cpassword) && password.length() >= 6)) {
+	    			errorString = "Passwords don't match or passwords are insufficient lengths.";
+	    			return null;
+	    		}
 	    		retval.setPassword(password);
-	    		//System.out.println("set!");
 	    	}
 	    if(phonenumber != "!*!") {
-    		retval.setPhoneNumber(phonenumber);
-    		//System.out.println("set!");
-    	}
+    			retval.setPhoneNumber(phonenumber);
+    			//System.out.println("set!");
+	    }
 	    if(accounttype != "!*!") {
 	    		retval.setType(accounttype);
 	    		//System.out.println("set!");
@@ -135,7 +153,34 @@ public class GetHandlers {
 			address.setBilling(1);
 			//System.out.println("set!");
 		}
-		
+		if(ccnum != "!*!") {
+			if(ccnum.length() == "1234567890123456".length()) {
+    				payment.setCc_number(ccnum);
+			}
+			else {
+				errorString = "Credit card number has an incorrect length. Expected length 16, got: " + ccnum.length() ;
+				return null;
+			}
+    		}
+		if(expdate != "!*!") {
+    			if(expdate.length() == "11-1111".length() &&
+    					expdate.charAt(2) == '-') {
+    				payment.setExpdate(expdate);
+    			}
+    			else {
+    				errorString = "Credit card expiration date was entered incorrectly";
+    				return null;
+    			}
+		}
+		if(type != "!*!") {
+    			if(type.equalsIgnoreCase("debit") || type.equalsIgnoreCase("credit")) {
+    				payment.setType(type);
+    			}
+    			else {
+    				errorString = "Unrecognized card type";
+    				return null;
+    			}
+    		}
 		
 		
 		// HERE ARE THE REQUIRED VALUES
@@ -145,11 +190,37 @@ public class GetHandlers {
 		//=======================-------------------===============
 		//			SEND IT TO THE DATA ACCESS LAYER
 		//=========================================================
-		System.out.println("User email entered: " + retval.getEmail());
-		Random rand = new Random();
-		logic.addUser(retval, address, payment);
+		try {UserDBManager.addUser(retval);}
+		catch(Exception e) {
+			e.printStackTrace();
+			errorString = "Sorry, we failed to create the user database entry. Try again later.";
+			return null;
+		}
 		String userID  = UserDBManager.getUserUserID("email", retval.getEmail());
-    	CartDBManager.addCart(Integer.parseInt(userID));
+		retval.setUid(Integer.parseInt(userID));
+		address.setUid(Integer.parseInt(userID));
+		try { AddressDBManager.addAddress(address); }
+		catch(Exception e){
+			System.out.println("FAILED WHEN TRYING TO CREATE ADDRESS OBJECT IN DB");
+			e.printStackTrace();
+			errorString = "Sorry, we failed to create the address database entry. Try again later.";
+			UserDBManager.removeUser(retval);
+			PaymentDBManager.removePaymment(payment);
+			return null;
+		}
+		Address a = AddressDBManager.searcAddress("uid", userID).get(0);
+		payment.setAid(a.getAid());
+		payment.setUser(Integer.parseInt(userID));
+		try { PaymentDBManager.addPayment(payment); }
+		catch(Exception e){
+			System.out.println("FAILED WHEN TRYING TO CREATE PAYMENT OBJECT IN DB");
+			e.printStackTrace();
+			errorString = "Sorry, we failed to create the payment database entry. Try again later.";
+			UserDBManager.removeUser(retval);
+			return null;
+		}
+		//String userID  = UserDBManager.getUserUserID("email", retval.getEmail());
+		CartDBManager.addCart(Integer.parseInt(userID));
 		return retval;
 		
 	}
@@ -216,6 +287,7 @@ public class GetHandlers {
 	    				break;
 	    		}
 	     }
+	    System.out.println("WE HAVE JUST USED THE HEADER TO SIGN IN AND WE HAVE THE FOLLOWING VALUES: " + email + " " + password);
 	    if(email != "!*!") retval.setEmail(email);
 	    if(password != "!*!") retval.setPassword(password);
 	    if(email == "!*!" || password == "!*!") {

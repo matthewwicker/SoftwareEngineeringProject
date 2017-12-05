@@ -37,26 +37,38 @@ public class logic {
 		return success;
 	}
 	public User authorizeUser(User u){
-		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
-		User user = newUser.get(0);
+		User user;
+		ArrayList<User> newUser;
+		System.out.println("ATTEMPTING TO AUTHORIZE USER: " + u.getEmail() + " " + u.getPassword());
+		try {
+			newUser = UManager.searchUsers("email", u.getEmail());
+			user = newUser.get(0);
+		}
+		catch(Exception e) {
+			newUser = UManager.searchUsers("uid", u.getEmail());
+			user = newUser.get(0);
+		}
 		System.out.println("What we got from freemarker: " + u.getPassword());
 		System.out.println("What we got from database: " + user.getPassword());
 		if(u.getPassword().equals(newUser.get(0).getPassword())){
 			System.out.println("SUCCESS TO SIGN IN");
 			ArrayList<Address> adds = AddressDBManager.searcShippingAddress("uid", Integer.toString(user.getUid()), "0");
 			if (adds.size() > 0) {
-				user.setShipadd(adds.get(adds.size()-1).getAddress());
+				user.setShipAddress(adds.get(adds.size()-1).getAddress());
 			}
 			else {
-				user.setShipadd("");
+				user.setShipAddress("");
 			}
 			adds = AddressDBManager.searcShippingAddress("uid", Integer.toString(user.getUid()), "1");
 			if (adds.size() > 0) {
-				user.setBilladd(adds.get(adds.size()-1).getAddress());
+				user.setBillAddress(adds.get(adds.size()-1).getAddress());
 			}
 			else {
-				user.setBilladd("");
+				user.setBillAddress("");
 			}
+
+			System.out.println(user.getBillAddress());
+			System.out.println(user.getShipAddress());
 			return user;
 		}
 		else {
@@ -66,17 +78,17 @@ public class logic {
 				user = otherUsers.get(0);
 				ArrayList<Address> adds = AddressDBManager.searcShippingAddress("uid",  Integer.toString(user.getUid()), "0");
 				if (adds.size() > 0) {
-					user.setShipadd(adds.get(adds.size()-1).getAddress());
+					user.setShipAddress(adds.get(adds.size()-1).getAddress());
 				}
 				else {
-					user.setShipadd("");
+					user.setShipAddress("");
 				}
 				adds = AddressDBManager.searcShippingAddress("uid",  Integer.toString(user.getUid()), "1");
 				if (adds.size() > 0) {
-					user.setBilladd(adds.get(adds.size()-1).getAddress());
+					user.setBillAddress(adds.get(adds.size()-1).getAddress());
 				}
 				else {
-					user.setBilladd("");
+					user.setBillAddress("");
 				}
 				return user;			}
 		}

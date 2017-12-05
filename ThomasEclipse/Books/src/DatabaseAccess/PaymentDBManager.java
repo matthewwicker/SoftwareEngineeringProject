@@ -19,6 +19,7 @@ public class PaymentDBManager {
 	{
 		String query = "INSERT INTO payment (cc_number, expdate, type, uid, aid) ";
 		query += "VALUES ('" + payment.getCc_number() + "', '"+payment.getExpdate()+"', '"+payment.getType()+"', '" + payment.getUser() + "', '"+ payment.getAid()+"')";
+		System.out.println(query);
 		int value = driver.create(query);
 		
 		return value;
@@ -67,7 +68,32 @@ public class PaymentDBManager {
 	 */
 	public static ArrayList<Payment> searchPayment(String searchParam, String searchItem){
 		ArrayList<Payment> search_results = new ArrayList<Payment>();
-		String query = "select * from payment where " + searchParam+ "= '" + searchItem+"' AND valid = '1'";
+		String query = "select * from payment where " + searchParam+ "= '" + searchItem+"' AND valid = 1";
+		ResultSet rs = driver.retrieve(query);
+		Payment payment = new Payment();
+		if(rs != null){
+			try {
+				while(rs.next()){
+					payment.setCcid(rs.getInt("ccid"));
+					payment.setCc_number(rs.getString("cc_number"));
+					payment.setExpdate(rs.getString("expdate"));
+					payment.setType(rs.getString("type"));
+					payment.setUser(rs.getInt("user"));
+					payment.setAid(rs.getInt("aid"));
+					search_results.add(payment);
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return search_results;
+	}
+	
+	public static ArrayList<Payment> searchPayment(String query){
+		ArrayList<Payment> search_results = new ArrayList<Payment>();
 		ResultSet rs = driver.retrieve(query);
 		if(rs != null){
 			try {
