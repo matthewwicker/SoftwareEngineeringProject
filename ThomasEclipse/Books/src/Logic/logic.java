@@ -37,8 +37,17 @@ public class logic {
 		return success;
 	}
 	public User authorizeUser(User u){
-		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
-		User user = newUser.get(0);
+		User user;
+		ArrayList<User> newUser;
+		System.out.println("ATTEMPTING TO AUTHORIZE USER: " + u.getEmail() + " " + u.getPassword());
+		try {
+			newUser = UManager.searchUsers("email", u.getEmail());
+			user = newUser.get(0);
+		}
+		catch(Exception e) {
+			newUser = UManager.searchUsers("uid", u.getEmail());
+			user = newUser.get(0);
+		}
 		System.out.println("What we got from freemarker: " + u.getPassword());
 		System.out.println("What we got from database: " + user.getPassword());
 		if(u.getPassword().equals(newUser.get(0).getPassword())){

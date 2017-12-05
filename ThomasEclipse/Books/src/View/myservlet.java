@@ -110,6 +110,7 @@ public class myservlet extends HttpServlet {
 				if(potentialUser != null) {
 					SendEmail sender = new SendEmail();
 					sender.actuallySendEmail(potentialUser, SendEmail.REGISTRATION_CONFIRMATION);
+					root.put("createusererror", "Created Successfully!!");
 				}
 				else {
 					root.put("createusererror", GetHandlers.errorString);

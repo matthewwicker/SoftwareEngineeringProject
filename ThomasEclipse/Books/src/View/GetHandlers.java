@@ -127,7 +127,7 @@ public class GetHandlers {
 	    		//System.out.println("set!");
 	    	}
 	    if(password != "!*!" && cpassword != "!*!") {
-	    		if(password.equals(cpassword) && password.length() >= 6) {
+	    		if(!(password.equals(cpassword) && password.length() >= 6)) {
 	    			errorString = "Passwords don't match or passwords are insufficient lengths.";
 	    			return null;
 	    		}
@@ -287,6 +287,7 @@ public class GetHandlers {
 	    				break;
 	    		}
 	     }
+	    System.out.println("WE HAVE JUST USED THE HEADER TO SIGN IN AND WE HAVE THE FOLLOWING VALUES: " + email + " " + password);
 	    if(email != "!*!") retval.setEmail(email);
 	    if(password != "!*!") retval.setPassword(password);
 	    if(email == "!*!" || password == "!*!") {
