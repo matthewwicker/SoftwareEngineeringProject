@@ -567,9 +567,6 @@ public class myservlet extends HttpServlet {
 			
 			else if(task.equals("GoToCreateSupplier")) {
 				template =  "createsupplier.ftlh";
-			}
-			else if(task.equals("GoToCreateShipper")) {
-				template =  "createshipper.ftlh";
 			}//Go To CreateSupplier
 			else if(task.equals("ChangeQuantitySupplied")) {
 				template =  "changesupply.ftlh";
