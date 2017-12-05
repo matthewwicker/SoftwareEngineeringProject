@@ -27,7 +27,7 @@ CREATE TABLE `transaction` (
   `cartid` int(11) NOT NULL,
   `ccid` int(11) NOT NULL,
   `amount` double NOT NULL,
-  `date` date NOT NULL,
+  `date` datetime NOT NULL,
   `promoid` varchar(45) NOT NULL,
   `status` varchar(45) DEFAULT NULL,
   `valid` tinyint(4) NOT NULL DEFAULT '1',
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-04 21:05:25
+-- Dump completed on 2017-12-04 21:37:54
