@@ -1,8 +1,10 @@
 package Logic;
 import Entities.*;
 
+import java.util.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import DatabaseAccess.*;
 import EmailNotifications.SendEmail;
@@ -21,6 +23,18 @@ public class logic {
 		System.out.println("Size of returned list: " + newUser.size());
 		System.out.println("Validation code should be: xxxxx" + newUser.get(0).getUid() + "xxxxx");
 		if(validation.equals(Integer.toString(newUser.get(0).getUid()))){
+			Date dateInQuestion = u.getSignupdate();
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(dateInQuestion);
+			cal.add(Calendar.HOUR, 48);
+			Date futureDate = cal.getTime();
+			
+			
+			if(dateInQuestion.after(futureDate)) {
+				System.out.println("failure due to time constraint");
+				return 0;
+			}
 			Driver driver = new Driver();
 			String query = "UPDATE users SET verify = '" + 1 +"' WHERE uid = "+ newUser.get(0).getUid();
 			int value = driver.update(query);
@@ -37,10 +51,18 @@ public class logic {
 		return success;
 	}
 	public User authorizeUser(User u){
-		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
-		User user = newUser.get(0);
-		System.out.println("What we got from freemarker: " + u.getPassword());
-		System.out.println("What we got from database: " + user.getPassword());
+		ArrayList<User> newUser = new ArrayList<User>();
+		User user = new User(); 
+				
+		try {
+			newUser =  UManager.searchUsers("email", u.getEmail());
+			user = newUser.get(0);
+		}  catch (Exception e) {
+			newUser = UManager.searchUsers("uid",u.getEmail());
+			user = newUser.get(0);
+		}
+		
+		
 		if(u.getPassword().equals(newUser.get(0).getPassword())){
 			System.out.println("SUCCESS TO SIGN IN");
 			ArrayList<Address> adds = AddressDBManager.searcShippingAddress("uid", Integer.toString(user.getUid()), "0");

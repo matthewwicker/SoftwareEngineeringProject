@@ -429,6 +429,9 @@ public class myservlet extends HttpServlet {
                 if (userPromotion.getPercentOff()==0.0) {
                 	root.put("message", "promo does not exist.");
                 }
+                else if (!promotodelege.isValidForDate()) {
+                	root.put("message", "Promo is out of date!");
+                }
                 else {
 					root.put("message", "Add promo successful.");
 					root.put("promocode", userPromotion.getCode());

@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.Date;
+
 public class User {
 	public int getUid() {
 		return uid;
@@ -97,5 +99,12 @@ public class User {
 	private String shipadd;
 	private String username;
 	private String subscribed;
-	private String suspended;	
+	private String suspended;
+	private Date signupdate;
+	public Date getSignupdate() {
+		return signupdate;
+	}
+	public void setSignupdate(Date signupdate) {
+		this.signupdate = signupdate;
+	}
 }

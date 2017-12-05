@@ -194,7 +194,7 @@
 
 </div><br><br>
 
-<!----- Success comment <h3 style="color:black" placeholder="Something">${message}</h3> ----> 
+<center><h3 style="color:black" placeholder="Something">${message}</h3></center> 
 
 <!---FOOTER-->
     <footer>
