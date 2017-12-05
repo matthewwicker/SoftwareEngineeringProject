@@ -33,7 +33,7 @@ CREATE TABLE `users` (
   `suspended` tinyint(4) NOT NULL DEFAULT '0',
   `verify` tinyint(4) NOT NULL DEFAULT '0',
   `getsPromo` tinyint(4) NOT NULL DEFAULT '1',
-  `valid` tinyint(4) DEFAULT '1',
+  `valid` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-04 19:07:39
+-- Dump completed on 2017-12-04 19:26:18

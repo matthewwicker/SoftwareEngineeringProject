@@ -29,7 +29,7 @@ CREATE TABLE `payment` (
   `type` varchar(45) NOT NULL,
   `uid` int(11) NOT NULL,
   `aid` int(11) NOT NULL,
-  `valid` tinyint(4) DEFAULT '1',
+  `valid` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ccid`),
   UNIQUE KEY `ccid_UNIQUE` (`ccid`),
   KEY `aid_idx` (`aid`),
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-04 19:07:39
+-- Dump completed on 2017-12-04 19:26:18

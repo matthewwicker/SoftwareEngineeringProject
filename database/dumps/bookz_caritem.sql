@@ -26,7 +26,7 @@ CREATE TABLE `caritem` (
   `isbn` int(11) NOT NULL,
   `numbooks` int(11) NOT NULL,
   `cartid` int(11) NOT NULL,
-  `valid` tinyint(4) DEFAULT '1',
+  `valid` tinyint(4) NOT NULL DEFAULT '1',
   KEY `isbn_idx` (`isbn`),
   KEY `cartid_idx` (`cartid`),
   CONSTRAINT `bookid` FOREIGN KEY (`isbn`) REFERENCES `book` (`isbn`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -40,7 +40,6 @@ CREATE TABLE `caritem` (
 
 LOCK TABLES `caritem` WRITE;
 /*!40000 ALTER TABLE `caritem` DISABLE KEYS */;
-INSERT INTO `caritem` VALUES (1234,643,1,NULL);
 /*!40000 ALTER TABLE `caritem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-04 19:07:39
+-- Dump completed on 2017-12-04 19:26:18

@@ -30,7 +30,7 @@ CREATE TABLE `transaction` (
   `date` date NOT NULL,
   `promoid` varchar(45) NOT NULL,
   `status` varchar(45) DEFAULT NULL,
-  `valid` tinyint(4) DEFAULT '1',
+  `valid` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`transactionid`),
   KEY `cartid_idx` (`cartid`),
   KEY `ccid_idx` (`ccid`),
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-04 19:07:39
+-- Dump completed on 2017-12-04 19:26:18

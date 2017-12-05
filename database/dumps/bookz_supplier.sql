@@ -30,7 +30,7 @@ CREATE TABLE `supplier` (
   `contactname` varchar(45) NOT NULL,
   `contactcell` varchar(45) NOT NULL,
   `contactbusiness` varchar(45) NOT NULL,
-  `valid` tinyint(4) DEFAULT '1',
+  `valid` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`supplierid`),
   KEY `userid2_idx` (`uid`),
   CONSTRAINT `userid2` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-04 19:07:39
+-- Dump completed on 2017-12-04 19:26:18

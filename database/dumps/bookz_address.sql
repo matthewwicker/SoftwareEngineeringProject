@@ -27,7 +27,7 @@ CREATE TABLE `address` (
   `address` varchar(45) NOT NULL,
   `billing` tinyint(1) NOT NULL,
   `uid` int(11) NOT NULL,
-  `valid` tinyint(4) DEFAULT '1',
+  `valid` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`aid`),
   UNIQUE KEY `idaddress_UNIQUE` (`aid`),
   KEY `uid10_idx` (`uid`),
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-04 19:07:39
+-- Dump completed on 2017-12-04 19:26:18
