@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import Entities.Cart;
 import Entities.Promo;
 import Entities.Supplier;
 public class SupplierDBManager {
@@ -48,6 +49,20 @@ public class SupplierDBManager {
 		return success;
 	}
 	
+	public static int setValid(Boolean valid, Supplier supplier) {
+		int value;
+		if(valid)
+		{
+			value = 1;
+		}
+		else
+			value = 0;
+		String query = "UPDATE supplier SET valid = '"+ value + "' WHERE supplierid = '"+ supplier.getSupplierid()+"'; ";
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
 	/**
 	 * Search the items in supplier by searchParam
 	 * @param searchParam
@@ -56,7 +71,7 @@ public class SupplierDBManager {
 	 */
 	public static ArrayList<Supplier> searchSupplier(String searchParam, String searchItem){
 		ArrayList<Supplier> search_results = new ArrayList<Supplier>();
-		String query = "select * from supplier where " + searchParam+ "= '" + searchItem+"'";
+		String query = "select * from supplier where " + searchParam+ "= '" + searchItem+"' valid = 1";
 		ResultSet rs = driver.retrieve(query);
 		Supplier supplier = new Supplier();
 		if(rs != null){

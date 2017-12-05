@@ -5,8 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-
-
+import Entities.Cart;
 import Entities.Transaction;
 public class TransactionDBManager {
 	private static Driver driver = new Driver();
@@ -44,6 +43,20 @@ public class TransactionDBManager {
 		return success;
 	}
 	
+	public static int setValid(Boolean valid, Transaction transaction) {
+		int value;
+		if(valid)
+		{
+			value = 1;
+		}
+		else
+			value = 0;
+		String query = "UPDATE transaction SET valid = '"+ value + "' WHERE transactionid = '"+transaction.getTransactioncol() +"'; ";
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
 	/**
 	 * Search the items in transaction by searchParam
 	 * @param searchParam
@@ -52,7 +65,7 @@ public class TransactionDBManager {
 	 */
 	public static ArrayList<Transaction> searchTransaction(String searchParam, String searchItem){
 		ArrayList<Transaction> search_results = new ArrayList<Transaction>();
-		String query = "select * from transaction where " + searchParam+ "= '" + searchItem+"'";
+		String query = "select * from transaction where " + searchParam+ "= '" + searchItem+"' AND valid = 1";
 		ResultSet rs = driver.retrieve(query);
 		Transaction transaction = new Transaction();
 		if(rs != null){

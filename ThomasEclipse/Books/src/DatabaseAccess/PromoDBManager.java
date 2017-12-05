@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Entities.Cart;
 import Entities.Payment;
 import Entities.Promo;
 public class PromoDBManager {
@@ -12,7 +13,7 @@ public class PromoDBManager {
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int addPromo (Promo promo) {
-		String query = "INSERT INTO `bookz`.`promo` (code, isbn, percentoff, startdate, enddate)";
+		String query = "INSERT INTO `bookz`.`promo` (code, percentoff, startdate, enddate)";
 		query += "VALUES ('" + promo.getCode() + "', '" + promo.getISBN() + "', '";
 		query += promo.getPercentOff() + "', '" + promo.getStartDate() + "', '" + promo.getEndDate() + "')";
 		System.out.println(query);
@@ -37,15 +38,7 @@ public class PromoDBManager {
 		success = driver.create(query);
 		return success;
 	}
-	
-	public static int setISBN(String value, Promo promo) {
-		String query = "UPDATE promo SET isbn = '"+ value + "' WHERE code = '"+promo.getCode() +"'; ";
-		System.out.println(query);
-		int success = 0;
-		success = driver.create(query);
-		return success;
-	}
-	
+		
 	public static int setPercentOff(String value, Promo promo) {
 		String query = "UPDATE promo SET percentoff = '"+ value + "' WHERE code = '"+promo.getCode() +"'; ";
 		System.out.println(query);
@@ -69,6 +62,21 @@ public class PromoDBManager {
 		success = driver.create(query);
 		return success;
 	}
+	
+	public static int setValid(Boolean valid, Promo promo) {
+		int value;
+		if(valid)
+		{
+			value = 1;
+		}
+		else
+			value = 0;
+		String query = "UPDATE promo SET valid = '"+ value + "' WHERE code = '"+promo.getCode() +"'; ";
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
 		/**
 		 * Search the items in promos by searchParam
 		 * @param searchParam
@@ -77,7 +85,7 @@ public class PromoDBManager {
 		 */
 		public static ArrayList<Promo> searchPromo(String searchParam, String searchItem){
 			ArrayList<Promo> search_results = new ArrayList<Promo>();
-			String query = "select * from promo where " + searchParam+ "= '" + searchItem+"'";
+			String query = "select * from promo where " + searchParam+ "= '" + searchItem+"' AND valid = 1";
 			System.out.println(query);
 			try {
 			ResultSet rs = driver.retrieve(query);
@@ -86,7 +94,6 @@ public class PromoDBManager {
 				try {
 					while(rs.next()){
 						promo.setCode(rs.getString("code"));
-						promo.setISBN(rs.getInt("ISBN"));
 						promo.setPercentOff(rs.getDouble("percentoff"));
 						promo.setEndDate(rs.getString("enddate"));
 						promo.setStartDate(rs.getString("startdate"));

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Entities.Book;
+import Entities.Cart;
 import Entities.CartItem;
 public class CartItemDBManager {
 	private static Driver driver = new Driver();
@@ -62,7 +63,7 @@ public class CartItemDBManager {
 	 */
 	public static ArrayList<CartItem> searchCartItem(String searchParam, String searchItem){
 		ArrayList<CartItem> search_results = new ArrayList<CartItem>();
-		String query = "select * from caritem where " + searchParam+ "= '" + searchItem+"'";
+		String query = "select * from caritem where " + searchParam+ "= '" + searchItem+"' AND valid = 1";
 		ResultSet rs = driver.retrieve(query);
 		CartItem cart = new CartItem();
 		Book tempBook = new Book();
@@ -116,6 +117,20 @@ public static ArrayList<CartItem> searchCartItem(String searchParam, int searchI
 	}
 	driver.disconnect();
 	return search_results;
+}
+
+public static int setValid(Boolean valid, CartItem cart) {
+	int value;
+	if(valid)
+	{
+		value = 1;
+	}
+	else
+		value = 0;
+	String query = "UPDATE caritem SET valid = '"+ value + "' WHERE cartid = '"+cart.getCartId() +"'; ";
+	int success = 0;
+	success = driver.create(query);
+	return success;
 }
 
 }

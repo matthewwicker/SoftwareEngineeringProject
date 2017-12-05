@@ -12,12 +12,12 @@ public class BookDBManager {
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int addBook(Book book) {
-		String query = "INSERT INTO book (isbn, title, author, price, description, image, genre, rating, quantity, supplier, threshold, edition, publisher, publicationyear, buyingprice, sellingprice) ";
+		String query = "INSERT INTO book (isbn, title, author, price, description, image, genre, rating, quantity, supplier, threshold, edition, publisher, publicationyear, buyingprice) ";
 		query += "VALUES ('" + book.getISBN() + "', '" + book.getTitle() + "', '";
 		query += book.getAuthor() + "', '" + book.getPrice() + "', '" + book.getDescription() + "', ";
 		query += "'"+book.getImage()+"', " + "'"+book.getGenre()+"', '"+ book.getRating() + "', '" + book.getQuantity() + "', ";
 		query += "'"+ book.getSupplier() + "', '" + book.getThreshold() + "', '"+ book.getEdition()+"', '"+ book.getPublisher()+"', '";
-		query += book.getPublicationYear()+"', '"+ book.getBuyingPrice()+ "', '"+ book.getSellingPrice()+"')";
+		query += book.getPublicationYear()+"', '"+ book.getBuyingPrice()+ "')";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
@@ -40,7 +40,17 @@ public class BookDBManager {
 	 */
 	public static ArrayList<Book> searchBooks(String searchParam, String searchItem){
 		ArrayList<Book> search_results = new ArrayList<Book>();
-		String query = "select * from book where " + searchParam+ " LIKE '%" + searchItem + "%'";
+		String query;
+		if(searchItem.equals("") || searchItem == null)
+		{
+			query = "select * from book where valid = 1";
+		}
+		else if(searchParam.equals("") || searchParam == null) {
+			query = "select * from book where title LIKE '%" + searchItem + "%' AND valid = 1";
+		}
+		else {
+			query = "select * from book where " + searchParam+ " LIKE '%" + searchItem + "%' AND valid = 1";
+		}
 		ResultSet rs = driver.retrieve(query);
 		if(rs != null){
 			try {
@@ -62,7 +72,6 @@ public class BookDBManager {
 					book.setPublisher(rs.getString("publisher"));
 					book.setPublicationYear(rs.getInt("publicationYear"));
 					book.setBuyingPrice(rs.getDouble("buyingprice"));
-					book.setSellingPrice(rs.getDouble("sellingPrice"));
 					search_results.add(book);
 				}
 				
@@ -78,7 +87,7 @@ public class BookDBManager {
 	
 	public static ArrayList<Book> searchBooks(String searchParam, int searchItem){
 		ArrayList<Book> search_results = new ArrayList<Book>();
-		String query = "select * from book where " + searchParam+ " = '" + searchItem + "'";
+		String query = "select * from book where " + searchParam+ " = '" + searchItem + "' AND valid = 1";
 		ResultSet rs = driver.retrieve(query);
 		if(rs != null){
 			try {
@@ -88,14 +97,18 @@ public class BookDBManager {
 					book.setISBN(rs.getInt("ISBN"));
 					book.setTitle(rs.getString("title"));
 					book.setAuthor(rs.getString("author"));
+					book.setPrice(rs.getDouble("price"));
 					book.setDescription(rs.getString("description"));
 					book.setImage(rs.getString("image"));
 					book.setGenre(rs.getString("genre"));
-					book.setPrice(rs.getDouble("price"));
 					book.setRating(rs.getInt("rating"));
 					book.setQuantity(rs.getInt("quantity"));
-					book.setThreshold(rs.getInt("threshold"));
 					book.setSupplier(rs.getInt("supplier"));
+					book.setThreshold(rs.getInt("threshold"));
+					book.setEdition(rs.getInt("edition"));
+					book.setPublisher(rs.getString("publisher"));
+					book.setPublicationYear(rs.getInt("publicationYear"));
+					book.setBuyingPrice(rs.getDouble("buyingprice"));
 					search_results.add(book);
 				}
 				
@@ -222,6 +235,20 @@ public class BookDBManager {
 	public static int setSellingPrice(String value, Book book) {
 		String query = "UPDATE book SET sellingprice = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
 		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
+	public static int setValid(Boolean valid, Book book) {
+		int value;
+		if(valid)
+		{
+			value = 1;
+		}
+		else
+			value = 0;
+		String query = "UPDATE book SET sellingprice = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";
 		int success = 0;
 		success = driver.create(query);
 		return success;

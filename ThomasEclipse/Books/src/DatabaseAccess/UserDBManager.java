@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Entities.Cart;
 import Entities.User;
 public class UserDBManager {
 	private static Driver driver = new Driver();
@@ -37,6 +38,14 @@ public class UserDBManager {
 		return success;
 	}
 	
+	public static int setValue(String feild, String value, User user) {
+		String query = "UPDATE users SET "+ feild + " = '"+ value +"' WHERE email = '"+user.getEmail() +"'; ";
+		System.out.println(query);
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
+	
 	public static int setPassword(String value, User user) {
 		//String query = "UPDATE users SET password = AES_ENCRYPT('"+ value + "', UNHEX(SHA2('test',512)))" +"' WHERE email = '"+user.getEmail() +"'; ";
 		String query = "UPDATE users SET password = '"+ value + "' WHERE email = '"+user.getEmail() +"'; ";
@@ -64,6 +73,20 @@ public class UserDBManager {
 		int success = driver.delete(query);
 		return success;
 	}
+	
+	public static int setValid(Boolean valid, User user) {
+		int value;
+		if(valid)
+		{
+			value = 1;
+		}
+		else
+			value = 0;
+		String query = "UPDATE users SET valid = '"+ value + "' WHERE uid = '"+user.getUid() +"'; ";
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
 	/**
 	 * Search the items in users by searchParam
 	 * @param searchParam
@@ -73,7 +96,7 @@ public class UserDBManager {
 	public static ArrayList<User> searchUsers(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
 		//String query = "select *, AES_DECRYPT(password, UNHEX(SHA2('test',512))) from users where " + searchParam+ "= '" + searchItem + "'";
-		String query = "select * from users where " + searchParam+ "= '" + searchItem + "'";
+		String query = "select * from users where " + searchParam+ "= '" + searchItem + "' AND valid = 1";
 		ResultSet rs = driver.retrieve(query);
 		User user = new User();
 		if(rs != null){
@@ -105,7 +128,7 @@ public class UserDBManager {
 	
 	public static String getUserPreference(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
-		String query = "select * from users where " + searchParam+ "= '" + searchItem + "'";
+		String query = "select * from users where " + searchParam+ "= '" + searchItem + "' AND valid = 1";
 		ResultSet rs = driver.retrieve(query);
 		User user = new User();
 		if(rs != null){
