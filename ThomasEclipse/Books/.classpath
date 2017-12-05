@@ -5,8 +5,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.8.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/activation.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/mail.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/opt/tomcat/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/opt/tomcat/lib/activation.jar"/>
+	<classpathentry kind="lib" path="/opt/tomcat/lib/mail.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

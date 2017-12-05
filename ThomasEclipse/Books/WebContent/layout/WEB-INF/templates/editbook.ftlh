@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Books</title>
+    <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+  <link href="custom.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+  <style>
+      @import url('https://fonts.googleapis.com/css?family=Lobster');
+      @import url('https://fonts.googleapis.com/css?family=Roboto');
+  </style>
+</head>
+<body>
+<form action = "myservlet" method = "post">
+
+<!---HEADER-->
+<div class="jumbotron">
+  <div class="container-fluid">
+    
+    <div class="row">  
+      <div class="col-md-8">
+          <img src="book.png" class="img-responsive">
+          <h1><small>yourShelf</small></h1>
+      </div>
+      
+      <div class="col-sm-4">
+        <div class="input-group">
+                      <div class="input-group-btn search-panel">
+                 <select name="searchby" class="selectpicker show-tick" data-width="105px" title="Filter By">
+                     <option value="title">Title</option>
+                     <option value="isbn">ISBN</option>
+                     <option value="genre">Genre</option>
+                     <option value="author">Author</option>
+                 </select>
+             </div>
+             <input type="hidden" name="search_param" value="all" id="search_param">
+             <input type="text" class="form-control" name="searchval" placeholder="Search..." value="">
+              <span class="input-group-btn">
+                 <button type="submit" class="btn btn-default" type="button" name="Task" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+               </span>
+       </div>
+          </div>
+      </div>
+     </div> 
+
+  </div>
+</div>
+
+<!---NAVIGATION BAR-->
+<nav class="navbar">
+  <div class="container-fluid">
+    
+    <div class="collapse navbar-collapse" id="myNavbar">
+      
+       <div class="collapse navbar-collapse" id="myNavbar">
+      
+      <ul class="nav navbar-nav">
+      
+                <li><button class="btn btn-link"  type="submit" name="navigator" value="home.ftlh">Home</button></li>
+        <li class="dropdown">
+        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
+        <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_YA"  >Young Adult</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_kids">Kids</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_scifi" >Science Fiction</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_fantasy" >Fantasy</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_biographies" >Biographies</button></li>
+           </ul>
+        </li>
+                <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_best">Best Selling</button></li>
+                <li><button type="submit" name="navigator" value="promotions.ftlh"  class="btn btn-link">Promotions</button></li>
+                <li><button type="submit" name="Task" value= "Search_genre_favorites"  class="btn btn-link">Our Favorites</button></li>
+        </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">${loginbutton}
+                  <span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
+                            <div class="col-lg-12">
+                                <div class="text-center"><h3><b>Log In</b></h3></div>
+                                <form id="ajax-login-form" action="m" method="post" role="form" autocomplete="off">
+                                    <div class="form-group">
+                                        <label for="username">Email</label>
+                                        <input type="text" name="qusername" id="qusername" tabindex="1" class="form-control" placeholder="Username" value="" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="qpassword" id="qpassword" tabindex="2" class="form-control" placeholder="Password" autocomplete="off">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-xs-7">
+                                                <input type="checkbox" tabindex="3" name="remember" id="remember">
+                                                <label for="remember"> Remember Me</label>
+                                            </div>
+                                            <div class="col-xs-5 pull-right">
+                                                <button type="submit" name="Task" value="SignInHead" tabindex="4" class="btn btn-success">Log In</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="text-center">
+                                                    <li><button class="btn btn-link" type="submit" name="navigator" value="" style="background-color:white;text-transform:lowercase">Forgot Password?</button></li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" class="hide" name="token" id="token" value="a465a2791ae0bae853cf4bf485dbe1b6">
+                            </div>
+                        </ul>
+        </li>
+        <li><button class="btn btn-link" type="submit" name="Task" value="GoToAccount"><span class="glyphicon glyphicon-user"></span> Your Account</button></li>
+        <li><button class="btn btn-link" type="submit" name="Task" value="GoToCart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</button></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<!---BODY-->
+<div class="container">
+    
+           <div><table style="width:70%; position: absolute; padding-top:50px;">
+                <tr>
+                <th>
+                ISBN 
+                </th><th>
+                <input type="text" name='isbn' value=${"isbn"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+          Title  
+                </th><th>
+                <input type="text" name="title" value=${"title"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+    Author 
+                </th><th>
+                <input type="text" name="author" value=${"author"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+    Price
+                </th><th>
+                <input type="text" name="price" value=${"price"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+    Genre 
+                </th><th>
+                 <input type="text" name="genre" value=${"genre"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+    Description 
+                </th><th>
+    <input type="text" name="description" value=${"descr"} style="width:300px; height:100px;"><br/>
+                </th></tr>
+                <tr>
+                <th>
+    Quantity
+                </th><th>
+    <input type="text" name="quantity" value=${"quantity"}></th></tr>
+    <tr>
+                <th>
+    Image
+                </th><th>
+    <input type="text" name="image" value=${"image"}></th></tr>
+             <tr>
+                <th>
+        Supplier 
+                </th><th>
+                <input type="text" name="supplier" value=${"supplier"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+        Publisher  
+                </th><th>
+                <input type="text" name="publisher" value=${"publisher"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+       Publication Year  
+                </th><th>
+                <input type="text" name="pubyear" value=${"pubyear"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+       Buying Price  
+                </th><th>
+                <input type="text" name="buyprice" value=${"buyprice"}><br/>
+                </th></tr>
+                <tr>
+                <th>
+    Threshold
+                </th><th>
+    <input type="text" name="threshold" value=${"thresh"}>
+                </th></tr><tr><th>
+        <button type="submit" name="Task" onclick="return requiredParam(isbn.value, title.value, author.value, price.value, genre.value, description.value, quantity.value, threshold.value)" class="inputButton" value="CreateBook">Create Book</button>
+        </th></tr></table></div> 
+         </div></div>
+    </div>
+   </form>
+
+</body>
+</html>
