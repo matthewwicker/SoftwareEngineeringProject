@@ -327,9 +327,11 @@ public class myservlet extends HttpServlet {
 		            ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
 			        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
 			        double total = GetHandlers.finalCartTotal(request, cart, cartitems, userPromotion.getPercentOff());
+			        double shipping = .1 * total;
 		            root.put("cartitems", cartitems);
 		            root.put("cart", cart);
 		            root.put("total", total);
+		            root.put("shipping", shipping);
 					template = "cart.ftlh";
 					root.put("message", "");
 				}
@@ -353,6 +355,8 @@ public class myservlet extends HttpServlet {
 			        ArrayList<CartItem> cartitems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
 		            cart = GetHandlers.updateCartTotal(request, cart, cartitems);
 		            double total = GetHandlers.finalCartTotal(request, cart, cartitems,  userPromotion.getPercentOff());
+		            double shipping = .1 * total;
+		            root.put("shipping", shipping);
 	                root.put("cartitems", cartitems);
 	                root.put("cart", cart);
 	                root.put("total", total);
@@ -382,6 +386,8 @@ public class myservlet extends HttpServlet {
 		        cart = GetHandlers.updateCartTotal(request, cart, cartitems);
 		        double total = GetHandlers.finalCartTotal(request, cart, cartitems,  userPromotion.getPercentOff());
 	            root.put("cartitems", cartitems);
+	            double shipping = .1 * total;
+	            root.put("shipping", shipping);
 	            root.put("total", total);
 				template = "cart.ftlh";
 			} //Update this cart information
@@ -439,12 +445,15 @@ public class myservlet extends HttpServlet {
 	            Cart cart = (Cart) root.get("cart");
 	            ArrayList<CartItem> cartitems = (ArrayList<CartItem>) root.get("cartitems");
 		        double total = GetHandlers.finalCartTotal(request, cart, cartitems,  userPromotion.getPercentOff());
+		        double shipping = .1 * total;
+	            root.put("shipping", shipping);
 	            root.put("total", total);
 				template = "cart.ftlh";
 			} //Add promo to this users cart
 			
 			else if(task.equals("Checkout")) {
 				template = "checkout.ftlh";
+				root.put("error", " ");
 				// not working.. also not super important
 				//String promocodestring = userPromotion.getCode() + " - " + userPromotion.getPercentOff() + "% off " + userPromotion.getISBN();
 				//root.put("promocode", promocodestring);
@@ -495,13 +504,26 @@ public class myservlet extends HttpServlet {
 				if(val == 1) {
 					System.out.println("SUCCESS VALIDATING");
 					template = accountdir + "/accountvalsucc.ftlh";
+					thisUser.setValidated(true);
 				}
 				else {
 					System.out.println("Failure VALIDATING");
 					template = accountdir + "/accountvalfail.ftlh";
 				}
 			} //Confirm Purchase
+			else if(task.equals("GoToDeleteUser")){
+	                template = "deleteUser.ftlh";
+	            }
+	        else if(task.equals("DeleteUser")) {
+	             ArrayList<User> deleteUser = UserDBManager.searchUsers("email", request.getParameter("email"));
+	             l.deleteUser(deleteUser.get(0));
+	             SendEmail sender = new SendEmail();
+	             sender.actuallySendEmail(deleteUser.get(0), SendEmail.USER_DELETED);
+	             template =  "deleteUser.ftlh";
+	             root.put("successDelete", "");
+	             template = "deleteUser.ftlh";
 
+	         }
 			else if(task.equals("UpdatePromoPref")) {
 				System.out.println("Hi?");
 				//Invert User Pref
@@ -660,64 +682,68 @@ public class myservlet extends HttpServlet {
 				template = "checkout.ftlh";
 				double total = (double) root.get("total");
 	            Cart cart = (Cart) root.get("cart");
-     		    ArrayList<Cart> carts = CartDBManager.searchCart("uid", thisUser.getUid());
-				  try {
-				      //Here is where I am going to add the updating of the quantities.
-				        	System.out.println("We are updating the book quantities now");
-				        int userID = thisUser.getUid();
-				        System.out.println("check1");
-						carts = CartDBManager.searchCart("uid", userID);
-				        if (carts.size() > 1) {
-				            cart = carts.get(carts.size() - 1);
-				        }
-				        else {
+	            ArrayList<Cart> carts = CartDBManager.searchCart("uid", thisUser.getUid());
+	            if(thisUser.isValidated()) {
+	            	try {
+	            		//Here is where I am going to add the updating of the quantities.
+	            		System.out.println("We are updating the book quantities now");
+	            		int userID = thisUser.getUid();
+	            		System.out.println("check1");
+	            		carts = CartDBManager.searchCart("uid", userID);
+	            		if (carts.size() > 1) {
+	            			cart = carts.get(carts.size() - 1);
+	            		}
+	            		else {
 
-				            cart = carts.get(0);
-				        }
-				        System.out.println("check2");
-						System.out.println("Here is the user's cartID: " + cart.getCartId());
-						ArrayList<CartItem> cartItems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
-						for(CartItem c : cartItems) {
-							System.out.println("check3");
-							//For each item in the users cart, remove it from the database
-							ArrayList<Book> books = BookDBManager.searchBooks("isbn", c.getISBN());
-							int newQuant = books.get(0).getQuantity() - c.getNumBooks();
-							System.out.println("For this book, the user is trying to purchase this amount: " + c.getNumBooks());
-							if(newQuant < 0) {
-								// FAILURE BECAUSE THERE ARE NO BOOKS LEFT
-								System.out.println("NOT ENOUGH BOOKS LEFT");
-								root.put("error", "Sorry! Not enough books in stock to fill this error.");
-								doTransaction = false;
-							}
-							else {
-								if(newQuant <= books.get(0).getThreshold()) {
-									//SEND THRESHOLD EMAIL TO SUPPLIERS
-									System.out.println("THRESHOLD HIT, SENDING EMAIL");
-									ArrayList<Supplier> sups = SupplierDBManager.searchSupplier("supplierid", Integer.toString(books.get(0).getSupplier()));
-									int suppuid = sups.get(0).getUid();
-									User u = UserDBManager.searchUsers("uid", Integer.toString(suppuid)).get(0);
-									SendEmail sender = new SendEmail();
-									sender.actuallySendEmail(u, SendEmail.THRESHOLD_HIT);
-								}
-								BookDBManager.setQuantity(Integer.toString(newQuant), books.get(0));
- 							}
-						}
-						}catch(Exception e) {e.printStackTrace();}
-				        System.out.println("check5");
-				        
-				if(doTransaction) {
-					template = "checkoutConfirm.ftlh";
+	            			cart = carts.get(0);
+	            		}
+	            		System.out.println("check2");
+	            		System.out.println("Here is the user's cartID: " + cart.getCartId());
+	            		ArrayList<CartItem> cartItems = CartItemDBManager.searchCartItem("cartid", cart.getCartId());
+	            		for(CartItem c : cartItems) {
+	            			System.out.println("check3");
+	            			//For each item in the users cart, remove it from the database
+	            			ArrayList<Book> books = BookDBManager.searchBooks("isbn", c.getISBN());
+	            			int newQuant = books.get(0).getQuantity() - c.getNumBooks();
+	            			System.out.println("For this book, the user is trying to purchase this amount: " + c.getNumBooks());
+	            			if(newQuant < 0) {
+	            				// FAILURE BECAUSE THERE ARE NO BOOKS LEFT
+	            				System.out.println("NOT ENOUGH BOOKS LEFT");
+	            				root.put("error", "Sorry! Not enough books in stock to fill this error.");
+	            				doTransaction = false;
+	            			}
+	            			else {
+	            				if(newQuant <= books.get(0).getThreshold()) {
+	            					//SEND THRESHOLD EMAIL TO SUPPLIERS
+	            					System.out.println("THRESHOLD HIT, SENDING EMAIL");
+	            					ArrayList<Supplier> sups = SupplierDBManager.searchSupplier("supplierid", Integer.toString(books.get(0).getSupplier()));
+	            					int suppuid = sups.get(0).getUid();
+	            					User u = UserDBManager.searchUsers("uid", Integer.toString(suppuid)).get(0);
+	            					SendEmail sender = new SendEmail();
+	            					sender.actuallySendEmail(u, SendEmail.THRESHOLD_HIT);
+	            				}
+	            				BookDBManager.setQuantity(Integer.toString(newQuant), books.get(0));
+	            			}
+	            		}
+	            	}catch(Exception e) {e.printStackTrace();}
+	            	System.out.println("check5");
 
-					Transaction t = GetHandlers.CreateTransaction(request, thisUser, userPromotion.getCode(), cart);
-					TransactionDBManager.addTransaction(t);
-     				if (carts.size() > 1) {
-		        			cart = carts.get(carts.size() - 1);
-		        		}
-			    		else {
-			         	cart = carts.get(0);
+	            	if(doTransaction) {
+	            		template = "checkoutConfirm.ftlh";
+
+	            		Transaction t = GetHandlers.CreateTransaction(request, thisUser, userPromotion.getCode(), cart);
+	            		TransactionDBManager.addTransaction(t);
+	            		if (carts.size() > 1) {
+	            			cart = carts.get(carts.size() - 1);
+	            		}
+	            		else {
+	            			cart = carts.get(0);
 	            		}	
+	            	}
 				}
-				
+	            else {
+	            	root.put("error", "You must verify your account before you can purchase a book!");
+	            }
 		        
 		      
 			}//Forgot Password

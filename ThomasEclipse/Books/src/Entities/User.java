@@ -101,6 +101,13 @@ public class User {
 	private String subscribed;
 	private String suspended;
 	private Date signupdate;
+	private boolean validated;
+	public boolean isValidated() {
+		return validated;
+	}
+	public void setValidated(boolean validated) {
+		this.validated = validated;
+	}
 	public Date getSignupdate() {
 		return signupdate;
 	}

@@ -371,8 +371,9 @@ public class GetHandlers {
 	protected static double finalCartTotal(HttpServletRequest request, Cart cart, ArrayList<CartItem> cartitems, double PercentOff) {
 		
 		cart = updateCartTotal(request, cart, cartitems);
-		double total = cart.getPrice() + 4.99;
-		total = total - PercentOff * total;
+		double total = cart.getPrice();
+		double shipping = total * 0.1;
+		total = total - PercentOff * total + shipping;
         return total;
 	}
     //protected static Address getFirstAddress(HttpServletRequest request, int uid) {

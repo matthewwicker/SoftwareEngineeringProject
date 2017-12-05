@@ -140,10 +140,10 @@
                            <button id="cart" type="submit" name="Task" value="GoToCreateSupplier">Create Supplier</button><br><br>
                 <button id="cart" type="submit" name="Task" value="GoToCreateShipper">Create Shipper</button><br><br><br>
                 <button id="cart" type="submit" name="Task" value="GoToSuspend">(Un)Suspend User</button><br><br>
-                <button id="cart" type="submit" name="Task" value="GotToUpdateStatus">Update User Status</button><br><br><br>                
-                <button id="cart" type="submit" name="Task" value="GotToDelUser">Delete User</button><br><br>
-                <button id="cart" type="submit" name="Task" value="GotToDelSupp">Delete Supplier Agency</button><br><br>
-                <button id="cart" type="submit" name="Task" value="GotToDelShip">Delete Shipment Agency</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GoToUpdateStatus">Update User Status</button><br><br><br>                
+                <button id="cart" type="submit" name="Task" value="GoToDeleteUser">Delete User</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GoToDeleteUser">Delete Supplier</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GoToDeleteUser">Delete Shipper</button><br><br>
            </div>
 <!---FOOTER-->
     <footer>

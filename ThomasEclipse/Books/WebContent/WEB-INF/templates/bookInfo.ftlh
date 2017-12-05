@@ -140,7 +140,7 @@
                <img src="${item.image}" class="img-responsive">
             </div> 
             <p>Title: ${item.title}  </p>
-            <p>ISBN: ${item.ISBN}  </p>
+            <p>ISBN: ${item.ISBN?c}  </p>
             <p>  Author: ${item.author}  </p>
             <p>  Price:   ${item.price} </p>
             <p>  Genre:   ${item.genre} </p>

@@ -23,6 +23,7 @@ public class SendEmail {
 	public static int ACCOUNT_VERIFICATION = 8;
 	public static int ACCOUNT_STATUS_CHANGED = 9;
 	public static int THRESHOLD_HIT = 10;
+	public static int USER_DELETED = 11;
 	public SendEmail() {}
 	public void actuallySendEmail(User u, int email_type) {
 			String from = "ITSBOOKZB"; 
@@ -83,7 +84,10 @@ public class SendEmail {
 	        		subject = "Book quantity has fallen below threshold!";
 	        		body = this.generateThresholdMessage(u);
 	        	}
-	     
+	        	else if(email_type == USER_DELETED) {
+	        		subject = "You have been deleted from Bookz!";
+	        		body  = this.generateUserDeletedMessage(u);
+	        	}
 	        try {
 	            message.setFrom(new InternetAddress(from));
 	            InternetAddress toAddress = new InternetAddress();
@@ -300,7 +304,15 @@ public class SendEmail {
 				+ "Bookz team";
 		return message;
 	}
-	
+	private String generateUserDeletedMessage(User u) {
+		String message = "You have been deleted from Bookz!"
+				+ " We are sorry to see you have been deleted from Bookz. :( If you think this has been done in  "
+				+ "error, email us at itsbookz@gmail.com\n" 
+				+ "\n \n Have a great day! \n"
+				+ "Bookz team";
+		return message;
+	}
+		
 	private String generateThresholdMessage(User u) {
 		String message = "Hi " + u.getFname() + ", \n \n "
 				+ " Bookz would like to let you know that one of your books has fallen below your preset threshold. Please logon "

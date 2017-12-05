@@ -160,8 +160,8 @@
                        var newtask = document.getElementById(index).value;
                }
                 </script>
-                         <td id="price">$${citem.price}.00</td>
-                         <td id="price_sub">${citem.total}.00</td>
+                         <td id="price">$${citem.price}</td>
+                         <td id="price_sub">${citem.total}</td>
                       </tr>
                        </#list>
                       <tr>
@@ -177,7 +177,7 @@
                          <th>
                               <input type="text" name='promocode' placeholder="Enter Promo Code" value=${promocode}> <div class = "button2"><button id="promo" class="btn btn-default" type="submit" name="Task" value="AddPromoToCart"><span class="glyphicon glyphicon-plus"></span>Add Promotion</button></div>
                          </th>
-                      </tr>
+                      </tr>key
                       <tr>
                           <th colspan="3"><span class="pull-right">Total</span></th>
                           <th id="total">$${total}</th>

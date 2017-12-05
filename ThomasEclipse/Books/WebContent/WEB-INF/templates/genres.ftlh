@@ -140,7 +140,7 @@
  
  <#list books as book>
       <div class="col-sm-3">
-      <button  type="submit" id=${book.ISBN} name="Task" onclick="javafunction('${book.ISBN}');">
+      <button  type="submit" id=${book.ISBN?c} name="Task" onclick="javafunction('${book.ISBN?c}');">
       <div class="panel panel-default">
         <div class="panel-body"><img src="${book.image}" class="img-responsive"></div>
         <div class="panel-footer">

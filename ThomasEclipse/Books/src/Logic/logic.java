@@ -112,7 +112,9 @@ public class logic {
 	public int removePromo(Promo promo) {
 		return PrManager.removePromo(promo);
 	}
-	
+	public int deleteUser(User user) {
+		return UManager.deleteUser(user);
+	}
 	public int changePromoSetting(String value, User user) {
 		return UManager.setPromoPref(value, user);
 	}

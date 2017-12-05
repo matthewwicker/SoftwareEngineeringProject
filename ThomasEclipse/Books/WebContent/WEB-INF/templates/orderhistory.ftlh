@@ -167,7 +167,7 @@
       <button  type="submit" id=${tran?index} name="Task" onclick="javafunction('${tran.cartid}','${tran?index}');">RePurchase</button>
     </p><hr>
     </#list>
-    <button type="button" class="btn" name="Task" value="GoToAccount">Back to Account</button>&nbsp
+    <button type="submit" class="btn" name="Task" value="GoToAccount">Back to Account</button>&nbsp
   </div>
 
 </div><br>

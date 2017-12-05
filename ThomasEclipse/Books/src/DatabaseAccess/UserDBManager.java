@@ -114,6 +114,7 @@ public class UserDBManager {
 					user.setSubscribed(rs.getString("getsPromo"));
 					user.setPhoneNumber(rs.getString("phonenumber"));
 					user.setSignupdate(rs.getDate("signupdate"));
+					user.setValidated(rs.getBoolean("verify"));
 					search_results.add(user);
 				}
 				driver.disconnect();
@@ -144,6 +145,7 @@ public class UserDBManager {
 					user.setSubscribed(rs.getString("getsPromo"));
 					user.setPhoneNumber(rs.getString("phonenumber"));
 					user.setSignupdate(rs.getDate("signupdate"));
+					user.setValidated(rs.getBoolean("verify"));
 					search_results.add(user);
 				}
 				driver.disconnect();
@@ -156,6 +158,12 @@ public class UserDBManager {
 		return search_results;
 	}
 		
+	public static int deleteUser(User user) {
+		String query = "UPDATE users SET valid = '0' WHERE email = '" + user.getEmail() + "';";
+		int success = 0;
+		success = driver.update(query);
+		return success;
+	}
 	
 	public static String getUserPreference(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
