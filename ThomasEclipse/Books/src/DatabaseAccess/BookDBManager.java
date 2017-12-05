@@ -41,9 +41,12 @@ public class BookDBManager {
 	public static ArrayList<Book> searchBooks(String searchParam, String searchItem){
 		ArrayList<Book> search_results = new ArrayList<Book>();
 		String query;
-		if(searchItem.equals(""))
+		if(searchItem.equals("") || searchItem == null)
 		{
-			query = "select * from book";
+			query = "select * from book where valid = 1";
+		}
+		else if(searchParam.equals("") || searchParam == null) {
+			query = "select * from book where title LIKE '%" + searchItem + "%' AND valid = 1";
 		}
 		else {
 			query = "select * from book where " + searchParam+ " LIKE '%" + searchItem + "%' AND valid = 1";
