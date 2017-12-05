@@ -40,7 +40,14 @@ public class BookDBManager {
 	 */
 	public static ArrayList<Book> searchBooks(String searchParam, String searchItem){
 		ArrayList<Book> search_results = new ArrayList<Book>();
-		String query = "select * from book where " + searchParam+ " LIKE '%" + searchItem + "%' AND valid = 1";
+		String query;
+		if(searchItem.equals(""))
+		{
+			query = "select * from book";
+		}
+		else {
+			query = "select * from book where " + searchParam+ " LIKE '%" + searchItem + "%' AND valid = 1";
+		}
 		ResultSet rs = driver.retrieve(query);
 		if(rs != null){
 			try {
@@ -62,7 +69,6 @@ public class BookDBManager {
 					book.setPublisher(rs.getString("publisher"));
 					book.setPublicationYear(rs.getInt("publicationYear"));
 					book.setBuyingPrice(rs.getDouble("buyingprice"));
-					book.setSellingPrice(rs.getDouble("sellingPrice"));
 					search_results.add(book);
 				}
 				
@@ -88,14 +94,18 @@ public class BookDBManager {
 					book.setISBN(rs.getInt("ISBN"));
 					book.setTitle(rs.getString("title"));
 					book.setAuthor(rs.getString("author"));
+					book.setPrice(rs.getDouble("price"));
 					book.setDescription(rs.getString("description"));
 					book.setImage(rs.getString("image"));
 					book.setGenre(rs.getString("genre"));
-					book.setPrice(rs.getDouble("price"));
 					book.setRating(rs.getInt("rating"));
 					book.setQuantity(rs.getInt("quantity"));
-					book.setThreshold(rs.getInt("threshold"));
 					book.setSupplier(rs.getInt("supplier"));
+					book.setThreshold(rs.getInt("threshold"));
+					book.setEdition(rs.getInt("edition"));
+					book.setPublisher(rs.getString("publisher"));
+					book.setPublicationYear(rs.getInt("publicationYear"));
+					book.setBuyingPrice(rs.getDouble("buyingprice"));
 					search_results.add(book);
 				}
 				

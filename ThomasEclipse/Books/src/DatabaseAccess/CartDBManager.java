@@ -119,4 +119,17 @@ public class CartDBManager {
 		return "-1";
 	}
 	
+	public static int setValid(Boolean valid, Cart cart) {
+		int value;
+		if(valid)
+		{
+			value = 1;
+		}
+		else
+			value = 0;
+		String query = "UPDATE book SET valid = '"+ value + "' WHERE cartid = '"+cart.getCartId() +"'; ";
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
 }

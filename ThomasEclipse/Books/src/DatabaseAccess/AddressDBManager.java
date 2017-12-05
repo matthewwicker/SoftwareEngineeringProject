@@ -108,4 +108,18 @@ public class AddressDBManager {
 		success = driver.create(query);
 		return success;
 	}
+	
+	public static int setValid(Boolean valid, Address address) {
+		int value;
+		if(valid)
+		{
+			value = 1;
+		}
+		else
+			value = 0;
+		String query = "UPDATE book SET valid = '"+ value + "' WHERE aid = '"+address.getAid() +"'; ";
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
 }

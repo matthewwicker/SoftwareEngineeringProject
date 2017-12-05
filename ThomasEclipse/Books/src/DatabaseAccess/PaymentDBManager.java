@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import Entities.Address;
 import Entities.Book;
+import Entities.Cart;
 import Entities.User;
 import Entities.Payment;
 import Entities.Promo;
@@ -16,8 +17,8 @@ public class PaymentDBManager {
 	 */
 	public static int addPayment(Payment payment)
 	{
-		String query = "INSERT INTO payment (cc_number, uid, aid) ";
-		query += "VALUES ('" + payment.getCc_number() + "', '" + payment.getUser() + "', '"+ payment.getAid()+"')";
+		String query = "INSERT INTO payment (cc_number, expdate, type, uid, aid,) ";
+		query += "VALUES ('" + payment.getCc_number() + "', '"+payment.getExpdate()+"', '"+payment.getType()+"', '" + payment.getUser() + "', '"+ payment.getAid()+"')";
 		int value = driver.create(query);
 		
 		return value;
@@ -45,6 +46,19 @@ public class PaymentDBManager {
 		return success;
 	}
 	
+	public static int setValid(Boolean valid, Payment payment) {
+		int value;
+		if(valid)
+		{
+			value = 1;
+		}
+		else
+			value = 0;
+		String query = "UPDATE book SET valid = '"+ value + "' WHERE ccid = '"+payment.getCcid() +"'; ";
+		int success = 0;
+		success = driver.create(query);
+		return success;
+	}
 	/**
 	 * Search the items in books by searchParam
 	 * @param searchParam
@@ -61,6 +75,8 @@ public class PaymentDBManager {
 				while(rs.next()){
 					payment.setCcid(rs.getInt("ccid"));
 					payment.setCc_number(rs.getInt("cc_number"));
+					payment.setExpdate(rs.getString("expdate"));
+					payment.setType(rs.getString("type"));
 					payment.setUser(rs.getInt("user"));
 					payment.setAid(rs.getInt("aid"));
 					search_results.add(payment);
