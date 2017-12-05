@@ -5,9 +5,11 @@
     <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
   <link href="custom.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
   <style>
       @import url('https://fonts.googleapis.com/css?family=Lobster');
       @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -29,7 +31,7 @@
       <div class="col-sm-4">
         <div class="input-group">
                       <div class="input-group-btn search-panel">
-                 <select name="searchby"> <span id="search_concept">Search by&nbsp</span><span class="caret"></span>
+                 <select name="searchby" class="selectpicker show-tick" data-width="105px" title="Filter By">
                      <option value="title">Title</option>
                      <option value="isbn">ISBN</option>
                      <option value="genre">Genre</option>
@@ -61,23 +63,25 @@
       
                 <li><button class="btn btn-link"  type="submit" name="navigator" value="home.ftlh">Home</button></li>
         <li class="dropdown">
-			  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
-			  <span class="caret"></span></button>
+        <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Genres
+        <span class="caret"></span></button>
           <ul class="dropdown-menu">
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_YA"  >Young Adult</button></li>
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_kids">Kids</button></li>
            <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_scifi" >Science Fiction</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_fantasy" >Fantasy</button></li>
+           <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_biographies" >Biographies</button></li>
            </ul>
         </li>
                 <li><button class="btn btn-link"  type="submit" name="Task" value= "Search_genre_best">Best Selling</button></li>
-                <li><button type="submit" name="Task" value= "Search_genre_deals"  class="btn btn-link">Deals</button></li>
+                <li><button type="submit" name="navigator" value="promotions.ftlh"  class="btn btn-link">Promotions</button></li>
                 <li><button type="submit" name="Task" value= "Search_genre_favorites"  class="btn btn-link">Our Favorites</button></li>
         </ul>
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
-        				<button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">${loginbutton}
-			  					<span class="caret"></span></button>
+                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">${loginbutton}
+                  <span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-lr animated slideInRight" role="menu">
                             <div class="col-lg-12">
                                 <div class="text-center"><h3><b>Log In</b></h3></div>
@@ -131,13 +135,13 @@
    <div class="text-center">
           <h3>Update Status</h3>
         </div>
-      	 <h4 style="color:pink"> ""With great power comes great responsibility" -Stan Lee" -Micheal Scott</h4>
-      	 <h5>  All status codes are single character codes</h5>
-      	  <h5> "a" - admin; "p" - supplier; "e" - employee; "s" - shipment employee; "m" - Manager;</h5>
+         <center><h4 style="color:pink"> ""With great power comes great responsibility" -Stan Lee" -Micheal Scott</h4>
+         <h5>  All status codes are single character codes</h5>
+          <h5> "a" - admin; "p" - supplier; "e" - employee; "s" - shipment employee; "m" - Manager;</h5></center>
         <input name="email" type="text" placeholder="Email" autofocus="autofocus" class="input pass" value=${"email"} />
         <input name="status" type="text" placeholder="Status" autofocus="autofocus" class="input pass" value=${"status"} />
-        <button id="cart" type="submit" name="Task" value="UpdateUserStatus">Update Status</button>
-        <h5 style="color:green">  Updating status successful! </h5>
+        <center><button id="cart" type="submit" name="Task" value="UpdateUserStatus">Update Status</button>
+        <h5 style="color:green">  Updating status successful! </h5></center>
        
        </div></div>
 <!---FOOTER-->
@@ -157,7 +161,7 @@
                             <br/>Atlanta, Georgia 30329
                         </li> 
                         <li>
-                            bookyourshelf@mail.com
+                            itsbookzb@gmail.com
                         </li> 
                    </ul>
             </div>
