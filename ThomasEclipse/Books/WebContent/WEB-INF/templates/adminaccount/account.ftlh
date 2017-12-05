@@ -130,7 +130,6 @@
 </nav>
 
 <!---BODY-->
-<div id="content-background">
             <div class="page-header">
           <h2>Administrator Dashboard</h2>
       </div>
@@ -141,7 +140,7 @@
         <input name="phone" type="text" placeholder="Phone Number"  class="input pass" value=${user.phoneNumber}>
                 <input name="phone" type="text" placeholder="Address" class="input pass" value="${user.shipadd}">
         
-                      <div id="homebody"> 
+              <div id="homebody"> 
                 
                 <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
                 <button id="cart" type="submit" name="Task" value="GoToUpdatePassword">Update Password</button>
@@ -150,11 +149,9 @@
                 <button id="cart" type="submit" name="Task" value="GoToOrders">Order History</button>
                 <button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button>
                 <br><br><br>
-                <button id="cart" type="submit" name="Task" value="GoToManageUsers">Manage Members</button>
+                <button id="cart" type="submit" name="Task" value="GoToManageUsers">Manage Users</button>
                 <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button>
                 <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button>
-                <button id="cart" type="submit" name="Task" value="GoToCreateSupplier">Create Supplier</button>
-                <button id="cart" type="submit" name="Task" value="GoToCreateShipper">Create Shipper</button>
                 <button id="cart" type="submit" name="Task" value="GoToReports">Get Reports</button>
                 
                 </br>
@@ -163,11 +160,9 @@
                 <th> <input type="text" name="vcode" value=${"vcode"}><br/>
                 </tr>
                 </br>
-                <center><button id="cart" type="submit" name="Task" value="Validation">Validate Account</button></center>
-                </div>
-                
-</div>
-
+                 
+                <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
+                </div>     
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">
@@ -195,6 +190,5 @@
     <!-- Footer 2 End -->
     
  </form>
-
 </body>
 </html>

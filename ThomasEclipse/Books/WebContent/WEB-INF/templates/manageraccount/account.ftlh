@@ -153,7 +153,6 @@
                 </tr>
                 </br>
                 <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button></center>
-                
                 </div>
                 
 </div>
@@ -183,10 +182,5 @@
     </footer> 
     <!-- Footer 2 End -->    
  </form>
-
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> origin/layoutshit

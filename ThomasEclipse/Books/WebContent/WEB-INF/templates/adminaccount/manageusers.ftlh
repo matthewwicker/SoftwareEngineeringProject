@@ -130,7 +130,6 @@
 </nav>
 
 <!---BODY-->
-<div id="content-background">
             <div class="page-header">
           <h2>Manage Users</h2>
       </div>
@@ -138,11 +137,14 @@
       <br><br>
       
                 <button id="cart" type="submit" name="Task" value="GoToCreateUser">Create New User</button> <br><br>
-                <button id="cart" type="submit" name="Task" value=" ">Delete User</button><br><br>
+                           <button id="cart" type="submit" name="Task" value="GoToCreateSupplier">Create Supplier</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GoToCreateShipper">Create Shipper</button><br><br><br>
                 <button id="cart" type="submit" name="Task" value="GoToSuspend">(Un)Suspend User</button><br><br>
-          <button id="cart" type="submit" name="Task" value="GotToUpdateStatus">Update User Status</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GotToUpdateStatus">Update User Status</button><br><br><br>                
+                <button id="cart" type="submit" name="Task" value="GotToDelUser">Delete User</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GotToDelSupp">Delete Supplier Agency</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GotToDelShip">Delete Shipment Agency</button><br><br>
            </div>
-</div>
 <!---FOOTER-->
     <footer>
      <div class="container-fluid">
