@@ -16,7 +16,6 @@ public class AddressDBManager {
 	{
 		String query = "INSERT INTO address (address, billing, uid) ";
 		query += "VALUES ('" + address.getAddress() + "', '" + address.isBilling() + "', '"+ address.getUid()+"')";
-		System.out.println(query);
 		int value = driver.create(query);
 		
 		return value;
@@ -64,30 +63,6 @@ public class AddressDBManager {
 	public static ArrayList<Address> searcShippingAddress(String searchParam, String uid, String billing){
 		ArrayList<Address> search_results = new ArrayList<Address>();
 		String query = "select * from address where uid = '" + uid +  "' and billing = '" + billing + "'";
-		System.out.println(query);
-		ResultSet rs = driver.retrieve(query);
-		Address address = new Address();
-		if(rs != null){
-			try {
-				while(rs.next()){
-					address.setAid(rs.getInt("aid"));
-					address.setAddress(rs.getString("address"));
-					address.setBilling(rs.getInt("billing"));
-					address.setUid(rs.getInt("uid"));
-					search_results.add(address);
-				}
-				driver.disconnect();
-			}
-			 catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return search_results;
-	}
-	
-	public static ArrayList<Address> searcShippingAddress(String query){
-		ArrayList<Address> search_results = new ArrayList<Address>();
 		System.out.println(query);
 		ResultSet rs = driver.retrieve(query);
 		Address address = new Address();

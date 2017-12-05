@@ -121,42 +121,6 @@ public class BookDBManager {
 		driver.disconnect();
 		return search_results;
 	}
-	
-	public static ArrayList<Book> searchBooks(String query){
-		ArrayList<Book> search_results = new ArrayList<Book>();
-		ResultSet rs = driver.retrieve(query);
-		if(rs != null){
-			try {
-				while(rs.next()){
-					Book book = new Book();
-
-					book.setISBN(rs.getInt("ISBN"));
-					book.setTitle(rs.getString("title"));
-					book.setAuthor(rs.getString("author"));
-					book.setPrice(rs.getDouble("price"));
-					book.setDescription(rs.getString("description"));
-					book.setImage(rs.getString("image"));
-					book.setGenre(rs.getString("genre"));
-					book.setRating(rs.getInt("rating"));
-					book.setQuantity(rs.getInt("quantity"));
-					book.setSupplier(rs.getInt("supplier"));
-					book.setThreshold(rs.getInt("threshold"));
-					book.setEdition(rs.getInt("edition"));
-					book.setPublisher(rs.getString("publisher"));
-					book.setPublicationYear(rs.getInt("publicationYear"));
-					book.setBuyingPrice(rs.getDouble("buyingprice"));
-					search_results.add(book);
-				}
-				
-			}
-			 catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		driver.disconnect();
-		return search_results;
-	}
 
 	public static int setTitle(String value, Book book) {
 		String query = "UPDATE book SET title = '"+ value + "' WHERE ISBN = '"+book.getISBN() +"'; ";

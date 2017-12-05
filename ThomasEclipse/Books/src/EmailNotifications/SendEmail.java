@@ -168,7 +168,7 @@ public class SendEmail {
         				"We have received your order " + p.getCartid() + "and are processing it now.  We'll update you when it's on its way!\n\n\n"
         				+ "Order summary\n\nConfirmation Number: " + p.getCartid() + "1\nPrice: $" + p.getAmount() 
         				+ "\nDate: " + p.getDate() + "\nPromoCode: " + p.getPromoCode() + "\n"
-        				+ "Shipping Address: " + u.getShipAddress() + "\n\nItems:\n";
+        				+ "Shipping Address: " + u.getShipadd() + "\n\nItems:\n";
         for (CartItem item: cartitems) {
         	   body += item.getNumBooks() + " copy of " +  item.getTitle() + "\n";
         }

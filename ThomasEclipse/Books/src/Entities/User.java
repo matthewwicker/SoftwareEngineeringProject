@@ -41,20 +41,20 @@ public class User {
 	public String getAddress() {
 		return address;
 	}
-	public String getShipAddress() {
+	public String getBilladd() {
+		return billadd;
+	}
+	public void setBilladd(String billadd) {
+		this.billadd = billadd;
+	}
+	public String getShipadd() {
 		return shipadd;
 	}
-	public String getBillAddress() {
-		return billadd;
+	public void setShipadd(String shipadd) {
+		this.shipadd = shipadd;
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public void setShipAddress(String address) {
-		this.shipadd = address;
-	}
-	public void setBillAddress(String address) {
-		this.billadd = address;
 	}
 	public void setAddress(String address1, String address2) {
 		this.address = address1 + address2;
@@ -97,7 +97,5 @@ public class User {
 	private String shipadd;
 	private String username;
 	private String subscribed;
-	private String suspended;
-	
-	
+	private String suspended;	
 }

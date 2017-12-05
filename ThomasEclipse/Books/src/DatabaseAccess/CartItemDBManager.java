@@ -119,34 +119,6 @@ public static ArrayList<CartItem> searchCartItem(String searchParam, int searchI
 	return search_results;
 }
 
-public static ArrayList<CartItem> searchCartItem(String query){
-	ArrayList<CartItem> search_results = new ArrayList<CartItem>();
-	ResultSet rs = driver.retrieve(query);
-	CartItem cart = new CartItem();
-	Book tempBook = new Book();
-	if(rs != null){
-		try {
-			while(rs.next()){
-				cart.setISBN(rs.getInt("ISBN"));
-				cart.setNumBooks(rs.getInt("numbooks"));
-				cart.setCartId(rs.getInt("cartid"));
-				tempBook = BookDBManager.searchBooks("isbn", cart.getISBN()).get(0);
-				cart.setPrice(tempBook.getPrice());
-				cart.setTitle(tempBook.getTitle());
-				cart.setNumBooks(rs.getInt("numbooks"));
-				cart.setTotal();
-				search_results.add(cart);
-			}
-		}
-		 catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	driver.disconnect();
-	return search_results;
-}
-
 public static int setValid(Boolean valid, CartItem cart) {
 	int value;
 	if(valid)
