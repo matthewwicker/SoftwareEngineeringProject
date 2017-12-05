@@ -135,21 +135,22 @@
         <input name="lname" type="text" placeholder="Last Name" class="input pass" value=${user.lname}>
         <input name="email" type="email" placeholder="Email address" class="input pass" value=${user.email}>
         <input name="phone" type="text" placeholder="Phone Number"  class="input pass" value=${user.phoneNumber}>
-                <input name="phone" type="text" placeholder="Address" class="input pass" value=${sadd}>
+        <input name="phone" type="text" placeholder="Address" class="input pass" value="${user.shipadd}">
         
             			    <div id="homebody"> 
                 
                 <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
                 <button id="cart" type="submit" name="Task" value="GoToUpdatePassword">Update Password</button>
                 <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
+                <button type="submit" name="Task" value="UpdatePromoPref" class="btn otherbtn">Update Promo Preference </button>
                 <button id="cart" type="submit" name="Task" value="GoToOrders" class="btn otherbtn">Order History</button>
                 <button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button>
                 <br><br><br>
                 <button type="submit" name="Task" value="GoToManageUsers" class="btn otherbtn">Manage Users</button>
                 <button type="submit" name="Task" value="GoToCreateBook" class="btn otherbtn">Create Book</button>
                 <button type="submit" name="Task" value="GoToPromotion" class="btn otherbtn">Create/Edit Promotion</button>
-                <button type="submit" name="Task" value="UpdatePromoPref" class="btn otherbtn">Update Promo Preference </button>
                 <button id="cart"type="submit" name="Task" value="GoToCreateSupplier">Create Supplier</button>
+                <button id="cart"type="submit" name="Task" value="GoToCreateShipper">Create Shipper</button>
                 
                 </br>
                 </br>

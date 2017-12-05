@@ -134,15 +134,15 @@
        <input name="fname" type="text" placeholder="First Name" autofocus="autofocus" class="input pass" value=${user.fname}>
         <input name="lname" type="text" placeholder="Last Name" class="input pass" value=${user.lname}>
         <input name="email" type="email" placeholder="Email address" class="input pass" value=${user.email}>
-        <input name="phone" type="text" placeholder="Phone Number" value="3193193199" class="input pass" value=${user.phoneNumber}>
+        <input name="phone" type="text" placeholder="Phone Number" class="input pass" value=${user.phoneNumber}>
+                        <input name="phone" type="text" placeholder="Address" class="input pass" value="${user.shipadd}">
                 
                 <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
                 <button id="cart" type="submit" name="Task" value="NewSupply">Supply New Book</button>
+                                <button id="cart" type="submit" name="Task" value="GoToReports">Get Reports</button>
                 <button id="cart" type="submit" name="Task" value="ChangeQuantitySupplied">Update Quantity</button>
      			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
                 <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button> ---->
                 <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
                 
                 </br>
