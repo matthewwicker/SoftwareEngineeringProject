@@ -67,17 +67,17 @@ public class PaymentDBManager {
 	 */
 	public static ArrayList<Payment> searchPayment(String searchParam, String searchItem){
 		ArrayList<Payment> search_results = new ArrayList<Payment>();
-		String query = "select * from payment where " + searchParam+ "= '" + searchItem+"' AND valid = '1'";
+		String query = "select * from payment where " + searchParam+ "= '" + searchItem+"' AND valid = 1";
 		ResultSet rs = driver.retrieve(query);
+		Payment payment = new Payment();
 		if(rs != null){
 			try {
 				while(rs.next()){
-					Payment payment = new Payment();
 					payment.setCcid(rs.getInt("ccid"));
 					payment.setCc_number(rs.getString("cc_number"));
-					payment.setUser(rs.getInt("uid"));
 					payment.setExpdate(rs.getString("expdate"));
 					payment.setType(rs.getString("type"));
+					payment.setUser(rs.getInt("user"));
 					payment.setAid(rs.getInt("aid"));
 					search_results.add(payment);
 				}

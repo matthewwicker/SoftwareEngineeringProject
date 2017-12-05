@@ -45,18 +45,21 @@ public class logic {
 			System.out.println("SUCCESS TO SIGN IN");
 			ArrayList<Address> adds = AddressDBManager.searcShippingAddress("uid", Integer.toString(user.getUid()), "0");
 			if (adds.size() > 0) {
-				user.setShipadd(adds.get(adds.size()-1).getAddress());
+				user.setShipAddress(adds.get(adds.size()-1).getAddress());
 			}
 			else {
-				user.setShipadd("");
+				user.setShipAddress("");
 			}
 			adds = AddressDBManager.searcShippingAddress("uid", Integer.toString(user.getUid()), "1");
 			if (adds.size() > 0) {
-				user.setBilladd(adds.get(adds.size()-1).getAddress());
+				user.setBillAddress(adds.get(adds.size()-1).getAddress());
 			}
 			else {
-				user.setBilladd("");
+				user.setBillAddress("");
 			}
+
+			System.out.println(user.getBillAddress());
+			System.out.println(user.getShipAddress());
 			return user;
 		}
 		else {
@@ -66,17 +69,17 @@ public class logic {
 				user = otherUsers.get(0);
 				ArrayList<Address> adds = AddressDBManager.searcShippingAddress("uid",  Integer.toString(user.getUid()), "0");
 				if (adds.size() > 0) {
-					user.setShipadd(adds.get(adds.size()-1).getAddress());
+					user.setShipAddress(adds.get(adds.size()-1).getAddress());
 				}
 				else {
-					user.setShipadd("");
+					user.setShipAddress("");
 				}
 				adds = AddressDBManager.searcShippingAddress("uid",  Integer.toString(user.getUid()), "1");
 				if (adds.size() > 0) {
-					user.setBilladd(adds.get(adds.size()-1).getAddress());
+					user.setBillAddress(adds.get(adds.size()-1).getAddress());
 				}
 				else {
-					user.setBilladd("");
+					user.setBillAddress("");
 				}
 				return user;			}
 		}
