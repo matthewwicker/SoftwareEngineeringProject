@@ -140,12 +140,9 @@
         	    <div id="homebody"> 
                 
                <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToCreateUser">Create New User</button> ---->
      			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
                 <button id="cart" type="submit" name="Task" value="GoToCart"  class="btn otherbtn">View Cart</button>
                 <button id="cart" type="submit" name="Task" value="GoToOrders" class="btn otherbtn">Order History</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion" class="btn otherbtn">Create/Edit Promotion</button> ---->
                 <button id="cart" type="submit" name="Task" value="UpdatePromoPref" class="btn otherbtn">Update Promo Preference </button>
                 
                 </br>

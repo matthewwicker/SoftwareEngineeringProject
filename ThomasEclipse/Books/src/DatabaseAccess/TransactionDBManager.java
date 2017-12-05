@@ -75,7 +75,7 @@ public class TransactionDBManager {
 					transaction.setCartid(rs.getInt("cartid"));
 					transaction.setCcid(rs.getInt("ccid"));
 					transaction.setAmount(rs.getDouble("amount"));
-					transaction.setDate(rs.getDate("date"));
+					transaction.setDate(rs.getString("date"));
 					transaction.setStatus(rs.getString("status"));
 					transaction.setPromoCode(rs.getString("promoid"));
 					search_results.add(transaction);
