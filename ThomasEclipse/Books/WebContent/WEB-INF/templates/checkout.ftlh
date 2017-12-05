@@ -150,7 +150,7 @@
                 </tr>
                 <tr>
                   <th>Shipping Address</th>
-                <th> ${sadd}</th>
+                <th> ${user.shipadd}</th>
                 </tr>
       </table>
   </div>
@@ -168,20 +168,20 @@
                   </tr>
                   <tr>
                     <th>CC No.</th>
-                    <th> 11111111111 </th>
+                    <th> ************${cc} </th>
                   </tr>
                   <tr>
                     <th>CVV</th>
-                    <th> <input type="text" name="cvv" placeholder="cvv" value=""><br/><br/></th>
+                    <th> <input placeholder="CVV" name="cvv" value=""> </th>
                   </tr>
                   <tr>
                   <tr>
                     <th>Exp. Date</th>
-                    <th> 01/01/2001></th>
+                    <th> ${pay.expdate} </th>
                   </tr>
                   <tr>
                     <th>Billing Address</th>
-                  <th> ${badd} </th>
+                  <th> ${user.billadd} </th>
                   </tr>
         </table>
     </div>

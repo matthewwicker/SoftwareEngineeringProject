@@ -1,12 +1,5 @@
 package View;
-import DatabaseAccess.Driver;
-import DatabaseAccess.PromoDBManager;
-import DatabaseAccess.SupplierDBManager;
-import DatabaseAccess.TransactionDBManager;
-import DatabaseAccess.BookDBManager;
-import DatabaseAccess.CartDBManager;
-import DatabaseAccess.CartItemDBManager;
-import DatabaseAccess.UserDBManager;
+import DatabaseAccess.*;
 import EmailNotifications.SendEmail;
 
 import java.io.IOException;
@@ -49,6 +42,7 @@ public class myservlet extends HttpServlet {
     private Promo userPromotion = new Promo();
 	Book newBook = new Book();
 	User newUser = new User();
+	Payment pay  = new Payment();
 	private static final long serialVersionUID = 1L;
     Configuration cfg = null;
     private String templateDir = "/WEB-INF/templates";
@@ -118,9 +112,13 @@ public class myservlet extends HttpServlet {
         	  		//CHECK THAT USER IS IN THE DATABASE
         	  		try {
         	  			User u = l.authorizeUser(userRequestingAuth);
-        	  			boolean userExists = false;
+         	  			boolean userExists = false;
         	  			if(u != null) userExists = true;
         	  			if(userExists) {
+               	  			ArrayList<Payment> pays = PaymentDBManager.searchPayment("uid", Integer.toString(u.getUid()));
+               	  			if (pays.size()>0){
+            	  			    pay = pays.get(pays.size()-1);
+               	  			}
         	  				thisUser = u;
         	  				if(thisUser.getType().equals("u")) {
         	  					accountdir = "useraccount";
@@ -138,10 +136,15 @@ public class myservlet extends HttpServlet {
         	  				else if(thisUser.getType().equals("m")) {
         	  					accountdir = "manageraccount";
         	  				}
+        					
+        					String cc = pay.getCc_number();
+        					cc = cc.substring(12, 16);
+        					Payment payment = new Payment();
+        					
         					root.put("user", thisUser);
+        					root.put("pay", pay);
+        					root.put("cc", cc);
         	  				template =  accountdir + "/account.ftlh";
-        	  				root.put("sadd", thisUser.getShipAddress());
-        	  				root.put("badd", thisUser.getBillAddress());
         					root.put("loginbutton", "Hello " + thisUser.getFname());
         	  			}
         	  		}
@@ -158,6 +161,10 @@ public class myservlet extends HttpServlet {
     	  			boolean userExists = false;
     	  			if(u != null) userExists = true;
     	  			if(userExists) {
+           	  			ArrayList<Payment> pays = PaymentDBManager.searchPayment("uid", Integer.toString(u.getUid()));
+           	  			if (pays.size()>0){
+        	  			    pay = pays.get(pays.size()-1);
+           	  			}
     	  				thisUser = u;
     	  				if(thisUser.getType().equals("u")) {
     	  					accountdir = "useraccount";
@@ -175,9 +182,14 @@ public class myservlet extends HttpServlet {
     	  				else if(thisUser.getType().equals("m")) {
     	  					accountdir = "manageraccount";
     	  				}
+
+    	  				String cc = pay.getCc_number();
+    	  				System.out.println(pay.getCcid());
+    					cc = cc.substring(12, 16);
+    					
     					root.put("user", thisUser);
-    	  				root.put("sadd", thisUser.getShipAddress());
-    	  				root.put("badd", thisUser.getBillAddress());
+    					root.put("pay", pay);
+    					root.put("cc", cc);
     					root.put("loginbutton", "Hello " + thisUser.getFname());
     	    	  		
     	  			}

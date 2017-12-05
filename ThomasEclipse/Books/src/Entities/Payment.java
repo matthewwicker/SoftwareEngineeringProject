@@ -8,10 +8,10 @@ public class Payment {
 	public void setCcid(int ccid) {
 		this.ccid = ccid;
 	}
-	public int getCc_number() {
+	public String getCc_number() {
 		return cc_number;
 	}
-	public void setCc_number(int cc_number) {
+	public void setCc_number(String cc_number) {
 		this.cc_number = cc_number;
 	}
 	public int getUser() {
@@ -28,7 +28,7 @@ public class Payment {
 	}
 	
 	private int ccid;
-	private int cc_number;
+	private String cc_number;
 	private int user;
 	private int aid;
 }
