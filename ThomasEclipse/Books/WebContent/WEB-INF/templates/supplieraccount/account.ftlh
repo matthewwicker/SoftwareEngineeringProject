@@ -145,9 +145,7 @@
                 <button id="cart" type="submit" name="Task" value="ChangeQuantitySupplied">Update Quantity</button>
                                 <button id="cart" type="submit" name="Task" value="GoToReports">Get Reports</button>
           <button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
                 <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button> ---->
                 <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
                 
                 </br>

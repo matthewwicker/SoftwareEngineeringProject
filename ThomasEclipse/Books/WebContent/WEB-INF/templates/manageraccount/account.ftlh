@@ -142,6 +142,10 @@
         	    <div id="homebody">      <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
                 <button id="cart" type="submit" name="Task" value="GoToReports">Get Reports</button>
      			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
+          <button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
+                <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
+                
                 </br>
                 </br>
                 <th>Validate</th>
@@ -181,4 +185,8 @@
  </form>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> origin/layoutshit

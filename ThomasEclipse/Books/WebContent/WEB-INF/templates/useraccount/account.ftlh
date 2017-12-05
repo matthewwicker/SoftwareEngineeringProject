@@ -141,11 +141,13 @@
         <input name="phone" type="text" placeholder="Address" class="input pass" value="${user.shipadd}">
         	    <div id="homebody"> 
                 
+              <div id="homebody"> 
+                
                <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-     			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-                <button id="cart" type="submit" name="Task" value="GoToCart"  class="btn otherbtn">View Cart</button>
-                <button id="cart" type="submit" name="Task" value="GoToOrders" class="btn otherbtn">Order History</button>
-                <button id="cart" type="submit" name="Task" value="UpdatePromoPref" class="btn otherbtn">Update Promo Preference </button>
+          <button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
+                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
+                <button id="cart" type="submit" name="Task" value="GoToOrders">Order History</button>
+                <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
                 
                 </br>
                 </br>
