@@ -1,6 +1,7 @@
 package DatabaseAccess;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import Entities.Cart;
@@ -12,10 +13,10 @@ public class UserDBManager {
 	 * @return -1 if failure and 1 if success
 	 */
 	public static int addUser(User user) {
-		String query = "INSERT INTO users (email, fname, lname, password, phonenumber, type, verify) ";
+		String query = "INSERT INTO users (email, fname, lname, password, phonenumber, type, verify, signupdate) ";
 		query += "VALUES ('" + user.getEmail() + "', '" + user.getFname() + "', '" + user.getLname()+"', ";
 		//query += "AES_ENCRYPT('" + user.getPassword() + "', UNHEX(SHA2('test', 512)))" + "', '" +  user.getPhoneNumber() + "', '" + user.getType() + "', '0')";
-		query += "'" + user.getPassword() + "', '" +  user.getPhoneNumber() + "', '" + user.getType() + "', '0')";
+		query += "'" + user.getPassword() + "', '" +  user.getPhoneNumber() + "', '" + user.getType() + "', '0', '"+ LocalDateTime.now() +"')";
 		System.out.println(query);
 		int success = 0;
 		success = driver.create(query);
@@ -112,6 +113,7 @@ public class UserDBManager {
 					user.setType(rs.getString("type"));
 					user.setSubscribed(rs.getString("getsPromo"));
 					user.setPhoneNumber(rs.getString("phonenumber"));
+					user.setSignupdate(rs.getDate("signupdate"));
 					search_results.add(user);
 				}
 				driver.disconnect();

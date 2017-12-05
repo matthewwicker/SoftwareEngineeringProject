@@ -484,7 +484,7 @@ public class GetHandlers {
 	    			case "phone":
 	    				phonenumber = request.getParameter(paramName);
 	    				break;
-	    			case "address1":
+	    			case "address":
 	    				addressline1 = request.getParameter(paramName);
 	    				break;
 	    			case "address2":
@@ -520,8 +520,15 @@ public class GetHandlers {
 	    if(username != "!*!") {
 	    		retval.setUsername(username);
 	    }
-		if(addressline1 != "!*!" ) {
-			retval.setAddress(addressline1, addressline2);
+		if(addressline1 != "!*!") {
+			//For this user, get the aid
+			System.out.println("***************************************");
+			System.out.println("UPDATING THE ADDRESS FOR THIS USER");
+			System.out.println("***************************************");
+			Address a = AddressDBManager.searcAddress("uid", Integer.toString(utoupdate.getUid())).get(0);
+			AddressDBManager.setAddress(addressline1 , a);
+			//use the manager to set this value
+			retval.setAddress(addressline1);
 			//AddressDBManager.setAddress(value, addressline1 + " " + addressline2); 
 		}
 		

@@ -8,5 +8,7 @@ public abstract class DbAccessConfiguration {
 	
 	protected String DB_CONNECTION_USERNAME = "root";
 	
-	protected String DB_CONNECTION_PASSWORD = "cho";
+
+	protected String DB_CONNECTION_PASSWORD = "password";
+
 }

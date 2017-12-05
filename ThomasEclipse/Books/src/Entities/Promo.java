@@ -2,7 +2,9 @@ package Entities;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
+import java.time.ZoneId;
 
 public class Promo {
 /*
@@ -36,38 +38,53 @@ datetime
 	public void setPercentOff(double percentOff) {
 		this.percentOff = percentOff;
 	}
-	public LocalDate getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 	public void setStartDate(String startDate) {
 		try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 			LocalDate localDate = LocalDate.parse(startDate, formatter);
-			this.startDate = localDate;
+			this.startDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		}
 		catch(Exception e) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate localDate = LocalDate.parse(startDate, formatter);
-			this.startDate = localDate;
+			this.startDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		}
 	}
-	public LocalDate getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 	public void setEndDate(String endDate) {
 		try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 			LocalDate localDate = LocalDate.parse(endDate, formatter);
-			this.startDate = localDate;
+			this.endDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		}
 		catch(Exception e) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate localDate = LocalDate.parse(endDate, formatter);
-			this.startDate = localDate;
+			this.endDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 		}
+	}
+	
+	public boolean isValidForDate() {
+		Date dateInQuestion = this.getEndDate();
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateInQuestion);
+		cal.add(Calendar.HOUR, 1);
+		Date futureDate = cal.getTime();
+
+		if (dateInQuestion.after(futureDate)) {
+		  // Then more than 1 hours have passed since the date in question
+			return false;
+		}
+		return true;
 	}
 	private int ISBN;
 	private double percentOff;
-	private LocalDate startDate;
-	private LocalDate endDate;
+	private Date startDate;
+	private Date endDate;
 }

@@ -66,6 +66,7 @@ public class myservlet extends HttpServlet {
         root.put("promocode", "");
         root.put("message", "");
         root.put("error", "");
+        root.put("createusererror", "");
         userPromotion.setPercentOff(0.0);
         userPromotion.setCode("No Promotion Used");
 }
@@ -380,15 +381,20 @@ public class myservlet extends HttpServlet {
 			else if(task.equals("AddPromo")) {
 				template = "editpromo.ftlh";
 				Promo promotodelege = GetHandlers.makePromo(request);
-				//Add it to the database
-				int added = l.addPromo(promotodelege);
-				if(added == 1) {
-					template = "makepromosucc.ftlh";
-					SendEmail sender = new SendEmail();
-					//Get emails of those who subscribe to promotion emails
-					ArrayList<User> sendTo = UserDBManager.searchUsers("getsPromo", "1");
-					for(User u : sendTo) {
-						sender.sendPromotionalEmail(u, promotodelege);
+				if(promotodelege.isValidForDate()) {
+					//Add it to the database
+					int added = l.addPromo(promotodelege);
+					if(added == 1) {
+						template = "makepromosucc.ftlh";
+						SendEmail sender = new SendEmail();
+						//Get emails of those who subscribe to promotion emails
+						ArrayList<User> sendTo = UserDBManager.searchUsers("getsPromo", "1");
+						for(User u : sendTo) {
+							sender.sendPromotionalEmail(u, promotodelege);
+						}
+					}
+					else {
+						template = "makepromofail.ftlh";
 					}
 				}
 				else {
@@ -487,9 +493,7 @@ public class myservlet extends HttpServlet {
 			} //Confirm Purchase
 
 			else if(task.equals("UpdatePromoPref")) {
-				System.out.println("Hi?");
 				//Invert User Pref
-				System.out.println(thisUser.getEmail());
 				String newpref = UserDBManager.getUserPreference("email", thisUser.getEmail());
 				System.out.println("Hi?" + newpref);
 				if(newpref.equals("1")) {

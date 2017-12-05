@@ -138,7 +138,7 @@
         <input name="lname" type="text" placeholder="Last Name" class="input pass" value=${user.lname}>
         <input name="email" type="email" placeholder="Email address" class="input pass" value=${user.email}>
         <input name="phone" type="text" placeholder="Phone Number"  class="input pass" value=${user.phoneNumber}>
-                <input name="phone" type="text" placeholder="Address" class="input pass" value="${user.shipadd}">
+                <input name="address" type="text" placeholder="Address" class="input pass" value="${user.shipadd}">
         
               <div id="homebody"> 
                 

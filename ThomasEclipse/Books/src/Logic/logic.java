@@ -3,6 +3,8 @@ import Entities.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import DatabaseAccess.*;
 import EmailNotifications.SendEmail;
@@ -15,19 +17,29 @@ public class logic {
 	private static BookDBManager BManager = new BookDBManager();
 	
 	public int validateUser(User u, String validation){
-		System.out.println("In validate method, with code: xxxxxx" + validation + "xxxxx");
-		System.out.println("Trying to validate: " + u.getEmail());
 		ArrayList<User> newUser = UManager.searchUsers("email", u.getEmail());
-		System.out.println("Size of returned list: " + newUser.size());
-		System.out.println("Validation code should be: xxxxx" + newUser.get(0).getUid() + "xxxxx");
 		if(validation.equals(Integer.toString(newUser.get(0).getUid()))){
-			Driver driver = new Driver();
-			String query = "UPDATE users SET verify = '" + 1 +"' WHERE uid = "+ newUser.get(0).getUid();
-			int value = driver.update(query);
-			System.out.println("VALIDATED CORRECTLY");
-			SendEmail sender = new SendEmail();
-			sender.actuallySendEmail(u, sender.ACCOUNT_VERIFICATION);
-			return 1;
+			Date dateInQuestion = u.getSignupdate();
+
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(dateInQuestion);
+			cal.add(Calendar.HOUR, 48);
+			Date futureDate = cal.getTime();
+
+			if (dateInQuestion.after(futureDate)) {
+			  // Then more than 48 hours have passed since the date in question
+				System.out.println("VALIDATED FAILED DUE TO TIME CONSTRAINT");
+				return 0;
+			}
+			else {
+				Driver driver = new Driver();
+				String query = "UPDATE users SET verify = '" + 1 +"' WHERE uid = "+ newUser.get(0).getUid();
+				int value = driver.update(query);
+				System.out.println("VALIDATED CORRECTLY");
+				SendEmail sender = new SendEmail();
+				sender.actuallySendEmail(u, sender.ACCOUNT_VERIFICATION);
+				return 1;
+			}
 		}
 		System.out.println("VALIDATED FAILED");
 		return 0;

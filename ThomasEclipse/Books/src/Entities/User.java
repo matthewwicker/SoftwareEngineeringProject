@@ -1,5 +1,8 @@
 package Entities;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class User {
 	public int getUid() {
 		return uid;
@@ -84,6 +87,12 @@ public class User {
 	public void setSuspended(String suspended) {
 		this.suspended = suspended;
 	}
+	public Date getSignupdate() {
+		return signupdate;
+	}
+	public void setSignupdate(Date signupdate) {
+		this.signupdate = signupdate;
+	}
 	
 	private int uid;
 	private String email;
@@ -97,5 +106,7 @@ public class User {
 	private String shipadd;
 	private String username;
 	private String subscribed;
-	private String suspended;	
+	private String suspended;
+	private Date signupdate;
+	
 }
