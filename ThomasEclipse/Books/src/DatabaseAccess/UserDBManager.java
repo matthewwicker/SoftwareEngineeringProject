@@ -124,7 +124,34 @@ public class UserDBManager {
 		return search_results;
 	}
 	
-	
+	public static ArrayList<User> searchUsers(String query){
+		ArrayList<User> search_results = new ArrayList<User>();
+		ResultSet rs = driver.retrieve(query);
+		User user = new User();
+		if(rs != null){
+			try {
+				while(rs.next()){
+					user.setUid(rs.getInt("uid"));
+					user.setFname(rs.getString("fname"));
+					user.setLname(rs.getString("lname"));
+					user.setPhoneNumber(rs.getString("phonenumber"));
+					//user.setPassword(rs.getString("AES_DECRYPT(password, UNHEX(SHA2('test',512)))"));
+					user.setPassword(rs.getString("password"));
+					user.setEmail(rs.getString("email"));
+					user.setType(rs.getString("type"));
+					user.setSubscribed(rs.getString("getsPromo"));
+					user.setPhoneNumber(rs.getString("phonenumber"));
+					search_results.add(user);
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return search_results;
+	}
 	
 	public static String getUserPreference(String searchParam, String searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();

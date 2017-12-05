@@ -91,6 +91,31 @@ public class PaymentDBManager {
 		return search_results;
 	}
 	
+	public static ArrayList<Payment> searchPayment(String query){
+		ArrayList<Payment> search_results = new ArrayList<Payment>();
+		ResultSet rs = driver.retrieve(query);
+		if(rs != null){
+			try {
+				while(rs.next()){
+					Payment payment = new Payment();
+					payment.setCcid(rs.getInt("ccid"));
+					payment.setCc_number(rs.getString("cc_number"));
+					payment.setUser(rs.getInt("uid"));
+					payment.setExpdate(rs.getString("expdate"));
+					payment.setType(rs.getString("type"));
+					payment.setAid(rs.getInt("aid"));
+					search_results.add(payment);
+				}
+				driver.disconnect();
+			}
+			 catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return search_results;
+	}
+	
 	public static String getUserCardID(String searchParam, int searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
 		String query = "select * from payment where " + "uid"+ "= '" + searchItem + "'";
