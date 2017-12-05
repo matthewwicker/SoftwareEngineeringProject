@@ -1,5 +1,7 @@
 package Entities;
 
+import java.util.Date;
+
 public class Transaction {
 
 	public int getTransactioncol() {
@@ -26,10 +28,10 @@ public class Transaction {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public void setPromoCode(String code) {
@@ -48,7 +50,7 @@ public class Transaction {
 	private int cartid;
 	private int ccid;
 	private double amount;
-	private String date;
+	private Date date;
 	private String status;
 	private String promoCode;
 	
