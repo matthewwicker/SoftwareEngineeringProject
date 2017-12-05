@@ -14,6 +14,7 @@
   </style>
 </head>
 <body>
+
 <form action = "myservlet" method = "post">
 
 <!---HEADER-->
@@ -110,6 +111,7 @@
                                                 <div class="text-center">
                                                     <li><button class="btn btn-link" type="submit" name="navigator" value="" style="background-color:white;text-transform:lowercase">Forgot Password?</button></li>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -124,40 +126,31 @@
     </div>
   </div>
 </nav>
+                                                <!---BODY-->
+<div class="container">
+  
+  <div class="page-header">
+    <h2>${header}</h2>
+  </div>
 
-<!---BODY-->
-<div id="content-background">
-   			<div class="text-center">
-          <h3>Manager Dashboard</h3>
-        </div>
-        <input name="fname" type="text" placeholder="First Name" autofocus="autofocus" class="input pass" value=${user.fname}>
-        <input name="lname" type="text" placeholder="Last Name" class="input pass" value=${user.lname}>
-        <input name="email" type="email" placeholder="Email address" class="input pass" value=${user.email}>
-        <input name="phone" type="text" placeholder="Phone Number" class="input pass" value=${user.phoneNumber}>
-        <input name="phone" type="text" placeholder="Address" class="input pass" value="${user.shipadd}">
-        	    <div id="homebody">      <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="GoToReports">Get Reports</button>
-     			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
-                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button> ---->
-                <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
-                
-                </br>
-                </br>
-                <th>Validate</th>
-                <th> <input type="text" name="vcode" value=${"vcode"}><br/>
-                </tr>
-                </br>
-                <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
-                
-                </div>
-                
-</div>
+  <div class="row">
+
+ 			    <div id="homebody"> 
+			<br><br>
+  <#list tablehead?split("_") as x>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<bold>${x}</bold>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  </#list><br>
     
- </form>
+ <#list results as result>
+    <#list result?split("_") as x>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${x}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    </#list><br> 
+</#list>
+</div>
 
-</body>
-</html>
+</div><br><br>
+</div>
+    <!-- Footer 2 End -->
+    </form>
 </body>
 </html>

@@ -127,32 +127,15 @@
 
 <!---BODY-->
 <div id="content-background">
-   			<div class="text-center">
-          <h3>Manager Dashboard</h3>
-        </div>
-        <input name="fname" type="text" placeholder="First Name" autofocus="autofocus" class="input pass" value=${user.fname}>
-        <input name="lname" type="text" placeholder="Last Name" class="input pass" value=${user.lname}>
-        <input name="email" type="email" placeholder="Email address" class="input pass" value=${user.email}>
-        <input name="phone" type="text" placeholder="Phone Number" class="input pass" value=${user.phoneNumber}>
-        <input name="phone" type="text" placeholder="Address" class="input pass" value="${user.shipadd}">
-        	    <div id="homebody">      <button id="cart"type="submit" name="Task" value="UpdateInfo">Update Info</button>
-                <button id="cart" type="submit" name="Task" value="GoToReports">Get Reports</button>
-     			<button id="cart"type="submit" name="Task" value="SignOut">Sign Out</button><br><br>
-               <!-----  <button id="cart" type="submit" name="Task" value="GoToCreateBook">Create Book</button> ---->
-                <button id="cart" type="submit" name="Task" value="GoToCart">View Cart</button>
-                <!----- <button id="cart" type="submit" name="Task" value="GoToPromotion">Create/Edit Promotion</button> ---->
-                <button id="cart" type="submit" name="Task" value="UpdatePromoPref">Update Promo Preference </button>
-                
-                </br>
-                </br>
-                <th>Validate</th>
-                <th> <input type="text" name="vcode" value=${"vcode"}><br/>
-                </tr>
-                </br>
-                <button id="cart" type="submit" name="Task" value="Validation">Validate Account</button>
-                
-                </div>
-                
+            <div class="page-header">
+			    <h2>Supplier Reports</h2>
+			</div>
+			    <div id="homebody"> 
+			<br><br>
+      
+                <button id="cart" type="submit" name="Task" value="GoToSuppBookSalesRep">Book Sales</button> <br><br>
+     			<button id="cart" type="submit" name="Task" value="GotToInventoryRep">Book Inventory</button><br><br>
+           </div>
 </div>
     
  </form>

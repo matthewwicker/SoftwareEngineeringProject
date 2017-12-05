@@ -231,7 +231,65 @@ public class myservlet extends HttpServlet {
 				Book createdBook = GetHandlers.CreateBook(request);
 			} //Create Book
 			
-			
+			else if(task.equals("GoToReports")) {
+				template = accountdir + "/reports.ftlh";
+			}
+			else if(task.equals("GotToPromoRep")) {
+				template = "report.ftlh";
+				String header = "Promotion Report";
+				String tablehead = "Promotion_Uses";
+				root.put("header", header);
+				root.put("tablehead",tablehead);
+				
+			}
+			else if(task.equals("GoToBookMoneyRep")) {
+				template = "report.ftlh";
+				String header = "Earnings by Book";
+				String tablehead = "Book_Earning";
+				root.put("header", header);
+				root.put("tablehead",tablehead);
+				
+			}
+			else if(task.equals("GoToBookQuantityRep")) {
+				template = "report.ftlh";
+				String header = "Quantity Sold by Book";
+				String tablehead = "Book_Quantity";
+				root.put("header", header);
+				root.put("tablehead",tablehead);
+				
+			}
+			else if(task.equals("GoToAllTransactions")) {
+				template = "report.ftlh";
+				String header = "Summary of Transactions";
+				String tablehead = "OrderID_Number of Items_Order Status";
+				root.put("header", header);
+				root.put("tablehead",tablehead);
+				
+			}
+			else if(task.equals("GoToUserInfoRep")) {
+				template = "report.ftlh";
+				String header = "Summary of Transactions";
+				String tablehead = "OrderID_Number of Items_Order Status";
+				root.put("header", header);
+				root.put("tablehead",tablehead);
+				
+			}
+			else if(task.equals("GoToSuppBookSalesRep")) {
+				template = "report.ftlh";
+				String header = "Book Sales for your Agency";
+				String tablehead = "ISBN_Quantity Sold";
+				root.put("header", header);
+				root.put("tablehead",tablehead);
+				
+			}
+			else if(task.equals("GotToInventoryRep")) {
+				template = "report.ftlh";
+				String header = "Current Inventory";
+				String tablehead = "ISBN_Stock";
+				root.put("header", header);
+				root.put("tablehead",tablehead);
+				
+			}
 			 /* Here is the messed up part */
 			else if(task.contains("GoToItem")) {
 				System.out.println("Here is the value of the task: " + task);
@@ -626,11 +684,7 @@ public class myservlet extends HttpServlet {
 									sender.actuallySendEmail(u, SendEmail.THRESHOLD_HIT);
 								}
 								BookDBManager.setQuantity(Integer.toString(newQuant), books.get(0));
-							
-								//Also, remove this item from their cart.
-								int cid = cart.getCartId();
-								CartItemDBManager.removeCartItem(cid, c.getISBN());
-							}
+ 							}
 						}
 						}catch(Exception e) {e.printStackTrace();}
 				        System.out.println("check5");

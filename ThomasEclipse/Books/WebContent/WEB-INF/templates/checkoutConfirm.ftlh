@@ -134,7 +134,7 @@
 
 <div id="content">
   <p> Your order ${cart.cartId} is being processed. </p>
-  <p> Shipping Address:</p><p>${sadd}</p>
+  <p> Shipping Address:</p><p>${user.shipadd}</p>
   <h4> Order Contents </h4>
 </div>
 
