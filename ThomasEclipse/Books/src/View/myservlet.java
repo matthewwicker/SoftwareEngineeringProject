@@ -607,6 +607,11 @@ public class myservlet extends HttpServlet {
 								if(newQuant <= books.get(0).getThreshold()) {
 									//SEND THRESHOLD EMAIL TO SUPPLIERS
 									System.out.println("THRESHOLD HIT, SENDING EMAIL");
+									ArrayList<Supplier> sups = SupplierDBManager.searchSupplier("supplierid", Integer.toString(books.get(0).getSupplier()));
+									int suppuid = sups.get(0).getUid();
+									User u = UserDBManager.searchUsers("uid", Integer.toString(suppuid)).get(0);
+									SendEmail sender = new SendEmail();
+									sender.actuallySendEmail(u, SendEmail.THRESHOLD_HIT);
 								}
 								BookDBManager.setQuantity(Integer.toString(newQuant), books.get(0));
 							
