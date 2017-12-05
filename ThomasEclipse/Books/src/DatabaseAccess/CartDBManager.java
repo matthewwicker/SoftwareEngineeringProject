@@ -100,7 +100,7 @@ public class CartDBManager {
 	
 	public static String getUserCartID(String searchParam, int searchItem){
 		ArrayList<User> search_results = new ArrayList<User>();
-		String query = "select * from cart where " + "uid"+ "= '" + searchItem + "'";
+		String query = "select * from cart where " + "uid"+ "= '" + searchItem + "' AND valid = 1";
 		System.out.print(query);
 		ResultSet rs = driver.retrieve(query);
 		if(rs != null){
@@ -127,7 +127,7 @@ public class CartDBManager {
 		}
 		else
 			value = 0;
-		String query = "UPDATE book SET valid = '"+ value + "' WHERE cartid = '"+cart.getCartId() +"'; ";
+		String query = "UPDATE cart SET valid = '"+ value + "' WHERE cartid = '"+cart.getCartId() +"'; ";
 		int success = 0;
 		success = driver.create(query);
 		return success;

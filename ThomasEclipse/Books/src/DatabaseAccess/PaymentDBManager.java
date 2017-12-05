@@ -54,7 +54,7 @@ public class PaymentDBManager {
 		}
 		else
 			value = 0;
-		String query = "UPDATE book SET valid = '"+ value + "' WHERE ccid = '"+payment.getCcid() +"'; ";
+		String query = "UPDATE payment SET valid = '"+ value + "' WHERE ccid = '"+payment.getCcid() +"'; ";
 		int success = 0;
 		success = driver.create(query);
 		return success;
@@ -67,7 +67,7 @@ public class PaymentDBManager {
 	 */
 	public static ArrayList<Payment> searchPayment(String searchParam, String searchItem){
 		ArrayList<Payment> search_results = new ArrayList<Payment>();
-		String query = "select * from payment where " + searchParam+ "= " + searchItem;
+		String query = "select * from payment where " + searchParam+ "= '" + searchItem+"' AND valid = 1";
 		ResultSet rs = driver.retrieve(query);
 		Payment payment = new Payment();
 		if(rs != null){

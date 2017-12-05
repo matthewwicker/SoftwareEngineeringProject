@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `payment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `payment` (
   `ccid` int(11) NOT NULL AUTO_INCREMENT,
-  `cc_number` int(11) NOT NULL,
+  `cc_number` varchar(16) NOT NULL,
   `expdate` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
   `uid` int(11) NOT NULL,
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-04 19:26:18
+-- Dump completed on 2017-12-04 21:05:25

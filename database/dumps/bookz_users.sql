@@ -34,6 +34,7 @@ CREATE TABLE `users` (
   `verify` tinyint(4) NOT NULL DEFAULT '0',
   `getsPromo` tinyint(4) NOT NULL DEFAULT '1',
   `valid` tinyint(4) NOT NULL DEFAULT '1',
+  `signupdate` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
@@ -45,7 +46,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'defaultU@stuff.com','user','last','password','123456789','u',0,0,1,1),(2,'defaultA@stuff.com','admin','last','password','123456789','a',0,0,1,1),(3,'defaultP@stuff.com','supplier','last','password','123456789','p',0,0,1,1),(4,'defaultS@stuff.com','shipper','last','password','123456789','s',0,0,1,1),(5,'defaultE@stuff.com','employee','last','password','123456789','e',0,0,1,1);
+INSERT INTO `users` VALUES (1,'defaultU@stuff.com','user','last','password','123456789','u',0,0,1,1,NULL),(2,'defaultA@stuff.com','admin','last','password','123456789','a',0,0,1,1,NULL),(3,'defaultP@stuff.com','supplier','last','password','123456789','p',0,0,1,1,NULL),(4,'defaultS@stuff.com','shipper','last','password','123456789','s',0,0,1,1,NULL),(5,'defaultE@stuff.com','employee','last','password','123456789','e',0,0,1,1,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-04 19:26:18
+-- Dump completed on 2017-12-04 21:05:25

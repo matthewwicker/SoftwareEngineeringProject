@@ -117,7 +117,7 @@ public class AddressDBManager {
 		}
 		else
 			value = 0;
-		String query = "UPDATE book SET valid = '"+ value + "' WHERE aid = '"+address.getAid() +"'; ";
+		String query = "UPDATE address SET valid = '"+ value + "' WHERE aid = '"+address.getAid() +"'; ";
 		int success = 0;
 		success = driver.create(query);
 		return success;
