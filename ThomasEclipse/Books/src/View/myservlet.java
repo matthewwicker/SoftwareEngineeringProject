@@ -143,7 +143,6 @@ public class myservlet extends HttpServlet {
         					
         					String cc = pay.getCc_number();
         					System.out.println(cc);
-        					System.out.println(cc.substring(11,15));
         					cc = cc.substring(12, 16);
         					Payment payment = new Payment();
         					
